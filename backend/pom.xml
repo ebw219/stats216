@@ -63,7 +63,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>edu.lehigh.cse216.klylebackend.App</mainClass>
+          <mainClass>edu.lehigh.cse216.lyle.backend.App</mainClass>
         </configuration>
       </plugin>
 <plugin>
@@ -82,7 +82,7 @@
         </descriptorRefs>
         <archive>
             <manifest>
-                <mainClass>edu.lehigh.cse216.lyle.web.App</mainClass>
+                <mainClass>edu.lehigh.cse216.lyle.backend.App</mainClass>
             </manifest>
         </archive>
     </configuration>
