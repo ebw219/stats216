@@ -42,7 +42,7 @@
     <version>1.2.0</version>
     <configuration>
         <jdkVersion>1.8</jdkVersion>
-        <sleepy-dusk-34987>still-earth-81666</sleepy-dusk-34987> 
+        <appName>sleepy-dusk-34987</appName>
         <processTypes>
             <web>java -jar ./target/backend-1.0-SNAPSHOT.jar</web>
         </processTypes>
