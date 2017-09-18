@@ -1,7 +1,7 @@
 # Team lyle
 
-#sfb219
-#kdf219
-#tjj218
-#eh219
-#ebw219
+* sfb219
+* kdf219
+* tjj218
+* eh219
+* ebw219
