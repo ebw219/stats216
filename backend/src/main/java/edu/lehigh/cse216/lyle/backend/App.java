@@ -102,4 +102,22 @@ public class App {
             }
         });
     }
+
+    /**
+     * Get an integer environment varible if it exists, and otherwise return the
+     * default value.
+     * 
+     * @envar      The name of the environment variable to get.
+     * @defaultVal The integer value to use as the default if envar isn't found
+     * 
+     * @returns The best answer we could come up with for a value for envar
+     */
+    static int getIntFromEnv(String envar, int defaultVal) {
+	ProcessBuilder processBuilder = new ProcessBuilder();
+	if (processBuilder.environment().get(envar) != null) {
+	    return Integer.parseInt(processBuilder.environment().get(envar));
+	}
+	return defaultVal;
+    }
+
 }
