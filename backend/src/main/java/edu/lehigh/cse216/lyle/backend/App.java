@@ -14,6 +14,9 @@ import com.google.gson.*;
 public class App {
     public static void main(String[] args) {
 
+	// Get the port on which to listen for requests
+	Spark.port(getIntFromEnv("PORT", 4567));
+
         // gson provides us with a way to turn JSON into objects, and objects
         // into JSON.
         //

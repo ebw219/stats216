@@ -27,10 +27,28 @@
     <version>2.8.1</version>
 </dependency>
 
+<dependency>
+    <groupId>com.heroku.sdk</groupId>
+    <artifactId>heroku-maven-plugin</artifactId>
+    <version>1.2.0</version>
+</dependency>
   </dependencies>
 
 <build>
     <plugins>
+  <plugin>
+    <groupId>com.heroku.sdk</groupId>
+    <artifactId>heroku-maven-plugin</artifactId>
+    <version>1.2.0</version>
+    <configuration>
+        <jdkVersion>1.8</jdkVersion>
+        <sleepy-dusk-34987>still-earth-81666</sleepy-dusk-34987> 
+        <processTypes>
+            <web>java -jar ./target/backend-1.0-SNAPSHOT.jar</web>
+        </processTypes>
+    </configuration>
+  </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
