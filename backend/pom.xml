@@ -44,8 +44,30 @@
         <jdkVersion>1.8</jdkVersion>
         <appName>sleepy-dusk-34987</appName>
         <processTypes>
-            <web>java -jar ./target/backend-1.0-SNAPSHOT.jar</web>
+            <web>java -jar ./target/backend-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
         </processTypes>
+    </configuration>
+  </plugin>
+
+  <plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+      <execution>
+	<phase>package</phase>
+	<goals>
+	  <goal>single</goal>
+	</goals>
+      </execution>
+    </executions>
+    <configuration>
+      <descriptorRefs>
+	<descriptorRef>jar-with-dependencies</descriptorRef>
+      </descriptorRefs>
+      <archive>
+	<manifest>
+	  <mainClass>edu.lehigh.cse216.lyle.backend.App</mainClass>
+	</manifest>
+      </archive>
     </configuration>
   </plugin>
 
@@ -63,7 +85,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>edu.lehigh.cse216.klylebackend.App</mainClass>
+          <mainClass>edu.lehigh.cse216.lyle.backend.App</mainClass>
         </configuration>
       </plugin>
     </plugins>
