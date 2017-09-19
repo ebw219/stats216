@@ -82,7 +82,7 @@
         </descriptorRefs>
         <archive>
             <manifest>
-                <mainClass>edu.lehigh.cse216.lyle.backend.App</mainClass>
+                <mainClass>edu.lehigh.cse216.lyle.web.App</mainClass>
             </manifest>
         </archive>
     </configuration>
