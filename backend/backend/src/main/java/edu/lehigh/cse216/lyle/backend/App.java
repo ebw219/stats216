@@ -22,11 +22,11 @@ public class App {
 	// https://stackoverflow.com/questions/10380835/is-it-ok-to-use-gson-instance-as-a-static-field-in-a-model-bean-reuse
 	final Gson gson = new Gson();
 
-	// dataStore holds all of the data that has been provided via HTTP
+	// database holds all of the data that has been provided via HTTP
 	// requests
 	//
 	// NB: every time we shut down the server, we will lose all data, and
-	//     every time we start the server, we'll have an empty dataStore,
+	//     every time we start the server, we'll have an empty database,
 	//     with IDs starting over from 0.
 	Map<String, String> env = System.getenv();
 	String ip = env.get("POSTGRES_IP");
@@ -69,7 +69,7 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, database.selectAll())); // changed 
 	    });
 
-	// GET route that returns everything for a single row in the DataStore.
+	// GET route that returns everything for a single row in the database.
 	// The ":id" suffix in the first parameter to get() becomes
 	// request.params("id"), so that we can get the requested row ID.  If
 	// ":id" isn't a number, Spark will reply with a status 500 Internal
@@ -88,7 +88,7 @@ public class App {
 		}
 	    });
 
-	// POST route for adding a new element to the DataStore.  This will read
+	// POST route for adding a new element to the database.  This will read
 	// JSON from the body of the request, turn it into a SimpleRequest
 	// object, extract the title and message, insert them, and return the
 	// ID of the newly created row.
@@ -111,7 +111,7 @@ public class App {
 	    });
  
 
-	// PUT route for updating a row in the DataStore.  This is almost
+	// PUT route for updating a row in the Database.  This is almost
 	// exactly the same as POST
 	Spark.put("/messages/:id", (request, response) -> {
 		// If we can't get an ID or can't parse the JSON, Spark will send
@@ -129,7 +129,7 @@ public class App {
 		}
 	    });
 	
-	// DELETE route for removing a row from the DataStore
+	// DELETE route for removing a row from the Database
 	Spark.delete("/messages/:id", (request, response) -> {
 		// If we can't get an ID, Spark will send a status 500
 		int idx = Integer.parseInt(request.params("id"));

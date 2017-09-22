@@ -50,6 +50,12 @@ public class Database {
      */
     private PreparedStatement mDropTable;
 
+    /**
+     * A prepared statement for changing the vote
+     */
+    private PreparedStatement mVote;
+
+
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -76,12 +82,18 @@ public class Database {
         String mMessage;
 
         /**
+         * An int for holding the vote value
+         */
+        int mVote;
+
+        /**
          * Construct a RowData object by providing values for its fields
          */
         public RowData(int id, String title, String message) {
             mId = id;
             mTitle = title;
             mMessage = message;
+            mVote = 0;
         }
     }
 
@@ -131,17 +143,19 @@ public class Database {
             // Note: no "IF NOT EXISTS" or "IF EXISTS" checks on table 
             // creation/deletion, so multiple executions will cause an exception
             db.mCreateTable = db.mConnection.prepareStatement(
-                    "CREATE TABLE tblData (id SERIAL PRIMARY KEY, title VARCHAR(50) "
-                    + "NOT NULL, message VARCHAR(500) NOT NULL)");
+                    "CREATE TABLE tblData (id SERIAL PRIMARY KEY, votes, title VARCHAR(50) NOT NULL, message VARCHAR(500) NOT NULL)");
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
 
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, 0, ?)");
            
             db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM tblData");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
-            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET title = ?, message = ? WHERE id = ?");
+            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET title = ?, message = ?, votes = votes WHERE id = ?");
+
+            db.mVote = db.mConnection.prepareStatement("UPDATE tblData SET votes = votes + 1"); // WHERE id = ? --> necessary????
+
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
             e.printStackTrace();
@@ -194,6 +208,15 @@ public class Database {
             e.printStackTrace();
         }
         return count;
+    }
+
+    void upVote(){
+        try {
+            mVote.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    
     }
 
     /**
@@ -268,7 +291,7 @@ public class Database {
         try {
             mUpdateOne.setString(1, title);
             mUpdateOne.setString(2, message);
-            mUpdateOne.setInt(3, id);
+            mUpdateOne.setInt(4, id);
             res = mUpdateOne.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
