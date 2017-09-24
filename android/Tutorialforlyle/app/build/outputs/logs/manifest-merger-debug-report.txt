@@ -27,6 +27,7 @@ MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/lizziesh
 MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/e0676fff2cc48fbe71002ac0b07e6924905597f6/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/713022fefe4c651385b712ecad84981e6c5e9fc4/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/7a6ecdfd9f102d076434dcf0cd61695dd435ce83/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.volley:volley:1.0.0] /Users/lizzieshaffran/.android/build-cache/09ee71ec11baa9009bb81e43d84bc3d9c52168a6/output/AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:8:9-41
 	android:supportsRtl
@@ -72,6 +73,7 @@ MERGED from [com.android.support:support-fragment:26.0.0-alpha1] /Users/lizziesh
 MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/e0676fff2cc48fbe71002ac0b07e6924905597f6/output/AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/713022fefe4c651385b712ecad84981e6c5e9fc4/output/AndroidManifest.xml:21:5-23:61
 MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/7a6ecdfd9f102d076434dcf0cd61695dd435ce83/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.volley:volley:1.0.0] /Users/lizzieshaffran/.android/build-cache/09ee71ec11baa9009bb81e43d84bc3d9c52168a6/output/AndroidManifest.xml:7:5-43
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/AndroidManifest.xml:23:9-59
 	android:targetSdkVersion

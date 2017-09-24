@@ -52,12 +52,12 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/color/abc_tint_switch_track.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/color/abc_tint_edittext.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/color/abc_tint_edittext.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/color/abc_btn_colored_text_material.xml",
         "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/color/abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/color/abc_tint_edittext.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/color/abc_tint_edittext.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",

@@ -6,64 +6,43 @@
     density="420dpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1506281119328"
+    timestamp="1506283559161"
     token="6051629310572733540"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="4980" />
+        duration="1076" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="1072" />
+        duration="39" />
     <task
         name="verifier"
-        duration="159" />
+        duration="2" />
 
     <artifact
         location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-        type="SPLIT" />
-    <artifact
         location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+        location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
         location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
         type="SPLIT" />
     <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-        type="SPLIT" />
-    <artifact
-        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/outputs/apk/app-debug.apk"
-        type="SPLIT_MAIN" />
-    <artifact
-        location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
         type="SPLIT" />
     <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
         type="SPLIT" />
     <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
@@ -72,7 +51,16 @@
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
     <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+        type="SPLIT" />
+    <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
         type="SPLIT" />
     <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
@@ -87,57 +75,48 @@
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
         type="SPLIT" />
     <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+        type="SPLIT" />
+    <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
         type="SPLIT" />
     <artifact
         location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
         type="SPLIT" />
+    <artifact
+        location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/outputs/apk/app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1506281119328"
+        timestamp="1506283559161"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
-            type="SPLIT" />
-        <artifact
             location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
+            location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
             location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
             type="SPLIT" />
         <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/outputs/apk/app-debug.apk"
-            type="SPLIT_MAIN" />
-        <artifact
-            location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
             type="SPLIT" />
         <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
         <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
@@ -146,7 +125,16 @@
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
         <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
@@ -161,11 +149,23 @@
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_6.apk"
             type="SPLIT" />
         <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
+            type="SPLIT" />
+        <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/split-apk/debug/slices/slice_8.apk"
             type="SPLIT" />
         <artifact
             location="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/split-apk/debug/slices/slice_0.apk"
             type="SPLIT" />
+        <artifact
+            location="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>
