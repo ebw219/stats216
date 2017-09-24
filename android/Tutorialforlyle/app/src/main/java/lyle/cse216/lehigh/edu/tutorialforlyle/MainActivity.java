@@ -38,8 +38,22 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
+                    @Override
                     public void onResponse(String response) {
-                        Log.d("mfs409", "Response is: " + response);
+                        final ArrayList<String> myList = new ArrayList<>();
+                        try {
+                            JSONArray jStringArray = new JSONArray(response);
+                            for (int i = 0; i < jStringArray.length(); ++i) {
+                                myList.add(jStringArray.getString(i));
+                            }
+                        } catch (final JSONException e) {
+                            Log.d("mfs409", "Error parsing JSON file..." + e.getMessage());
+                        }
+                        ListView mListView = (ListView) findViewById(R.id.datum_list_view);
+                        ArrayAdapter adapter = new ArrayAdapter<>(MainActivity.this,
+                                android.R.layout.simple_list_item_1,
+                                myList);
+                        mListView.setAdapter(adapter);
                     }
                 }, new Response.ErrorListener() {
             @Override
