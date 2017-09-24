@@ -4,16 +4,24 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/anim/design_snackbar_in.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_popup_exit.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/design_snackbar_out.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/anim/design_snackbar_out.xml"
     },
     {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_popup_exit.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/anim/design_bottom_sheet_slide_out.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_slide_in_bottom.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
@@ -32,8 +40,16 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/anim/design_snackbar_out.xml"
     },
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/anim/design_bottom_sheet_slide_in.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/design_bottom_sheet_slide_in.xml",
@@ -52,8 +68,16 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_slide_out_top.xml"
     },
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_fade_in.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/tooltip_enter.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/tooltip_enter.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/design_snackbar_out.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/anim/design_snackbar_out.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/tooltip_enter.xml",
@@ -76,8 +100,16 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/anim/design_bottom_sheet_slide_in.xml"
     },
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/design_snackbar_in.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/anim/design_snackbar_in.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/design_snackbar_in.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/anim/design_snackbar_in.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_slide_out_bottom.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
@@ -92,12 +124,24 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_popup_exit.xml"
     },
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_fade_in.xml"
     },
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_fade_out.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_popup_enter.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/tooltip_exit.xml",
@@ -106,6 +150,14 @@
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_slide_out_top.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
@@ -118,6 +170,10 @@
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/anim/abc_popup_exit.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/anim/abc_popup_exit.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/anim/abc_popup_enter.xml",
