@@ -25,21 +25,9 @@ public class App {
 	// https://stackoverflow.com/questions/10380835/is-it-ok-to-use-gson-instance-as-a-static-field-in-a-model-bean-reuse
 	final Gson gson = new Gson();
 
-	// database holds all of the data that has been provided via HTTP
-	// requests
-	//
-	// NB: every time we shut down the server, we will lose all data, and
-	//     every time we start the server, we'll have an empty database,
-	//     with IDs starting over from 0.
-	// Map<String, String> env = System.getenv();
-	// String ip = env.get("POSTGRES_IP");
-	// String port = env.get("POSTGRES_PORT");
-	// String user = env.get("POSTGRES_USER");
-	// String pass = env.get("POSTGRES_PASS");
+	//System.out.println("\nuser: " + user + "\n");
 
-	// System.out.println("\nuser: " + user + "\n");
-
-	final Database database = Database.getDatabase(); //changed to database instead of datastore
+	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
 		database.createTable();
 	}
@@ -169,5 +157,20 @@ static int getIntFromEnv(String envar, int defaultVal) {
     }
     return defaultVal;
 }    
+
+static String getDatabaseUrl() {
+    ProcessBuilder processBuilder = new ProcessBuilder();
+        return processBuilder.environment().get("JDBC_DATABASE_URL");
+} 
+
+/**
+ * connect to heroku postgres database
+ */
+/*static String getDatabaseURLfromEnv() {
+	ProcessBuilder processBuilder = new ProcessBuilder();
+	return processBuilder.environment().get("JDBC_DATABASE_URL");
+}
+final Database db = Database.getDatabase(getDatabaseURLfromEnv());
+*/
 
 }
