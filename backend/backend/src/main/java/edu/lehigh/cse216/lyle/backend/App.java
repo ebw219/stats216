@@ -31,15 +31,15 @@ public class App {
 	// NB: every time we shut down the server, we will lose all data, and
 	//     every time we start the server, we'll have an empty database,
 	//     with IDs starting over from 0.
-	Map<String, String> env = System.getenv();
-	String ip = env.get("POSTGRES_IP");
-	String port = env.get("POSTGRES_PORT");
-	String user = env.get("POSTGRES_USER");
-	String pass = env.get("POSTGRES_PASS");
+	// Map<String, String> env = System.getenv();
+	// String ip = env.get("POSTGRES_IP");
+	// String port = env.get("POSTGRES_PORT");
+	// String user = env.get("POSTGRES_USER");
+	// String pass = env.get("POSTGRES_PASS");
 
-	System.out.println("\nuser: " + user + "\n");
+	// System.out.println("\nuser: " + user + "\n");
 
-	final Database database = Database.getDatabase(ip, port, user, pass); //changed to database instead of datastore
+	final Database database = Database.getDatabase(); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
 		database.createTable();
 	}

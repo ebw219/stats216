@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import java.net.URISyntaxException;
+
 import java.util.ArrayList;
 
 public class Database {
@@ -104,6 +106,11 @@ public class Database {
     private Database() {
     }
 
+    private static Connection getConnection() throws URISyntaxException, SQLException {
+        String dbUrl = System.getenv("DATABASE_URL");
+        return DriverManager.getConnection(dbUrl);
+    }
+
     /**
      * Get a fully-configured connection to the database
      * 
@@ -115,12 +122,16 @@ public class Database {
      * 
      * @return A Database object, or null if we cannot connect properly
      */
-    static Database getDatabase(String ip, String port, String user, String pass) {
+    
+    static Database getDatabase() {
+    
         // Create an un-configured Database object
         Database db = new Database();
         // Give the Database object a connection, fail if we cannot get one
         try {
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://" + ip + ":" + port + "/", user, pass);
+            //Connection conn = DriverManager.getConnection(System.getenv("DATABASE_URL"));
+            Connection conn = DriverManager.getConnection("postgres://dosnlfxouuassv:62f6ee7278c7dba70ef3cbc252324cb643b4b326094319a7130fed897b84d0d1");
+            //DriverManager.getConnection();
             if (conn == null) {
                 System.err.println("Error: DriverManager.getConnection() returned a null object");
                 return null;
