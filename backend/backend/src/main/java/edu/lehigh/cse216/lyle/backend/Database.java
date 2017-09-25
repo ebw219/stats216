@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import java.net.URISyntaxException;
+import java.net.*;
 
 import java.util.ArrayList;
 
 public class Database {
+    private static final String tblData = "thebuzztable";
     /**
      * The connection to the database.  When there is no connection, it should
      * be null.  Otherwise, there is a valid open connection
@@ -106,11 +106,6 @@ public class Database {
     private Database() {
     }
 
-    private static Connection getConnection() throws URISyntaxException, SQLException {
-        String dbUrl = System.getenv("DATABASE_URL");
-        return DriverManager.getConnection(dbUrl);
-    }
-
     /**
      * Get a fully-configured connection to the database
      * 
@@ -122,16 +117,12 @@ public class Database {
      * 
      * @return A Database object, or null if we cannot connect properly
      */
-    
-    static Database getDatabase() {
-    
+    static Database getDatabase(String url) {
         // Create an un-configured Database object
         Database db = new Database();
         // Give the Database object a connection, fail if we cannot get one
         try {
-            //Connection conn = DriverManager.getConnection(System.getenv("DATABASE_URL"));
-            Connection conn = DriverManager.getConnection("postgres://dosnlfxouuassv:62f6ee7278c7dba70ef3cbc252324cb643b4b326094319a7130fed897b84d0d1");
-            //DriverManager.getConnection();
+            Connection conn = getConnection(url);
             if (conn == null) {
                 System.err.println("Error: DriverManager.getConnection() returned a null object");
                 return null;
@@ -141,6 +132,9 @@ public class Database {
             System.err.println("Error: DriverManager.getConnection() threw a SQLException");
             e.printStackTrace();
             return null;
+        } catch (URISyntaxException e) {
+            System.err.println("Error: DriverManager.getConnection() threw a URISyntaxException");
+            e.printStackTrace();
         }
 
         // Attempt to create all of our prepared statements.  If any of these 
@@ -154,18 +148,23 @@ public class Database {
             // Note: no "IF NOT EXISTS" or "IF EXISTS" checks on table 
             // creation/deletion, so multiple executions will cause an exception
             db.mCreateTable = db.mConnection.prepareStatement(
-                    "CREATE TABLE tblData (id SERIAL PRIMARY KEY, votes, title VARCHAR(50) NOT NULL, message VARCHAR(500) NOT NULL)");
-            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
+                    "CREATE TABLE " + tblData + " ( " +
+                        "id SERIAL PRIMARY KEY, " + 
+                        "votes INT default 0 NOT NULL, " +
+                        "title VARCHAR(50) NOT NULL, " +
+                        "message VARCHAR(500) NOT NULL " +
+                        ")");
+            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE " + tblData);
 
             // Standard CRUD operations
-            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, 0, ?)");
+            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
            
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM tblData");
-            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
-            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET title = ?, message = ?, votes = votes WHERE id = ?");
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM " + tblData);
+            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
+            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
-            db.mVote = db.mConnection.prepareStatement("UPDATE tblData SET votes = votes + 1"); // WHERE id = ? --> necessary????
+            db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = votes + 1"); // WHERE id = ? --> necessary????
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -176,6 +175,13 @@ public class Database {
         return db;
     }
 
+    
+    private static Connection getConnection(String dbUrl) throws URISyntaxException, SQLException {
+        return DriverManager.getConnection(dbUrl);
+    }
+    
+    
+    
     /**
      * Close the current connection to the database, if one exists.
      * 
@@ -315,7 +321,9 @@ public class Database {
      */
     void createTable() {
         try {
+            System.out.println("Made it into createTable method");
             mCreateTable.execute();
+            System.out.println("executed create table statement");
         } catch (SQLException e) {
             e.printStackTrace();
         }
