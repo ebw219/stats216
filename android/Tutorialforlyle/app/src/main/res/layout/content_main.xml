@@ -8,10 +8,10 @@
     tools:context="lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/datum_list_view"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-    </ListView>
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,4 @@
-#Sun Sep 24 15:25:55 EDT 2017
-base.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_67988be6ce1a1c4d2f22ee3abad6320f93f620b2
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9f9b2b78e8960d3555798c3321cf94fed6b76e6f/classes.dex
-base.1=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_9f9b2b78e8960d3555798c3321cf94fed6b76e6f
-file.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_67988be6ce1a1c4d2f22ee3abad6320f93f620b2/classes.dex
+#Mon Sep 25 09:06:26 EDT 2017
+base.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
+renamed.0=classes.dex
+file.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex

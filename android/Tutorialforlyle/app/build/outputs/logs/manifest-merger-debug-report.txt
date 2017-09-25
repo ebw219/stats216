@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:2:1-24:12
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:2:1-30:12
 	package
 		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:3:5-53
 		INJECTED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml
@@ -13,8 +13,12 @@ ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app
 	android:versionCode
 		INJECTED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:5:5-67
+	android:name
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:5:5-22:19
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:7:5-28:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/lizzieshaffran/.android/build-cache/571b6696371f18f287fdb8a7177586d13bce052e/output/AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:design:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/AndroidManifest.xml:29:5-20
@@ -29,35 +33,43 @@ MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] /Users/lizzie
 MERGED from [com.android.support:support-compat:26.0.0-alpha1] /Users/lizzieshaffran/.android/build-cache/7a6ecdfd9f102d076434dcf0cd61695dd435ce83/output/AndroidManifest.xml:29:5-20
 MERGED from [com.android.volley:volley:1.0.0] /Users/lizzieshaffran/.android/build-cache/09ee71ec11baa9009bb81e43d84bc3d9c52168a6/output/AndroidManifest.xml:9:5-20
 	android:label
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:8:9-41
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:10:9-41
 	android:supportsRtl
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:10:9-35
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:12:9-35
 	android:roundIcon
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:9:9-54
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:11:9-54
 	android:allowBackup
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:6:9-35
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:8:9-35
 	android:icon
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:7:9-43
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:9:9-43
 	android:theme
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:11:9-40
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:13:9-40
 activity#lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:12:9-21:20
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:14:9-23:20
 	android:label
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:14:13-45
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:16:13-45
 	android:theme
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:15:13-56
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:17:13-56
 	android:name
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:13:13-41
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:15:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:16:13-20:29
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:18:13-22:29
 action#android.intent.action.MAIN
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:17:17-69
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:19:17-69
 	android:name
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:17:25-66
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:19:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:19:17-77
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:21:17-77
 	android:name
-		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:19:27-74
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:21:27-74
+activity#lyle.cse216.lehigh.edu.tutorialforlyle.SecondActivity
+ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:24:9-27:68
+	android:label
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:26:13-58
+	android:theme
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:27:13-56
+	android:name
+		ADDED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:25:13-43
 uses-sdk
 INJECTED from /Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/lizzieshaffran/.android/build-cache/571b6696371f18f287fdb8a7177586d13bce052e/output/AndroidManifest.xml:5:5-7:41
