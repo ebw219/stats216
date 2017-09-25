@@ -61,6 +61,8 @@ private static update(data: any) {
     $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
     // Find all of the Edit buttons, and set their behavior
     $("." + ElementList.NAME + "-editbtn").click(ElementList.clickEdit);
+    $("#" + ElementList.NAME + "-messageList").append(Handlebars.templates[ElementList.NAME + ".hb"]
+    ({text1: "Hello", arr1: [1, 2, 3]}));
 }
 
 /**

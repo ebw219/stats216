@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Web Front-End",
   "dependencies": {
+    "handlebars": "^4.0.10",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.2.1",
     "typescript": "^2.5.2"
