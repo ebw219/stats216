@@ -31,6 +31,7 @@ public class App {
 
 	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
+		System.out.println("Made it in to table doesn't exist");
 		database.createTable();
 	}
 	// Set up the location for serving static files.  If the STATIC_LOCATION
