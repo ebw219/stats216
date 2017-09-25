@@ -27,6 +27,8 @@ public class App {
 
 	//System.out.println("\nuser: " + user + "\n");
 
+	System.out.println(getDatabaseUrl());
+
 	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
 		database.createTable();
@@ -159,18 +161,9 @@ static int getIntFromEnv(String envar, int defaultVal) {
 }    
 
 static String getDatabaseUrl() {
-    ProcessBuilder processBuilder = new ProcessBuilder();
-        return processBuilder.environment().get("JDBC_DATABASE_URL");
+	ProcessBuilder processBuilder = new ProcessBuilder();
+		return processBuilder.environment().get("JDBC_DATABASE_URL");
 } 
 
-/**
- * connect to heroku postgres database
- */
-/*static String getDatabaseURLfromEnv() {
-	ProcessBuilder processBuilder = new ProcessBuilder();
-	return processBuilder.environment().get("JDBC_DATABASE_URL");
-}
-final Database db = Database.getDatabase(getDatabaseURLfromEnv());
-*/
 
 }
