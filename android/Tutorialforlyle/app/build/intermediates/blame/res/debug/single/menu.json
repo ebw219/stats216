@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/menu/menu_main.xml",
-        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/menu/menu_main.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/menu/menu_main2.xml",
         "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/menu/menu_main2.xml"
     },

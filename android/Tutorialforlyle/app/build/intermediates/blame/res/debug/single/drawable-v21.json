@@ -1,47 +1,11 @@
 [
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/drawable-v21/notification_action_background.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/drawable-v21/abc_edit_text_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/drawable-v21/design_password_eye.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/avd_hide_password.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/drawable-v21/avd_show_password.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/avd_show_password.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
@@ -52,10 +16,6 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/design_password_eye.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/drawable-v21/avd_hide_password.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/avd_hide_password.xml"
     },
@@ -64,12 +24,12 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/drawable-v21/abc_btn_colored_material.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/design_password_eye.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/avd_hide_password.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/avd_hide_password.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/drawable-v21/design_bottom_navigation_item_background.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/drawable-v21/design_bottom_navigation_item_background.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/design_password_eye.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/design_password_eye.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
@@ -82,6 +42,14 @@
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
         "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/avd_show_password.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/drawable-v21/avd_show_password.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
