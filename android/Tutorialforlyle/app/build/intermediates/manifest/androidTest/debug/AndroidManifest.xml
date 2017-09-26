@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kdf219.cse216.lehigh.edu.tutorialforkdf219.test" >
+    package="lyle.cse216.lehigh.edu.tutorialforlyle.test" >
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -10,8 +10,8 @@
         android:name="android.support.test.runner.AndroidJUnitRunner"
         android:functionalTest="false"
         android:handleProfiling="false"
-        android:label="Tests for kdf219.cse216.lehigh.edu.tutorialforkdf219"
-        android:targetPackage="kdf219.cse216.lehigh.edu.tutorialforkdf219" />
+        android:label="Tests for lyle.cse216.lehigh.edu.tutorialforlyle"
+        android:targetPackage="lyle.cse216.lehigh.edu.tutorialforlyle" />
 
     <application>
         <uses-library android:name="android.test.runner" />

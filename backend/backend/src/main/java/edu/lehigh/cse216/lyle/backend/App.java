@@ -11,6 +11,7 @@ import java.util.Map;
  * For now, our app creates an HTTP server that can only get and add data.
  */
 public class App {
+
     public static void main(String[] args) {
 
 	// Get the port on which to listen for requests
@@ -29,6 +30,7 @@ public class App {
 
 	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
+		System.out.println("Made it in to table doesn't exist");
 		database.createTable();
 	}
 	// Set up the location for serving static files.  If the STATIC_LOCATION
@@ -123,7 +125,7 @@ public class App {
 	    });
 	
 	// DELETE route for removing a row from the Database
-	Spark.delete("/messages/:id", (request, response) -> {
+	Spark.delete("/messages/vote/:id", (request, response) -> {
 		// If we can't get an ID, Spark will send a status 500
 		int idx = Integer.parseInt(request.params("id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -138,6 +140,25 @@ public class App {
 		    return gson.toJson(new StructuredResponse("ok", null, null));
 		}
 	    });
+
+
+        // PUT route for updating the vote in the Database
+        Spark.put("/messages/:id", (request, response) -> {
+            // If we can't get an ID or can't parse the JSON, Spark will send
+            // a status 500
+            int idx = Integer.parseInt(request.params("id"));
+            int votex = Integer.parseInt(request.params("votes"));
+            //SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+            // ensure status 200 OK, with a MIME type of JSON
+            response.status(200);
+            response.type("application/json");
+            int result = database.upVote(idx, votex);
+            if (result == -1) {
+                return gson.toJson(new StructuredResponse("error", "unable to update vote " + idx, null));
+            } else {
+                return gson.toJson(new StructuredResponse("ok", null, result));
+            }
+        });
 
     }
 
@@ -159,18 +180,9 @@ static int getIntFromEnv(String envar, int defaultVal) {
 }    
 
 static String getDatabaseUrl() {
-    ProcessBuilder processBuilder = new ProcessBuilder();
-        return processBuilder.environment().get("JDBC_DATABASE_URL");
+	ProcessBuilder processBuilder = new ProcessBuilder();
+    return processBuilder.environment().get("JDBC_DATABASE_URL");
 } 
 
-/**
- * connect to heroku postgres database
- */
-/*static String getDatabaseURLfromEnv() {
-	ProcessBuilder processBuilder = new ProcessBuilder();
-	return processBuilder.environment().get("JDBC_DATABASE_URL");
-}
-final Database db = Database.getDatabase(getDatabaseURLfromEnv());
-*/
 
 }

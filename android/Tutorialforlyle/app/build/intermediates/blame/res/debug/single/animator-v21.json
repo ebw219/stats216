@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/animator-v21/design_appbar_state_list_animator.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/animator-v21/design_appbar_state_list_animator.xml"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/animator-v21/design_appbar_state_list_animator.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/animator-v21/design_appbar_state_list_animator.xml"
     },
