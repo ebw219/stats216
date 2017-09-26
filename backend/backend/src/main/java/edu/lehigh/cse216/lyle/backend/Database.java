@@ -10,6 +10,7 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class Database {
+    private static final String tblData = "thebuzztable";
     /**
      * The connection to the database.  When there is no connection, it should
      * be null.  Otherwise, there is a valid open connection
@@ -147,18 +148,23 @@ public class Database {
             // Note: no "IF NOT EXISTS" or "IF EXISTS" checks on table 
             // creation/deletion, so multiple executions will cause an exception
             db.mCreateTable = db.mConnection.prepareStatement(
-                    "CREATE TABLE tblData (id SERIAL PRIMARY KEY, votes, title VARCHAR(50) NOT NULL, message VARCHAR(500) NOT NULL)");
-            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
+                    "CREATE TABLE " + tblData + " ( " +
+                        "id SERIAL PRIMARY KEY, " + 
+                        "votes INT default 0 NOT NULL, " +
+                        "title VARCHAR(50) NOT NULL, " +
+                        "message VARCHAR(500) NOT NULL " +
+                        ")");
+            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE " + tblData);
 
             // Standard CRUD operations
-            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, 0, ?)");
+            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
            
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM tblData");
-            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
-            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET title = ?, message = ?, votes = votes WHERE id = ?");
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM " + tblData);
+            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
+            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
-            db.mVote = db.mConnection.prepareStatement("UPDATE tblData SET votes = votes + 1"); // WHERE id = ? --> necessary????
+            db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = votes + 1"); // WHERE id = ? --> necessary????
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -174,10 +180,6 @@ public class Database {
         return DriverManager.getConnection(dbUrl);
     }
     
-    /*private static Connection getConnection() throws SQLException {
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
-        return DriverManager.getConnection(dbUrl);
-    }*/
     
     
     /**
@@ -319,7 +321,9 @@ public class Database {
      */
     void createTable() {
         try {
+            System.out.println("Made it into createTable method");
             mCreateTable.execute();
+            System.out.println("executed create table statement");
         } catch (SQLException e) {
             e.printStackTrace();
         }
