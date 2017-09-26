@@ -11,6 +11,7 @@ import java.util.Map;
  * For now, our app creates an HTTP server that can only get and add data.
  */
 public class App {
+
     public static void main(String[] args) {
 
 	// Get the port on which to listen for requests
@@ -26,8 +27,6 @@ public class App {
 	final Gson gson = new Gson();
 
 	//System.out.println("\nuser: " + user + "\n");
-
-	System.out.println(getDatabaseUrl());
 
 	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	if (!database.tableDoesExist()) {
@@ -142,6 +141,24 @@ public class App {
 		}
 	    });
 
+
+        // PUT route for updating the vote in the Database
+        Spark.put("/messages/:id/:vote", (request, response) -> {
+            // If we can't get an ID or can't parse the JSON, Spark will send
+            // a status 500
+            int idx = Integer.parseInt(request.params("id"));
+            //SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+            // ensure status 200 OK, with a MIME type of JSON
+            response.status(200);
+            response.type("application/json");
+            int result = database.upVote(idx);
+            if (result == -1) {
+                return gson.toJson(new StructuredResponse("error", "unable to update vote " + idx, null));
+            } else {
+                return gson.toJson(new StructuredResponse("ok", null, result));
+            }
+        });
+
     }
 
 /**
@@ -163,7 +180,7 @@ static int getIntFromEnv(String envar, int defaultVal) {
 
 static String getDatabaseUrl() {
 	ProcessBuilder processBuilder = new ProcessBuilder();
-		return processBuilder.environment().get("JDBC_DATABASE_URL");
+    return processBuilder.environment().get("JDBC_DATABASE_URL");
 } 
 
 
