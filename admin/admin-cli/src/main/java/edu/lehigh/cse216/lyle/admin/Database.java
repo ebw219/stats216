@@ -280,6 +280,7 @@ public class Database {
     void createTable() {
         try {
             mCreateTable.execute();
+	    System.out.println("successfully created table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
