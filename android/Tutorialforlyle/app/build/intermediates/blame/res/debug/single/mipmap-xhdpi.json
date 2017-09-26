@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher_round.png",
+        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
         "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },
@@ -14,5 +18,9 @@
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher_round.png",
         "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/mipmap-xhdpi/ic_launcher.png",
+        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     }
 ]
