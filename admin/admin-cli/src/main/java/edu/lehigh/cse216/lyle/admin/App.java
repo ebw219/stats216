@@ -109,14 +109,10 @@ public class App {
     public static void main(String[] argv) {
         // get the Postgres configuration from the environment
         Map<String, String> env = System.getenv();
-        String ip = env.get("POSTGRES_IP");
-        String port = env.get("POSTGRES_PORT");
-        String user = env.get("POSTGRES_USER");
-        String pass = env.get("POSTGRES_PASS");
-
+        String db_url = env.get("DATABASE_URL");
         // Get a fully-configured connection to the database, or exit 
         // immediately
-        Database db = Database.getDatabase(ip, port, user, pass);
+        Database db = Database.getDatabase(db_url);
         if (db == null)
             return;
 
