@@ -24,8 +24,8 @@ public class Phase2Tests
     /**
      * @return value of message title
      */
-    public static Test titleTest(String title){
-
-    }
+//    public static Test titleTest(String title){
+//
+//    }
 
 }
