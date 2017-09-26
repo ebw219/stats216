@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class Phase2Tests 
     extends TestCase
 {
     /**
@@ -15,24 +15,17 @@ public class AppTest
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
+    public Phase2Tests( String testName )
     {
         super( testName );
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
 
     /**
-     * Rigourous Test :-)
+     * @return value of message title
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public static Test titleTest(String title){
+
     }
+
 }

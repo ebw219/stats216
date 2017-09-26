@@ -121,6 +121,7 @@ public class Database {
         // Create an un-configured Database object
         Database db = new Database();
         // Give the Database object a connection, fail if we cannot get one
+
         try {
             Connection conn = getConnection(url);
             if (conn == null) {
@@ -128,6 +129,7 @@ public class Database {
                 return null;
             }
             db.mConnection = conn;
+
         } catch (SQLException e) {
             System.err.println("Error: DriverManager.getConnection() threw a SQLException");
             e.printStackTrace();
@@ -164,7 +166,7 @@ public class Database {
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
-            db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = votes + 1"); // WHERE id = ? --> necessary????
+            db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = ? WHERE id = ?"); // --> necessary????
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -227,13 +229,23 @@ public class Database {
         return count;
     }
 
-    void upVote(){
+    /**
+     * Up vote a post
+     *
+     * @return -1 if unsuccessful, otherwise 1
+     */
+    int upVote(int id, int votes){
+        int count = 1;
         try {
+            votes += 1;
+            mVote.setInt(1,votes);
+            mVote.setInt(2,id);
             mVote.executeUpdate();
         } catch (SQLException e){
+            count = -1;
             e.printStackTrace();
         }
-    
+        return count;
     }
 
     /**
