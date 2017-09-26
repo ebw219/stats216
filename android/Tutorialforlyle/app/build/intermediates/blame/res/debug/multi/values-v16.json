@@ -11,13 +11,34 @@
                     "endOffset": 116
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/values-v16/values-v16.xml",
+                    "file": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/values-v16/values-v16.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
                         "startOffset": 55,
                         "endColumn": 65,
                         "endOffset": 116
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 121,
+                    "endLine": 6,
+                    "endColumn": 12,
+                    "endOffset": 289
+                },
+                "from": {
+                    "file": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/values-v16/values-v16.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endLine": 5,
+                        "endColumn": 12,
+                        "endOffset": 223
                     }
                 }
             }

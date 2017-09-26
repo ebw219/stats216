@@ -2,22 +2,175 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/4161ffeb66521e9958eac22cb8ef8e80ff604d8d/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="342a0fcfea514831e82905fed2deaf22a6206246">
-        <dex dex="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bd0fdbad708ed111d36f0e77a26a5cdb1a2229ce/classes.dex" />
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_b54161e97bfacb4e1f69113d67c0ed891110a6a8.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/1591d629f12f0df8c892b3982af81e3a8b4c83e3/output/jars/classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="26.0.1"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_870e6861984d9d0b80d37ddd5ebd99d13804cde1/classes.dex" />
+        sha1="b12cd9c87c3dfb012a911b6e38d2444ed0a65e1f">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_ecbe8ffc3d6604939c40f5965270dfd2b9a9547b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/common-1.0.0_fdead979d52a7a00eb44949ae0c8859530a437b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/b233d412e319a0a4a7a21c6052d28a212e4bf243/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_6beb5a39b1ab2c67d9412c07b3deb24e21d6bb95.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/c53d10a7897293b5990cab7cd99362c9642f6838/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_da74347fe33617853efc00ac9511d5cae35de4a2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a37fc31c5ceeaa4532a37358add1b189d8db4af1">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_603c9a85efe918ddc6cc071df3e969435b0d29d4.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/253e33ae13c4804e139716f0b9cf8efa0413c2c2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_bbab3e8fa4d6f1e0d700998bbfde6002eab38c0c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/571b6696371f18f287fdb8a7177586d13bce052e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_8d631860d58bffeea0db86e97fdb6a66e0d95521.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_ce6d3321066046cb01e178a8d4b881b460b21995.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/common-1.0.0_2503ca58c6f338e067634f594d5143d978ed6952.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_aa3aac30961540f820b889675c0edd262410f8a1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.2/constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.2_1298a27106e2216d27fa595fec48b74f52fed1eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/a27b9287345ed6a00bc4a710f67294d1949431a1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_984539cf51dcf95f301e122743cc1dfc5493de35.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/support-annotations-26.1.0_d2bdadb8156b4065684a3559ef98693f60506b0d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_7a87523ae4b998a749bf615f6055399e2a6c24b2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/09ee71ec11baa9009bb81e43d84bc3d9c52168a6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_8b2247b1ef7218c20d61d3fbad3d72b6a012379a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/2a575f51e2b9961bba0496a3d6febac792ccc6d7/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_3bde164a8d14db0193a28e1ce70141e5aeea238c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/2fe3d984c87e152ef5ae6243b6ea3e12f43584c5/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_7c4379bc8371705e471aa15b9f873ffad4b8aaeb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/lizzieshaffran/.android/build-cache/c32117ffea218c87c74da369222c79934eb579c6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.1"
+        sha1="58b12bdb21a84f22e0dc3b047aeceb0a546b1b44">
+        <dex dex="/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/pre-dexed/debug/classes_ce731120d7562cd42633ceb104a27b95923a5431.jar" />
     </item>
 
 </items>

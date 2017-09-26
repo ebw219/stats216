@@ -10,8 +10,22 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/datum_list_view"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_height="495dp"
+        android:layout_width="368dp"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="308dp">
     </android.support.v7.widget.RecyclerView>
 
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Message"
+        tools:layout_editor_absoluteY="66dp"
+        tools:layout_editor_absoluteX="16dp" />
+
 </android.support.constraint.ConstraintLayout>
+
+

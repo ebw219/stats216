@@ -4,12 +4,384 @@
         "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_second.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_alert_dialog_button_bar_material.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
+        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/activity_second.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_media_action.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_text_input_password_icon.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/content_second.xml",
+        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_second.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/list_item.xml",
+        "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/list_item.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_media.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/content_main.xml",
+        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_main.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
+        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_search_view.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_item_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_lines_media.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_navigation_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media_custom.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
+        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/activity_second.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_header.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/content_main.xml",
+        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/content_main.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
@@ -21,7 +393,7 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_item_separator.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_item_separator.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/content_second.xml",
@@ -48,10 +420,6 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_activity_chooser_view.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_mode_bar.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar_include.xml"
     },
@@ -61,27 +429,7 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_icon_group.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_media_custom.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_subheader.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_activity_chooser_view.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_icon_group.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_template_icon_group.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
@@ -89,15 +437,7 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_time.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_menu_item_layout.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
@@ -108,44 +448,24 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_menu.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_tab_icon.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_separator.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_separator.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_list_menu_item_icon.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_simple.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_list_menu_item_icon.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_select_dialog_material.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item_subheader.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_item_subheader.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
-        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/activity_second.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/select_dialog_item_material.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/select_dialog_item_material.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_popup_menu_header_item_layout.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
@@ -153,67 +473,19 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_part_chronometer.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_activity_chooser_view_list_item.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media_custom.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_action_tombstone.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_text_input_password_icon.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_text_input_password_icon.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/content_second.xml",
-        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_second.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_dialog_title_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_chronometer.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",
         "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_layout_snackbar.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_menu_item_action_area.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_bottom_navigation_item.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_chronometer.xml",
+        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_chronometer.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_button_bar_material.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_button_bar_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_part_time.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/list_item.xml",
-        "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/list_item.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
@@ -228,12 +500,8 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_tab_icon.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/select_dialog_multichoice_material.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_alert_dialog_title_material.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_alert_dialog_title_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
@@ -244,76 +512,32 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_subheader.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_icon.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_icon.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_activity_chooser_view.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_item_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_multichoice_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
         "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_lines_media.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_content_include.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_navigation_item.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_expanded_menu_layout.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action_tombstone.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_menu_item_action_area.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_expanded_menu_layout.xml"
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/tooltip.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/tooltip.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_media.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_search_view.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_header_item_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_popup_menu_header_item_layout.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
+        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_menu_item_action_area.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
         "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_custom_big.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/content_main.xml",
-        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_main.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
@@ -328,24 +552,12 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_text_input_password_icon.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_menu_item.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_menu_item.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
-        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/activity_main.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_menu_item.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/content_main.xml",
         "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/content_main.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_item_header.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
@@ -356,36 +568,28 @@
         "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_custom_big.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_custom_big.xml"
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_big_media_custom.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_menu_item_action_area.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_menu_item_action_area.xml"
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_big_media_narrow_custom.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_popup_menu_item_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_popup_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
-        "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/activity_second.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_search_view.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_search_view.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_item_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_item_material.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
+        "source": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/activity_second.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
@@ -404,52 +608,16 @@
         "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_media_cancel_action.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_lines_media.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_bottom_sheet_dialog.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_media_cancel_action.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_media_cancel_action.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_tab_icon.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_layout_tab_icon.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_tab_text.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_search_dropdown_item_icons_2line.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_search_dropdown_item_icons_2line.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_screen_simple.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_screen_simple.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_navigation_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_navigation_item.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_menu_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_menu_item.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_close_item_material.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_screen_simple.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
@@ -464,44 +632,20 @@
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_header.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_layout_snackbar_include.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
+        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_menu_layout.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_close_item_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_select_dialog_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media_custom.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media_custom.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_media.xml",
         "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_media.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media_narrow.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_simple_overlay_action_mode.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_sheet_dialog.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow_custom.xml",
@@ -509,7 +653,7 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/support_simple_spinner_dropdown_item.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
@@ -524,16 +668,8 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_simple.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_second.xml",
-        "source": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/src/main/res/layout/activity_second.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_screen_content_include.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_title_material.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_screen_content_include.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/activity_main.xml",
@@ -541,35 +677,23 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_item.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_list_menu_item_radio.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_dialog_title_material.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_item.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_mode_close_item_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_mode_close_item_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_expanded_menu_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_expanded_menu_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_mode_close_item_material.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_navigation_menu.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_navigation_menu.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_navigation_menu.xml"
+    },
+    {
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_list_menu_item_checkbox.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/list_item.xml",
@@ -580,28 +704,12 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_bar_up_container.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_multichoice_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_multichoice_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_navigation_item_header.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_navigation_item_header.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/content_main.xml",
-        "source": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/layout/content_main.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media.xml",
         "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_template_big_media.xml"
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/2d15713ec9aaf73f80ec57abefd8ace5239dd83f/output/res/layout/design_layout_tab_text.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_bar_title_item.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/8cf10a750a0539b72adeb61f65ce22098055c381/output/res/layout/design_layout_tab_text.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_title_material.xml",
@@ -616,44 +724,20 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_toolbar.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_template_part_time.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_template_part_time.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_bar_view_list_nav_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
-        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_media_action.xml"
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/select_dialog_singlechoice_material.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_icon_group.xml",
         "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_template_icon_group.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/select_dialog_singlechoice_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view_list_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_activity_chooser_view_list_item.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_alert_dialog_material.xml"
+        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_media_action.xml",
+        "source": "/Users/Kelli/.android/build-cache/8a119893c194b0c8ef756001eab7fd213dc601f2/output/res/layout/notification_media_action.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_custom.xml",
@@ -669,51 +753,19 @@
     },
     {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_screen_toolbar.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_dialog_title_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_radio.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_screen_toolbar.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_screen_content_include.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_screen_content_include.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_checkbox.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_action.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/notification_action.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_radio.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_radio.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/support_simple_spinner_dropdown_item.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/support_simple_spinner_dropdown_item.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout/notification_action.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_tab_text.xml",
         "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_tab_text.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_alert_dialog_material.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_alert_dialog_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_bar_view_list_nav_layout.xml",
@@ -724,43 +776,19 @@
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_up_container.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_bar_up_container.xml"
-    },
-    {
         "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_action_mode_bar.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_action_mode_bar.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_bottom_sheet_dialog.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_bottom_sheet_dialog.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_checkbox.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/abc_list_menu_item_checkbox.xml"
-    },
-    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_menu_layout.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_menu_layout.xml"
+        "source": "/Users/lizzieshaffran/.android/build-cache/bc905f3394551b0aec53ae4be8ac0dbcc0399e47/output/res/layout/abc_action_menu_layout.xml"
     },
     {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
-        "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_singlechoice_material.xml"
-    },
-    {
-        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
-        "source": "/Users/lizzieshaffran/.android/build-cache/1f4d0df689f52fb76829fda60eb884179d060d49/output/res/layout/abc_action_bar_title_item.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/notification_action_tombstone.xml",
-        "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout/notification_action_tombstone.xml"
+        "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout/notification_template_big_media_narrow.xml",
+        "source": "/Users/lizzieshaffran/.android/build-cache/05b274992d54d730fd272a53bddfd035b0c8c2e0/output/res/layout/notification_template_big_media_narrow.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/select_dialog_singlechoice_material.xml",
         "source": "/Users/Kelli/.android/build-cache/c7d8ff7c321f9d0602ce3e7e301b555a385f7436/output/res/layout/select_dialog_singlechoice_material.xml"
-    },
-    {
-        "merged": "/Users/Kelli/Documents/Documents_Kelli's MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout/design_layout_snackbar_include.xml",
-        "source": "/Users/Kelli/.android/build-cache/67ad37e3b794376801c9d6c01d9699e72670a142/output/res/layout/design_layout_snackbar_include.xml"
     }
 ]
