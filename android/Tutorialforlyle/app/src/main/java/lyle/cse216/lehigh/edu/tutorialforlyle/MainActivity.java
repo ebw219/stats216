@@ -28,6 +28,10 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+//import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
+//import static com.sun.xml.internal.ws.api.message.Packet.Status.Response;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

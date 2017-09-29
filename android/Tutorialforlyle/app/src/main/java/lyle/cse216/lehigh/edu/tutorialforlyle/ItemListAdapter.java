@@ -1,14 +1,16 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+//import javax.naming.Context;
+
+import android.content.Context;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
@@ -23,10 +25,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         }
     }
 
-    private ArrayList<Datum> mData;
+    private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private LayoutInflater mLayoutInflater;
 
-    ItemListAdapter(Context context, ArrayList<Datum> data) {
+    ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
         mData = data;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -44,7 +46,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Datum d = mData.get(position);
+        final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mIndex.setText(Integer.toString(d.mIndex));
         holder.mText.setText(d.mText);
 

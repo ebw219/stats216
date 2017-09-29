@@ -16,8 +16,20 @@
         "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout-v21/notification_template_icon_group.xml"
     },
     {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/Kelli/.android/build-cache/f4873487faeb68d799b274906ca29f9461c9f344/output/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/Kelli/.android/build-cache/f4873487faeb68d799b274906ca29f9461c9f344/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
         "merged": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
         "source": "/Users/lizzieshaffran/.android/build-cache/29c6afa79d12c3d7deaabaea85cf38d1ed1296c1/output/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout-v21/notification_action.xml",
+        "source": "/Users/Kelli/.android/build-cache/f4873487faeb68d799b274906ca29f9461c9f344/output/res/layout-v21/notification_action.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
@@ -42,6 +54,10 @@
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
         "source": "/Users/Kelli/.android/build-cache/ef5d07ad9fb168829855a953991f9b47645bfc0b/output/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/Kelli/.android/build-cache/f4873487faeb68d799b274906ca29f9461c9f344/output/res/layout-v21/notification_action_tombstone.xml"
     },
     {
         "merged": "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
