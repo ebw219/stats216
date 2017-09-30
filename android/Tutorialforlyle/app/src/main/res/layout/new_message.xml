@@ -5,51 +5,49 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/listItemTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/editText3"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="21dp"
         android:ems="10"
         android:inputType="text"
         tools:text="Title"
-        android:hint="Title"/>
+        android:hint="Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/listItemText"
+        android:layout_alignStart="@+id/listItemText" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/listItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/listItemTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Message"
         android:inputType="text"
-        tools:text="Message" />
+        tools:text="Message"
+        android:layout_above="@+id/submitButton" />
 
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3"
-        android:layout_marginTop="103dp" />
+        android:layout_marginTop="76dp"
+        android:layout_below="@+id/listItemTitle"
+        android:layout_alignLeft="@+id/listItemText"
+        android:layout_alignStart="@+id/listItemText" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
         android:layout_alignBaseline="@+id/cancelButton"
         android:layout_alignBottom="@+id/cancelButton"
-        android:layout_alignRight="@+id/editText3"
-        android:layout_alignEnd="@+id/editText3" />
+        android:layout_alignRight="@+id/listItemText"
+        android:layout_alignEnd="@+id/listItemText" />
 
 </RelativeLayout>

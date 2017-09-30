@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity"
-            android:label="@string/app_name"
+            android:label="The Buzz"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,8 +29,12 @@
         </activity>
         <activity
             android:name="lyle.cse216.lehigh.edu.tutorialforlyle.NewMessage"
-            android:label="@string/title_activity_second"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="New Message"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="lyle.cse216.lehigh.edu.tutorialforlyle.EditMessage"
+            android:label="Edit Message"
+            android:theme="@style/AppTheme" />
 
         <meta-data
             android:name="android.support.VERSION"

@@ -23,9 +23,27 @@ public class NewMessage extends AppCompatActivity {
 
 
         Button bCancel = (Button) findViewById(R.id.cancelButton);
+        Button bSubmit = (Button) findViewById(R.id.submitButton);
+
+        final EditText title = (EditText) findViewById(R.id.listItemTitle);
+        final EditText message = (EditText) findViewById(R.id.listItemText);
+
+        bSubmit.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if (!title.getText().toString().equals("") && !message.getText().toString().equals("")) {
+                    Intent i = new Intent();
+                    i.putExtra("result", title.getText().toString());
+                    setResult(Activity.RESULT_OK, i);
+                    finish();
+                }
+            }
+        });
+
         bCancel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                setResult(Activity.RESULT_CANCELED);
                 finish();
             }
         });

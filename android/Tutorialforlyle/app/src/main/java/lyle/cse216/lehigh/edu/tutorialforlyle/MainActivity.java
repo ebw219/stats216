@@ -99,7 +99,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.setClickListener(new ItemListAdapter.ClickListener() {
             @Override
             public void onClick(Datum d) {
-                Toast.makeText(MainActivity.this, d.mTitle + " --> " + d.mMessage, Toast.LENGTH_LONG).show();
+               // Toast.makeText(MainActivity.this, d.mTitle + " --> " + d.mMessage, Toast.LENGTH_LONG).show();
+                Intent input = new Intent(getApplicationContext(), EditMessage.class);
+                input.putExtra("label_contents", "Edit message");
+                startActivityForResult(input, 789);
             }
         });
     }
@@ -146,5 +149,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * mData holds the data we get from Volley
      */
-    ArrayList<Datum> mData = new ArrayList<>();
+    static ArrayList<Datum> mData = new ArrayList<>();
+
+    public static ArrayList<Datum> getmData(){
+        return mData;
+    }
 }
