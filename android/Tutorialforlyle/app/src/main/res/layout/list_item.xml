@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
     <TextView
-        android:id="@+id/listItemIndex"
-        android:layout_width="match_parent"
+        android:id="@+id/listItemTitle"
+        android:layout_width="286dp"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_above="@+id/listItemText" />
 
     <TextView
         android:id="@+id/listItemText"
-        android:layout_width="match_parent"
+        android:layout_width="286dp"
         android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_weight="0.07"
+        android:text=""
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/toggleButton2"
+        android:layout_below="@+id/toggleButton" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/listItemTitle"
+        android:layout_toRightOf="@+id/listItemTitle"
+        android:text="ToggleButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textOff="Like"
+        android:textOn="Liked" />
 
-</LinearLayout>
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/toggleButton"
+        android:layout_toRightOf="@+id/listItemText"
+        android:text="ToggleButton"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:textOff="Dislike"
+        android:textOn="Disliked" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/listItemText"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>

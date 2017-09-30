@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://www.cse.lehigh.edu/~spear/5k.json";
+        String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -65,17 +66,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void populateListFromVolley(String response){
-        /*try {
-            JSONArray json= new JSONArray(response);
+        try {
+            JSONObject jsonObj = new JSONObject(response);
+            JSONArray json = jsonObj.getJSONArray("mData");
             for (int i = 0; i < json.length(); ++i) {
-                int num = json.getJSONObject(i).getInt("num");
-                String str = json.getJSONObject(i).getString("str");
-                mData.add(new Datum(num, str));
+                int id = json.getJSONObject(i).getInt("mId");
+                String title = json.getJSONObject(i).getString("mTitle");
+                String message = "test";//json.getJSONObject(i).getString("mMessage");
+                int votes = json.getJSONObject(i).getInt("mVote");
+                mData.add(new Datum(id, title, message, votes));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
             return;
-        }*/
+        }
         Log.d("lyle", "Successfully parsed JSON file.");
         RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -85,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setClickListener(new ItemListAdapter.ClickListener() {
             @Override
             public void onClick(Datum d) {
-                Toast.makeText(MainActivity.this, d.mIndex + " --> " + d.mText, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, d.mTitle + " --> " + d.mMessage, Toast.LENGTH_LONG).show();
             }
         });
     }

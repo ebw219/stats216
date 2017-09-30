@@ -15,12 +15,12 @@ import android.content.Context;
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView mIndex;
+        TextView mTitle;
         TextView mText;
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.mIndex = (TextView) itemView.findViewById(R.id.listItemIndex);
+            this.mTitle = (TextView) itemView.findViewById(R.id.listItemTitle);
             this.mText = (TextView) itemView.findViewById(R.id.listItemText);
         }
     }
@@ -40,15 +40,15 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.list_item, null);
+        View view = mLayoutInflater.inflate(R.layout.list_item, null, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
-        holder.mIndex.setText(Integer.toString(d.mIndex));
-        holder.mText.setText(d.mText);
+        holder.mTitle.setText(d.mTitle);
+        holder.mText.setText(d.mMessage);
 
         // Attach a click listener to the view we are configuring
         final View.OnClickListener listener = new View.OnClickListener(){
@@ -57,7 +57,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 mClickListener.onClick(d);
             }
         };
-        holder.mIndex.setOnClickListener(listener);
+        holder.mTitle.setOnClickListener(listener);
         holder.mText.setOnClickListener(listener);
     }
 

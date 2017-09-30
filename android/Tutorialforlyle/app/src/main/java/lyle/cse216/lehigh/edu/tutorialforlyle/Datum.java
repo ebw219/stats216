@@ -15,16 +15,22 @@ class Datum {
     /**
      * The string contents that comprise this piece of data
      */
-    String mText;
+    String mTitle;
+
+    String mMessage;
+
+    int mVotes;
 
     /**
      * Construct a Datum by setting its index and text
      *
      * @param idx The index of this piece of data
-     * @param txt The string contents for this piece of data
+     * @param title The string contents for this piece of data
      */
-    Datum(int idx, String txt) {
+    Datum(int idx, String title, String message, int votes) {
         mIndex = idx;
-        mText = txt;
+        mTitle = title;
+        mMessage = message;
+        mVotes = votes;
     }
 }
