@@ -64,14 +64,14 @@ category#android.intent.category.LAUNCHER
 ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:21:17-77
 	android:name
 		ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:21:27-74
-activity#lyle.cse216.lehigh.edu.tutorialforlyle.SecondActivity
+activity#lyle.cse216.lehigh.edu.tutorialforlyle.NewMessage
 ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:24:9-27:68
 	android:label
 		ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:26:13-58
 	android:theme
 		ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:27:13-56
 	android:name
-		ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:25:13-43
+		ADDED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml:25:13-39
 uses-sdk
 INJECTED from /Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/android/Tutorialforlyle/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/Kelli/.android/build-cache/2a01d41a73eae4b6a686d913eca8f088a37de148/output/AndroidManifest.xml:5:5-7:41
