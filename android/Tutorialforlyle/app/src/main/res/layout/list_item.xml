@@ -82,12 +82,13 @@
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="55dp"
         android:layout_height="35dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/listItemText"
         android:elevation="0dp"
         android:text="Edit"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:layout_below="@+id/listItemText"
+        android:layout_toRightOf="@+id/listItemText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Space
         android:layout_width="wrap_content"
@@ -105,5 +106,16 @@
         android:layout_height="1dp"
         android:background="@android:color/background_dark"
         android:id="@+id/view" />
+
+    <Button
+        android:id="@+id/bDelete"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/listItemText"
+        android:text="Delete"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
 </RelativeLayout>

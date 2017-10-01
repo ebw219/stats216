@@ -45,20 +45,6 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
-//        // Request a string response from the provided URL.
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//                new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        populateListFromVolley(response);
-//                    }
-//                }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("lyle", "That didn't work!");
-//            }
-//        });
-
 
         FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener()
@@ -92,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 789) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                // Get the "extra" string of data
-//                Toast.makeText(MainActivity.this, data.getStringExtra("result"), Toast.LENGTH_LONG).show();
                 final TextView msg = (TextView) findViewById(R.id.bEdit);
                 msg.setOnClickListener(new View.OnClickListener()
 

@@ -70,7 +70,7 @@ public class mySingleton {
             for (int i = 0; i < json.length(); ++i) {
                 int id = json.getJSONObject(i).getInt("mId");
                 String title = json.getJSONObject(i).getString("mTitle");
-                String message = "test";//json.getJSONObject(i).getString("mMessage");
+                String message = json.getJSONObject(i).getString("mMessage");
                 int votes = json.getJSONObject(i).getInt("mVote");
                 mData.add(new Datum(id, title, message, votes));
             }
