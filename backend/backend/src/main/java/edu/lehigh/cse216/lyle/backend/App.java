@@ -125,7 +125,7 @@ public class App {
 	    });
 	
 	// DELETE route for removing a row from the Database
-	Spark.delete("/messages/vote/:id", (request, response) -> {
+	Spark.delete("/messages/:id", (request, response) -> {
 		// If we can't get an ID, Spark will send a status 500
 		int idx = Integer.parseInt(request.params("id"));
 		// ensure status 200 OK, with a MIME type of JSON
