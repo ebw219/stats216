@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,6 +31,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    mySingleton list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +45,19 @@ public class MainActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        populateListFromVolley(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That didn't work!");
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+//        // Request a string response from the provided URL.
+//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        populateListFromVolley(response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That didn't work!");
+//            }
+//        });
 
 
         FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
@@ -73,65 +73,18 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-    }
-
-    private void populateListFromVolley(String response) {
-        try {
-            JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("mData");
-            for (int i = 0; i < json.length(); ++i) {
-                int id = json.getJSONObject(i).getInt("mId");
-                String title = json.getJSONObject(i).getString("mTitle");
-                String message = "test";//json.getJSONObject(i).getString("mMessage");
-                int votes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(id, title, message, votes));
-            }
-        } catch (final JSONException e) {
-            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
-            return;
-        }
-        Log.d("lyle", "Successfully parsed JSON file.");
         RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
         ItemListAdapter adapter = new ItemListAdapter(this, mData);
         rv.setAdapter(adapter);
 
-        adapter.setClickListener(new ItemListAdapter.ClickListener() {
-            @Override
-            public void onClick(Datum d) {
-               // Toast.makeText(MainActivity.this, d.mTitle + " --> " + d.mMessage, Toast.LENGTH_LONG).show();
-                Intent input = new Intent(getApplicationContext(), EditMessage.class);
-                input.putExtra("label_contents", "Edit message");
-                startActivityForResult(input, 789);
-            }
-        });
+        list = new mySingleton(queue, url, mData, this, rv, adapter);
+        StringRequest stringRequest1 = list.getResponse();
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest1);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent i = new Intent(getApplicationContext(), NewMessage.class);
-            i.putExtra("label_contents", "New Message");
-            startActivityForResult(i, 789); // 789 is the number that will come back to us
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -140,11 +93,27 @@ public class MainActivity extends AppCompatActivity {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 // Get the "extra" string of data
-                Toast.makeText(MainActivity.this, data.getStringExtra("result"), Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this, data.getStringExtra("result"), Toast.LENGTH_LONG).show();
+                final TextView msg = (TextView) findViewById(R.id.bEdit);
+                msg.setOnClickListener(new View.OnClickListener()
+
+                {
+                    @Override
+                    public void onClick (View view){
+                        Intent input = new Intent(getApplicationContext(), EditMessage.class);
+                        input.putExtra("label_contents", "Edit message");
+                        startActivityForResult(input, 789);
+                    }
+
+                });
+
             }
         }
     }
 
+    public int upvote(){
+        return 1;
+    }
 
     /**
      * mData holds the data we get from Volley

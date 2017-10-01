@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,13 +16,20 @@ import android.content.Context;
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        Button like;
+        Button dislike;
         TextView mTitle;
         TextView mText;
+        TextView mVote;
 
         ViewHolder(View itemView) {
             super(itemView);
             this.mTitle = (TextView) itemView.findViewById(R.id.listItemTitle);
             this.mText = (TextView) itemView.findViewById(R.id.listItemText);
+            this.mVote = (TextView) itemView.findViewById(R.id.listItemVotes);
+
+            this.like = (Button) itemView.findViewById(R.id.likeButton);
+            this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
         }
     }
 
@@ -49,16 +57,30 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mText.setText(d.mMessage);
+//        holder.mVote.setText(d.mVotes);
 
         // Attach a click listener to the view we are configuring
-        final View.OnClickListener listener = new View.OnClickListener(){
+        final View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mClickListener.onClick(d);
             }
         };
-        holder.mTitle.setOnClickListener(listener);
-        holder.mText.setOnClickListener(listener);
+//        holder.mTitle.setOnClickListener(listener);
+//        holder.mText.setOnClickListener(listener);
+//        holder.mVote.setOnClickListener(listener);
+
+        final View.OnClickListener buttonListen = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view){
+
+            }
+
+        };
+
+        holder.like.setOnClickListener(listener);
+        holder.dislike.setOnClickListener(listener);
     }
 
     interface ClickListener{

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,38 +31,41 @@ public class EditMessage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Log.d("lyle", "Debug Message from onCreate");
 
+        EditText mEdit = (EditText)findViewById(R.id.item);
 
-        EditText title = (EditText) findViewById(R.id.listItemTitle);
-        EditText message = (EditText) findViewById(R.id.listItemText);
-        message.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick (View view){
-                Intent input = new Intent(getApplicationContext(), NewMessage.class);
-                input.putExtra("label_contents", "Add new message");
-                startActivityForResult(input, 789);
+        Log.d("lyle", mEdit.getText().toString());
+//        EditText title = (EditText) findViewById(R.id.listItemTitle);
+//        EditText message = (EditText) findViewById(R.id.listItemText);
+//        message.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick (View view){
+//                Intent input = new Intent(getApplicationContext(), NewMessage.class);
+//                input.putExtra("label_contents", "Add new message");
+//                startActivityForResult(input, 789);
+//
+//                ArrayList<Datum> mData = MainActivity.getmData();
+//
+//                for(int i = 0; i < mData.size(); i++){
+//                    if(mData.get(i).mIndex == this.mIndex){ //find the info of clicked obj
+//
+//                    }
+//                }
+//
+//                Log.d("lyle", "Successfully parsed JSON file.");
+//                RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
+////                rv.setLayoutManager(new LinearLayoutManager(this));
+////                ItemListAdapter adapter = new ItemListAdapter(this, mData);
+////                rv.setAdapter(adapter);
+//
+//
+//
+//            }
+//
+//        });
 
-                ArrayList<Datum> mData = MainActivity.getmData();
 
-                for(int i = 0; i < mData.size(); i++){
-                    if(mData.get(i).mIndex == this.mIndex){ //find the info of clicked obj
-
-                    }
-                }
-
-                Log.d("lyle", "Successfully parsed JSON file.");
-                RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
-//                rv.setLayoutManager(new LinearLayoutManager(this));
-//                ItemListAdapter adapter = new ItemListAdapter(this, mData);
-//                rv.setAdapter(adapter);
-
-
-
-            }
-
-        });
-
-
+//        finish();
     }
 
 }
