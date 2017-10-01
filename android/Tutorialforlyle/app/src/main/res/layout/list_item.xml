@@ -6,7 +6,7 @@
     android:weightSum="1">
 
     <TextView
-        android:id="@+id/listItemTitle"
+        android:id="@+id/titleNew"
         android:layout_width="286dp"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/likeButton"
@@ -31,7 +31,7 @@
         android:layout_alignBottom="@+id/dislikeButton"
         android:layout_alignLeft="@+id/space2"
         android:layout_alignStart="@+id/space2"
-        android:layout_below="@+id/listItemTitle"
+        android:layout_below="@+id/titleNew"
         android:layout_toLeftOf="@+id/likeButton"
         android:layout_weight="0.07"
         android:hint="Message"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"
         tools:text="Votes"
         android:layout_below="@+id/likeButton"
-        android:layout_toRightOf="@+id/listItemTitle"
+        android:layout_toRightOf="@+id/titleNew"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

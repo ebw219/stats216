@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/listItemTitle"
+        android:id="@+id/titleNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
@@ -21,7 +21,7 @@
         android:id="@+id/listItemText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listItemTitle"
+        android:layout_below="@+id/titleNew"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:ems="10"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:layout_marginTop="76dp"
-        android:layout_below="@+id/listItemTitle"
+        android:layout_below="@+id/titleNew"
         android:layout_alignLeft="@+id/listItemText"
         android:layout_alignStart="@+id/listItemText" />
 

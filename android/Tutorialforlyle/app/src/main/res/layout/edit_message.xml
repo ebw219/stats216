@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/titleEdit"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
@@ -28,8 +28,8 @@
         android:layout_marginTop="61dp"
         android:text="Cancel"
         android:layout_below="@+id/message"
-        android:layout_toRightOf="@+id/title"
-        android:layout_toEndOf="@+id/title"
+        android:layout_toRightOf="@+id/titleEdit"
+        android:layout_toEndOf="@+id/titleEdit"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp" />
 

@@ -3,10 +3,7 @@ package lyle.cse216.lehigh.edu.tutorialforlyle;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,8 +22,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import lyle.cse216.lehigh.edu.tutorialforlyle.R;
-
 public class NewMessage extends AppCompatActivity {
 
     @Override
@@ -41,9 +36,11 @@ public class NewMessage extends AppCompatActivity {
         Button bCancel = (Button) findViewById(R.id.cancelButton);
         Button bSubmit = (Button) findViewById(R.id.submitButton);
 
-        final EditText title = (EditText) findViewById(R.id.listItemTitle);
+        final EditText title = (EditText) findViewById(R.id.titleNew);
         final EditText message = (EditText) findViewById(R.id.listItemText);
         final TextView votes = (TextView) findViewById(R.id.listItemVotes);
+
+        Log.d("lyle", title.toString());
 
         bSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

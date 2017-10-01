@@ -24,7 +24,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.mTitle = (TextView) itemView.findViewById(R.id.listItemTitle);
+            this.mTitle = (TextView) itemView.findViewById(R.id.titleNew);
             this.mText = (TextView) itemView.findViewById(R.id.listItemText);
             this.mVote = (TextView) itemView.findViewById(R.id.listItemVotes);
 
