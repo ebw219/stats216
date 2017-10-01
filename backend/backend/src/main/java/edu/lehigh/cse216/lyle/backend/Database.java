@@ -162,7 +162,7 @@ public class Database {
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
            
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM " + tblData);
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title, message FROM " + tblData);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
@@ -258,7 +258,7 @@ public class Database {
         try {
             ResultSet rs = mSelectAll.executeQuery();
             while (rs.next()) {
-                res.add(new RowData(rs.getInt("id"), rs.getString("title"), null));
+                res.add(new RowData(rs.getInt("id"), rs.getString("title"), rs.getString("mxfessage")));
             }
             rs.close();
             return res;
