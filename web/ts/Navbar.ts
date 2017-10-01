@@ -23,7 +23,7 @@ class Navbar {
     private static init() {
         if (!Navbar.isInit) {
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
-            $("#"+Navbar.NAME+"-add").click(NewEntryForm.show);
+           /*  $("#"+Navbar.NAME+"-add").click(NewEntryForm.show); */
             Navbar.isInit = true;
         }
     }
