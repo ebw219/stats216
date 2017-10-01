@@ -20,6 +20,10 @@ class ElementList {
      */
     private static init() {
         if (!ElementList.isInit) {
+            $("body").append('<div id="' + ElementList.NAME +
+                '"><h3>All Messages</h3><button id="' + ElementList.NAME +
+                '-showFormButton">Add Message</button><div id="' +
+                ElementList.NAME + '-messageList"></div></div>');
             ElementList.isInit = true;
         }
     }
@@ -44,15 +48,22 @@ public static refresh() {
  * ElementList
  */
 private static update(data: any) {
-    // Remove the table of data, if it exists
-    $("#" + ElementList.NAME).remove();
-    // Use a template to re-generate the table, and then insert it
-    $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
+    // create the new table of data
+    var newHTML = "<table>";
+    for (let i = 0; i < data.mData.length; ++i) {
+        newHTML += "<tr><td>" + data.mData[i].mTitle + "</td>" +
+            ElementList.buttons(data.mData[i].mId) + "</tr>";
+    }
+    newHTML += "</table>";
+    // replace the contents of the messageList with our table
+    $("#" + ElementList.NAME + "-messageList").html(newHTML);
     // Find all of the delete buttons, and set their behavior
     $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
     // Find all of the Edit buttons, and set their behavior
     $("." + ElementList.NAME + "-editbtn").click(ElementList.clickEdit);
-}}
+    $("#" + ElementList.NAME + "-messageList").append(Handlebars.templates[ElementList.NAME + ".hb"]
+    ({text1: "Hello", arr1: [1, 2, 3]}));
+}
 
 /**
  * buttons() creates 'edit' and 'delete' buttons for an id, and puts them in
