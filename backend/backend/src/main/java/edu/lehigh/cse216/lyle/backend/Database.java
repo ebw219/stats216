@@ -10,6 +10,7 @@ import java.net.*;
 import java.util.ArrayList;
 
 public class Database {
+    private static final String tblData = "thebuzztable";
     /**
      * The connection to the database.  When there is no connection, it should
      * be null.  Otherwise, there is a valid open connection
@@ -120,6 +121,7 @@ public class Database {
         // Create an un-configured Database object
         Database db = new Database();
         // Give the Database object a connection, fail if we cannot get one
+
         try {
             Connection conn = getConnection(url);
             if (conn == null) {
@@ -127,6 +129,7 @@ public class Database {
                 return null;
             }
             db.mConnection = conn;
+
         } catch (SQLException e) {
             System.err.println("Error: DriverManager.getConnection() threw a SQLException");
             e.printStackTrace();
@@ -147,18 +150,23 @@ public class Database {
             // Note: no "IF NOT EXISTS" or "IF EXISTS" checks on table 
             // creation/deletion, so multiple executions will cause an exception
             db.mCreateTable = db.mConnection.prepareStatement(
-                    "CREATE TABLE tblData (id SERIAL PRIMARY KEY, votes, title VARCHAR(50) NOT NULL, message VARCHAR(500) NOT NULL)");
-            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
+                    "CREATE TABLE " + tblData + " ( " +
+                        "id SERIAL PRIMARY KEY, " + 
+                        "votes INT default 0 NOT NULL, " +
+                        "title VARCHAR(50) NOT NULL, " +
+                        "message VARCHAR(500) NOT NULL " +
+                        ")");
+            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE " + tblData);
 
             // Standard CRUD operations
-            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, 0, ?)");
+            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
            
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM tblData");
-            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
-            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET title = ?, message = ?, votes = votes WHERE id = ?");
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM " + tblData);
+            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
+            db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
-            db.mVote = db.mConnection.prepareStatement("UPDATE tblData SET votes = votes + 1"); // WHERE id = ? --> necessary????
+            db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = ? WHERE id = ?"); // --> necessary????
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -174,10 +182,6 @@ public class Database {
         return DriverManager.getConnection(dbUrl);
     }
     
-    /*private static Connection getConnection() throws SQLException {
-        String dbUrl = System.getenv("JDBC_DATABASE_URL");
-        return DriverManager.getConnection(dbUrl);
-    }*/
     
     
     /**
@@ -225,13 +229,23 @@ public class Database {
         return count;
     }
 
-    void upVote(){
+    /**
+     * Up vote a post
+     *
+     * @return -1 if unsuccessful, otherwise 1
+     */
+    int upVote(int id, int votes){
+        int count = 1;
         try {
+            votes += 1;
+            mVote.setInt(1,votes);
+            mVote.setInt(2,id);
             mVote.executeUpdate();
         } catch (SQLException e){
+            count = -1;
             e.printStackTrace();
         }
-    
+        return count;
     }
 
     /**
@@ -319,7 +333,9 @@ public class Database {
      */
     void createTable() {
         try {
+            System.out.println("Made it into createTable method");
             mCreateTable.execute();
+            System.out.println("executed create table statement");
         } catch (SQLException e) {
             e.printStackTrace();
         }

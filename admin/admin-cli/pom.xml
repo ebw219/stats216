@@ -5,9 +5,64 @@
   <artifactId>admin-cli</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>com.heroku.sdk</groupId>
+	<artifactId>heroku-maven-plugin</artifactId>
+	<version>1.2.0</version>
+	<configuration>
+          <jdkVersion>1.8</jdkVersion>
+          <appName>sleepy-dusk-34987</appName> 
+          <processTypes>
+            <web>java -jar ./target/backend-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
+          </processTypes>
+	</configuration>
+      </plugin>
+      <plugin>
+	<artifactId>maven-assembly-plugin</artifactId>
+	<executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+	</executions>
+	<configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>edu.lehigh.cse216.lyle.admin.App</mainClass>
+            </manifest>
+          </archive>
+	</configuration>
+      </plugin>
+      <plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>exec-maven-plugin</artifactId>
+	<version>1.6.0</version>
+	<configuration>
+          <mainClass>edu.lehigh.cse216.lyle.admin.App</mainClass>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
   <name>admin-cli</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.heroku.sdk</groupId>
+      <artifactId>heroku-maven-plugin</artifactId>
+      <version>1.2.0</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

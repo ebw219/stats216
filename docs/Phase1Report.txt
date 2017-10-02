@@ -1,0 +1,150 @@
+CSE 216 Project Manager Report: Phase 1, Team   
+
+List your team members, providing name, email, and role for this project. Also provide the URL where your live Heroku-hosted web front-end can be found.
+Project Manager: Emily Weston, ebw219@lehigh.edu
+Back-End: Kelli Frank, kdf219@lehigh.edu 
+Android: Lizzie Shaffran, ehs219@lehigh.edu 
+Web: Sunny Berrios, sfb219@lehigh.edu
+Admin: Tamara Johnson, tjj218@lehigh.edu 
+Heroku link:  https://sleepy-dusk-34987.herokuapp.com/
+
+Back-End Server
+
+Describe the REST API endpoints that your team agreed to implement. If this deviates significantly from class discussion, explain why.
+We agreed to implement REST API endpoints to create a message, read message(s), and up and down vote.
+These match pretty closely with what was discussed in class, the differences are because some elements will be implemented in future phases.
+
+Describe the Data Model that your team agreed to implement. If this deviates significantly from class discussion, explain why.
+We used prepared statements to connect to the database and store messages.
+
+Does the back-end match the description above? Why or why not?
+The backe-end does match the description above. Kelli successfully implemented the endpoints and Data Model we discussed, and she closely mimicked the style of the tutorials.
+
+Is the back-end code appropriately organized into files / classes / packages?
+Yes.
+
+Are variables, functions, classes and packages named well?
+Yes, each name gives a good idea of its intended purpose.
+
+Are the dependencies in the pom.xml file appropriate? Were there any unexpected dependencies added to the program?
+The dependencies were appropriate as all were needed for the code to work.
+An unexpected dependency that was needed was org.slf4j-jdk14, version 1.7.25. 
+This dealt with several errors that came up during the tutorial but needed to be fixed in order for phase 2 to be successful.
+
+What was the biggest issue that came up in code review of the back-end server?
+The vote method did not work as anticipated, it conflicted with another method.
+The Spark request overlapped something else, and that caused an issue.
+
+What technical debt do you see in the current back-end server implementation?
+There are several hardcoded values, which could cause some technical debt in the future.
+Some methods were causing some trouble, and it's possible they will again in the future.
+
+Are the unit tests for the back-end server complete/satisfactory? If yes, why do you have confidence in your answer. If not, what's missing?
+Using postman, Kelli was able to verify that everything was working.
+Writing the junit tests was more difficult but ultimately successful.
+
+What challenges did you observe on account of the relationship between the database and the server? Was mocking used to separate tests? Why or why not?
+It was a challenge because the backend could not be worked on until the server was set up, which was more difficult than anticipated.
+
+Web Front-End
+
+What is the overall structure of the classes used to implement the web front-end?
+The structure of the classes is very similar to that of the tutorials.
+Several of the files are grouped in folders based on the type of file/code they are.
+
+What benefits did you observe on account of the use of Singletons?
+Singletons made the code more structured and easier to understand.
+
+Does the user interface match the interface for the Android app? Why or why not?
+The intention is for the two interfaces to match, however the web code was not fully functional.
+Because of this, we couldn't see the web interface and therefore could not compare it to the android interface.
+
+Is the web front-end appropriately organized into files / classes / packages?
+Yes.
+
+Are variables, functions, classes and packages named well?
+Yes, the names reflect purpose.
+
+Are the dependencies in the package.json file appropriate? Were there any unexpected dependencies added to the program?
+The dependencies seem to be appropriate, however the web app was not functional so I think there may have been one missing.
+
+What was the biggest issue that came up in code review of the web front-end?
+The code was not finished.
+
+What technical debt do you see in the current web front-end implementation?
+The next person who is web will be playing a lot of catch up, as the code is incomplete.
+
+Are the unit tests for the web front-end complete/satisfactory? If yes, why do you have confidence in your answer. If not, what's missing?
+No. The tests are missing, and we were unable to see the web interface.
+
+Android App
+
+Are the mechanisms for moving among Activities satisfactory and appropriate?
+No. When you click on something it does do what it should, but not all of the mechanisms are in place yet.
+
+Describe any significant deviations from the UI design discussed in class.
+The android design is not complete yet, but what is there does match.
+
+Is the android app appropriately organized into files / classes / packages?
+Yes.
+
+Are variables, functions, classes and packages named well?
+Yes.
+
+Are the dependencies in the build.gradle file appropriate? Were there any unexpected dependencies added to the program?
+Yes, they are appropriate.
+
+What was the biggest issue that came up in code review of the Android app?
+The code from the tutorials was difficult to understand, so building on that code was challenging.
+This made it hard to see what was going on in the code, for both people.
+
+What technical debt do you see in the current Android app implementation?
+Most the UI is not complete yet, so there will be come catch up in the next phases.
+
+Are the unit tests for the Android app complete/satisfactory? If yes, why do you have confidence in your answer. If not, what's missing?
+No, the tests are missing. The code wasn't complete and therefore could not be tested.
+
+The Admin App
+
+Is the Admin app appropriately organized into files / classes / packages?
+Yes.
+
+Are variables, functions, classes and packages named well?
+Yes.
+
+Are the dependencies in the pom.xml file appropriate? Were there any unexpected dependencies added to the program?
+There is one dependency in the pom.xml file that connects to the backend that we are not confident should be there, but it is.
+
+What was the biggest issue that came up in code review of the Admin app?
+Unfamiliarity with unit testing showed a lot when trying to create test code.
+Big issues in writing the code left little time to write tests.
+
+What technical debt do you see in the current Admin app implementation?
+Not known which parts work and which do not because tests were not functional.
+
+Are the unit tests for the Admin app complete/satisfactory? If yes, why do you have confidence in your answer. If not, what's missing?
+No. Began to write some portion of test code for Database.java, and have a shell for a test for App.java.
+However, did not know exactly what to test or how to test the JDBC connection code.
+
+Project-Wide
+
+Were any difficulties encountered when generating documentation for the Java and TypeScript code?
+
+Were there any issues with the use of git for source control?
+Yes. When I created the admin, android, web, and backend branches on bitbucket, they did not transfer to my local repository even though I pulled from bitbucket.
+I didn't realize this issue until trying to merge code at the end, and therefore our branches are very messed up.
+I honestly don't know how to fix it and I'm worried that it will make the next phase difficult, if not impossible to do.
+
+Were there any team issues that arose?
+A lot of things came up this week and we found it difficult to meet to work on this project, which made everything more difficult.
+
+How did the amount of time your teammates spent compare to the amount of time you thought the tasks would take?
+I thought the tasks would take a lot of time and they did.
+
+Describe the most significant obstacle or difficulty your team faced.
+We had a lot of errors/issues that we didn't understand, and they stopped us in our tracks quite a bit.
+I personally struggled a lot to get the Heroku database server working, and that didn't leave my teammates with enough time to get their parts working.
+
+What is your biggest concern as you think ahead to the next phase of the project?
+A lot of us struggled with our code in this phase, and many parts of it are incomplete.
+This means that phase 3 can't even really be started until we complete phase 2.
