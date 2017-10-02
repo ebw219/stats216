@@ -71,11 +71,12 @@
         android:id="@+id/listItemVotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Votes"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/likeButton"
         android:layout_toRightOf="@+id/titleNew"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Votes"
+        tools:text="Votes" />
 
     <Button
         android:id="@+id/bEdit"

@@ -41,23 +41,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Log.d("lyle", "Debug Message from onCreate");
 
-        // Instantiate the RequestQueue.
+        // Instantiate the RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
-
-        FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
-        newMessage.setOnClickListener(new View.OnClickListener()
-
-        {
-            @Override
-            public void onClick (View view){
-                Intent input = new Intent(getApplicationContext(), NewMessage.class);
-                input.putExtra("label_contents", "Add new message");
-                startActivityForResult(input, 789);
-            }
-
-        });
 
         RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +54,17 @@ public class MainActivity extends AppCompatActivity {
         list = new mySingleton(queue, url, mData, this, rv, adapter);
         StringRequest stringRequest1 = list.getResponse();
 
+        FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
+        newMessage.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View view){
+                Intent input = new Intent(getApplicationContext(), NewMessage.class);
+                input.putExtra("label_contents", "Add new message");
+                startActivityForResult(input, 789);
+            }
+
+        });
+        
         // Add the request to the RequestQueue.
         queue.add(stringRequest1);
     }

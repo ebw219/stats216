@@ -29,6 +29,8 @@ public class NewMessage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_message);
 
+        Intent input = getIntent();
+
         final RequestQueue queue = Volley.newRequestQueue(this);
         final String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
@@ -64,12 +66,11 @@ public class NewMessage extends AppCompatActivity {
                     {
                         @Override
                         public byte[] getBody() throws AuthFailureError {
-                            HashMap<String, String> params2 = new HashMap<String, String>();
-                            params2.put("mTitle", title.getText().toString());
-//                            params2.put("mMessage", message.getText().toString());
-//                            params2.put("mVote", votes.getText().toString()); // need to check this
-                            Log.d("lyle", new JSONObject(params2).toString());
-                            return new JSONObject(params2).toString().getBytes();
+                            HashMap<String, String> params = new HashMap<String, String>();
+                            params.put("mTitle", title.getText().toString());
+                            params.put("mMessage", message.getText().toString());
+                            Log.d("lyle", new JSONObject(params).toString());
+                            return new JSONObject(params).toString().getBytes();
                         }
 
                     };
@@ -89,8 +90,5 @@ public class NewMessage extends AppCompatActivity {
                 finish();
             }
         });
-
     }
-
-
 }

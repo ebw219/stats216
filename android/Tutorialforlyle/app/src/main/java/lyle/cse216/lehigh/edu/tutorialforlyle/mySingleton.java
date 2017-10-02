@@ -106,10 +106,10 @@ public class mySingleton {
 
     /**
      * POST Volley method
-     * @param et typed in data for new message
+     * @param editText typed in data for new message
      * @return post request
      */
-    protected StringRequest postRequest(final EditText et) {
+    protected StringRequest postRequest(final EditText editText) {
         StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -124,9 +124,9 @@ public class mySingleton {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("mTitle", et.getText().toString());
-                params.put("mMessage", et.getText().toString());
-//                params.put("mVote", et.getText().toString());
+                params.put("mTitle", editText.getText().toString());
+                params.put("mMessage", editText.getText().toString());
+//                params.put("mVotes", editText.getText().toString());
                 Log.d("lyle", params.toString() + " message");
                 return params;
             }
