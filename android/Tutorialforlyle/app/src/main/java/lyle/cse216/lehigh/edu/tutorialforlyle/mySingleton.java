@@ -126,7 +126,7 @@ public class mySingleton {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("mTitle", editText.getText().toString());
                 params.put("mMessage", editText.getText().toString());
-//                params.put("mVotes", editText.getText().toString());
+                params.put("mVotes", editText.getText().toString());
                 Log.d("lyle", params.toString() + " message");
                 return params;
             }

@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent input = new Intent(getApplicationContext(), NewMessage.class);
                 input.putExtra("label_contents", "Add new message");
                 startActivityForResult(input, 789);
+
             }
 
         });
-        
+
         // Add the request to the RequestQueue.
         queue.add(stringRequest1);
     }

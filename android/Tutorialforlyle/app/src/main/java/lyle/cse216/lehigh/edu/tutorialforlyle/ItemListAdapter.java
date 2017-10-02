@@ -1,5 +1,6 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,12 +10,50 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //import javax.naming.Context;
 
 import android.content.Context;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
+
+    public class EmployeeDiffCallback extends DiffUtil.Callback {
+
+        private final List<Datum> mOld;
+        private final List<Datum> mNew;
+
+        public EmployeeDiffCallback(List<Datum> old, List<Datum> newD) {
+            this.mOld = old;
+            this.mNew = newD;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return mOld.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return mNew.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            return true;
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            return true;
+        }
+
+        @Override
+        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
+            // Implement method if you're going to use ItemAnimator
+            return super.getChangePayload(oldItemPosition, newItemPosition);
+        }
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -37,6 +76,15 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private LayoutInflater mLayoutInflater;
 
+    public void updateListItems(List<Datum> posts) {
+        final EmployeeDiffCallback diffCallback = new EmployeeDiffCallback(this.mData, posts);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        this.mData.clear();
+        this.mData.addAll(posts);
+        diffResult.dispatchUpdatesTo(this);
+    }
+
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
         mData = data;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,6 +103,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        updateListItems(mData);
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mText.setText(d.mMessage);
@@ -86,5 +135,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     }
     private ClickListener mClickListener;
     ClickListener getClickListener() {return mClickListener;}
-    void setClickListener(ClickListener c) { mClickListener = c;}
+    void setClickListener(ClickListener c) {
+        mClickListener = c;
+    }
+
+
 }
