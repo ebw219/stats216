@@ -106,23 +106,23 @@ public class App {
 	    });
  
 
-	// PUT route for updating a row in the Database.  This is almost
-	// exactly the same as POST
-	Spark.put("/messages/:id", (request, response) -> {
-		// If we can't get an ID or can't parse the JSON, Spark will send
-		// a status 500
-		int idx = Integer.parseInt(request.params("id"));
-		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		int result = database.updateOne(idx, req.mTitle, req.mMessage);
-		if (result == -1) {
-		    return gson.toJson(new StructuredResponse("error", "unable to update row " + idx, null));
-		} else {
-		    return gson.toJson(new StructuredResponse("ok", null, result));
-		}
-	    });
+	// // PUT route for updating a row in the Database.  This is almost
+	// // exactly the same as POST
+	// Spark.put("/messages/:id", (request, response) -> {
+	// 	// If we can't get an ID or can't parse the JSON, Spark will send
+	// 	// a status 500
+	// 	int idx = Integer.parseInt(request.params("id"));
+	// 	SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+	// 	// ensure status 200 OK, with a MIME type of JSON
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	int result = database.updateOne(idx, req.mTitle, req.mMessage);
+	// 	if (result == -1) {
+	// 	    return gson.toJson(new StructuredResponse("error", "unable to update row " + idx, null));
+	// 	} else {
+	// 	    return gson.toJson(new StructuredResponse("ok", null, result));
+	// 	}
+	//     });
 	
 	// DELETE route for removing a row from the Database
 	Spark.delete("/messages/:id", (request, response) -> {
@@ -142,17 +142,35 @@ public class App {
 	    });
 
 
-        // PUT route for updating the vote in the Database
-        Spark.put("/messages/:id", (request, response) -> {
+        // PUT route for updating the upvote in the Database
+        Spark.put("/messages/upVote/:id", (request, response) -> {
             // If we can't get an ID or can't parse the JSON, Spark will send
             // a status 500
             int idx = Integer.parseInt(request.params("id"));
-            int votex = Integer.parseInt(request.params("votes"));
+            //int votex = Integer.parseInt(request.params("votes"));
             //SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
             // ensure status 200 OK, with a MIME type of JSON
             response.status(200);
             response.type("application/json");
-            int result = database.upVote(idx, votex);
+            int result = database.upVote(idx);
+            if (result == -1) {
+                return gson.toJson(new StructuredResponse("error", "unable to update vote " + idx, null));
+            } else {
+                return gson.toJson(new StructuredResponse("ok", null, result));
+            }
+		});
+		
+		// PUT route for updating the downvote in the Database
+        Spark.put("/messages/downVote/:id", (request, response) -> {
+            // If we can't get an ID or can't parse the JSON, Spark will send
+            // a status 500
+            int idx = Integer.parseInt(request.params("id"));
+            //int votex = Integer.parseInt(request.params("votes"));
+            //SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+            // ensure status 200 OK, with a MIME type of JSON
+            response.status(200);
+            response.type("application/json");
+            int result = database.downVote(idx);
             if (result == -1) {
                 return gson.toJson(new StructuredResponse("error", "unable to update vote " + idx, null));
             } else {
