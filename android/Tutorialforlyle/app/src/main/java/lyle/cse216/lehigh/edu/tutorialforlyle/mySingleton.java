@@ -65,6 +65,7 @@ public class mySingleton {
      */
     private void populateListFromVolley(String response){
         try {
+            Log.d("lyle", "Populating: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
             JSONArray json = jsonObj.getJSONArray("mData");
             for (int i = 0; i < json.length(); ++i) {
