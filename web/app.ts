@@ -13,7 +13,7 @@ var Handlebars: any;
 
 // a global for the EditEntryForm of the program.  See newEntryForm for 
 // explanation
-var editEntryForm: EditEntryForm;
+   var editEntryForm: EditEntryForm;
 
 // Run some configuration code when the web page loads
 $(document).ready(function () {
@@ -22,7 +22,7 @@ $(document).ready(function () {
     ElementList.refresh();
 
     // Create the object that controls the "Edit Entry" form
-    editEntryForm = new EditEntryForm();
-    // set up initial UI state
-    $("#editElement").hide();
+      editEntryForm = new EditEntryForm();
+     // set up initial UI state
+      $("#editElement").hide();
 });

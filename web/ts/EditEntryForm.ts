@@ -60,12 +60,12 @@ class EditEntryForm {
         }
         // set up an AJAX post.  When the server replies, the result will go to
         // onSubmitResponse
-        $.ajax({
-            type: "PUT",
-            url: "/messages/" + id,
-            dataType: "json",
-            data: JSON.stringify({ mTitle: title, mMessage: msg }),
-            success: editEntryForm.onSubmitResponse
+	 $.ajax({	
+	   type: "PUT",
+           url: "/messages/" + id,
+           dataType: "json",
+           data: JSON.stringify({ mTitle: title, mMessage: msg }),
+           success: editEntryForm.onSubmitResponse
         });
     }
 
@@ -78,17 +78,17 @@ class EditEntryForm {
     private onSubmitResponse(data: any) {
         // If we get an "ok" message, clear the form and refresh the main 
         // listing of messages
-        if (data.mStatus === "ok") {
+       	if (data.mStatus === "ok") {
             editEntryForm.clearForm();
             ElementList.refresh();
-        }
+       	    }
         // Handle explicit errors with a detailed popup message
-        else if (data.mStatus === "error") {
-            window.alert("The server replied with an error:\n" + data.mMessage);
-        }
+           else if (data.mStatus === "error") {
+           window.alert("The server replied with an error:\n" + data.mMessage);
+       	    }
         // Handle other errors with a less-detailed popup message
         else {
-            window.alert("Unspecified error");
-        }
+              window.alert("Unspecified error");
+       	      }
     }
 } // end class EditEntryForm

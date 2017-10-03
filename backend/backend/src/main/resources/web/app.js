@@ -221,14 +221,23 @@ var ElementList = /** @class */ (function () {
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
         // Find all of the Edit buttons, and set their behavior
         $("." + ElementList.NAME + "-editbtn").click(ElementList.clickEdit);
+        // Find all of the UpVote buttons and set their behavior
+        $("." + ElementList.NAME + "-upvotebtn").click(ElementList.clickUp);
+        // Find all of the DownVote buttons and set their behavior
+        $("." + ElementList.NAME + "-downvotebtn").click(ElementList.clickDown);
     };
     /**
-     * buttons() creates 'edit' and 'delete' buttons for an id, and puts them in
+     * buttons() creates 'edit' and 'upvote' 'downvote' and 'delete' buttons for an id, and
+     * puts them in
      * a TD
      */
     ElementList.buttons = function (id) {
         return "<td><button class='" + ElementList.NAME +
             "-editbtn' data-value='" + id + "'>Edit</button></td>" +
+            "<td><button class='" + ElementList.NAME +
+            "-upvotebtn' data-value='" + id + "'>Up</button></td>" +
+            "<td><button class='" + ElementList.NAME +
+            "-downvotebtn' data-value='" + id + "'>Down</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-delbtn' data-value='" + id + "'>Delete</button></td>";
     };
@@ -258,7 +267,34 @@ var ElementList = /** @class */ (function () {
             type: "GET",
             url: "/messages/" + id,
             dataType: "json",
-            success: editEntryForm.init
+            // success: editEntryForm.init
+            success: ElementList.refresh
+        });
+    };
+    /**
+     * clickUp is the code we run in response to a click of a up vote button
+     */
+    ElementList.clickUp = function () {
+        // as in clickDelete, we need the ID of the row
+        var id = $(this).data("value");
+        $.ajax({
+            type: "GET",
+            url: "/messages/" + id,
+            dataType: "json",
+            success: ElementList.refresh
+        });
+    };
+    /**
+     * clickDown is the code we run in response to a click of a down vote button
+     */
+    ElementList.clickDown = function () {
+        // as in clickDelete, we need the ID of the row
+        var id = $(this).data("value");
+        $.ajax({
+            type: "GET",
+            url: "/messages/" + id,
+            dataType: "json",
+            success: ElementList.refresh
         });
     };
     /**
