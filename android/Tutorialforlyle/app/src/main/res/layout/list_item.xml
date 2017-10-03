@@ -76,6 +76,8 @@
         android:layout_below="@+id/likeButton"
         android:layout_toRightOf="@+id/titleNew"
         android:text="Votes"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
         tools:text="Votes" />
 
     <Button

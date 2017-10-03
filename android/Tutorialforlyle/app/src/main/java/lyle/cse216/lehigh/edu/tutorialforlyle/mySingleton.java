@@ -128,7 +128,6 @@ public class mySingleton {
                 params.put("mTitle", editText.getText().toString());
                 params.put("mMessage", editText.getText().toString());
                 params.put("mVotes", editText.getText().toString());
-                Log.d("lyle", params.toString() + " message");
                 return params;
             }
         };

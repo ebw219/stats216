@@ -18,42 +18,6 @@ import android.content.Context;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
-    public class EmployeeDiffCallback extends DiffUtil.Callback {
-
-        private final List<Datum> mOld;
-        private final List<Datum> mNew;
-
-        public EmployeeDiffCallback(List<Datum> old, List<Datum> newD) {
-            this.mOld = old;
-            this.mNew = newD;
-        }
-
-        @Override
-        public int getOldListSize() {
-            return mOld.size();
-        }
-
-        @Override
-        public int getNewListSize() {
-            return mNew.size();
-        }
-
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-            return true;
-        }
-
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-            return true;
-        }
-
-        @Override
-        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-            // Implement method if you're going to use ItemAnimator
-            return super.getChangePayload(oldItemPosition, newItemPosition);
-        }
-    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -76,14 +40,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private LayoutInflater mLayoutInflater;
 
-    public void updateListItems(List<Datum> posts) {
-        final EmployeeDiffCallback diffCallback = new EmployeeDiffCallback(this.mData, posts);
-        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
-
-        this.mData.clear();
-        this.mData.addAll(posts);
-        diffResult.dispatchUpdatesTo(this);
-    }
 
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
         mData = data;
@@ -107,7 +63,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mText.setText(d.mMessage);
-//        holder.mVotes.setText(d.mVotes);
+        holder.mVotes.setText(d.mVotes + ""); //can only pass String
 
         // Attach a click listener to the view we are configuring
         final View.OnClickListener listener = new View.OnClickListener() {
