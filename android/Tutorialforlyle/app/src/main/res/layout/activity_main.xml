@@ -8,35 +8,37 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="73dp"
+        android:layout_height="123dp"
         android:theme="@style/AppTheme.AppBarOverlay"
         android:id="@+id/appBarLayout">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/add"
-            android:layout_width="349dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="@dimen/fab_margin"
-            android:visibility="visible"
-            app:backgroundTint="@color/colorAccent"
-            app:layout_anchor="@+id/appBarLayout"
-            app:layout_anchorGravity="top|right"
-            app:srcCompat="@android:drawable/ic_input_add" />
-
-        <android.support.v7.widget.Toolbar
+       <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+           tools:layout_editor_absoluteY="25dp"
+           tools:layout_editor_absoluteX="8dp" />
+
 
     </android.support.design.widget.AppBarLayout>
 
     <include
         android:id="@+id/item"
-        layout="@layout/content_main"/>
+        layout="@layout/content_main" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_margin="@dimen/fab_margin"
+        android:visibility="visible"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="top|right"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 
 </android.support.design.widget.CoordinatorLayout>
