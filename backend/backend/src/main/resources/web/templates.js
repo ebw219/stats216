@@ -13,7 +13,9 @@ templates['ElementList.hb'] = template({"1":function(container,depth0,helpers,pa
     + alias2(alias1((depth0 != null ? depth0.mId : depth0), depth0))
     + "\">Up Vote</button></td>\n	      	<td><button class=\"ElementList-downvotebtn\" data-value=\""
     + alias2(alias1((depth0 != null ? depth0.mId : depth0), depth0))
-    + "\">Down Vote</button></td>\n	</tr>\n";
+    + "\">Down Vote</button></td>\n 		<td><button class=\"ElementList-addcmntbtn\" data-value=\""
+    + alias2(alias1((depth0 != null ? depth0.mId : depth0), depth0))
+    + "\">Add Comment</button></td>\n	</tr>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 

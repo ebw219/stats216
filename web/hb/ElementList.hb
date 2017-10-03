@@ -11,6 +11,7 @@
               	<td><button class="ElementList-delbtn" data-value="{{this.mId}}">Delete</button></td>
               	<td><button class="ElementList-upvotebtn" data-value="{{this.mId}}">Up Vote</button></td>
 	      	<td><button class="ElementList-downvotebtn" data-value="{{this.mId}}">Down Vote</button></td>
+ 		<td><button class="ElementList-addcmntbtn" data-value="{{this.mId}}">Add Comment</button></td>
 	</tr>
 		{{/each}}
             </tbody>

@@ -26,7 +26,7 @@
 </html>
 -->
 
-<html>
+<!--html>
 
 <head>
     <script src="jquery.min.js"></script>
@@ -49,7 +49,7 @@
     </div>
 </body>
 </html>
-
+---->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +61,7 @@
     <meta name="author" content="CSE 216 Student Name Goes Here" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
-    <title>Bootstrap Front-End</title>
+    <title>Welcome to Lyle</title>
 
     <script src="jquery.min.js"></script>
     <script src="handlebars.min.js"></script>
@@ -76,7 +76,11 @@
 </head>
 
 <body role="document">
-
+    <div id="showElements">
+      <h3>Messages</h3>
+      <button id="show Form Button">Add New Message</button>
+      <div id="messageList"></div>
+    </div>
 </body>
 
 </html>
