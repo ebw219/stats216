@@ -238,13 +238,31 @@ public class Database {
     int upVote(int id){
         int count = 1;
         Database.RowData data = this.selectOne(id);
-        System.out.println("id: " + id);
         int upvote = data.mVote;
-        System.out.println("mvote orig: " + upvote);
         try {
             upvote += 1;
-            System.out.println("mvote plus one: " + upvote);
             mVote.setInt(1,upvote);
+            mVote.setInt(2,id);
+            mVote.executeUpdate();
+        } catch (SQLException e){
+            count = -1;
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * Down vote a post
+     *
+     * @return -1 if unsuccessful, otherwise 1
+     */
+    int downVote(int id){
+        int count = 1;
+        Database.RowData data = this.selectOne(id);
+        int downvote = data.mVote;
+        try {
+            downvote -= 1;
+            mVote.setInt(1,downvote);
             mVote.setInt(2,id);
             mVote.executeUpdate();
         } catch (SQLException e){
