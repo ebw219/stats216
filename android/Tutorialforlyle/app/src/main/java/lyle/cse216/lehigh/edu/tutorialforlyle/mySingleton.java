@@ -19,6 +19,10 @@ public class MySingleton {
 
     }
 
+    public static Context getContext(){
+        return mCtx;
+    }
+
     public static synchronized MySingleton getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new MySingleton(context);

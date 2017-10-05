@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d("lyle", response);
                         populateListFromVolley(response);
-                        Log.d("lyle", "done here");
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -98,7 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("lyle", "That Get didn't work!");
             }
         });
-        Log.d("lyle", "WHERE'S THE ERROR?");
         return stringRequest;
     }
 
@@ -161,69 +159,28 @@ public class MainActivity extends AppCompatActivity {
         return postRequest;
     }
 
-//    /**
-//     * Put Volley method
-//     *
-//     * @param d - Datum of post being upvoted
-//     * @return upvote request
-//     */
-//    protected StringRequest putRequest(Datum d) {
-//        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/" + d.mIndex,
-//                new Response.Listener<String>() {
+
+//    public void likeMethod(View v){
+//        Log.d("lyle", "WORKING");
+//        final View.OnClickListener like = new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view){
+//                StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/upVote/" + d.mIndex, new Response.Listener<String>() {
 //                    @Override
 //                    public void onResponse(String response) {
-//                        Log.d("Response", response);
+//                        Log.d("lyle", response);
+//                        Log.d("lyle", "BUTTON PRESSED: " + d.mIndex);
 //                    }
-//                },
-//                new Response.ErrorListener() {
+//                }, new Response.ErrorListener() {
 //                    @Override
 //                    public void onErrorResponse(VolleyError error) {
-//                        Log.d("lyle", "That put didn't work!");
-//                        Log.d("lyle", " If your vote is about 10 line up the log, " +
-//                                "the vote parsed correctly, but the server rejected it");
+//                        Log.e("lyle", "That PUT didn't work");
 //                    }
-//                }
-//        ) {
-//
-//            @Override
-//            public byte[] getBody() throws AuthFailureError {
-//                HashMap<String, String> params2 = new HashMap<String, String>();
-//                Log.d("lyle", new JSONObject(params2).toString());
-//                return new JSONObject(params2).toString().getBytes();
-//            }
-//
-//        };
-//
-//        return (putRequest);
-//    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        // Check which request we're responding to
-//        if (requestCode == 789) {
-//            // Make sure the request was successful
-//            if (resultCode == RESULT_OK) {
-////                final TextView msg = (TextView) findViewById(R.id.bEdit);
-////                msg.setOnClickListener(new View.OnClickListener()
-//
-//                {
-//                    @Override
-//                    public void onClick (View view){
-//                        Intent input = new Intent(getApplicationContext(), EditMessage.class);
-//                        input.putExtra("label_contents", "Edit message");
-//                        startActivityForResult(input, 789);
-//                    }
-//
 //                });
 //
 //            }
-//        }
+//        };
 //    }
-//
-//    public int upvote() {
-//        return 1;
-//    }
-
 
 
 }

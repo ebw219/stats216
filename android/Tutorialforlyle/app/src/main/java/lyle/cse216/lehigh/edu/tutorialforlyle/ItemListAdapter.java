@@ -1,6 +1,7 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 import android.support.v7.util.DiffUtil;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,8 +28,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        Button like;
-        Button dislike;
+        ToggleButton like;
+        ToggleButton dislike;
+        Button comment;
         TextView mTitle;
         TextView mText;
         TextView mVotes;
@@ -39,8 +41,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.mText = (TextView) itemView.findViewById(R.id.listItemText);
             this.mVotes = (TextView) itemView.findViewById(R.id.listItemVotes);
 
-            this.like = (Button) itemView.findViewById(R.id.likeButton);
-            this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
+            this.like = (ToggleButton) itemView.findViewById(R.id.likeButton);
+            this.dislike = (ToggleButton) itemView.findViewById(R.id.dislikeButton);
+
+            this.comment = (Button) itemView.findViewById(R.id.commentButton);
         }
 
     }
@@ -53,6 +57,11 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
         mData = data;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
     @Override
@@ -81,15 +90,16 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
         };
 
-        final View.OnClickListener likeButton = new View.OnClickListener() {
 
+        final View.OnClickListener likeButton = new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                Log.d("lyle", "up:" + d.mIndex);
+            public void onClick(View view) {
+                Log.d("lyle", "HERE");
                 StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/upVote/" + d.mIndex, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("lyle", "BUTTON PRESSED");
+                        Log.d("lyle", response);
+                        Log.d("lyle", "BUTTON PRESSED: " + d.mIndex);
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -97,19 +107,25 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                         Log.e("lyle", "That PUT didn't work");
                     }
                 });
-
+                Context context = MySingleton.getContext();
+                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
             }
-
         };
+
+
+//        like.setClickListener(holder.likeButton);
+
+
 
         final View.OnClickListener dislikeButton = new View.OnClickListener() {
 
             @Override
             public void onClick(View view){
-                Log.d("lyle", "down:" + d.mIndex);
+                Log.d("lyle", "DOWN");
                 StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/downVote/" + d.mIndex, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.d("lyle", response);
                         Log.d("lyle", "BUTTON PRESSED");
                     }
                 }, new Response.ErrorListener() {

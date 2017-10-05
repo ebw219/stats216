@@ -94,13 +94,13 @@
         android:layout_toEndOf="@+id/listItemText" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/commentButton"
         style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Comment"
-        android:layout_below="@+id/listItemText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/listItemText"
+        android:text="Comment" />
 
 </RelativeLayout>
