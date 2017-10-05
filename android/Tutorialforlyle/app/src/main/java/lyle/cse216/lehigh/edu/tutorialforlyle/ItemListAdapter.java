@@ -15,6 +15,7 @@ import java.util.List;
 //import javax.naming.Context;
 
 import android.content.Context;
+import android.widget.ToggleButton;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
@@ -35,7 +36,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.like = (Button) itemView.findViewById(R.id.likeButton);
             this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
         }
+
     }
+
 
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private LayoutInflater mLayoutInflater;
@@ -73,7 +76,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
         };
 
-        final View.OnClickListener buttonListen = new View.OnClickListener() {
+        final View.OnClickListener likeButton = new View.OnClickListener() {
 
             @Override
             public void onClick(View view){
@@ -82,15 +85,20 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         };
 
+
         holder.like.setOnClickListener(listener);
         holder.dislike.setOnClickListener(listener);
+
     }
 
     interface ClickListener{
         void onClick(Datum d);
     }
     private ClickListener mClickListener;
-    ClickListener getClickListener() {return mClickListener;}
+    ClickListener getClickListener() {
+        return mClickListener;
+    }
+
     void setClickListener(ClickListener c) {
         mClickListener = c;
     }

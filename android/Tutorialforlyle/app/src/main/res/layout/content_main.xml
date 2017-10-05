@@ -12,8 +12,8 @@
         android:id="@+id/datum_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="2dp"></android.support.v7.widget.RecyclerView>
+        tools:layout_editor_absoluteX="210dp"
+        tools:layout_editor_absoluteY="71dp"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
 
