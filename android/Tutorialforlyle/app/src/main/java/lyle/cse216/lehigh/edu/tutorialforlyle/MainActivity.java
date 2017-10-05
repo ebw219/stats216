@@ -51,10 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
-        RecyclerView rv = (RecyclerView) findViewById(R.id.datum_list_view);
+        rv = (RecyclerView) findViewById(R.id.datum_list_view);
         adapter = new ItemListAdapter(this, mData);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(adapter);
         MySingleton list = MySingleton.getInstance(this.getApplicationContext());
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
@@ -127,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
         }
         Log.d("lyle", "Successfully parsed JSON file.");
 
-//        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
-//        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+        rv.setAdapter(adapter);
     }
 
 
