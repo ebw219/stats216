@@ -113,10 +113,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         };
 
 
-//        like.setClickListener(holder.likeButton);
-
-
-
         final View.OnClickListener dislikeButton = new View.OnClickListener() {
 
             @Override
@@ -134,7 +130,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                         Log.e("lyle", "That PUT didn't work");
                     }
                 });
-
+                Context context = MySingleton.getContext();
+                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
             }
 
         };
