@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -90,5 +91,8 @@ public class NewMessage extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
+
 }

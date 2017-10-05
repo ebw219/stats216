@@ -17,8 +17,14 @@ import java.util.List;
 import android.content.Context;
 import android.widget.ToggleButton;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
+    String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -62,7 +68,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        updateListItems(mData);
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mText.setText(d.mMessage);
@@ -80,16 +85,52 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
             @Override
             public void onClick(View view){
+                Log.d("lyle", "up:" + d.mIndex);
+                StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/upVote/" + d.mIndex, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", "BUTTON PRESSED");
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("lyle", "That PUT didn't work");
+                    }
+                });
+
+            }
+
+        };
+
+        final View.OnClickListener dislikeButton = new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view){
+                Log.d("lyle", "down:" + d.mIndex);
+                StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/downVote/" + d.mIndex, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", "BUTTON PRESSED");
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("lyle", "That PUT didn't work");
+                    }
+                });
 
             }
 
         };
 
 
-        holder.like.setOnClickListener(listener);
-        holder.dislike.setOnClickListener(listener);
+        holder.like.setOnClickListener(likeButton);
+        holder.dislike.setOnClickListener(dislikeButton);
 
     }
+
+
+
 
     interface ClickListener{
         void onClick(Datum d);
