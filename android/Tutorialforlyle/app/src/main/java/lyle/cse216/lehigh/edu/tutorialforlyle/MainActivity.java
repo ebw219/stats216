@@ -3,12 +3,15 @@ package lyle.cse216.lehigh.edu.tutorialforlyle;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,9 +28,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-//import static com.sun.xml.internal.ws.api.message.Packet.Status.Request;
-//import static com.sun.xml.internal.ws.api.message.Packet.Status.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
     RecyclerView rv;
     ItemListAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
 
-
         FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,15 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Add the request to the RequestQueue.
-//        queue.add(getResponse());
-
         Log.d("lyle", "request queue:" + MySingleton.getInstance(this).getRequestQueue());
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        mData.clear();
+        MySingleton.getInstance(this).addToRequestQueue(getResponse());
+    }
 
     /**
      * GET Volley request
-     *
      * @return the request
      */
     protected StringRequest getResponse() {
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        };
 //    }
+
 
 
 }
