@@ -144,44 +144,37 @@ public class Database {
                     "CREATE TABLE tblData (id SERIAL PRIMARY KEY, subject VARCHAR(50) "
                     + "NOT NULL, message VARCHAR(500) NOT NULL)");
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
-            db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (
-                user_id SERIAL PRIMARY KEY,
-                username VARCHAR(255),
-                realname VARCHAR(255),
-                email VARCHAR(255),
-                salt BYTEA,
-                password BYTEA
-                );")
-            db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage (
-                message_id SERIAL PRIMARY KEY,
-                user_id INTEGER, title VARCHAR(50),
-                body VARCHAR(140),
-                # Need to add creation date/time
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id)
-                );")
-            db.mCreateCommentTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblComments (
-                comment_id SERIAL PRIMARY KEY,
-                user_id INTEGER,
-                message_id INTEGER,
-                comment_text VARCHAR(255),
-                # Need to add creation date/time
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-                FOREIGN KEY (message_id) REFERENCES tblMessage (message_id)
-                );")
-            db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes (
-                user_id INTEGER,
-                message_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-                FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
-                PRIMARY KEY (user_id, message_id)
-                );")
-            cb.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes (
-                user_id INTEGER,
-                message_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-                FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
-                PRIMARY KEY (user_id, message_id)
-                );")
+            db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
+                + "PRIMARY KEY, username VARCHAR(255), realname VARCHAR(255), "
+                + "email VARCHAR(255), "
+                + "salt BYTEA, "
+                + "password BYTEA)");
+            db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
+                + "message_id SERIAL PRIMARY KEY, "
+                + "user_id INTEGER, title VARCHAR(50), "
+                + "body VARCHAR(140), "
+                + "# Need to add creation date/time "
+                + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id))");
+            db.mCreateCommentTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblComments ("
+                + "comment_id SERIAL PRIMARY KEY, "
+                + "user_id INTEGER, "
+                + "message_id INTEGER, "
+                + "comment_text VARCHAR(255), "
+                + "# Need to add creation date/time "
+                + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
+                + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id))");
+            db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
+                + "user_id INTEGER,"
+                + "message_id INTEGER, "
+                + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
+                + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
+                + "PRIMARY KEY (user_id, message_id))");
+            db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes ("
+                + "user_id INTEGER, "
+                + "message_id INTEGER,"
+                + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
+                + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
+                + "PRIMARY KEY (user_id, message_id))");
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
