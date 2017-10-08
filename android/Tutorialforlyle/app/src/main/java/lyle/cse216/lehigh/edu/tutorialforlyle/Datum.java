@@ -21,6 +21,9 @@ class Datum {
 
     int mVotes;
 
+//    boolean liked = false;
+//    boolean disliked = false;
+
     /**
      * Construct a Datum by setting its index and text
      *
@@ -33,4 +36,5 @@ class Datum {
         mMessage = message;
         mVotes = votes;
     }
+
 }

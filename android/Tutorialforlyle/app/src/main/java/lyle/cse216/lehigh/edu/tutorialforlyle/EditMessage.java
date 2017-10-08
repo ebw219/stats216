@@ -40,7 +40,7 @@ public class EditMessage extends AppCompatActivity {
 //        {
 //            @Override
 //            public void onClick (View view){
-//                Intent input = new Intent(getApplicationContext(), NewMessage.class);
+//                Intent input = new Intent(getApplicationContext(), NewMessageActivity.class);
 //                input.putExtra("label_contents", "Add new message");
 //                startActivityForResult(input, 789);
 //

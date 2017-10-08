@@ -1,17 +1,13 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 
@@ -28,11 +24,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-
 
     ArrayList<Datum> mData = new ArrayList<>();
     String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
@@ -42,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Log.d("lyle", "Debug Message from onCreate");
 
@@ -58,14 +52,23 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
 
-        FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
+        FloatingActionButton newMessage = findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent input = new Intent(getApplicationContext(), NewMessage.class);
+                Intent input = new Intent(getApplicationContext(), NewMessageActivity.class);
                 input.putExtra("label_contents", "Add new message");
                 startActivityForResult(input, 789);
+            }
 
+        });
+
+        findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent input = new Intent(getApplicationContext(), LoginActivity.class);
+                input.putExtra("label_contents", "Logout");
+                startActivityForResult(input, 789);
             }
 
         });
@@ -121,6 +124,10 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
+            if(e.getMessage().equals(new String("No value for mData"))) {
+                String title = "No Messages";
+                mData.add(new Datum(0, title, "", 0));
+            }
             return;
         }
         Log.d("lyle", "Successfully parsed JSON file.");
@@ -160,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         };
         return postRequest;
     }
+
 
 
 //    public void likeMethod(View v){

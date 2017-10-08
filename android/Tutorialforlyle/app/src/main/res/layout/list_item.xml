@@ -28,7 +28,6 @@
         android:id="@+id/listItemText"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        android:layout_alignBottom="@+id/dislikeButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/titleNew"
@@ -39,7 +38,8 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="23sp"
-        tools:text="Message" />
+        tools:text="Message"
+        android:layout_above="@+id/dislikeButton" />
 
     <TextView
         android:id="@+id/listItemVotes"
@@ -71,27 +71,23 @@
         android:background="@android:color/background_dark"
         android:id="@+id/view" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/likeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Like"
-        android:textOff="Like"
-        android:textOn="Liked"
         android:layout_below="@+id/titleNew"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <ToggleButton
+    <Button
         android:id="@+id/dislikeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ToggleButton"
-        android:textOff="Dislike"
-        android:textOn="Disliked"
         android:layout_below="@+id/listItemVotes"
+        android:layout_toEndOf="@+id/listItemText"
         android:layout_toRightOf="@+id/listItemText"
-        android:layout_toEndOf="@+id/listItemText" />
+        android:text="Dislike" />
 
     <Button
         android:id="@+id/commentButton"
@@ -101,6 +97,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/listItemText"
-        android:text="Comment" />
+        android:text="View Comments" />
 
 </RelativeLayout>

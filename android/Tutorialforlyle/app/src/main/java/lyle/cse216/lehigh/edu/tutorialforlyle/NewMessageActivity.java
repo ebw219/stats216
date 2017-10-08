@@ -23,7 +23,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class NewMessage extends AppCompatActivity {
+public class NewMessageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class NewMessage extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.e("lyle", "That POST didn't work!");
-                            Log.e("lyle", " If your vote is about 10 line up the log, " +
+                            Log.e("lyle", " If your sendRoute is about 10 line up the log, " +
                                     "the message parsed correctly, but the server rejected it");
                         }
                     })

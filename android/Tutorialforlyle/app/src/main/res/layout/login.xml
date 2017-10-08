@@ -46,4 +46,14 @@
         android:layout_alignStart="@+id/loginButton"
         android:layout_below="@+id/loginButton"
         android:text="Create User" />
+
+    <TextView
+        android:id="@+id/badLoginCreds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createUserButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Your username or password is incorrect"
+        android:textColor="@android:color/holo_red_dark" />
 </RelativeLayout>
