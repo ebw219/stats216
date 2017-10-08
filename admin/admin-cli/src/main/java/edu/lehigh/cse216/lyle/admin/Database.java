@@ -1,5 +1,6 @@
 package edu.lehigh.cse216.lyle.admin;
 
+import edu.lehigh.cse216.lyle.admin.Database.RowData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -60,6 +61,14 @@ public class Database {
 
     private PreparedStatement mCreateDownvoteTable;
 
+    private PreparedStatement mSelectUnauthenticated;
+    
+    private PreparedStatement mDropUserTable;
+    private PreparedStatement mDropMessageTable;
+    private PreparedStatement mDropCommentTable;
+    private PreparedStatement mDropUpVoteTable;
+    private PreparedStatement mDropDownVoteTable;
+
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
@@ -118,7 +127,7 @@ public class Database {
 
         // Give the Database object a connection, fail if we cannot get one
         try {
-            Connection conn = DriverManager.getConnection(db_url);
+            Connection conn = DriverManager.getConnection("jdbc:postgresql://ec2-54-225-237-64.compute-1.amazonaws.com:5432/d9m9llpg6sa3t3?user=dosnlfxouuassv&password=62f6ee7278c7dba70ef3cbc252324cb643b4b326094319a7130fed897b84d0d1&sslmode=require");
             if (conn == null) {
                 System.err.println("Error: DriverManager.getConnection() returned a null object");
                 return null;
@@ -144,23 +153,27 @@ public class Database {
                     "CREATE TABLE tblData (id SERIAL PRIMARY KEY, subject VARCHAR(50) "
                     + "NOT NULL, message VARCHAR(500) NOT NULL)");
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
+            db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser");
+            db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage");
+            db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComment");
+            db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes");
+            db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes");
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
                 + "PRIMARY KEY, username VARCHAR(255), realname VARCHAR(255), "
                 + "email VARCHAR(255), "
                 + "salt BYTEA, "
-                + "password BYTEA)");
+                + "password BYTEA, "
+                + "auth BOOLEAN)");
             db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
                 + "message_id SERIAL PRIMARY KEY, "
                 + "user_id INTEGER, title VARCHAR(50), "
                 + "body VARCHAR(140), "
-                + "# Need to add creation date/time "
                 + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id))");
             db.mCreateCommentTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblComments ("
                 + "comment_id SERIAL PRIMARY KEY, "
                 + "user_id INTEGER, "
                 + "message_id INTEGER, "
                 + "comment_text VARCHAR(255), "
-                + "# Need to add creation date/time "
                 + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                 + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id))");
             db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
@@ -181,6 +194,7 @@ public class Database {
             db.mSelectAll = db.mConnection.prepareStatement("SELECT id, subject FROM tblData");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
+            db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = FALSE"); //unsure if = or ==
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
             e.printStackTrace();
@@ -314,6 +328,25 @@ public class Database {
         return res;
     }
 
+    
+
+    ArrayList<User> selectUnauth(){
+        ArrayList<User> res = new ArrayList<User>();
+        try {
+            ResultSet rs = mSelectUnauthenticated.executeQuery();
+            while (rs.next()) {
+                // if(mSelectUnauthenticated.getMetaData().getColumn){
+                res.add(new User(rs.getString("email"), rs.getString("name")));
+                // }
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * Create tblData.  If it already exists, this will print an error
      */
@@ -378,6 +411,46 @@ public class Database {
     void dropTable() {
         try {
             mDropTable.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropUTable() {
+        try {
+            mDropUserTable.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropMTable() {
+        try {
+            mDropMessageTable.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropCTable() {
+        try {
+            mDropCommentTable.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropUVTable() {
+        try {
+            mDropUpVoteTable.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropDVTable() {
+        try {
+            mDropDownVoteTable.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

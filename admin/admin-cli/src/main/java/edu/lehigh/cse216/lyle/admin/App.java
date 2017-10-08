@@ -27,6 +27,13 @@ public class App {
         System.out.println("  [~] Update a row");
         System.out.println("  [q] Quit Program");
         System.out.println("  [?] Help (this message)");
+        System.out.println();
+        System.out.println("  [U] Create tblUser");
+        System.out.println("  [M] Create tblMessage");
+        System.out.println("  [C] Create tblComment");
+        System.out.println("  [P] Create tblUpVotes");
+        System.out.println("  [N] Create tblDownVotes");
+        System.out.println("  [A] Show unauthenticated users");
     }
 
     /**
@@ -38,7 +45,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?";
+        String actions = "TD1*-+~q?UMCPNAumcpn";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -115,6 +122,7 @@ public class App {
         Database db = Database.getDatabase(db_url);
         if (db == null)
             return;
+        
 
         // Start our basic command-line interpreter:
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -174,10 +182,41 @@ public class App {
                 if (res == -1)
                     continue;
                 System.out.println("  " + res + " rows updated");
+            } else if (action == 'U') {
+                db.createUserTable();
+            } else if (action == 'M') {
+                db.createMessageTable();
+            } else if (action == 'C') {
+                db.createCommentTable();
+            } else if (action == 'P') {
+                db.createUpvoteTable();
+            } else if (action == 'N') {
+                db.createDownvoteTable();
+            } else if (action == 'u') {
+                db.dropUTable();
+            } else if (action == 'm') {
+                db.dropMTable();
+            } else if (action == 'c') {
+                db.dropCTable();
+            } else if (action == 'p') {
+                db.dropUVTable();
+            } else if (action == 'n') {
+                db.dropDVTable();
+            } else if (action == 'A') {
+                ArrayList<User> res = db.selectUnauth();
+                for (int i=0; i<res.size(); i++) {
+                    System.out.println(res.get(i));
+                }
+                
             }
         }
         // Always remember to disconnect from the database when the program 
         // exits
         db.disconnect();
+
+
+
+
+
     }
 }
