@@ -155,7 +155,7 @@ public class Database {
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
             db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser");
             db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage");
-            db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComment");
+            db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments");
             db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes");
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes");
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
@@ -176,13 +176,13 @@ public class Database {
                 + "comment_text VARCHAR(255), "
                 + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                 + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id))");
-            db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
+            db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
                 + "user_id INTEGER,"
                 + "message_id INTEGER, "
                 + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                 + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
                 + "PRIMARY KEY (user_id, message_id))");
-            db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes ("
+            db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes ("
                 + "user_id INTEGER, "
                 + "message_id INTEGER,"
                 + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "

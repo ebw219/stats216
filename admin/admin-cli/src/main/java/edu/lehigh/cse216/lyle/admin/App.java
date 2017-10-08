@@ -205,7 +205,7 @@ public class App {
             } else if (action == 'A') {
                 ArrayList<User> res = db.selectUnauth();
                 for (int i=0; i<res.size(); i++) {
-                    System.out.println(res.get(i));
+                    System.out.println(res.get(i).getName() + " " + res.get(i).getEmail());
                 }
                 
             }
