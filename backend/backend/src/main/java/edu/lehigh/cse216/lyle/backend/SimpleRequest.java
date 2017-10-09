@@ -21,7 +21,12 @@ public class SimpleRequest {
     /**
      * The comment provided by the client.
      */
-    //public String mCom;
+    public String mCom;
+
+    /**
+     * The message attached to the comment.
+     */
+    public int mId;
 
     /**
      * just for testing

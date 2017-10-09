@@ -72,7 +72,19 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll())); // changed 
-	    });
+		});
+		
+	// GET route that returns all message titles and Ids.  All we do is get
+	// the data, embed it in a StructuredResponse, turn it into JSON, and
+	// return it.  If there's no data, we return "[]", so there's no need
+	// for error handling.
+	//gets from the comments table
+	Spark.get("/comments", (request, response) -> {
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectAll())); // changed 
+		});
 
 	// GET route that returns everything for a single row in the database.
 	// The ":id" suffix in the first parameter to get() becomes
@@ -119,7 +131,7 @@ public class App {
 
 		//POST route for adding a new element to the comments table
 		//posts to the message table
-/*	Spark.post("/comments", (request, response) -> {
+	Spark.post("/comments", (request, response) -> {
 		// NB: if gson.Json fails, Spark will reply with status 500 Internal
 		// Server Error
 		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
@@ -129,14 +141,13 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = comDatabase.insertRow(req.mCom);
+		int newId = comDatabase.insertRow(req.mId, req.mCom);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {
 		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
 		}
-		}); */
-		//NEED THIS, JUST  COMMENTED OUT TO COMPILE PLS DON'T FORGET TO UNCOMMENT IT
+		});
 	
 		/** 
 	// POST route to log in
