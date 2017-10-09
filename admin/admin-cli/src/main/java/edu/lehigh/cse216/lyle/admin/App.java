@@ -7,10 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-//import spark.Spark;
-//import com.google.gson.*;
-
-//import com.github.sendgrid.SendGrid;
+import com.sendgrid.*;
+import java.lang.*;
 
 /**
  * App is our basic admin app.  For now, it is a demonstration of the six key 
@@ -123,19 +121,30 @@ public class App {
     }
 
 
-    static void authUser(String email) {
+    static void authUser(String userEmail) {
         
+        String sendgrid_username  = System.getenv("lshaffran");
+        String sendgrid_password  = System.getenv("lyle1234");
         
-        // SendGrid sendgrid = new SendGrid("SENDGRID_APIKEY");
-        // SendGrid.Email email = new SendGrid.Email();
+        SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
+        SendGrid.Email email = new SendGrid.Email();
 
-        // email.addTo(userEmail);
-        // email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
-        // email.setSubject("The Buzz account activation");
-        // email.setText("You are now registered for The Buzz!");
+        email.setFromName("The Buzz");
+        email.addTo(userEmail);
+        email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
+        email.setSubject("The Buzz account activation");
+        email.setText("You are now registered for The Buzz!");
 
-        // SendGrid.Response response = sendgrid.send(email);
-        // sendgrid.send();
+        try {
+            SendGrid.Response response = sendgrid.send(email);
+            System.out.println(response.getMessage());
+          } catch (SendGridException e) {
+            System.out.println(e);
+          }
+
+
+          // then change the auth field in tblUser to true
+
     }
 
 
@@ -243,6 +252,7 @@ public class App {
                 }
                 
             } else if (action == 'E') {
+                System.out.print("Enter the user's ID: ");
                 int userId = getInt(in, "Enter the user's ID: ");
                 String email = db.getEmail(userId);
                 authUser(email);
