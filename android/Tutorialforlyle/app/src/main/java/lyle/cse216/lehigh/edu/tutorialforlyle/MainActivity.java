@@ -75,11 +75,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message
+        adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message to view comments
             @Override
             public void onClick(Datum d) {
                 int id = d.mIndex;
-                Log.d("lyle", "In click listener here");
                 Intent i = new Intent(getApplicationContext(), CommentActivity.class);
                 i.putExtra("id", id);
                 i.putExtra("title", d.mTitle);
@@ -89,13 +88,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener(){
 
-        // Add the request to the RequestQueue
-        Log.d("lyle", "request queue:" + MySingleton.getInstance(this).getRequestQueue());
+            @Override
+            public void onClick(View view) {
+//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(new Intent(), 789);
+            }
+        });
+
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        Log.d("lyle", "RESULT");
         mData.clear();
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
     }
@@ -183,57 +190,6 @@ public class MainActivity extends AppCompatActivity {
         };
         return postRequest;
     }
-
-//    static void sendPutRoute(int index, String voteType){
-//        Log.d("lyle", "HERE");
-//        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteType + index, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Log.d("lyle", response);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("lyle", "That PUT didn't work");
-//            }
-//        });
-//        Context context = MySingleton.getContext();
-//        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
-//
-//        rv.setAdapter(adapter);
-//
-//        runOnUiThread(new Runnable(){
-//
-//            @Override
-//            public void run() {
-//
-//            }
-//        })
-//        adapter.notifyDataSetChanged();
-//    }
-
-
-//    public void likeMethod(View v){
-//        Log.d("lyle", "WORKING");
-//        final View.OnClickListener like = new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view){
-//                StringRequest putRequest = new StringRequest(Request.Method.PUT, url + "/upVote/" + d.mIndex, new Response.Listener<String>() {
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Log.d("lyle", response);
-//                        Log.d("lyle", "BUTTON PRESSED: " + d.mIndex);
-//                    }
-//                }, new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.e("lyle", "That PUT didn't work");
-//                    }
-//                });
-//
-//            }
-//        };
-//    }
 
 
 

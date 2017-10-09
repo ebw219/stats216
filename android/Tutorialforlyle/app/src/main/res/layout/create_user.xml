@@ -35,4 +35,15 @@
         android:layout_alignEnd="@+id/newEmail"
         android:layout_alignRight="@+id/newEmail"
         android:text="Submit" />
+
+    <EditText
+        android:id="@+id/newUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/newEmail"
+        android:layout_alignStart="@+id/newEmail"
+        android:layout_below="@+id/newEmail"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:text="Username" />
 </RelativeLayout>

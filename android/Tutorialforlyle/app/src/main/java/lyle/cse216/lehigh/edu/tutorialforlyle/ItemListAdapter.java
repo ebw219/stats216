@@ -29,7 +29,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         TextView mMessage;
         TextView mVotes;
 
-        Button delete;
+//        Button delete;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -40,7 +40,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.like = (Button) itemView.findViewById(R.id.likeButton);
             this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
 
-            this.delete = (Button) itemView.findViewById(R.id.deleteButton);
+//            this.delete = (Button) itemView.findViewById(R.id.deleteButton);
         }
 
 
@@ -139,25 +139,25 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         };
 
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("lyle", "DELETE ID: " + d.mIndex);
-                StringRequest getRequest = new StringRequest(Request.Method.DELETE, url + "/" + d.mIndex, new Response.Listener<String>(){
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("lyle", response);
-                    }
-                }, new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("lyle", "That delete didn't work");
-                    }
-                });
-                Context context = MySingleton.getContext();
-                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
-            }
-        });
+//        holder.delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d("lyle", "DELETE ID: " + d.mIndex);
+//                StringRequest getRequest = new StringRequest(Request.Method.DELETE, url + "/" + d.mIndex, new Response.Listener<String>(){
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Log.d("lyle", response);
+//                    }
+//                }, new Response.ErrorListener(){
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.e("lyle", "That delete didn't work");
+//                    }
+//                });
+//                Context context = MySingleton.getContext();
+//                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
+//            }
+//        });
 
 
         holder.like.setOnClickListener(likeButton);
@@ -165,21 +165,21 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     }
 
-    void sendGetRoute(int index){
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url + index, new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response) {
-                Log.d("lyle", response);
-            }
-        }, new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That get didn't work");
-            }
-        });
-        Context context = MySingleton.getContext();
-        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
-    }
+//    void sendGetRoute(int index){
+//        StringRequest getRequest = new StringRequest(Request.Method.GET, url + index, new Response.Listener<String>(){
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d("lyle", response);
+//            }
+//        }, new Response.ErrorListener(){
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That get didn't work");
+//            }
+//        });
+//        Context context = MySingleton.getContext();
+//        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
+//    }
 
     void sendPutRoute(int index, String voteType){
         Log.d("lyle", "HERE");

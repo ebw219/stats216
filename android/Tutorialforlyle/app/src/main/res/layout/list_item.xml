@@ -89,14 +89,4 @@
         android:layout_toRightOf="@+id/listItemText"
         android:text="Dislike" />
 
-    <Button
-        android:id="@+id/deleteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_below="@+id/listItemText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
 </RelativeLayout>

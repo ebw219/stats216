@@ -1,12 +1,13 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -41,9 +42,9 @@ public class CommentActivity extends AppCompatActivity {
         rv = (RecyclerView) findViewById(R.id.datum_list_view);
         adapter = new CommentListAdapter(this, mComments);
 
-
         Intent viewComments = getIntent();
         int id = viewComments.getIntExtra("id", -1);
+        Log.d("lyle", "ID: " + id);
 
         String tempTitle = viewComments.getStringExtra("title");
         Log.d("lyle", "title: " + tempTitle);
@@ -54,44 +55,45 @@ public class CommentActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.commentItemMessage)).setText(tempMsg);
 
 
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(getResponse());
 
-        findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent input = new Intent(getApplicationContext(), MainActivity.class);
-                input.putExtra("label_contents", "Back");
-                startActivityForResult(input, 789);
-            }
-        });
-
-
-        /**
-         * Helper method for GET function
-         * @param response string of JSON data obtained from Get
-         */
     }
 
-    private void populateListFromVolley(String response) {
+
+
+
+    /**
+     * Helper method for GET function
+     * @param response string of JSON data obtained from Get
+     */
+    private void populateListFromVolley(String response, int id) {
         try {
             Log.d("lyle", "Populating comments: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
             JSONArray json = jsonObj.getJSONArray("mData");
+//            JSONObject json = jsonObj.getJSONObject("mData");
             for (int i = 0; i < json.length(); ++i) {
-//                int id = json.getJSONObject(i).getInt("mId");
-//                String title = json.getJSONObject(i).getString("mTitle");
-                String message = json.getJSONObject(i).getString("mCom");
-//                int votes = json.getJSONObject(i).getInt("mVote");
-//                mComments.add(new Datum(id, title, message, votes));
-                mComments.add(message);
+//                int cid = json.getJSONObject(i).getInt("cId");
+//                int uId = json.getJSONObject(i).getInt("uId");
+                int mId = json.getJSONObject(i).getInt("mId");
+                String message;
+                if(mId == id) {
+                    message = json.getJSONObject(i).getString("mCom");
+//                String message = json.getString("mCom");
+                    mComments.add(message);
+                    Log.d("lyle", message);
+                }
             }
+//            }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
             return;
         }
         Log.d("lyle", "Successfully parsed JSON file.");
 
-        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
-        rv.setAdapter(adapter);
+            rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+            rv.setAdapter(adapter);
+
     }
 
 
@@ -104,16 +106,18 @@ public class CommentActivity extends AppCompatActivity {
 
     /**
      * GET Volley request
-     *
      * @return the request
      */
-    protected StringRequest getResponse(int mId) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url + mId,
+    protected StringRequest getResponse() {
+        Intent viewComments = getIntent();
+        final int id = viewComments.getIntExtra("id", -1);
+        Log.d("lyle", "ID: " + id);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("lyle", response);
-                        populateListFromVolley(response);
+                        Log.d("lyle", "RESPONSE: " + response);
+                        populateListFromVolley(response, id);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -121,7 +125,9 @@ public class CommentActivity extends AppCompatActivity {
                 Log.e("lyle", "That Get didn't work!");
             }
         });
+
         return stringRequest;
+
     }
 
 }

@@ -1,11 +1,13 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 import android.content.Context;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,17 +19,12 @@ import java.util.ArrayList;
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ViewHolder>{
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        Button back;
+        TextView comment;
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.back = (Button) itemView.findViewById(R.id.backButton);
+            this.comment = (TextView) itemView.findViewById(R.id.commentItemComment);
         }
-
-    }
-
-    @Override
-    public void onBindViewHolder(CommentListAdapter.ViewHolder holder, int position) {
 
     }
 
@@ -41,9 +38,15 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     @Override
     public CommentListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.list_item, null, false);
-        return new CommentListAdapter.ViewHolder(view);
+        View view = mLayoutInflater.inflate(R.layout.comment_item, null);
+        return new ViewHolder(view);
     }
+
+    @Override
+    public void onBindViewHolder(CommentListAdapter.ViewHolder holder, int position) {
+
+    }
+
 
 
     @Override
@@ -51,3 +54,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         return comments.size();
     }
 }
+
+
+
+//    Context context = MySingleton.getContext();
+//        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
