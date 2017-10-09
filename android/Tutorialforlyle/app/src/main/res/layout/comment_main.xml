@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity">
+
+    <include
+        android:id="@+id/item"
+        layout="@layout/comment_item"
+        android:layout_width="72dp" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:background="@android:drawable/ic_menu_revert"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_anchor="@+id/item"
+        app:layout_anchorGravity="top|left" />
+
+
+</android.support.design.widget.CoordinatorLayout>

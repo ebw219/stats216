@@ -11,29 +11,16 @@ import java.util.ArrayList;
 
 /**
  * Created by Kelli on 10/8/17.
+ * Phase 3
  */
 
 public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.ViewHolder>{
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        //        Button like;
-//        Button dislike;
-//        Button comment;
-//        TextView mTitle;
-//        TextView mMessage;
-//        TextView mVotes;
         Button back;
 
         ViewHolder(View itemView) {
             super(itemView);
-//            this.mTitle = (TextView) itemView.findViewById(R.id.titleNew);
-//            this.mMessage = (TextView) itemView.findViewById(R.id.listItemText);
-//            this.mVotes = (TextView) itemView.findViewById(R.id.listItemVotes);
-//
-//            this.like = (Button) itemView.findViewById(R.id.likeButton);
-//            this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
-//
-//            this.comment = (Button) itemView.findViewById(R.id.commentButton);
             this.back = (Button) itemView.findViewById(R.id.backButton);
         }
 

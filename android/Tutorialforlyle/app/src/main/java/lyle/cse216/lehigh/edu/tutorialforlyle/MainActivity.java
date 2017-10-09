@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("lyle", "In click listener here");
                 Intent i = new Intent(getApplicationContext(), CommentActivity.class);
                 i.putExtra("id", id);
+                i.putExtra("title", d.mTitle);
+                Log.d("lyle", "PUTTING TITLE: " + d.mTitle);
+                i.putExtra("message", d.mMessage);
                 startActivityForResult(i, 789);
             }
         });
@@ -123,22 +126,23 @@ public class MainActivity extends AppCompatActivity {
      * @param response string of JSON data obtained from Get
      */
     private void populateListFromVolley(String response) {
+        Log.d("lyle", "HERE");
         try {
             Log.d("lyle", "Populating: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("tblMessage");
+            JSONArray json = jsonObj.getJSONArray("mData");
             for (int i = 0; i < json.length(); ++i) {
-                int message_id = json.getJSONObject(i).getInt("message_id");
-                int user_id = json.getJSONObject(i).getInt("user_id");
-                String title = json.getJSONObject(i).getString("title");
-                String message = json.getJSONObject(i).getString("body");
-                int votes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(message_id, user_id, title, message, votes));
+                int message_id = json.getJSONObject(i).getInt("mId");
+                int user_id = json.getJSONObject(i).getInt("uId");
+                String title = json.getJSONObject(i).getString("mTitle");
+                String message = json.getJSONObject(i).getString("mBody");
+//                int votes = json.getJSONObject(i).getInt("mVote");
+                mData.add(new Datum(message_id, user_id, title, message, 0));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
             if(e.getMessage().equals("No value for mData")) {
-                String title = "No Messages";
+                Log.d("lyle", "NO DATA");
             }
             return;
         }

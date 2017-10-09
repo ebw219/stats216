@@ -25,7 +25,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
         Button dislike;
-        Button comment;
         TextView mTitle;
         TextView mMessage;
         TextView mVotes;
@@ -98,12 +97,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         holder.mMessage.setOnClickListener(listener);
         holder.mTitle.setOnClickListener(listener);
 
-        holder.comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("lyle", "COMMENTS");
-            }
-        });
 
         final View.OnClickListener likeButton = new View.OnClickListener() {
             @Override
