@@ -9,9 +9,7 @@
         android:id="@+id/titleNew"
         android:layout_width="355dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dp"
@@ -22,7 +20,9 @@
         android:textColor="@android:color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        tools:text="Title" />
+        tools:text="Title"
+        android:layout_toLeftOf="@+id/likeButton"
+        android:layout_toStartOf="@+id/likeButton" />
 
     <TextView
         android:id="@+id/listItemText"
@@ -39,7 +39,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="23sp"
         tools:text="Message"
-        android:layout_above="@+id/dislikeButton" />
+        android:layout_alignBottom="@+id/dislikeButton" />
 
     <TextView
         android:id="@+id/listItemVotes"
@@ -76,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Like"
-        android:layout_below="@+id/titleNew"
+        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -90,13 +90,13 @@
         android:text="Dislike" />
 
     <Button
-        android:id="@+id/commentButton"
-        style="@style/Widget.AppCompat.Button.Small"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:text="Delete"
+        android:textColor="@android:color/holo_red_dark"
         android:layout_below="@+id/listItemText"
-        android:text="View Comments" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

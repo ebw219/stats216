@@ -60,7 +60,7 @@ public class NewMessageActivity extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.e("lyle", "That POST didn't work!");
-                            Log.e("lyle", " If your sendRoute is about 10 line up the log, " +
+                            Log.e("lyle", " If your sendPutRoute is about 10 line up the log, " +
                                     "the message parsed correctly, but the server rejected it");
                         }
                     })

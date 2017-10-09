@@ -1,5 +1,6 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
 import com.android.volley.AuthFailureError;
@@ -29,9 +31,10 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Datum> mData = new ArrayList<>();
-    String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
-    RecyclerView rv;
-    ItemListAdapter adapter;
+    static String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
+    static RecyclerView rv;
+    static ItemListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,11 +73,21 @@ public class MainActivity extends AppCompatActivity {
                 input.putExtra("label_contents", "Logout");
                 startActivityForResult(input, 789);
             }
+        });
 
+        adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message
+            @Override
+            public void onClick(Datum d) {
+                int id = d.mIndex;
+                Log.d("lyle", "in click listener here");
+                Intent i = new Intent(getApplicationContext(), CommentActivity.class);
+                i.putExtra("id", id);
+                startActivityForResult(i, 789);
+            }
         });
 
 
-        // Add the request to the RequestQueue.
+        // Add the request to the RequestQueue
         Log.d("lyle", "request queue:" + MySingleton.getInstance(this).getRequestQueue());
     }
 
@@ -168,6 +181,33 @@ public class MainActivity extends AppCompatActivity {
         return postRequest;
     }
 
+//    static void sendPutRoute(int index, String voteType){
+//        Log.d("lyle", "HERE");
+//        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteType + index, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d("lyle", response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That PUT didn't work");
+//            }
+//        });
+//        Context context = MySingleton.getContext();
+//        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
+//
+//        rv.setAdapter(adapter);
+//
+//        runOnUiThread(new Runnable(){
+//
+//            @Override
+//            public void run() {
+//
+//            }
+//        })
+//        adapter.notifyDataSetChanged();
+//    }
 
 
 //    public void likeMethod(View v){

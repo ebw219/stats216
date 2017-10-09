@@ -1,9 +1,6 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
-import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -20,19 +16,21 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 
-import static android.support.v4.content.ContextCompat.startActivity;
+import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.adapter;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ToggleButton like;
-        ToggleButton dislike;
+        Button like;
+        Button dislike;
         Button comment;
         TextView mTitle;
         TextView mMessage;
         TextView mVotes;
+
+        Button delete;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -40,11 +38,12 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.mMessage = (TextView) itemView.findViewById(R.id.listItemText);
             this.mVotes = (TextView) itemView.findViewById(R.id.listItemVotes);
 
-            this.like = (ToggleButton) itemView.findViewById(R.id.likeButton);
-            this.dislike = (ToggleButton) itemView.findViewById(R.id.dislikeButton);
+            this.like = (Button) itemView.findViewById(R.id.likeButton);
+            this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
 
-            this.comment = (Button) itemView.findViewById(R.id.commentButton);
+            this.delete = (Button) itemView.findViewById(R.id.deleteButton);
         }
+
 
     }
 
@@ -56,6 +55,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         mData = data;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
 
     @Override
     public int getItemCount() {
@@ -95,12 +95,13 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
         };
 
+        holder.mMessage.setOnClickListener(listener);
+        holder.mTitle.setOnClickListener(listener);
+
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-//                Intent input = new Intent(MySingleton.getContext(), CommentActivity.class);
-//                input.putExtra("label_contents", "CommentActivity on a message");
-//                (new MainActivity()).startActivityForResult(input, 789);
+            public void onClick(View view) {
+                Log.d("lyle", "COMMENTS");
             }
         });
 
@@ -113,15 +114,15 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
                 String voteType;
 //                if(d.liked) {
-                voteType = "/downVote/";
+//                voteType = "/downVote/";
 //                } else {
-//                    voteType = "/upVote/";
+                voteType = "/upVote/";
 //                    if(d.disliked){
-//                        sendRoute(d.mIndex, voteType);
+//                        sendPutRoute(d.mIndex, voteType);
 //                    }
 //                }
 //                d.liked = !d.liked;
-                sendRoute(d.mIndex, voteType);
+                sendPutRoute(d.mIndex, voteType);
             }
         };
 
@@ -133,26 +134,61 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 //                voteType = "/upVote/";
 
 //                } else {
-                    voteType = "/downVote/";
+                voteType = "/downVote/";
 //                    if(d.liked){
-//                        sendRoute(d.mIndex, voteType);
+//                        sendPutRoute(d.mIndex, voteType);
 //                    }
 //                }
 //                d.disliked = !d.disliked;
-                sendRoute(d.mIndex, voteType);
+                sendPutRoute(d.mIndex, voteType);
 //                adapter.notifyDataSetChanged();
             }
 
         };
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("lyle", "DELETE ID: " + d.mIndex);
+                StringRequest getRequest = new StringRequest(Request.Method.DELETE, url + "/" + d.mIndex, new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", response);
+                    }
+                }, new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("lyle", "That delete didn't work");
+                    }
+                });
+                Context context = MySingleton.getContext();
+                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
+            }
+        });
+
 
         holder.like.setOnClickListener(likeButton);
         holder.dislike.setOnClickListener(dislikeButton);
 
     }
 
+    void sendGetRoute(int index){
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url + index, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String response) {
+                Log.d("lyle", response);
+            }
+        }, new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That get didn't work");
+            }
+        });
+        Context context = MySingleton.getContext();
+        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
+    }
 
-
-    void sendRoute(int index, String voteType){
+    void sendPutRoute(int index, String voteType){
         Log.d("lyle", "HERE");
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteType + index, new Response.Listener<String>() {
             @Override
@@ -168,6 +204,32 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         Context context = MySingleton.getContext();
         MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
 
+//
+//        MainActivity.rv.setAdapter(adapter);
+//
+//        runOnUiThread(new Runnable(){
+//            @Override
+//            public void run() {
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//
+    }
+
+    void sendDeleteRoute(int index){
+        StringRequest putRequest = new StringRequest(Request.Method.DELETE, url + index, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("lyle", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That PUT didn't work");
+            }
+        });
+        Context context = MySingleton.getContext();
+        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
     }
 
     interface ClickListener{

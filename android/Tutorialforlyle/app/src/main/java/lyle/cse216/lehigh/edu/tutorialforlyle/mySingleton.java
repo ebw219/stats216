@@ -1,13 +1,16 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 
-public class MySingleton {
+public class MySingleton extends AppCompatActivity{
 
     private static MySingleton mInstance;
     private RequestQueue mRequestQueue;
@@ -36,6 +39,17 @@ public class MySingleton {
             // Activity or BroadcastReceiver if someone passes one in.
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }
+
+//        try {
+//            Intent input = new Intent(getApplicationContext(), ItemListAdapter.class);
+//            input.putExtra("label_contents", "Singleton");
+//            startActivityForResult(input, 789);
+//            setResult(Activity.RESULT_CANCELED);
+//            finish();
+//        } catch (RuntimeException e){
+//            e.printStackTrace();
+//        }
+
         return mRequestQueue;
     }
 

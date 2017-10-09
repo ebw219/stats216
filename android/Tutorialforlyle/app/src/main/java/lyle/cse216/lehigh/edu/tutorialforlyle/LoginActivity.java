@@ -3,6 +3,8 @@ package lyle.cse216.lehigh.edu.tutorialforlyle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.ToolbarWidgetWrapper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,9 +23,7 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.login);
 
 
-
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View view) {
                 String username = ((TextView)findViewById(R.id.email)).getText().toString();
@@ -35,6 +35,17 @@ public class LoginActivity extends AppCompatActivity{
                     input.putExtra("label_contents", "Login");
                     startActivityForResult(input, 789);
                 }
+            }
+        });
+
+
+        findViewById(R.id.createUserButton).setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent input = new Intent(getApplicationContext(), CreateUserActivity.class);
+                input.putExtra("label_contents", "Create user");
+                startActivityForResult(input, 789);
             }
         });
 
