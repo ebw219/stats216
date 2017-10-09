@@ -51,11 +51,11 @@ public class CommentActivity extends AppCompatActivity {
         try {
             Log.d("lyle", "Populating: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("mComments");
+            JSONArray json = jsonObj.getJSONArray("tblComments");
             for (int i = 0; i < json.length(); ++i) {
 //                int id = json.getJSONObject(i).getInt("mId");
 //                String title = json.getJSONObject(i).getString("mTitle");
-                String message = json.getJSONObject(i).getString("mMessage");
+                String message = json.getJSONObject(i).getString("comment_text");
 //                int votes = json.getJSONObject(i).getInt("mVote");
 //                mComments.add(new Datum(id, title, message, votes));
                 mComments.add(message);

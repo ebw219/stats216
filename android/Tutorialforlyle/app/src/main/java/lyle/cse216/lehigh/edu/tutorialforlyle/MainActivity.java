@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(Datum d) {
                 int id = d.mIndex;
-                Log.d("lyle", "in click listener here");
+                Log.d("lyle", "In click listener here");
                 Intent i = new Intent(getApplicationContext(), CommentActivity.class);
                 i.putExtra("id", id);
                 startActivityForResult(i, 789);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
      * @return the request
      */
     protected StringRequest getResponse() {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        return (new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -114,8 +114,7 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 Log.e("lyle", "That Get didn't work!");
             }
-        });
-        return stringRequest;
+        }));
     }
 
     /**
@@ -127,19 +126,19 @@ public class MainActivity extends AppCompatActivity {
         try {
             Log.d("lyle", "Populating: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("mData");
+            JSONArray json = jsonObj.getJSONArray("tblMessage");
             for (int i = 0; i < json.length(); ++i) {
-                int id = json.getJSONObject(i).getInt("mId");
-                String title = json.getJSONObject(i).getString("mTitle");
-                String message = json.getJSONObject(i).getString("mMessage");
+                int message_id = json.getJSONObject(i).getInt("message_id");
+                int user_id = json.getJSONObject(i).getInt("user_id");
+                String title = json.getJSONObject(i).getString("title");
+                String message = json.getJSONObject(i).getString("body");
                 int votes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(id, title, message, votes));
+                mData.add(new Datum(message_id, user_id, title, message, votes));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
-            if(e.getMessage().equals(new String("No value for mData"))) {
+            if(e.getMessage().equals("No value for mData")) {
                 String title = "No Messages";
-                mData.add(new Datum(0, title, "", 0));
             }
             return;
         }
