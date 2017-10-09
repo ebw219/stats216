@@ -69,6 +69,8 @@ public class Database {
     private PreparedStatement mDropUpVoteTable;
     private PreparedStatement mDropDownVoteTable;
 
+    private PreparedStatement mGetEmail;
+
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
@@ -158,6 +160,7 @@ public class Database {
             db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments");
             db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes");
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes");
+            db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
                 + "PRIMARY KEY, username VARCHAR(255), realname VARCHAR(255), "
                 + "email VARCHAR(255), "
@@ -195,6 +198,7 @@ public class Database {
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = FALSE"); //unsure if = or ==
+
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
             e.printStackTrace();
@@ -454,5 +458,19 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    String getEmail(int userId) {
+        String email = null;
+        try {
+            mGetEmail.setInt(1, userId);
+            ResultSet rs = mGetEmail.executeQuery();
+            if (rs.next()) {
+                email = rs.getString("email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return email;
     }
 }
