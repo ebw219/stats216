@@ -16,5 +16,15 @@ public class SimpleRequest {
     /**
      * The message being provided by the client.
      */
-    public String mMessage;
+    public String mBody;
+
+    /**
+     * The comment provided by the client.
+     */
+    //public String mCom;
+
+    /**
+     * just for testing
+     */
+    //public int uId;
 }
