@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.sendgrid.*;
+import java.lang.*;
+
 /**
  * App is our basic admin app.  For now, it is a demonstration of the six key 
  * operations on a database: connect, insert, update, query, delete, disconnect
@@ -18,15 +21,32 @@ public class App {
      */
     static void menu() {
         System.out.println("Main Menu");
+        System.out.println("////////");
         System.out.println("  [T] Create tblData");
         System.out.println("  [D] Drop tblData");
         System.out.println("  [1] Query for a specific row");
         System.out.println("  [*] Query for all rows");
-        System.out.println("  [-] Delete a row");
         System.out.println("  [+] Insert a new row");
         System.out.println("  [~] Update a row");
         System.out.println("  [q] Quit Program");
         System.out.println("  [?] Help (this message)");
+        System.out.println("////////");
+        System.out.println();
+        System.out.println("  [U] Create tblUser");
+        System.out.println("  [M] Create tblMessage");
+        System.out.println("  [C] Create tblComment");
+        System.out.println("  [P] Create tblUpVotes");
+        System.out.println("  [N] Create tblDownVotes");
+        System.out.println();
+        System.out.println("  [u] Delete tblUser");
+        System.out.println("  [m] Delete tblMessage");
+        System.out.println("  [c] Delete tblComment");
+        System.out.println("  [p] Delete tblUpVotes");
+        System.out.println("  [n] Delete tblDownVotes");
+        System.out.println();
+        System.out.println("  [A] Show unauthenticated users");
+        System.out.println("  [-] Delete a row");
+        System.out.println("  [E] Email a user their password");
     }
 
     /**
@@ -38,7 +58,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?";
+        String actions = "TD1*-+~q?UMCPNAumcpnE";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -100,6 +120,36 @@ public class App {
         return i;
     }
 
+
+    static void authUser(String userEmail) {
+        
+        String sendgrid_username  = System.getenv("lshaffran");
+        String sendgrid_password  = System.getenv("lyle1234");
+        
+        SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
+        SendGrid.Email email = new SendGrid.Email();
+
+        email.setFromName("The Buzz");
+        email.addTo(userEmail);
+        email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
+        email.setSubject("The Buzz account activation");
+        email.setText("You are now registered for The Buzz!");
+
+        try {
+            SendGrid.Response response = sendgrid.send(email);
+            System.out.println(response.getMessage());
+          } catch (SendGridException e) {
+            System.out.println(e);
+          }
+
+
+          // then change the auth field in tblUser to true
+
+    }
+
+
+
+
     /**
      * The main routine runs a loop that gets a request from the user and
      * processes it
@@ -115,6 +165,7 @@ public class App {
         Database db = Database.getDatabase(db_url);
         if (db == null)
             return;
+        
 
         // Start our basic command-line interpreter:
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -174,10 +225,47 @@ public class App {
                 if (res == -1)
                     continue;
                 System.out.println("  " + res + " rows updated");
+            } else if (action == 'U') {
+                db.createUserTable();
+            } else if (action == 'M') {
+                db.createMessageTable();
+            } else if (action == 'C') {
+                db.createCommentTable();
+            } else if (action == 'P') {
+                db.createUpvoteTable();
+            } else if (action == 'N') {
+                db.createDownvoteTable();
+            } else if (action == 'u') {
+                db.dropUTable();
+            } else if (action == 'm') {
+                db.dropMTable();
+            } else if (action == 'c') {
+                db.dropCTable();
+            } else if (action == 'p') {
+                db.dropUVTable();
+            } else if (action == 'n') {
+                db.dropDVTable();
+            } else if (action == 'A') {
+                ArrayList<User> res = db.selectUnauth();
+                for (int i=0; i<res.size(); i++) {
+                    System.out.println(res.get(i).getName() + " " + res.get(i).getEmail());
+                }
+                
+            } else if (action == 'E') {
+                System.out.print("Enter the user's ID: ");
+                int userId = getInt(in, "Enter the user's ID: ");
+                String email = db.getEmail(userId);
+                authUser(email);
+                System.out.println("Email sent to " + email);
             }
         }
         // Always remember to disconnect from the database when the program 
         // exits
         db.disconnect();
+
+
+
+
+
     }
 }
