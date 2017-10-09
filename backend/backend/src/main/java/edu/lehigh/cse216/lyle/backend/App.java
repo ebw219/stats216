@@ -104,7 +104,21 @@ public class App {
 		} else {
 		    return gson.toJson(new StructuredResponse("ok", null, data));
 		}
-	    });
+		});
+		
+	//GET route for comments by id
+	Spark.get("/comments/:comment_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("comment_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		ComDatabase.RowDataCom data = comDatabase.selectOne(idx);
+		if (data == null) {
+			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+		} else {
+			return gson.toJson(new StructuredResponse("ok", null, data));
+		}
+		});
 
 	// POST route for adding a new element to the database.  This will read
 	// JSON from the body of the request, turn it into a SimpleRequest
