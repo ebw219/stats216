@@ -26,7 +26,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         Button like;
         Button dislike;
         TextView mTitle;
-        TextView mMessage;
+        TextView mBody;
         TextView mVotes;
 
 //        Button delete;
@@ -34,7 +34,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         ViewHolder(View itemView) {
             super(itemView);
             this.mTitle = (TextView) itemView.findViewById(R.id.titleNew);
-            this.mMessage = (TextView) itemView.findViewById(R.id.listItemText);
+            this.mBody = (TextView) itemView.findViewById(R.id.listItemText);
             this.mVotes = (TextView) itemView.findViewById(R.id.listItemVotes);
 
             this.like = (Button) itemView.findViewById(R.id.likeButton);
@@ -82,7 +82,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
         holder.mTitle.setText(d.mTitle);
-        holder.mMessage.setText(d.mMessage);
+        holder.mBody.setText(d.mMessage);
         holder.mVotes.setText(d.mVotes + ""); //can only pass String
 
 
@@ -94,7 +94,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
         };
 
-        holder.mMessage.setOnClickListener(listener);
+        holder.mBody.setOnClickListener(listener);
         holder.mTitle.setOnClickListener(listener);
 
 

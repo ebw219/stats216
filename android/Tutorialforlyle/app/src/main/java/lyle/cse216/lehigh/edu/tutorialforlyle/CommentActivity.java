@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -20,6 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Kelli on 10/6/17.
@@ -56,10 +60,7 @@ public class CommentActivity extends AppCompatActivity {
 
 
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(getResponse());
-
     }
-
-
 
 
     /**
@@ -91,8 +92,8 @@ public class CommentActivity extends AppCompatActivity {
         }
         Log.d("lyle", "Successfully parsed JSON file.");
 
-            rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
-            rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+        rv.setAdapter(adapter);
 
     }
 
@@ -111,7 +112,6 @@ public class CommentActivity extends AppCompatActivity {
     protected StringRequest getResponse() {
         Intent viewComments = getIntent();
         final int id = viewComments.getIntExtra("id", -1);
-        Log.d("lyle", "ID: " + id);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -127,7 +127,7 @@ public class CommentActivity extends AppCompatActivity {
         });
 
         return stringRequest;
-
     }
+
 
 }

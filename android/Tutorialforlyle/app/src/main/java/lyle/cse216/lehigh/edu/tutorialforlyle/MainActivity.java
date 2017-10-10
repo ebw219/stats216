@@ -1,6 +1,5 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,10 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,8 +21,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,15 +82,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.testButton).setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-//                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                startActivityForResult(new Intent(), 789);
-            }
-        });
-
 
     }
 
@@ -106,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         mData.clear();
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
     }
+
+
 
     /**
      * GET Volley request
@@ -126,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }));
     }
+
 
     /**
      * Helper method for GET function
@@ -161,35 +149,35 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /**
-     * POST Volley method
-     *
-     * @param editText typed in data for new message
-     * @return post request
-     */
-    protected StringRequest postRequest(final EditText editText) {
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("lyle", response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That POST didn't work!");
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("mTitle", editText.getText().toString());
-                params.put("mMessage", editText.getText().toString());
-                params.put("mVotes", editText.getText().toString());
-                return params;
-            }
-        };
-        return postRequest;
-    }
+//    /**
+//     * POST Volley method
+//     *
+//     * @param editText typed in data for new message
+//     * @return post request
+//     */
+//    protected StringRequest postRequest(final EditText editText) {
+//        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d("lyle", response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That POST didn't work!");
+//            }
+//        }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("mTitle", editText.getText().toString());
+//                params.put("mBody", editText.getText().toString());
+//                params.put("mVotes", editText.getText().toString());
+//                return params;
+//            }
+//        };
+//        return postRequest;
+//    }
 
 
 

@@ -69,7 +69,7 @@ public class NewMessageActivity extends AppCompatActivity {
                         public byte[] getBody() throws AuthFailureError {
                             HashMap<String, String> params = new HashMap<String, String>();
                             params.put("mTitle", title.getText().toString());
-                            params.put("mMessage", message.getText().toString());
+                            params.put("mBody", message.getText().toString());
                             Log.d("lyle", new JSONObject(params).toString());
                             return new JSONObject(params).toString().getBytes();
                         }
