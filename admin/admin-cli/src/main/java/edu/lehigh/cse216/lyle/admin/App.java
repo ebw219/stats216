@@ -121,34 +121,48 @@ public class App {
     }
 
 
+
     static void authUser(String userEmail) {
         
         String sendgrid_username  = System.getenv("lshaffran");
         String sendgrid_password  = System.getenv("lyle1234");
         
-        SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
-        SendGrid.Email email = new SendGrid.Email();
-
-        email.setFromName("The Buzz");
-        email.addTo(userEmail);
-        email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
-        email.setSubject("The Buzz account activation");
-        email.setText("You are now registered for The Buzz!");
-
+        Email from = new Email("ehs219@lehigh.edu");
+        Email to = new Email("kdf219@lehigh.edu");
+        Content content = new Content("text/plain", "hi spear");
+        String subject = "hello";
+        Mail mail = new Mail(from, subject, to, content);
+        
+        SendGrid sendgrid = new SendGrid(System.getenv("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"));
+        Request request = new Request();
         try {
-            SendGrid.Response response = sendgrid.send(email);
-            System.out.println(response.getMessage());
-          } catch (SendGridException e) {
-            System.out.println(e);
-          }
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sendgrid.api(request);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            //throw ex;
+        }
 
+        // email.setFromName("The Buzz");
+        // email.addTo(userEmail);
+        // email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
+        // email.setSubject("The Buzz account activation");
+        // email.setText("You are now registered for The Buzz!");
 
-          // then change the auth field in tblUser to true
+        // try {
+        //     SendGrid.Response response = sendgrid.send(email);
+        //     System.out.println(response.getMessage());
+        //   } catch (SendGridException e) {
+        //     System.out.println(e);
+        //   }
+
+        
+         
 
     }
-
-
-
 
     /**
      * The main routine runs a loop that gets a request from the user and
@@ -252,20 +266,21 @@ public class App {
                 }
                 
             } else if (action == 'E') {
-                System.out.print("Enter the user's ID: ");
-                int userId = getInt(in, "Enter the user's ID: ");
-                String email = db.getEmail(userId);
-                authUser(email);
-                System.out.println("Email sent to " + email);
+                System.out.println("djdjdj");
+                // System.out.print("Enter the user's ID: ");
+                // int userId = getInt(in, "Enter the user's ID: ");
+                // String email = db.getEmail(userId);
+                // authUser(email);
+                // System.out.println("Email sent to " + email);
+                // db.updateAuth(userId);
+                authUser("ehs219@lehigh.edu");
+
+
             }
         }
         // Always remember to disconnect from the database when the program 
         // exits
         db.disconnect();
-
-
-
-
 
     }
 }

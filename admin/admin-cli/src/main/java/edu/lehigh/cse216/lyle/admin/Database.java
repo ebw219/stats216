@@ -71,6 +71,8 @@ public class Database {
 
     private PreparedStatement mGetEmail;
 
+    private PreparedStatement mUpdateAuth;
+
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
@@ -198,6 +200,7 @@ public class Database {
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = FALSE"); //unsure if = or ==
+            db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = TRUE WHERE id = ?");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -472,5 +475,16 @@ public class Database {
             e.printStackTrace();
         }
         return email;
+    }
+
+    void updateAuth(int id) {
+        // int res = -1;
+        try {
+            mUpdateAuth.setInt(1, id);
+            mUpdateAuth.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // return res;
     }
 }
