@@ -129,11 +129,13 @@ public class App {
         
         Email from = new Email("ehs219@lehigh.edu");
         Email to = new Email("kdf219@lehigh.edu");
-        Content content = new Content("text/plain", "hi spear");
-        String subject = "hello";
+        Content content = new Content("text/plain", "this is a test");
+        String subject = "hi kelli";
         Mail mail = new Mail(from, subject, to, content);
         
-        SendGrid sendgrid = new SendGrid(System.getenv("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"));
+        //String token = "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";
+        String token = System.getenv("SENDGRID_KEY");
+        SendGrid sendgrid = new SendGrid(token);
         Request request = new Request();
         try {
             request.setMethod(Method.POST);
@@ -143,7 +145,8 @@ public class App {
             System.out.println(response.getStatusCode());
             System.out.println(response.getHeaders());
         } catch (IOException ex) {
-            //throw ex;
+            // throw ex;
+            ex.printStackTrace();
         }
 
         // email.setFromName("The Buzz");
