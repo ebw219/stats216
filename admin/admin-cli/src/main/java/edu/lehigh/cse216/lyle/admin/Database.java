@@ -156,7 +156,7 @@ public class Database {
             db.mCreateTable = db.mConnection.prepareStatement(
                     "CREATE TABLE tblData (id SERIAL PRIMARY KEY, subject VARCHAR(50) "
                     + "NOT NULL, message VARCHAR(500) NOT NULL)");
-            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE tblData");
+            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE thebuzztable");
             db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser");
             db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage");
             db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments");
@@ -200,7 +200,7 @@ public class Database {
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = FALSE"); //unsure if = or ==
-            db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = TRUE WHERE id = ?");
+            db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = TRUE WHERE email = ?");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -337,21 +337,32 @@ public class Database {
 
     
 
-    ArrayList<User> selectUnauth(){
-        ArrayList<User> res = new ArrayList<User>();
+    ArrayList<RowData> selectUnauth(){
+        // ArrayList<User> res = new ArrayList<User>();
+        // try {
+        //     ResultSet rs = mSelectUnauthenticated.executeQuery();
+        //     while (rs.next()) {
+        //         // if(mSelectUnauthenticated.getMetaData().getColumn){
+        //         res.add(new User(rs.getString("email"), rs.getString("name")));
+        //         // }
+        //     }
+        //     rs.close();
+        //     return res;
+        // } catch (SQLException e) {
+        //     e.printStackTrace();
+        //     return null;
+        // }
+
+        ArrayList<RowData> res = new ArrayList<RowData>();
         try {
             ResultSet rs = mSelectUnauthenticated.executeQuery();
-            while (rs.next()) {
-                // if(mSelectUnauthenticated.getMetaData().getColumn){
-                res.add(new User(rs.getString("email"), rs.getString("name")));
-                // }
+            if (rs.next()) {
+                res.add(new RowData(rs.getInt("id"), rs.getString("username"), rs.getString("email")));
             }
-            rs.close();
-            return res;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return res;
     }
 
     /**
@@ -477,10 +488,10 @@ public class Database {
         return email;
     }
 
-    void updateAuth(int id) {
+    void updateAuth(String email) {
         // int res = -1;
         try {
-            mUpdateAuth.setInt(1, id);
+            mUpdateAuth.setString(1, email);
             mUpdateAuth.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

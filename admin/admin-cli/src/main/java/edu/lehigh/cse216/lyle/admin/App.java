@@ -9,6 +9,8 @@ import java.util.Map;
 
 import com.sendgrid.*;
 import java.lang.*;
+import java.sql.ResultSet;
+import edu.lehigh.cse216.lyle.admin.Database.RowData;
 
 /**
  * App is our basic admin app.  For now, it is a demonstration of the six key 
@@ -122,15 +124,12 @@ public class App {
 
 
 
-    static void authUser(String userEmail) {
+    static void emailUser(String userEmail) {
         
-        String sendgrid_username  = System.getenv("lshaffran");
-        String sendgrid_password  = System.getenv("lyle1234");
-        
-        Email from = new Email("ehs219@lehigh.edu");
-        Email to = new Email("kdf219@lehigh.edu");
-        Content content = new Content("text/plain", "this is a test");
-        String subject = "hi kelli";
+        Email from = new Email(System.getenv("FROM_EMAIL"));
+        Email to = new Email(userEmail);
+        Content content = new Content("text/plain", "You are registered");
+        String subject = "The Buzz Account Information";
         Mail mail = new Mail(from, subject, to, content);
         
         //String token = "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";
@@ -148,23 +147,6 @@ public class App {
             // throw ex;
             ex.printStackTrace();
         }
-
-        // email.setFromName("The Buzz");
-        // email.addTo(userEmail);
-        // email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
-        // email.setSubject("The Buzz account activation");
-        // email.setText("You are now registered for The Buzz!");
-
-        // try {
-        //     SendGrid.Response response = sendgrid.send(email);
-        //     System.out.println(response.getMessage());
-        //   } catch (SendGridException e) {
-        //     System.out.println(e);
-        //   }
-
-        
-         
-
     }
 
     /**
@@ -263,20 +245,20 @@ public class App {
             } else if (action == 'n') {
                 db.dropDVTable();
             } else if (action == 'A') {
-                ArrayList<User> res = db.selectUnauth();
+                System.out.println("dkjfhsivnwo");
+                ArrayList<RowData> res = db.selectUnauth();
                 for (int i=0; i<res.size(); i++) {
-                    System.out.println(res.get(i).getName() + " " + res.get(i).getEmail());
-                }
-                
+                    System.out.println(res.get(i).toString());
+                } 
             } else if (action == 'E') {
-                System.out.println("djdjdj");
-                // System.out.print("Enter the user's ID: ");
-                // int userId = getInt(in, "Enter the user's ID: ");
-                // String email = db.getEmail(userId);
-                // authUser(email);
-                // System.out.println("Email sent to " + email);
-                // db.updateAuth(userId);
-                authUser("ehs219@lehigh.edu");
+                System.out.print("Enter the user's email: "); // this isn't printing and i'm not sure why
+                //String email = getString(in, "dkfjsldfjsld");
+
+                String email = getString(in, "");
+                //String email = db.getEmail(userId);
+                emailUser(email);
+                System.out.println("Email sent to " + email);
+                db.updateAuth(email);
 
 
             }
