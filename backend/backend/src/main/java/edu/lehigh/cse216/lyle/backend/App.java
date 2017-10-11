@@ -33,6 +33,7 @@ public class App {
 	final Database database = Database.getDatabase(getDatabaseUrl()); //changed to database instead of datastore
 	final MsgDatabase msgDatabase = MsgDatabase.getMsgDatabase(getDatabaseUrl()); //for tblmessage
 	final ComDatabase comDatabase = ComDatabase.getComDatabase(getDatabaseUrl()); //for tblcomment
+	final UserDatabase userDatabase = UserDatabase.getUserDatabase(getDatabaseUrl()); //for tblusers
 	
 	/*if (!database.tableDoesExist()) {
 		System.out.println("Made it in to table doesn't exist");
@@ -86,6 +87,14 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectAll())); // changed 
 		});
 
+	//GET route for users table
+	Spark.get("/users", (request, response) -> {
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll())); // changed 
+		});
+
 	// GET route that returns everything for a single row in the database.
 	// The ":id" suffix in the first parameter to get() becomes
 	// request.params("id"), so that we can get the requested row ID.  If
@@ -118,6 +127,21 @@ public class App {
 		} else {
 			return gson.toJson(new StructuredResponse("ok", null, data));
 		}
+		});
+
+	//GET route for comments by message
+	Spark.get("/messages/comments/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectMsgId(idx))); // changed 		
+		/*ComDatabase.RowDataCom data = comDatabase.selectMsgId(idx);
+		if (data == null) {
+			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+		} else {
+			return gson.toJson(new StructuredResponse("ok", null, data));
+		}*/
 		});
 
 	// POST route for adding a new element to the database.  This will read
@@ -156,6 +180,25 @@ public class App {
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
 		int newId = comDatabase.insertRow(req.mId, req.mCom);
+		if (newId == -1) {
+		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+		} else {
+		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+		}
+		});
+
+	//posts to the user table
+	Spark.post("/users", (request, response) -> {
+		// NB: if gson.Json fails, Spark will reply with status 500 Internal
+		// Server Error
+		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+		// ensure status 200 OK, with a MIME type of JSON
+		// NB: even on error, we return 200, but with a JSON object that
+		//     describes the error.
+		response.status(200);
+		response.type("application/json");
+		// NB: createEntry checks for null title and message
+		int newId = userDatabase.insertRow(req.username, req.realname, req.email);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {

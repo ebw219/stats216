@@ -29,6 +29,21 @@ public class SimpleRequest {
     public int mId;
 
     /**
+     * The username provided by the client.
+     */
+    public String username;
+
+    /**
+     * The real name provided by the client.
+     */
+    public String realname;
+
+    /**
+     * The email provided by the client.
+     */
+    public String email;
+
+    /**
      * just for testing
      */
     //public int uId;
