@@ -90,6 +90,10 @@ public class MsgDatabase {
     private MsgDatabase() {
     }
 
+    public static String getTblMessage() {
+        return tblMessage;
+    }
+
     /**
      * Get a fully-configured connection to the database
      * 
@@ -213,6 +217,7 @@ public class MsgDatabase {
         }
     }
 
+    //DOES THIS NEED TO BE AN ARRAYLIST
     /**
      * Get all data for a specific row, by user ID
      * 
@@ -237,14 +242,14 @@ public class MsgDatabase {
     /**
      * Get all data for a specific row, by ID
      * 
-     * @param user_id The id of the row being requested
+     * @param message_id The id of the row being requested
      * 
      * @return The data for the requested row, or null if the ID was invalid
      */
-    RowDataMsg selectOne(int id) {
+    RowDataMsg selectOne(int message_id) {
         RowDataMsg res = null;
         try {
-            mSelectOne.setInt(1, id);
+            mSelectOne.setInt(1, message_id);
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
                 res = new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body"));
