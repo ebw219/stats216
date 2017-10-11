@@ -35,7 +35,7 @@ public class CommentActivity extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     ArrayList<String> mComments = new ArrayList<>();
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/comments";
+    String url = "https://sleepy-dusk-34987.herokuapp.com/messages/comments/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,23 +67,19 @@ public class CommentActivity extends AppCompatActivity {
      * Helper method for GET function
      * @param response string of JSON data obtained from Get
      */
-    private void populateListFromVolley(String response, int id) {
+    private void populateListFromVolley(String response) {
         try {
             Log.d("lyle", "Populating comments: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
             JSONArray json = jsonObj.getJSONArray("mData");
-//            JSONObject json = jsonObj.getJSONObject("mData");
             for (int i = 0; i < json.length(); ++i) {
 //                int cid = json.getJSONObject(i).getInt("cId");
 //                int uId = json.getJSONObject(i).getInt("uId");
-                int mId = json.getJSONObject(i).getInt("mId");
-                String message;
-                if(mId == id) {
-                    message = json.getJSONObject(i).getString("mCom");
+//                int mId = json.getJSONObject(i).getInt("mId");
+                String message = json.getJSONObject(i).getString("mCom");
 //                String message = json.getString("mCom");
-                    mComments.add(message);
-                    Log.d("lyle", message);
-                }
+                mComments.add(message);
+                Log.d("lyle", message);
             }
 //            }
         } catch (final JSONException e) {
@@ -112,12 +108,12 @@ public class CommentActivity extends AppCompatActivity {
     protected StringRequest getResponse() {
         Intent viewComments = getIntent();
         final int id = viewComments.getIntExtra("id", -1);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url + id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.d("lyle", "RESPONSE: " + response);
-                        populateListFromVolley(response, id);
+                        populateListFromVolley(response);
                     }
                 }, new Response.ErrorListener() {
             @Override

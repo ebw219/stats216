@@ -20,7 +20,7 @@ import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.adapter;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
+    String url = "https://sleepy-dusk-34987.herokuapp.com/messages/";
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -40,9 +40,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.like = (Button) itemView.findViewById(R.id.likeButton);
             this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
 
+
 //            this.delete = (Button) itemView.findViewById(R.id.deleteButton);
         }
-
 
     }
 
@@ -55,7 +55,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getItemCount() {
         return mData.size();
@@ -63,9 +62,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mLayoutInflater.inflate(R.layout.list_item, null, false);
+        View view = mLayoutInflater.inflate(R.layout.list_item, null);
         return new ViewHolder(view);
     }
+
 
 //    FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
 //        newMessage.setOnClickListener(new View.OnClickListener() {
@@ -97,47 +97,25 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         holder.mBody.setOnClickListener(listener);
         holder.mTitle.setOnClickListener(listener);
 
-
-        final View.OnClickListener likeButton = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent input = new Intent(MySingleton.getContext(), MainActivity.class);
-//                input.putExtra("label_contents", "like a message");
-//                (new MainActivity()).startActivityForResult(input, 789);
-
-                String voteType;
-//                if(d.liked) {
-//                voteType = "/downVote/";
-//                } else {
-                voteType = "/upVote/";
-//                    if(d.disliked){
-//                        sendPutRoute(d.mIndex, voteType);
-//                    }
-//                }
-//                d.liked = !d.liked;
-                sendPutRoute(d.mIndex, voteType);
-            }
-        };
-
-        final View.OnClickListener dislikeButton = new View.OnClickListener() {
+        holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String voteType;
-//                if(d.disliked) {
-//                voteType = "/upVote/";
-
-//                } else {
-                voteType = "/downVote/";
-//                    if(d.liked){
-//                        sendPutRoute(d.mIndex, voteType);
-//                    }
-//                }
-//                d.disliked = !d.disliked;
+                voteType = "upVote/";
                 sendPutRoute(d.mIndex, voteType);
-//                adapter.notifyDataSetChanged();
+            }
+        });
+
+//        final View.OnClickListener dislikeButton = new View.OnClickListener() {
+        holder.dislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String voteType;
+                voteType = "downVote/";
+                sendPutRoute(d.mIndex, voteType);
             }
 
-        };
+        });
 
 //        holder.delete.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -160,9 +138,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 //        });
 
 
-        holder.like.setOnClickListener(likeButton);
-        holder.dislike.setOnClickListener(dislikeButton);
-
     }
 
 //    void sendGetRoute(int index){
@@ -183,10 +158,14 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     void sendPutRoute(int index, String voteType){
         Log.d("lyle", "HERE");
+        //use index to find the right textview and change value/contents
+
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteType + index, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("lyle", response);
+                //get value from response and place that value in the votes spot
+//                holder.mVotes.setText(
             }
         }, new Response.ErrorListener() {
             @Override
@@ -194,19 +173,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 Log.e("lyle", "That PUT didn't work");
             }
         });
-        Context context = MySingleton.getContext();
-        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
+        MySingleton.getInstance(MySingleton.getContext().getApplicationContext()).addToRequestQueue(putRequest);
 
-//
-//        MainActivity.rv.setAdapter(adapter);
-//
-//        runOnUiThread(new Runnable(){
-//            @Override
-//            public void run() {
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//
     }
 
     void sendDeleteRoute(int index){
@@ -229,6 +197,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         void onClick(Datum d);
     }
     private ClickListener mClickListener;
+
     ClickListener getClickListener() {
         return mClickListener;
     }

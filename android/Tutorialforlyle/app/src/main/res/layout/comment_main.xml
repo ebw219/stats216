@@ -11,25 +11,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Title" />
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:text="Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp" />
 
     <TextView
         android:id="@+id/commentItemMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignLeft="@+id/commentItemTitle"
+        android:layout_alignStart="@+id/commentItemTitle"
         android:layout_below="@+id/commentItemTitle"
+        android:textColor="@android:color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
         tools:text="Message" />
 
     <include
         android:id="@+id/item"
         layout="@layout/content_main"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="52dp"
-        android:layout_marginEnd="52dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/commentItemMessage"
+        android:layout_alignStart="@+id/commentItemMessage"
+        android:layout_below="@+id/commentItemMessage"
+        android:text="Comments:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="23dp" />
 
 
 </RelativeLayout>

@@ -7,12 +7,12 @@
         android:id="@+id/newEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:text="Email"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/cancelCreate"
@@ -44,6 +44,6 @@
         android:layout_alignStart="@+id/newEmail"
         android:layout_below="@+id/newEmail"
         android:ems="10"
-        android:inputType="textPersonName"
-        tools:text="Username" />
+        android:hint="Username"
+        android:inputType="textPersonName" />
 </RelativeLayout>

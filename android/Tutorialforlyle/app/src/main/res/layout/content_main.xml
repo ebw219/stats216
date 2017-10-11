@@ -8,12 +8,33 @@
     tools:context="lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity"
     tools:showIn="@layout/activity_main">
 
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="horizontal" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="17dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline3"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="368dp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/datum_list_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="210dp"
-        tools:layout_editor_absoluteY="71dp"></android.support.v7.widget.RecyclerView>
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="145dp"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
 
