@@ -54,5 +54,19 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:text="Your username or password is incorrect"
-        android:textColor="@android:color/holo_red_dark" />
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/successCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createUserButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="Successfully created user. You will receive an email containing your password shortly."
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="20sp"
+        android:visibility="invisible" />
 </RelativeLayout>

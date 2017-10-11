@@ -4,46 +4,69 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/newEmail"
+        android:id="@+id/newName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="98dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress" />
-
-    <Button
-        android:id="@+id/cancelCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/newEmail"
-        android:layout_alignStart="@+id/newEmail"
-        android:layout_below="@+id/newEmail"
-        android:layout_marginTop="55dp"
-        android:text="Cancel"
-        android:textAppearance="@android:style/TextAppearance"
-        android:textColor="@android:color/holo_red_dark" />
-
-    <Button
-        android:id="@+id/submitCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/cancelCreate"
-        android:layout_alignBottom="@+id/cancelCreate"
-        android:layout_alignEnd="@+id/newEmail"
-        android:layout_alignRight="@+id/newEmail"
-        android:text="Submit" />
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/newUsername"
+        android:layout_alignLeft="@+id/newUsername"
+        android:layout_alignStart="@+id/newUsername" />
 
     <EditText
         android:id="@+id/newUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/newEmail"
-        android:layout_alignStart="@+id/newEmail"
-        android:layout_below="@+id/newEmail"
         android:ems="10"
         android:hint="Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_alignBottom="@+id/newEmail"
+        android:layout_alignLeft="@+id/newEmail"
+        android:layout_alignStart="@+id/newEmail"
+        android:layout_marginBottom="42dp" />
+
+    <EditText
+        android:id="@+id/newEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_above="@+id/cancelCreate"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/cancelCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignBaseline="@+id/submitCreate"
+        android:layout_alignBottom="@+id/submitCreate"
+        android:layout_alignLeft="@+id/newUsername"
+        android:layout_alignStart="@+id/newUsername" />
+
+    <Button
+        android:id="@+id/submitCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/newUsername"
+        android:layout_alignEnd="@+id/newUsername" />
+
+    <TextView
+        android:id="@+id/invalidField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitCreate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="Invalid Field"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+
 </RelativeLayout>
