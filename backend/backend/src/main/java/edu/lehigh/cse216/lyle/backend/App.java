@@ -34,6 +34,8 @@ public class App {
 	final MsgDatabase msgDatabase = MsgDatabase.getMsgDatabase(getDatabaseUrl()); //for tblmessage
 	final ComDatabase comDatabase = ComDatabase.getComDatabase(getDatabaseUrl()); //for tblcomment
 	final UserDatabase userDatabase = UserDatabase.getUserDatabase(getDatabaseUrl()); //for tblusers
+	final UpVoteDatabase upVoteDatabase = UpVoteDatabase.getUpVoteDatabase(getDatabaseUrl()); //for tblusers
+	
 	
 	/*if (!database.tableDoesExist()) {
 		System.out.println("Made it in to table doesn't exist");
@@ -72,7 +74,7 @@ public class App {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll())); // changed 
+		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
 		});
 		
 	// GET route that returns all message titles and Ids.  All we do is get
@@ -84,7 +86,7 @@ public class App {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectAll())); // changed 
+		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectAll()));
 		});
 
 	//GET route for users table
@@ -92,7 +94,7 @@ public class App {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll())); // changed 
+		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll()));
 		});
 
 	// GET route that returns everything for a single row in the database.
@@ -129,19 +131,22 @@ public class App {
 		}
 		});
 
-	//GET route for comments by message
+	//GET route for comments by message, using join
 	Spark.get("/messages/comments/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectMsgId(idx))); // changed 		
-		/*ComDatabase.RowDataCom data = comDatabase.selectMsgId(idx);
-		if (data == null) {
-			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
-		} else {
-			return gson.toJson(new StructuredResponse("ok", null, data));
-		}*/
+		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectMsgId(idx)));	
+		});
+
+	//GET route for upvotes by message, using join
+	Spark.get("/messages/upvotes/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectMsgId(idx)));
 		});
 
 	// POST route for adding a new element to the database.  This will read
@@ -188,7 +193,10 @@ public class App {
 		});
 
 	//posts to the user table
-	Spark.post("/users", (request, response) -> {
+	Spark.post("/users/:username/:realname/:email", (request, response) -> {
+		String username = (request.params("username"));
+		String realname = (request.params("realname"));
+		String email = (request.params("email"));
 		// NB: if gson.Json fails, Spark will reply with status 500 Internal
 		// Server Error
 		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
@@ -198,7 +206,28 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = userDatabase.insertRow(req.username, req.realname, req.email);
+		int newId = userDatabase.insertRow(username, realname, email);
+		if (newId == -1) {
+		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+		} else {
+		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+		}
+		});
+
+	//posts to the upvotes table
+	Spark.post("/upvotes/:user_id/:message_id", (request, response) -> {
+		int user_id = Integer.parseInt(request.params("user_id"));
+		int message_id = Integer.parseInt(request.params("message_id"));
+		// NB: if gson.Json fails, Spark will reply with status 500 Internal
+		// Server Error
+		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+		// ensure status 200 OK, with a MIME type of JSON
+		// NB: even on error, we return 200, but with a JSON object that
+		//     describes the error.
+		response.status(200);
+		response.type("application/json");
+		// NB: createEntry checks for null title and message
+		int newId = upVoteDatabase.insertRow(user_id, message_id);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {
@@ -319,3 +348,11 @@ static String getDatabaseUrl() {
 
 
 }
+
+
+
+//get password that user suggests (from web-postman)
+//put that in method saltReg(pass)
+//put what that returns into the table as password
+
+
