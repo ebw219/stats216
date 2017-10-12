@@ -20,7 +20,7 @@ import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.adapter;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/messages/";
+    String url = "https://sleepy-dusk-34987.herokuapp.com/";
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -49,6 +49,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private LayoutInflater mLayoutInflater;
+
+    int uId;
+    int mId;
 
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
         mData = data;
@@ -85,6 +88,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         holder.mBody.setText(d.mMessage);
         holder.mVotes.setText(d.mVotes + ""); //can only pass String
 
+        uId = d.user_id;
+        mId = d.message_id;
 
         // Attach a click listener to the view we are configuring
         final View.OnClickListener listener = new View.OnClickListener() {
@@ -100,9 +105,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String voteType;
-                voteType = "upVote/";
-                sendPutRoute(d.mIndex, voteType);
+                String voteInfo;
+                voteInfo = "upvotes/" + uId + "/" + mId; //userid/messageid
+                sendPutRoute(voteInfo);
             }
         });
 
@@ -111,8 +116,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 String voteType;
-                voteType = "downVote/";
-                sendPutRoute(d.mIndex, voteType);
+                voteType = "downvotes/" + uId + "/" + mId; //userid/messageid
+                sendPutRoute(voteType);
             }
 
         });
@@ -156,11 +161,11 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 //        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
 //    }
 
-    void sendPutRoute(int index, String voteType){
+    void sendPutRoute(String voteInfo){
         Log.d("lyle", "HERE");
         //use index to find the right textview and change value/contents
 
-        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteType + index, new Response.Listener<String>() {
+        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteInfo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("lyle", response);

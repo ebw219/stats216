@@ -28,17 +28,17 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_alignBottom="@+id/dislikeButton"
+        android:layout_alignLeft="@+id/titleNew"
+        android:layout_alignStart="@+id/titleNew"
         android:layout_below="@+id/titleNew"
+        android:layout_toLeftOf="@+id/listItemVotes"
         android:layout_weight="0.07"
         android:hint="Message"
         android:text=""
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="23sp"
-        tools:text="Message"
-        android:layout_toLeftOf="@+id/listItemVotes"
-        android:layout_alignLeft="@+id/titleNew"
-        android:layout_alignStart="@+id/titleNew" />
+        tools:text="No Message" />
 
     <TextView
         android:id="@+id/listItemVotes"

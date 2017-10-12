@@ -72,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message to view comments
             @Override
             public void onClick(Datum d) {
-                int id = d.mIndex;
                 Intent i = new Intent(getApplicationContext(), CommentActivity.class);
-                i.putExtra("id", id);
                 i.putExtra("title", d.mTitle);
                 Log.d("lyle", "PUTTING TITLE: " + d.mTitle);
                 i.putExtra("message", d.mMessage);
@@ -130,9 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 int message_id = json.getJSONObject(i).getInt("mId");
                 int user_id = json.getJSONObject(i).getInt("uId");
                 String title = json.getJSONObject(i).getString("mTitle");
-                String message = json.getJSONObject(i).getString("mBody");
+                String message = "";
+                try {
+                    message = json.getJSONObject(i).getString("mBody");
+                } catch (final JSONException e) {
+
+                }
 //                int votes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(message_id, user_id, title, message, 0));
+                mData.add(new Datum(user_id, message_id, title, message));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());

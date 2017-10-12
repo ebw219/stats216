@@ -10,7 +10,7 @@ class Datum {
     /**
      * An integer index for this piece of data
      */
-    int mIndex;
+//    int mIndex;
 
     /**
      * The string contents that comprise this piece of data
@@ -21,6 +21,7 @@ class Datum {
 
     int mVotes;
     int user_id;
+    int message_id;
 
 //    boolean liked = false;
 //    boolean disliked = false;
@@ -28,18 +29,17 @@ class Datum {
     /**
      * Construct a Datum by setting its index and text
      *
-     * @param idx The index of this piece of data
-     * @param uID The user id of the message
+     * @param uId The user id of the message
      * @param title The string contents for this piece of data
      * @param message The message of the data
-     * @param votes The net votes
      */
-    Datum(int idx, int uID, String title, String message, int votes) {
-        mIndex = idx;
-        user_id = uID;
+    Datum(int uId, int mId, String title, String message) {
+//        mIndex = idx;
+        user_id = uId;
+        message_id = mId;
         mTitle = title;
         mMessage = message;
-        mVotes = votes;
+        mVotes = 0;
     }
 
 }
