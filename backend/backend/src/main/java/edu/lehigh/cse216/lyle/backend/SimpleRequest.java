@@ -44,6 +44,11 @@ public class SimpleRequest {
     public String email;
 
     /**
+     * The user id
+     */
+    public int uId;
+
+    /**
      * just for testing
      */
     //public int uId;

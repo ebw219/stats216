@@ -47,9 +47,21 @@ public class UserDatabase {
      * A prepared statement for getting all comments for a specific user.
      */
     private PreparedStatement mSelectComId;
+
     /**
      * A prepared statement for getting all the rows in the database with the same user id
      */
+
+    /**
+     * A prepared statement for getting all the upvotes for a specific user.
+    */
+    private PreparedStatement mSelectUpVotes;
+
+    /**
+     * A prepared statement for getting all the downvotes for a specific user.
+    */
+    private PreparedStatement mSelectDownVotes;
+
     //private PreparedStatement mSelectUserId;
 
     /**
@@ -90,22 +102,27 @@ public class UserDatabase {
         /**
          * The salt stored in this row
          */
-        byte salt;
+        byte[] salt;
         /**
          * The salted password stored in this row
          */
-        byte password;
+        byte[] password;
+        /**
+         * Value of the user's authorization -- 0 for unauthorized, 1 for not
+         */
+        int auth;
 
         /**
          * Construct a RowData object by providing values for its fields
          */
-        public RowDataUser(int user_id, String user, String real, String email, byte salt, byte pass) {
+        public RowDataUser(int user_id, String user, String real, String email, byte[] salt, byte[] pass, int auth) {
             uId = user_id;
             username = user;
             realname = real;
             email = email;
             salt = salt;
             password = pass;
+            auth = auth;
         }
     }
 
@@ -164,15 +181,21 @@ public class UserDatabase {
 
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblUser + " WHERE user_id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, default, default)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, default, default, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblUser);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE user_id = ?");
-            db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM" + tblUser
-                                + "INNER JOIN" + MsgDatabase.getTblMessage()
-                                + "ON tblUser.user_id = tblMessage.user_id WHERE tblUser.user_id = ? ORDER BY message_id DESC");                    
-            db.mSelectComId = db.mConnection.prepareStatement("SELECT * FROM" + tblUser
-                                + "INNER JOIN" + ComDatabase.getComMessage()
-                                + "ON tblUser.user_id = tblComment.user_id WHERE tblUser.user_id = ? ORDER BY comment_id DESC");
+            db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM" + MsgDatabase.getTblMessage()
+                                + "INNER JOIN" + tblUser
+                                + "ON tblUser.user_id = tblMessage.user_id WHERE tblUser.user_id = ? ORDER BY tblMessage.message_id DESC");                    
+            db.mSelectComId = db.mConnection.prepareStatement("SELECT * FROM " + ComDatabase.getTblComment()
+                                + "INNER JOIN" + tblUser
+                                + "ON tblUser.user_id = tblComments.user_id WHERE tblUser.user_id = ? ORDER BY tblComments.comment_id DESC");
+            db.mSelectUpVotes = db.mConnection.prepareStatement("SELECT * FROM " + UpVoteDatabase.getTblUpVote()
+                                + "INNER JOIN" + tblUser
+                                + "ON tblUser.user_id = tblUpVotes.user_id WHERE tblUser.user_id = ? ORDER BY tlbUser.user_id DESC");
+            db.mSelectDownVotes = db.mConnection.prepareStatement("SELECT * FROM " + DownVoteDatabase.getTblDownVote()
+                                + "INNER JOIN" + tblUser
+                                + "ON tblUser.user_id = tblUpVotes.user_id WHERE tblUser.user_id = ? ORDER BY tblUser.user_id DESC");
 
             
             /*db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
@@ -224,18 +247,20 @@ public class UserDatabase {
     /**
      * Insert a row into the database
      * 
-     * @param user The username for this new row
-     * @param real The username for this row
+     * @param username The username for this new row
+     * @param realname The username for this row
      * @param email The email for this row
      * 
      * @return The number of rows that were inserted
      */
-    int insertRow(String user, String real, String email) {
+    int insertRow(String username, String realname, String email) {
         int count = 0;
+        int auth = 0;
         try {
-            mInsertOne.setString(1, user);
-            mInsertOne.setString(2, real);
+            mInsertOne.setString(1, username);
+            mInsertOne.setString(2, realname);
             mInsertOne.setString(3, email);
+            mInsertOne.setInt(4, auth);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -253,7 +278,7 @@ public class UserDatabase {
         try {
             ResultSet rs = mSelectAll.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("user"), rs.getString("real"), rs.getString("email"), rs.getByte("salt"), rs.getByte("pass")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -282,7 +307,7 @@ public class UserDatabase {
             mSelectMsgId.setInt(1, user_id);
             ResultSet rs = mSelectMsgId.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("user"), rs.getString("real"), rs.getString("email"), rs.getByte("salt"), rs.getByte("pass")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -306,7 +331,55 @@ public class UserDatabase {
             mSelectComId.setInt(1, user_id);
             ResultSet rs = mSelectComId.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("user"), rs.getString("real"), rs.getString("email"), rs.getByte("salt"), rs.getByte("pass")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Query database for all upvotes from a specific user, using a JOIN sql statement
+     * 
+     * @param user_id The id of the message
+     * 
+     * @return The data for row that match as an ArrayList
+     */
+    ArrayList<RowDataUser> selectUpVotes(int user_id) {
+        ArrayList<RowDataUser> res = new ArrayList<RowDataUser>();
+        try {
+            mSelectUpVotes.setInt(1, user_id);
+            ResultSet rs = mSelectUpVotes.executeQuery();
+            while (rs.next()) {
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Query database for all downvotes from a specific user, using a JOIN sql statement
+     * 
+     * @param user_id The id of the message
+     * 
+     * @return The data for row that match as an ArrayList
+     */
+    ArrayList<RowDataUser> selectDownVotes(int user_id) {
+        ArrayList<RowDataUser> res = new ArrayList<RowDataUser>();
+        try {
+            mSelectDownVotes.setInt(1, user_id);
+            ResultSet rs = mSelectDownVotes.executeQuery();
+            while (rs.next()) {
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -330,7 +403,7 @@ public class UserDatabase {
             mSelectOne.setInt(1, user_id);
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
-                res = new RowDataUser(rs.getInt("user_id"), rs.getString("user"), rs.getString("real"), rs.getString("email"), rs.getByte("salt"), rs.getByte("pass"));
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

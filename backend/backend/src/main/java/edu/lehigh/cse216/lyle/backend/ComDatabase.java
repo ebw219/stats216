@@ -1,5 +1,6 @@
 package edu.lehigh.cse216.lyle.backend;
 
+import edu.lehigh.cse216.lyle.backend.ComDatabase.RowDataCom;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,7 @@ import java.util.Collections;
 
 public class ComDatabase {
 
+    //NOTE: this table is tblcomments in the database, plural
     private static final String tblComment = "tblComments";
     /**
      * The connection to the database.  When there is no connection, it should
@@ -38,6 +40,10 @@ public class ComDatabase {
      */
     private PreparedStatement mInsertOne;
 
+    /**
+     * A prepared statement for getting all the comments for a specific message
+     */
+    private PreparedStatement mSelectMsgId;
     /**
      * A prepared statement for getting all the rows in the database with the same user id
      */
@@ -87,6 +93,14 @@ public class ComDatabase {
      * through the getDatabase() method.
      */
     private ComDatabase() {
+    }
+
+    public static String getTblComment() {
+        return tblComment;
+    }
+
+    public static String getComMessage() {
+        return tblComment;
     }
 
     /**
@@ -140,8 +154,10 @@ public class ComDatabase {
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblComment + " WHERE comment_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblComment + " VALUES (default, default, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblComment);
-            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblComment + " WHERE comment_id=?");
-            db.mSelectUserId = db.mConnection.prepareStatement("SELECT * " + tblComment + " WHERE user_id = ?");
+            db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblComment + " WHERE comment_id = ?");
+            db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
+                    + " INNER JOIN " + MsgDatabase.getTblMessage() 
+                    + " ON tblComments.message_id = tblMessage.message_id WHERE tblMessage.message_id = ? ORDER BY comment_id DESC");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -223,6 +239,32 @@ public class ComDatabase {
         }
     }
 
+    /**
+     * Query database for all comments on a specific message, using a JOIN sql statement
+     * 
+     * @param message_id The id of the message
+     * 
+     * @return The data for row that match as an ArrayList
+     */
+    ArrayList<RowDataCom> selectMsgId(int message_id) {
+        ArrayList<RowDataCom> res = new ArrayList<RowDataCom>();
+        try {
+            mSelectMsgId.setInt(1, message_id);
+            ResultSet rs = mSelectMsgId.executeQuery();
+            System.out.println("mSelectMsgId: " + rs);
+            while (rs.next()) {
+                res.add(new RowDataCom(rs.getInt("comment_id"), rs.getInt("user_id"), rs.getInt("message_id"), rs.getString("comment_text")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    //this prepared statement doesn't exist please fix it
     /**
      * Query database by user ID
      * 

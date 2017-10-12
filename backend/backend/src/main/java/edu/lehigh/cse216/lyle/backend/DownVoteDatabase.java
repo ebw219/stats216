@@ -76,6 +76,10 @@ public class DownVoteDatabase {
     private DownVoteDatabase() {
     }
 
+    public static String getTblDownVote() {
+        return tblDownVotes;
+    }
+
     /**
      * Get a fully-configured connection to the database
      * 

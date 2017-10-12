@@ -136,6 +136,7 @@ public class MsgDatabase {
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblMessage + " WHERE message_id = ?");
             db.mSelectUserId = db.mConnection.prepareStatement("SELECT * " + tblMessage + " WHERE user_id = ?");
+                //i think selectuserid should be a join statement
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");

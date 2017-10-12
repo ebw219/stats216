@@ -76,6 +76,10 @@ public class UpVoteDatabase {
     private UpVoteDatabase() {
     }
 
+    public static String getTblUpVote() {
+        return tblUpVotes;
+    }
+
     /**
      * Get a fully-configured connection to the database
      * 
