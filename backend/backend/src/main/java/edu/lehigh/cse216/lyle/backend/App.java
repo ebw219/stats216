@@ -151,6 +151,16 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectMsgId(idx)));
 		});
 
+	//GET route for upvotes by message and user, using join
+	Spark.get("/messages/upvotes/:user_id/:message_id", (request, response) -> {
+		int user_id = Integer.parseInt(request.params("user_id"));
+		int message_id = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectOne(user_id, message_id)));
+		});
+
 	//GET route for downvotes by message, using join
 	Spark.get("/messages/downvotes/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
@@ -169,6 +179,14 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectComId(idx)));
 		});
 
+	//GET route for number of upvotes per message, using count
+	Spark.get("/messages/upvotes/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.countUpVotes(idx)));
+		});
 		
 	//GET route for upvotes by user, using join
 	Spark.get("/messages/upvotes/:user_id", (request, response) -> {
@@ -235,10 +253,11 @@ public class App {
 		});
 
 	//posts to the user table
-	Spark.post("/users/:username/:realname/:email", (request, response) -> {
+	Spark.post("/users/:username/:realname/:email/:password", (request, response) -> {
 		String username = (request.params("username"));
 		String realname = (request.params("realname"));
 		String email = (request.params("email"));
+		String password = (request.params("password"));
 		// NB: if gson.Json fails, Spark will reply with status 500 Internal
 		// Server Error
 		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
@@ -248,7 +267,7 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = userDatabase.insertRow(username, realname, email);
+		int newId = userDatabase.insertRow(username, realname, email, password);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {

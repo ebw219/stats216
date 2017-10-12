@@ -2,6 +2,7 @@ package edu.lehigh.cse216.lyle.backend;
 
 import java.net.URISyntaxException;
 import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -183,7 +184,7 @@ public class UserDatabase {
 
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblUser + " WHERE user_id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, ?, default, ?)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblUser);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE user_id = ?");
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM" + MsgDatabase.getTblMessage()
@@ -252,23 +253,28 @@ public class UserDatabase {
      * @param username The username for this new row
      * @param realname The username for this row
      * @param email The email for this row
+     * @param password
      * 
      * @return The number of rows that were inserted
      */
-    int insertRow(String username, String realname, String email) {
+    int insertRow(String username, String realname, String email, String password) {
         int count = 0;
         int auth = 0;
         try {
-            byte[] salt = SaltRegister.getSalt();            
+            byte[] salt = SaltRegister.getSalt();
+            byte[] pass = SaltRegister.saltReg(password.getBytes());            
             mInsertOne.setString(1, username);
             mInsertOne.setString(2, realname);
             mInsertOne.setString(3, email);
             mInsertOne.setBytes(4, salt);
-            mInsertOne.setInt(5, auth);
+            mInsertOne.setBytes(5, pass);
+            mInsertOne.setInt(6, auth);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (InvalidKeySpecException e) {
             e.printStackTrace();
         }
         return count;
