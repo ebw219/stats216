@@ -44,13 +44,17 @@ String url = "https://sleepy-dusk-34987.herokuapp.com/users";
             public void onClick(View view) {
 
                 String username = ((TextView) findViewById(R.id.newUsername)).getText().toString();
-                String name = ((TextView) findViewById(R.id.newName)).getText().toString();
+                String realName = ((TextView) findViewById(R.id.newName)).getText().toString();
                 String email = ((TextView) findViewById(R.id.newEmail)).getText().toString();
+                String password = ((TextView) findViewById(R.id.newPassword)).getText().toString();
+                String confirmPassword = ((TextView) findViewById(R.id.confirmNewPassword)).getText().toString();
 
-                if(username.isEmpty() || name.isEmpty() || email.isEmpty()){
+                if(!(password.equals(confirmPassword))){
+                    findViewById(R.id.badPassword).setVisibility(View.VISIBLE);
+                } else if(username.isEmpty() || realName.isEmpty() || email.isEmpty() || password.isEmpty()){
                     findViewById(R.id.invalidField).setVisibility(View.VISIBLE);
                 } else {
-                    StringRequest newReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                    StringRequest newReq = new StringRequest(Request.Method.POST, url + "/" + username + "/" + realName + "/" + email, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.d("lyle", response);
@@ -64,15 +68,16 @@ String url = "https://sleepy-dusk-34987.herokuapp.com/users";
                         }
                     })
                     {
-                        @Override
-                        public byte[] getBody() throws AuthFailureError {
-                            HashMap<String, String> params = new HashMap<String, String>();
-                            params.put("email", ((TextView) findViewById(R.id.newEmail)).getText().toString());
-                            params.put("username", ((TextView) findViewById(R.id.newUsername)).getText().toString());
-                            params.put("realname", ((TextView) findViewById(R.id.newName)).getText().toString());
-                            Log.d("lyle", new JSONObject(params).toString());
-                            return new JSONObject(params).toString().getBytes();
-                        }
+//                        @Override
+//                        public byte[] getBody() throws AuthFailureError {
+//                            HashMap<String, String> params = new HashMap<String, String>();
+//                            params.put("email", ((TextView) findViewById(R.id.newEmail)).getText().toString());
+//                            params.put("username", ((TextView) findViewById(R.id.newUsername)).getText().toString());
+//                            params.put("realname", ((TextView) findViewById(R.id.newName)).getText().toString());
+//                            params.put("password", ((TextView) findViewById(R.id.newPassword)).getText().toString());
+//                            Log.d("lyle", new JSONObject(params).toString());
+//                            return new JSONObject(params).toString().getBytes();
+//                        }
 
                     };
                     MySingleton.getInstance(getApplicationContext()).addToRequestQueue(newReq);
