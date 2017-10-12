@@ -35,6 +35,8 @@ public class App {
 	final ComDatabase comDatabase = ComDatabase.getComDatabase(getDatabaseUrl()); //for tblcomment
 	final UserDatabase userDatabase = UserDatabase.getUserDatabase(getDatabaseUrl()); //for tblusers
 	final UpVoteDatabase upVoteDatabase = UpVoteDatabase.getUpVoteDatabase(getDatabaseUrl()); //for tblusers
+	final DownVoteDatabase downVoteDatabase = DownVoteDatabase.getDownVoteDatabase(getDatabaseUrl()); //for tblusers
+	
 	
 	
 	/*if (!database.tableDoesExist()) {
@@ -149,6 +151,15 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectMsgId(idx)));
 		});
 
+	//GET route for downvotes by message, using join
+	Spark.get("/messages/downvotes/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, downVoteDatabase.selectMsgId(idx)));
+		});
+
 	// POST route for adding a new element to the database.  This will read
 	// JSON from the body of the request, turn it into a SimpleRequest
 	// object, extract the title and message, insert them, and return the
@@ -228,6 +239,27 @@ public class App {
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
 		int newId = upVoteDatabase.insertRow(user_id, message_id);
+		if (newId == -1) {
+		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+		} else {
+		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+		}
+		});
+
+	//posts to the downvotes table
+	Spark.post("/downvotes/:user_id/:message_id", (request, response) -> {
+		int user_id = Integer.parseInt(request.params("user_id"));
+		int message_id = Integer.parseInt(request.params("message_id"));
+		// NB: if gson.Json fails, Spark will reply with status 500 Internal
+		// Server Error
+		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+		// ensure status 200 OK, with a MIME type of JSON
+		// NB: even on error, we return 200, but with a JSON object that
+		//     describes the error.
+		response.status(200);
+		response.type("application/json");
+		// NB: createEntry checks for null title and message
+		int newId = downVoteDatabase.insertRow(user_id, message_id);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {
