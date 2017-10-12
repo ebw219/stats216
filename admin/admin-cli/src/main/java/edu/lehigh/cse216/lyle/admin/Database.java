@@ -168,7 +168,7 @@ public class Database {
                 + "email VARCHAR(255), "
                 + "salt BYTEA, "
                 + "password BYTEA, "
-                + "auth BOOLEAN)");
+                + "auth INTEGER)"); // 0 = unauthorized account, 1 = authorized
             db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
                 + "message_id SERIAL PRIMARY KEY, "
                 + "user_id INTEGER, title VARCHAR(50), "
@@ -199,7 +199,7 @@ public class Database {
             db.mSelectAll = db.mConnection.prepareStatement("SELECT id, subject FROM tblData");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
-            db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = FALSE"); //unsure if = or ==
+            db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 1"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = TRUE WHERE email = ?");
 
         } catch (SQLException e) {
@@ -356,7 +356,9 @@ public class Database {
         ArrayList<RowData> res = new ArrayList<RowData>();
         try {
             ResultSet rs = mSelectUnauthenticated.executeQuery();
-            if (rs.next()) {
+            //System.out.println("BEFORE");
+            if (rs.next()) { //returning false immediately
+                System.out.println("HERE");
                 res.add(new RowData(rs.getInt("id"), rs.getString("username"), rs.getString("email")));
             }
         } catch (SQLException e) {
