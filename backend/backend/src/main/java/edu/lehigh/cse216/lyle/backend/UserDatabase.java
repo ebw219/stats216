@@ -1,6 +1,7 @@
 package edu.lehigh.cse216.lyle.backend;
 
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -176,12 +177,13 @@ public class UserDatabase {
                 email VARCHAR(255),
                 salt BYTEA,
                 password BYTEA
+                auth int
                 );                
                 */
 
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblUser + " WHERE user_id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, default, default, ?)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, ?, default, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblUser);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE user_id = ?");
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM" + MsgDatabase.getTblMessage()
@@ -257,12 +259,16 @@ public class UserDatabase {
         int count = 0;
         int auth = 0;
         try {
+            byte[] salt = SaltRegister.getSalt();            
             mInsertOne.setString(1, username);
             mInsertOne.setString(2, realname);
             mInsertOne.setString(3, email);
-            mInsertOne.setInt(4, auth);
+            mInsertOne.setBytes(4, salt);
+            mInsertOne.setInt(5, auth);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return count;
