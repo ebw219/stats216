@@ -8,11 +8,6 @@ package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 class Datum {
     /**
-     * An integer index for this piece of data
-     */
-//    int mIndex;
-
-    /**
      * The string contents that comprise this piece of data
      */
     String mTitle;
@@ -23,8 +18,6 @@ class Datum {
     int user_id;
     int message_id;
 
-//    boolean liked = false;
-//    boolean disliked = false;
 
     /**
      * Construct a Datum by setting its index and text
@@ -34,7 +27,6 @@ class Datum {
      * @param message The message of the data
      */
     Datum(int uId, int mId, String title, String message) {
-//        mIndex = idx;
         user_id = uId;
         message_id = mId;
         mTitle = title;

@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.ArrayList;
 
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.adapter;
+import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
@@ -28,8 +29,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         TextView mTitle;
         TextView mBody;
         TextView mVotes;
-
-//        Button delete;
+        TextView username;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -40,21 +40,22 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.like = (Button) itemView.findViewById(R.id.likeButton);
             this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
 
-
-//            this.delete = (Button) itemView.findViewById(R.id.deleteButton);
+            this.username = (TextView) itemView.findViewById(R.id.viewUsername);
         }
 
     }
 
 
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
+    private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> uInfo;
     private LayoutInflater mLayoutInflater;
 
     int uId;
     int mId;
 
-    ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data) {
+    ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users) {
         mData = data;
+        uInfo = users;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -70,26 +71,50 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     }
 
 
-//    FloatingActionButton newMessage = (FloatingActionButton) findViewById(R.id.add);
-//        newMessage.setOnClickListener(new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            Intent input = new Intent(getApplicationContext(), NewMessageActivity.class);
-//            input.putExtra("label_contents", "Add new message");
-//            startActivityForResult(input, 789);
-//        }
-//
-//    });
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
+//        final lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo u = uInfo.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mBody.setText(d.mMessage);
-        holder.mVotes.setText(d.mVotes + ""); //can only pass String
+
+        holder.username.setText("By " + getUsernameById(uInfo, d.user_id));
+
+        Log.d("lyle", "USERNAME: " + holder.username.getText().toString());
 
         uId = d.user_id;
         mId = d.message_id;
+
+        StringRequest downVotesRequest = new StringRequest(Request.Method.GET, url + "downvotes/" + mId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("lyle", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That GET didn't work");
+            }
+        });
+
+        StringRequest upVotesRequest = new StringRequest(Request.Method.GET, url + "upvotes/" + mId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("lyle", "UPVOTES: " + response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That GET didn't work");
+            }
+        });
+
+
+
+//        holder.mVotes.setText(votes + ""); //can only pass String
+        holder.mVotes.setText(-999 + ""); //can only pass String
+
 
         // Attach a click listener to the view we are configuring
         final View.OnClickListener listener = new View.OnClickListener() {

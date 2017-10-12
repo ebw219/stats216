@@ -27,33 +27,33 @@
         android:id="@+id/listItemText"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_alignBottom="@+id/dislikeButton"
-        android:layout_alignLeft="@+id/titleNew"
-        android:layout_alignStart="@+id/titleNew"
-        android:layout_below="@+id/titleNew"
-        android:layout_toLeftOf="@+id/listItemVotes"
+        android:layout_below="@+id/viewUsername"
         android:layout_weight="0.07"
         android:hint="Message"
         android:text=""
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textSize="23sp"
-        tools:text="No Message" />
+        tools:text="No Message"
+        android:layout_toLeftOf="@+id/listItemVotes"
+        android:layout_alignLeft="@+id/viewUsername"
+        android:layout_alignStart="@+id/viewUsername" />
 
     <TextView
         android:id="@+id/listItemVotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/dislikeButton"
+        android:layout_alignEnd="@+id/dislikeButton"
+        android:layout_alignLeft="@+id/dislikeButton"
+        android:layout_alignRight="@+id/dislikeButton"
+        android:layout_alignStart="@+id/dislikeButton"
+        android:layout_below="@+id/likeButton"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorPrimary"
-        android:textSize="44sp"
-        tools:text="0"
-        android:layout_below="@+id/likeButton"
-        android:layout_alignLeft="@+id/dislikeButton"
-        android:layout_alignStart="@+id/dislikeButton"
-        android:layout_alignRight="@+id/dislikeButton"
-        android:layout_alignEnd="@+id/dislikeButton" />
+        android:textSize="45sp"
+        tools:text="0" />
 
     <Space
         android:layout_width="wrap_content"
@@ -88,10 +88,21 @@
         android:layout_height="wrap_content"
         android:background="@android:drawable/arrow_down_float"
         android:backgroundTint="@color/colorAccent"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
-        android:layout_below="@+id/listItemVotes"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_alignBottom="@+id/listItemText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/viewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/titleNew"
+        android:layout_alignStart="@+id/titleNew"
+        android:layout_below="@+id/titleNew"
+        android:layout_toLeftOf="@+id/listItemVotes"
+        android:layout_toStartOf="@+id/listItemVotes"
+        android:text="Username" />
 
 </RelativeLayout>

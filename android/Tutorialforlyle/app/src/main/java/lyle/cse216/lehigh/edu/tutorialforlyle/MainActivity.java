@@ -25,6 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Datum> mData = new ArrayList<>();
+    ArrayList<UserInfo> mUsers = new ArrayList<>();
     static String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
     static RecyclerView rv;
     static ItemListAdapter adapter;
@@ -44,10 +45,11 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
         rv = (RecyclerView) findViewById(R.id.datum_list_view);
-        adapter = new ItemListAdapter(this, mData);
+        adapter = new ItemListAdapter(this, mData, mUsers);
         MySingleton list = MySingleton.getInstance(this.getApplicationContext());
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
+        MySingleton.getInstance(this).addToRequestQueue(getUsers());
 
         FloatingActionButton newMessage = findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +153,67 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * GET Volley request
+     * @return the request
+     */
+    protected StringRequest getUsers() {
+        return (new StringRequest(Request.Method.GET, "https://sleepy-dusk-34987.herokuapp.com/users",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", response);
+                        getUserInfo(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That Get didn't work!");
+            }
+        }));
+    }
+
+    /**
+     * Helper method for GET function
+     *
+     * @param response string of JSON data obtained from Get
+     */
+    private void getUserInfo(String response) {
+        Log.d("lyle", "HERE");
+        try {
+            Log.d("lyle", "Getting user info: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
+            JSONObject jsonObj = new JSONObject(response);
+            JSONArray json = jsonObj.getJSONArray("mData");
+            for (int i = 0; i < json.length(); ++i) {
+                String username = json.getJSONObject(i).getString("username");
+                String realname = json.getJSONObject(i).getString("realname");
+                int user_id = json.getJSONObject(i).getInt("uId");
+                Log.d("lyle", "INFO: " + user_id + ", " + username + ", " + realname);
+                mUsers.add(new UserInfo(user_id, username, realname));
+            }
+        } catch (final JSONException e) {
+            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
+            if(e.getMessage().equals("No value for mData")) {
+                Log.d("lyle", "NO DATA");
+            }
+            return;
+        }
+        Log.d("lyle", "Successfully parsed JSON file.");
+
+        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+        rv.setAdapter(adapter);
+    }
+
+    static String getUsernameById(ArrayList<UserInfo> mUsers, int id){
+        Log.d("lyle", "LENGTH: " + mUsers.size() + " PASSED ID: " + id);
+        for(int i = 0; i < mUsers.size(); i++){
+            Log.d("lyle", "ID: " + mUsers.get(i).uId + " USERNAME: " + mUsers.get(i).username);
+            if(mUsers.get(i).uId == id){
+                return mUsers.get(i).username;
+            }
+        }
+        return null;
+    }
 
 //    /**
 //     * POST Volley method
