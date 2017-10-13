@@ -13,10 +13,10 @@ public class SaltLogin {
     String generatedSecuredPasswordHash = SaltRegister.generateStorngPasswordHash(originalPassword);
     System.out.println(generatedSecuredPasswordHash);
     
-    boolean matched = validatePassword("password", generatedSecuredPasswordHash);
-    System.out.println(matched);
+    boolean matched = validatePassword("password", generatedSecuredPasswordHash); //change "password" to pass variable
+    //System.out.println(matched);
     
-    matched = validatePassword("password", generatedSecuredPasswordHash);
+    //matched = validatePassword("password", generatedSecuredPasswordHash);
     return matched;
 }
 

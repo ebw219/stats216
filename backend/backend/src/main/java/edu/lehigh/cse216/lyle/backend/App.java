@@ -3,6 +3,8 @@ package edu.lehigh.cse216.lyle.backend;
 // Import the Spark package, so that we can make use of the "get" function to
 // create an HTTP GET route
 //import .MsgDatabase;
+import java.util.HashMap;
+import java.util.Random;
 import spark.Spark;
 import java.util.ArrayList;
 
@@ -37,7 +39,8 @@ public class App {
 	final UpVoteDatabase upVoteDatabase = UpVoteDatabase.getUpVoteDatabase(getDatabaseUrl()); //for tblusers
 	final DownVoteDatabase downVoteDatabase = DownVoteDatabase.getDownVoteDatabase(getDatabaseUrl()); //for tblusers
 	
-	
+	//create hashmap to store usernames and key values
+	HashMap<Integer, String> userhash = new HashMap<Integer, String>();	
 	
 	/*if (!database.tableDoesExist()) {
 		System.out.println("Made it in to table doesn't exist");
@@ -66,6 +69,54 @@ public class App {
 
 	//GET route that puts username and password into the users table
 
+	//GET route for user by username
+	/**Spark.get("/login/:username", (request, response) -> {
+		String idx = request.params("username");
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		UserDatabase.RowDataUser data = userDatabase.selectUsername(idx);
+		if (data == null) {
+			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+		} else {
+			return gson.toJson(new StructuredResponse("ok", null, data));
+		}
+		});*/
+	//	/route/route/:Param?userid==&key==   --> a better way to do requests
+
+
+
+	//user inputs username and password, select row in tbluser using each, compare the two rows
+	//if same, let user in. if not, return error
+	//POST to login
+	Spark.post("/login/:username/:password", (request, response) -> {
+		String username = request.params("username");
+		String pass = request.params("password");
+		System.out.println("password: " + pass);
+		byte[] password = SaltRegister.saltReg(pass.getBytes());
+		System.out.println("salted password: " + password.toString());
+		//boolean check = userDatabase.selectUserPass(username, password);
+		UserDatabase.RowDataUser byUsername = userDatabase.selectUsername(username);
+		//UserDatabase.RowDataUser byPassword = userDatabase.selectPassword(password);
+		//System.out.println("byUsername: " + byUsername);
+		//System.out.println("byPassword: " + byPassword);		
+		//if (us == pa) {
+		//if (byUsername != null && byPassword != null && byUsername == byPassword) {
+		//if (check == true) {
+		if (byUsername != null) {
+			response.status(200);
+			response.type("application/json");
+			Random rand = new Random();
+			int randval = rand.nextInt();
+			if (randval <= 0) {
+				randval = randval*(-1);
+			}
+			userhash.put(randval, username);
+			return gson.toJson(new StructuredResponse("ok", "" + randval, null));
+		} else {
+			return gson.toJson(new StructuredResponse("error", "incorrect username or password", null));
+		}
+	});
 
 	// GET route that returns all message titles and Ids.  All we do is get
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
@@ -97,6 +148,20 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll()));
+		});
+
+	//gets from the message table
+	Spark.get("/messages/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		MsgDatabase.RowDataMsg data = msgDatabase.selectOne(idx);
+		if (data == null) {
+		    return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+		} else {
+		    return gson.toJson(new StructuredResponse("ok", null, data));
+		}
 		});
 
 	// GET route that returns everything for a single row in the database.
@@ -430,11 +495,3 @@ static String getDatabaseUrl() {
 
 
 }
-
-
-
-//get password that user suggests (from web-postman)
-//put that in method saltReg(pass)
-//put what that returns into the table as password
-
-

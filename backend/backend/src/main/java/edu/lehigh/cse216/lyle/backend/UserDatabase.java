@@ -13,6 +13,8 @@ import java.util.Collections;
 
 public class UserDatabase {
 
+    static byte[] salt;
+
     private static final String tblUser = "tblUser";
     /**
      * The connection to the database.  When there is no connection, it should
@@ -51,10 +53,6 @@ public class UserDatabase {
     private PreparedStatement mSelectComId;
 
     /**
-     * A prepared statement for getting all the rows in the database with the same user id
-     */
-
-    /**
      * A prepared statement for getting all the upvotes for a specific user.
     */
     private PreparedStatement mSelectUpVotes;
@@ -64,7 +62,15 @@ public class UserDatabase {
     */
     private PreparedStatement mSelectDownVotes;
 
-    //private PreparedStatement mSelectUserId;
+    /**
+     * A prepared statement for getting a row in the user table for a specific username
+    */
+    private PreparedStatement mSelectUsername;
+
+    /**
+     * A prepared statement for getting a row in the user table for a specific password
+    */
+    private PreparedStatement mSelectUserPass;
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -187,7 +193,7 @@ public class UserDatabase {
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblUser);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE user_id = ?");
-            db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM" + MsgDatabase.getTblMessage()
+            db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + MsgDatabase.getTblMessage()
                                 + "INNER JOIN" + tblUser
                                 + "ON tblUser.user_id = tblMessage.user_id WHERE tblUser.user_id = ? ORDER BY tblMessage.message_id DESC");                    
             db.mSelectComId = db.mConnection.prepareStatement("SELECT * FROM " + ComDatabase.getTblComment()
@@ -199,7 +205,9 @@ public class UserDatabase {
             db.mSelectDownVotes = db.mConnection.prepareStatement("SELECT * FROM " + DownVoteDatabase.getTblDownVote()
                                 + "INNER JOIN" + tblUser
                                 + "ON tblUser.user_id = tblUpVotes.user_id WHERE tblUser.user_id = ? ORDER BY tblUser.user_id DESC");
-
+            db.mSelectUsername = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE username = ?");
+            db.mSelectUserPass = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE username = ? AND password = ?");
+            
             
             /*db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
                     + " INNER JOIN " + MsgDatabase.getTblMessage() 
@@ -261,7 +269,7 @@ public class UserDatabase {
         int count = 0;
         int auth = 0;
         try {
-            byte[] salt = SaltRegister.getSalt();
+            salt = SaltRegister.getSalt();
             byte[] pass = SaltRegister.saltReg(password.getBytes());            
             mInsertOne.setString(1, username);
             mInsertOne.setString(2, realname);
@@ -319,7 +327,7 @@ public class UserDatabase {
             mSelectMsgId.setInt(1, user_id);
             ResultSet rs = mSelectMsgId.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -343,7 +351,7 @@ public class UserDatabase {
             mSelectComId.setInt(1, user_id);
             ResultSet rs = mSelectComId.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -367,7 +375,7 @@ public class UserDatabase {
             mSelectUpVotes.setInt(1, user_id);
             ResultSet rs = mSelectUpVotes.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -391,7 +399,7 @@ public class UserDatabase {
             mSelectDownVotes.setInt(1, user_id);
             ResultSet rs = mSelectDownVotes.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth")));
+                res.add(new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth")));
             }
             Collections.reverse(res);
             rs.close();
@@ -415,12 +423,61 @@ public class UserDatabase {
             mSelectOne.setInt(1, user_id);
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
-                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("pass"), rs.getInt("auth"));
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return res;
+    }
+
+    /**
+     * Get all data for a specific row, by username
+     * 
+     * @param username The id of the row being requested
+     * 
+     * @return The data for the requested row, or null if the ID was invalid
+     */
+    RowDataUser selectUsername(String username) {
+        RowDataUser res = null;
+        try {
+            mSelectUsername.setString(1, username);
+            ResultSet rs = mSelectUsername.executeQuery();
+            System.out.println("dump: "+mSelectUsername.toString());
+            if (rs.next()) {
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    /**
+     * Get all data for a specific row, by username
+     * 
+     * @param username The username of the row being requested
+     * @param password The password of the row being requested
+     * 
+     * @return The data for the requested row, or null if the ID was invalid
+     */
+    boolean selectUserPass(String username, byte[] password) {
+        RowDataUser res = null;
+        try {
+            mSelectUserPass.setString(1, username);
+            mSelectUserPass.setBytes(2, password);
+            ResultSet rs = mSelectUserPass.executeQuery();
+            if (rs.next()) {
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (res != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

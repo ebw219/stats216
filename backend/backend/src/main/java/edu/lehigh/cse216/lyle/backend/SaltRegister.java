@@ -32,7 +32,6 @@ public class SaltRegister {
             SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
             byte[] salt = new byte[16];
             sr.nextBytes(salt);
-            System.out.println("salt: " + salt);
             return salt;
         }
         
