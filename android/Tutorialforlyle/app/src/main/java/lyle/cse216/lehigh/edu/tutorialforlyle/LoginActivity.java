@@ -54,7 +54,8 @@ public class LoginActivity extends AppCompatActivity{
                     });
                     Intent input = new Intent(getApplicationContext(), MainActivity.class);
                     input.putExtra("label_contents", "Login");
-                    startActivityForResult(input, 789);
+                    input.putExtra("username", username);
+                    startActivityForResult(input, 123);
                     MySingleton.getInstance(getApplicationContext()).addToRequestQueue(login);
                 }
             }

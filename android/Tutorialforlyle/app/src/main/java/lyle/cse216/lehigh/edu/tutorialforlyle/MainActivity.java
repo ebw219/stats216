@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     static String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
     static RecyclerView rv;
     static ItemListAdapter adapter;
+    String currentUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,12 +69,26 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        final String logoutUrl = "https://sleepy-dusk-34987.herokuapp.com/logout/";
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent input = new Intent(getApplicationContext(), LoginActivity.class);
-                input.putExtra("label_contents", "Logout");
-                startActivityForResult(input, 789);
+                final StringRequest logout = new StringRequest(Request.Method.POST, logoutUrl + getUIdByUsername(mUsers, currentUsername),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.d("lyle", response );
+                                Intent input = new Intent(getApplicationContext(), LoginActivity.class);
+                                input.putExtra("label_contents", "Logout");
+                                startActivityForResult(input, 789);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("lyle", "That POST didn't work");
+                    }
+                });
+                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(logout);
             }
         });
 
@@ -89,11 +104,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        Log.d("lyle", "RESULT");
+        if(resultCode == 123){
+            Intent res = getIntent();
+            currentUsername = res.getStringExtra("username");
+        }
         mData.clear();
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
     }
@@ -260,6 +279,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+
+    static int getUIdByUsername(ArrayList<UserInfo> mUsers, String username){
+        for(int i = 0; i < mUsers.size(); i++){
+            if(mUsers.get(i).username.equals(username)){
+                return mUsers.get(i).uId;
+            }
+        }
+        return -1;
     }
 
     /**
