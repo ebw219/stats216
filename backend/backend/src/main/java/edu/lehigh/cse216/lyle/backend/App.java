@@ -112,11 +112,41 @@ public class App {
 				randval = randval*(-1);
 			}
 			userhash.put(randval, username);
+			System.out.println("userhash: " + userhash);			
 			return gson.toJson(new StructuredResponse("ok", "" + randval, null));
 		} else {
 			return gson.toJson(new StructuredResponse("error", "incorrect username or password", null));
 		}
 	});
+
+	//POST to logout
+	Spark.post("/logout/:username/:randval", (request, response) -> {
+		String username = request.params("username");
+		int randval = Integer.parseInt(request.params("randval"));
+		System.out.println("username: " + username);
+		System.out.println("randval: " + randval);	
+		boolean key = userhash.containsKey(randval);
+		boolean val = userhash.containsValue(username);
+		if (key == true && val == true) {
+			response.status(200);
+			response.type("application/json");
+			System.out.println("key and val are true");
+			System.out.println("userhash Before: " + userhash);			
+			userhash.remove(key);
+			System.out.println("userhash After: " + userhash);
+			return gson.toJson(new StructuredResponse("ok", "You have logged out.", null));
+		} else {
+			return gson.toJson(new StructuredResponse("error", "i have no idea whats wrong", null));
+		}
+	});
+
+	/**
+	 * boolean keyFlag1 = hashtable.containsKey("A");
+   System.out.println("Key A exists in Hashtable?: " + keyFlag1);
+
+    boolean vFlag1 = hashtable.containsValue("Orange");
+   System.out.println("Value Orange exists in Hashtable?: "+vFlag1);
+	 */
 
 	// GET route that returns all message titles and Ids.  All we do is get
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
