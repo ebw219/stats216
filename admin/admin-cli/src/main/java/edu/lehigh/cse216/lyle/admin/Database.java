@@ -29,7 +29,7 @@ public class Database {
     /**
      * A prepared statement for deleting a row from the database
      */
-    private PreparedStatement mDeleteOne;
+    private PreparedStatement mDeleteUser;
 
     /**
      * A prepared statement for inserting into the database
@@ -194,13 +194,13 @@ public class Database {
                 + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
                 + "PRIMARY KEY (user_id, message_id))");
             // Standard CRUD operations
-            db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM tblData WHERE id = ?");
+            db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT id, subject FROM tblData");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
-            db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 1"); //unsure if = or ==
-            db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = TRUE WHERE email = ?");
+            db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
+            db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -304,11 +304,11 @@ public class Database {
      * 
      * @return The number of rows that were deleted.  -1 indicates an error.
      */
-    int deleteRow(int id) {
+    int deleteUser(int id) {
         int res = -1;
         try {
-            mDeleteOne.setInt(1, id);
-            res = mDeleteOne.executeUpdate();
+            mDeleteUser.setInt(1, id);
+            res = mDeleteUser.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -337,29 +337,12 @@ public class Database {
 
     
 
-    ArrayList<RowData> selectUnauth(){
-        // ArrayList<User> res = new ArrayList<User>();
-        // try {
-        //     ResultSet rs = mSelectUnauthenticated.executeQuery();
-        //     while (rs.next()) {
-        //         // if(mSelectUnauthenticated.getMetaData().getColumn){
-        //         res.add(new User(rs.getString("email"), rs.getString("name")));
-        //         // }
-        //     }
-        //     rs.close();
-        //     return res;
-        // } catch (SQLException e) {
-        //     e.printStackTrace();
-        //     return null;
-        // }
-
-        ArrayList<RowData> res = new ArrayList<RowData>();
+    ArrayList<User> selectUnauth(){
+        ArrayList<User> res = new ArrayList<User>();
         try {
             ResultSet rs = mSelectUnauthenticated.executeQuery();
-            //System.out.println("BEFORE");
-            if (rs.next()) { //returning false immediately
-                System.out.println("HERE");
-                res.add(new RowData(rs.getInt("id"), rs.getString("username"), rs.getString("email")));
+            while (rs.next()) {
+                res.add(new User(rs.getInt(1), rs.getString(3), rs.getString(2), rs.getString(4)));
             }
         } catch (SQLException e) {
             e.printStackTrace();

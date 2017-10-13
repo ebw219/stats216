@@ -23,17 +23,9 @@ public class App {
      */
     static void menu() {
         System.out.println("Main Menu");
-        System.out.println("////////");
-        System.out.println("  [T] Create tblData");
-        System.out.println("  [D] Drop tblData");
-        System.out.println("  [1] Query for a specific row");
-        System.out.println("  [*] Query for all rows");
-        System.out.println("  [+] Insert a new row");
-        System.out.println("  [~] Update a row");
-        System.out.println("  [q] Quit Program");
-        System.out.println("  [?] Help (this message)");
-        System.out.println("////////");
         System.out.println();
+        System.out.println("  [?] Help");
+        System.out.println("  [q] Quit\n");
         System.out.println("  [U] Create tblUser");
         System.out.println("  [M] Create tblMessage");
         System.out.println("  [C] Create tblComment");
@@ -47,8 +39,9 @@ public class App {
         System.out.println("  [n] Delete tblDownVotes");
         System.out.println();
         System.out.println("  [A] Show unauthenticated users");
-        System.out.println("  [-] Delete a row");
-        System.out.println("  [E] Email a user their password");
+        System.out.println("  [-] Delete a user");
+        System.out.println("  [E] Email a user their password and authorize their email");
+        System.out.println();
     }
 
     /**
@@ -168,6 +161,7 @@ public class App {
 
         // Start our basic command-line interpreter:
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        menu();
         while (true) {
             // Get the user's request, and do it
             //
@@ -201,10 +195,12 @@ public class App {
                     System.out.println("  [" + rd.mId + "] " + rd.mSubject);
                 }
             } else if (action == '-') {
-                int id = getInt(in, "Enter the row ID");
+                System.out.print("Enter the user ID: ");
+                System.out.println();
+                int id = getInt(in, "");
                 if (id == -1)
                     continue;
-                int res = db.deleteRow(id);
+                int res = db.deleteUser(id);
                 if (res == -1)
                     continue;
                 System.out.println("  " + res + " rows deleted");
@@ -245,18 +241,18 @@ public class App {
             } else if (action == 'n') {
                 db.dropDVTable();
             } else if (action == 'A') {
-                System.out.println("dkjfhsivnwo");
-                ArrayList<RowData> res = db.selectUnauth();
-                System.out.println(res.size());
+
+                ArrayList<User> res = db.selectUnauth();
+                System.out.println();
+                System.out.printf("%s\t%-15s\t%-15s\t%-15s\n", "id", "name", "username", "email");
+                System.out.println("-----------------------------------------------");
                 for (int i=0; i<res.size(); i++) {
-                    System.out.println(res.get(i));
+                    System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
                 } 
             } else if (action == 'E') {
-                System.out.print("Enter the user's email: "); // this isn't printing and i'm not sure why
-                //String email = getString(in, "dkfjsldfjsld");
-
+                System.out.print("Enter the user's email: ");
+                System.out.println();
                 String email = getString(in, "");
-                //String email = db.getEmail(userId);
                 emailUser(email);
                 System.out.println("Email sent to " + email);
                 db.updateAuth(email);
