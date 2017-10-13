@@ -25,7 +25,7 @@ import java.util.HashMap;
  */
 
 public class LoginActivity extends AppCompatActivity{
-    String url = "https://sleepy-dusk-34987.herokuapp.com/users";
+    String url = "https://sleepy-dusk-34987.herokuapp.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +40,22 @@ public class LoginActivity extends AppCompatActivity{
                 if (username.equals("") || password.equals("")) {
                     findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);
                 } else {
+                    StringRequest login = new StringRequest(Request.Method.POST, url + "login/" + username + "/" + password,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Log.d("lyle", response);
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("lyle", "That POST didn't work");
+                        }
+                    });
                     Intent input = new Intent(getApplicationContext(), MainActivity.class);
                     input.putExtra("label_contents", "Login");
                     startActivityForResult(input, 789);
-
-
+                    MySingleton.getInstance(getApplicationContext()).addToRequestQueue(login);
                 }
             }
         });

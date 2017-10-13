@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Datum> mData = new ArrayList<>();
     ArrayList<UserInfo> mUsers = new ArrayList<>();
+    ArrayList<Votes> mVotes = new ArrayList<>();
     static String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
     static RecyclerView rv;
     static ItemListAdapter adapter;
@@ -45,11 +46,16 @@ public class MainActivity extends AppCompatActivity {
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
         rv = (RecyclerView) findViewById(R.id.datum_list_view);
-        adapter = new ItemListAdapter(this, mData, mUsers);
+        adapter = new ItemListAdapter(this, mData, mUsers, mVotes);
         MySingleton list = MySingleton.getInstance(this.getApplicationContext());
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
         MySingleton.getInstance(this).addToRequestQueue(getUsers());
+
+//        for (int i = 0; i < mData.size(); i++) {
+//            MySingleton.getInstance(this).addToRequestQueue(getUpVotes(mData.get(i).message_id));
+//            MySingleton.getInstance(this).addToRequestQueue(getDownVotes(mData.get(i).message_id));
+//        }
 
         FloatingActionButton newMessage = findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (final JSONException e) {
 
                 }
-//                int votes = json.getJSONObject(i).getInt("mVote");
+//                int netVotes = json.getJSONObject(i).getInt("mVote");
                 mData.add(new Datum(user_id, message_id, title, message));
             }
         } catch (final JSONException e) {
@@ -151,6 +157,49 @@ public class MainActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         rv.setAdapter(adapter);
     }
+
+
+    /**
+     * GET Volley request
+     * @return the request
+     */
+    protected StringRequest getUpVotes(int mId) {
+        return (new StringRequest(Request.Method.GET, url + "/upvotes/" + mId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", response);
+                        getVotesInfo(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That Get didn't work!");
+            }
+        }));
+    }
+
+
+    /**
+     * GET Volley request
+     * @return the request
+     */
+    protected StringRequest getDownVotes(int mId) {
+        return (new StringRequest(Request.Method.GET, url + "/downvotes/" + mId,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", response);
+                        getVotesInfo(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That Get didn't work!");
+            }
+        }));
+    }
+
 
 
     /**
@@ -205,14 +254,100 @@ public class MainActivity extends AppCompatActivity {
     }
 
     static String getUsernameById(ArrayList<UserInfo> mUsers, int id){
-        Log.d("lyle", "LENGTH: " + mUsers.size() + " PASSED ID: " + id);
         for(int i = 0; i < mUsers.size(); i++){
-            Log.d("lyle", "ID: " + mUsers.get(i).uId + " USERNAME: " + mUsers.get(i).username);
             if(mUsers.get(i).uId == id){
                 return mUsers.get(i).username;
             }
         }
         return null;
+    }
+
+    /**
+     * Helper method for GET function
+     *
+     * @param response string of JSON data obtained from Get
+     */
+    private void getVotesInfo(String response) {
+        Log.d("lyle", "HERE");
+        try {
+            Log.d("lyle", "Getting user info: " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
+            JSONObject jsonObj = new JSONObject(response);
+            JSONArray json = jsonObj.getJSONArray("mData");
+            for (int i = 0; i < json.length(); ++i) {
+                int message_id = json.getJSONObject(i).getInt("mId");
+                int user_id = json.getJSONObject(i).getInt("uId");
+                mVotes.add(new Votes(user_id, message_id));
+            }
+        } catch (final JSONException e) {
+            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
+            if(e.getMessage().equals("No value for mData")) {
+                Log.d("lyle", "NO DATA");
+            }
+            return;
+        }
+        Log.d("lyle", "Successfully parsed JSON file.");
+
+        rv.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
+        rv.setAdapter(adapter);
+    }
+
+//    /**
+//     * GET Volley request
+//     * @return the request
+//     */
+//    protected StringRequest getUpVotes(int mId) {
+//        return (new StringRequest(Request.Method.GET, url + "/upvotes/" + mId,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Log.d("lyle", response);
+//                        getVoteCount(response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That Get didn't work!");
+//            }
+//        }));
+//    }
+
+//    /**
+//     * GET Volley request
+//     * @return the request
+//     */
+//    protected StringRequest getDownVotes(int mId) {
+//        return (new StringRequest(Request.Method.GET, url + "/downvotes/" + mId,
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        Log.d("lyle", response);
+//                        getVoteCount(response);
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That Get didn't work!");
+//            }
+//        }));
+//    }
+
+    /**
+     * Helper method for GET function
+     *
+     * @param response string of JSON data obtained from Get
+     */
+    int getVoteCount(String response) {
+        int len = -999;
+        try {
+            Log.d("lyle", "Getting netVotes " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
+            JSONObject jsonObj = new JSONObject(response);
+            JSONArray json = jsonObj.getJSONArray("mData");
+            len = json.length();
+        } catch (final JSONException e) {
+            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
+        }
+        Log.d("lyle", "Successfully parsed JSON file.");
+        return len;
     }
 
 //    /**

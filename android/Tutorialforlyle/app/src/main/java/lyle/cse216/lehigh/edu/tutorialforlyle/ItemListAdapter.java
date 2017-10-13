@@ -14,14 +14,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
-import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.adapter;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     String url = "https://sleepy-dusk-34987.herokuapp.com/";
+//    private int netVotes;
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -48,14 +52,17 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> uInfo;
+    private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> mVotes;
     private LayoutInflater mLayoutInflater;
 
     int uId;
     int mId;
 
-    ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users) {
+
+    ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> votes) {
         mData = data;
         uInfo = users;
+        mVotes = votes;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -75,45 +82,26 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
-//        final lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo u = uInfo.get(position);
         holder.mTitle.setText(d.mTitle);
         holder.mBody.setText(d.mMessage);
-
-        holder.username.setText("By " + getUsernameById(uInfo, d.user_id));
-
-        Log.d("lyle", "USERNAME: " + holder.username.getText().toString());
 
         uId = d.user_id;
         mId = d.message_id;
 
-        StringRequest downVotesRequest = new StringRequest(Request.Method.GET, url + "downvotes/" + mId, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("lyle", response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That GET didn't work");
-            }
-        });
+        holder.username.setText("By " + getUsernameById(uInfo, uId));
 
-        StringRequest upVotesRequest = new StringRequest(Request.Method.GET, url + "upvotes/" + mId, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("lyle", "UPVOTES: " + response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That GET didn't work");
-            }
-        });
+//        holder.mVotes.setText();
+        //get votes by message id
+
+  //      netVotes = 0;
+
+//        getUpVotes();
+//        getDownVotes();
+//        Log.d("YO", "VOTES HERE: " + netVotes);
+//        String votes = Integer.toString(netVotes);
 
 
-
-//        holder.mVotes.setText(votes + ""); //can only pass String
-        holder.mVotes.setText(-999 + ""); //can only pass String
+//        holder.mVotes.setText(votes); //can only pass String
 
 
         // Attach a click listener to the view we are configuring
@@ -146,55 +134,33 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
 
         });
-
-//        holder.delete.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("lyle", "DELETE ID: " + d.mIndex);
-//                StringRequest getRequest = new StringRequest(Request.Method.DELETE, url + "/" + d.mIndex, new Response.Listener<String>(){
-//                    @Override
-//                    public void onResponse(String response) {
-//                        Log.d("lyle", response);
-//                    }
-//                }, new Response.ErrorListener(){
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.e("lyle", "That delete didn't work");
-//                    }
-//                });
-//                Context context = MySingleton.getContext();
-//                MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
-//            }
-//        });
-
-
     }
 
-//    void sendGetRoute(int index){
-//        StringRequest getRequest = new StringRequest(Request.Method.GET, url + index, new Response.Listener<String>(){
-//            @Override
-//            public void onResponse(String response) {
-//                Log.d("lyle", response);
-//            }
-//        }, new Response.ErrorListener(){
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("lyle", "That get didn't work");
-//            }
-//        });
-//        Context context = MySingleton.getContext();
-//        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(getRequest);
-//    }
+    /**
+     * Helper method for GET function
+     *
+     * @param response string of JSON data obtained from Get
+     */
+    int getVoteCount(String response) {
+        int len = -999;
+        try {
+            Log.d("lyle", "Getting netVotes " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
+            JSONObject jsonObj = new JSONObject(response);
+            JSONArray json = jsonObj.getJSONArray("mData");
+            len = json.length();
+        } catch (final JSONException e) {
+            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
+        }
+        Log.d("lyle", "Successfully parsed JSON file.");
+        return len;
+    }
 
     void sendPutRoute(String voteInfo){
-        Log.d("lyle", "HERE");
-        //use index to find the right textview and change value/contents
-
         StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteInfo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("lyle", response);
-                //get value from response and place that value in the votes spot
+                //get value from response and place that value in the netVotes spot
 //                holder.mVotes.setText(
             }
         }, new Response.ErrorListener() {
@@ -222,6 +188,41 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         Context context = MySingleton.getContext();
         MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
     }
+
+
+
+//    void getUpVotes(){
+//        Log.d("lyle", "MID: " + mId);
+//        StringRequest upVotesRequest = new StringRequest(Request.Method.GET, url + "messages/upvotes/" + mId, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                netVotes = netVotes + getVoteCount(response);
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That GET didn't work");
+//            }
+//        });
+//    MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(upVotesRequest);
+//    }
+//
+//    void getDownVotes(){
+//        StringRequest downVotesRequest = new StringRequest(Request.Method.GET, url + "messages/downvotes/" + mId, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.d("lyle", response);
+//                int downVotes = getVoteCount(response);
+//                netVotes = netVotes - downVotes;
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.e("lyle", "That GET didn't work");
+//            }
+//        });
+//        MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(downVotesRequest);
+//    }
 
     interface ClickListener{
         void onClick(Datum d);
