@@ -1,5 +1,6 @@
 package edu.lehigh.cse216.lyle.backend;
 
+import edu.lehigh.cse216.lyle.backend.UpVoteDatabase.RowDataUpVote;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +38,11 @@ public class UpVoteDatabase {
      * A prepared statement for inserting into the database
      */
     private PreparedStatement mInsertOne;
+
+    /**
+     * A prepared statement for counting the number of rows in the database with the same message id
+     */
+    private PreparedStatement mCountUpVotes;
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -133,6 +139,7 @@ public class UpVoteDatabase {
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblUpVotes 
                         + " INNER JOIN " + MsgDatabase.getTblMessage() 
                         + " ON tblUpVotes.message_id = tblMessage.message_id WHERE tblMessage.message_id = ? ORDER BY tblMessage.message_id DESC");
+            db.mCountUpVotes = db.mConnection.prepareStatement("SELECT COUNT(message_id) FROM " + tblUpVotes + " WHERE message_id = ?");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -240,6 +247,52 @@ public class UpVoteDatabase {
         }
         return res;
     }
+
+    /**
+     * count number of upvotes for a specific message_id
+     * 
+     * @param message_id The message_id of the row
+     * 
+     * @return The number of rows that match this message_id
+     */
+    int countUpVotes(int message_id) {
+        ArrayList<RowDataUpVote> res = new ArrayList<RowDataUpVote>();
+        int count = 0;
+        System.out.println("count before: " + count);
+        try {
+            mCountUpVotes.setInt(1, message_id);
+            ResultSet rs = mCountUpVotes.executeQuery();
+            while (rs.next()) {
+                res.add(new RowDataUpVote(rs.getInt("user_id"), rs.getInt("message_id")));
+                count++;
+            }
+            //count = rs.getInt(1);
+            //count += mCountUpVotes.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("upvote count: " + count);
+        return count;
+    }
+
+    /**
+     * ArrayList<RowDataUpVote> selectMsgId(int message_id) {
+        ArrayList<RowDataUpVote> res = new ArrayList<RowDataUpVote>();
+        try {
+            mSelectMsgId.setInt(1, message_id);
+            ResultSet rs = mSelectMsgId.executeQuery();
+            while (rs.next()) {
+                res.add(new RowDataUpVote(rs.getInt("user_id"), rs.getInt("message_id")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+     */
 
     /**
      * Delete a row by ID
