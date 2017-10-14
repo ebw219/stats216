@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.content.Context.RECEIVER_VISIBLE_TO_INSTANT_APPS;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -94,7 +95,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         holder.username.setText("By " + byName);
 
-        holder.mVotes.setText("0");
+        int totVotes = 0;
+//        totVotes += //upvote count request
+
+        holder.mVotes.setText(totVotes + "");
         //get votes by message id
 
   //      netVotes = 0;
@@ -157,6 +161,21 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         }
         Log.d("lyle", "Successfully parsed JSON file.");
         return len;
+    }
+
+    String getVotes(String voteType, int mId){
+        StringRequest getVotes = new StringRequest(Request.Method.GET, url + "messages/" + voteType + "/" + mId, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("lyle", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("lyle", "That GET didn't work");
+            }
+        });
+        return "";
     }
 
     void sendPutRoute(String voteInfo){

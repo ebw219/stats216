@@ -36,6 +36,12 @@ public class LoginActivity extends AppCompatActivity{
         setContentView(R.layout.login);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+
+        if(sharedPref.getBoolean("logged in", true)){
+            //then login w/o issues
+        }
+
         final SharedPreferences.Editor editor = sharedPref.edit();
 //        editor.putInt(getString(R.string.saved_high_score), newHighScore);
 //        editor.commit();
