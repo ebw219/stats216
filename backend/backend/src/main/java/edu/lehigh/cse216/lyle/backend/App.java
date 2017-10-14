@@ -342,7 +342,7 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = comDatabase.insertRow(req.mId, req.mCom);
+		int newId = comDatabase.insertRow(req.uId, req.mId, req.mCom);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {

@@ -152,7 +152,7 @@ public class ComDatabase {
 
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblComment + " WHERE comment_id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblComment + " VALUES (default, default, ?, ?)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblComment + " VALUES (default, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblComment);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblComment + " WHERE comment_id = ?");
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
@@ -206,11 +206,12 @@ public class ComDatabase {
      * 
      * @return The number of rows that were inserted
      */
-    int insertRow(int message_id, String comment_text) {
+    int insertRow(int user_id, int message_id, String comment_text) {
         int count = 0;
         try {
-            mInsertOne.setInt(1, message_id);
-            mInsertOne.setString(2, comment_text);
+            mInsertOne.setInt(1, user_id);
+            mInsertOne.setInt(2, message_id);
+            mInsertOne.setString(3, comment_text);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
