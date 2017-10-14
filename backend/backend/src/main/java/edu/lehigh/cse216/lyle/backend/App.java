@@ -104,16 +104,23 @@ public class App {
 		//if (byUsername != null && byPassword != null && byUsername == byPassword) {
 		//if (check == true) {
 		if (byUsername != null) {
-			response.status(200);
-			response.type("application/json");
-			Random rand = new Random();
-			int randval = rand.nextInt();
-			if (randval <= 0) {
-				randval = randval*(-1);
+			int auth = userDatabase.selectAuth(username);
+			System.out.println("auth: " + auth);
+			if (auth == 0) {
+				return gson.toJson(new StructuredResponse("error", "unregistered user", null));
 			}
-			userhash.put(randval, username);
-			System.out.println("userhash: " + userhash);			
-			return gson.toJson(new StructuredResponse("ok", "" + randval, null));
+			 else {
+				response.status(200);
+				response.type("application/json");
+				Random rand = new Random();
+				int randval = rand.nextInt();
+				if (randval <= 0) {
+					randval = randval*(-1);
+				}
+				userhash.put(randval, username);
+				System.out.println("userhash: " + userhash);			
+				return gson.toJson(new StructuredResponse("ok", "" + randval, null));
+			}
 		} else {
 			return gson.toJson(new StructuredResponse("error", "incorrect username or password", null));
 		}

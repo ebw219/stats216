@@ -71,6 +71,12 @@ public class UserDatabase {
      * A prepared statement for getting a row in the user table for a specific password
     */
     private PreparedStatement mSelectUserPass;
+    
+    /**
+     * A prepared statement for geting the authentication value of a user (0 if not, 1 if valid)
+     */
+    private PreparedStatement mSelectAuth;
+
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -207,6 +213,7 @@ public class UserDatabase {
                                 + "ON tblUser.user_id = tblUpVotes.user_id WHERE tblUser.user_id = ? ORDER BY tblUser.user_id DESC");
             db.mSelectUsername = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE username = ?");
             db.mSelectUserPass = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE username = ? AND password = ?");
+            db.mSelectAuth = db.mConnection.prepareStatement("SELECT * FROM " + tblUser + " WHERE username = ?");
             
             
             /*db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
@@ -443,7 +450,7 @@ public class UserDatabase {
         try {
             mSelectUsername.setString(1, username);
             ResultSet rs = mSelectUsername.executeQuery();
-            System.out.println("dump: "+mSelectUsername.toString());
+            System.out.println("dump: " + mSelectUsername.toString());
             if (rs.next()) {
                 res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
             }
@@ -479,6 +486,35 @@ public class UserDatabase {
             return false;
         }
     }
+
+    /**
+     * Get authorization value for a specific row by username (0 if not, 1 if valid)
+     * 
+     * @param username The username of the row
+     * 
+     * @return The value of the authentication
+     */
+    int selectAuth(String username) {
+        int auth = 0;
+        RowDataUser res = null;
+        try {
+            mSelectAuth.setString(1, username);
+            ResultSet rs = mSelectAuth.executeQuery();
+            if (rs.next()) {
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
+                auth += rs.getInt("auth");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return auth;
+    }
+
+    /**
+     * ResultSet rs = statement.getResultSet();
+	rs.next();
+	result = rs.getInt(1);
+     */
 
     /**
      * Delete a row by ID
