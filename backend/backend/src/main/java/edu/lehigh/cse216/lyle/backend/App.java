@@ -39,9 +39,6 @@ public class App {
 	final UpVoteDatabase upVoteDatabase = UpVoteDatabase.getUpVoteDatabase(getDatabaseUrl()); //for tblusers
 	final DownVoteDatabase downVoteDatabase = DownVoteDatabase.getDownVoteDatabase(getDatabaseUrl()); //for tblusers
 	
-	//create hashmap to store usernames and key values
-	HashMap<Integer, String> userhash = new HashMap<Integer, String>();	
-	
 	/*if (!database.tableDoesExist()) {
 		System.out.println("Made it in to table doesn't exist");
 		database.createTable();
@@ -66,9 +63,6 @@ public class App {
 		return "";
 	    });
 
-
-	//GET route that puts username and password into the users table
-
 	//GET route for user by username
 	/**Spark.get("/login/:username", (request, response) -> {
 		String idx = request.params("username");
@@ -84,7 +78,8 @@ public class App {
 		});*/
 	//	/route/route/:Param?userid==&key==   --> a better way to do requests
 
-
+	//create hashmap to store usernames and key values
+	HashMap<Integer, String> userhash = new HashMap<Integer, String>();	
 
 	//user inputs username and password, select row in tbluser using each, compare the two rows
 	//if same, let user in. if not, return error
@@ -375,7 +370,10 @@ public class App {
 		int newId = userDatabase.insertRow(username, realname, email, password);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
-		} else {
+		} else if (newId == -2) {
+			return gson.toJson(new StructuredResponse("error", "username taken", null));
+		}
+		else {
 		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
 		}
 		});

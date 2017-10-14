@@ -275,16 +275,28 @@ public class UserDatabase {
     int insertRow(String username, String realname, String email, String password) {
         int count = 0;
         int auth = 0;
+        RowDataUser res = null;
+        ResultSet rs = null;
         try {
-            salt = SaltRegister.getSalt();
-            byte[] pass = SaltRegister.saltReg(password.getBytes());            
-            mInsertOne.setString(1, username);
-            mInsertOne.setString(2, realname);
-            mInsertOne.setString(3, email);
-            mInsertOne.setBytes(4, salt);
-            mInsertOne.setBytes(5, pass);
-            mInsertOne.setInt(6, auth);
-            count += mInsertOne.executeUpdate();
+            mSelectUsername.setString(1, username);
+            rs = mSelectUsername.executeQuery();
+            if (rs.next()) {
+                res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
+                if (username.equals(rs.getString("username"))) {
+                    count = -2;
+                    return count;
+                }
+            } else {
+                salt = SaltRegister.getSalt();
+                byte[] pass = SaltRegister.saltReg(password.getBytes());            
+                mInsertOne.setString(1, username);
+                mInsertOne.setString(2, realname);
+                mInsertOne.setString(3, email);
+                mInsertOne.setBytes(4, salt);
+                mInsertOne.setBytes(5, pass);
+                mInsertOne.setInt(6, auth);
+                count += mInsertOne.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
