@@ -1,7 +1,9 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -33,6 +35,11 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt(getString(R.string.saved_high_score), newHighScore);
+//        editor.commit();
+
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +55,8 @@ public class LoginActivity extends AppCompatActivity{
                                 Log.d("lyle", "LOGIN ATTEMPT");
                                 Log.d("lyle", response);
                                 if(loginSuccess(response)) {
+                                    editor.putBoolean("logged in", true);
+                                    editor.commit();
                                     Intent input = new Intent(getApplicationContext(), MainActivity.class);
                                     input.putExtra("label_contents", "Login");
                                     input.putExtra("username", username);
