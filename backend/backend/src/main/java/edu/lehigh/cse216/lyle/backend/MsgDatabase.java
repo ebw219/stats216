@@ -132,7 +132,7 @@ public class MsgDatabase {
         try {
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblMessage + " WHERE message_id = ?");
-            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblMessage + " VALUES (default, default, ?, ?)");
+            db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblMessage + " VALUES (default, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblMessage + " WHERE message_id = ?");
             db.mSelectUserId = db.mConnection.prepareStatement("SELECT * " + tblMessage + " WHERE user_id = ?");
@@ -180,16 +180,18 @@ public class MsgDatabase {
     /**
      * Insert a row into the database
      * 
+     * @param user_id The user id for this new row
      * @param title The title for this new row
      * @param body The message body for this new row
      * 
      * @return The number of rows that were inserted
      */
-    int insertRow(String title, String body) {
+    int insertRow(int user_id, String title, String body) {
         int count = 0;
         try {
-            mInsertOne.setString(1, title);
-            mInsertOne.setString(2, body);
+            mInsertOne.setInt(1, user_id);
+            mInsertOne.setString(2, title);
+            mInsertOne.setString(3, body);
             count += mInsertOne.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

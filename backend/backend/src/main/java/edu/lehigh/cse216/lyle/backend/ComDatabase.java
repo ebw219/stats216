@@ -201,6 +201,7 @@ public class ComDatabase {
     /**
      * Insert a row into the database
      * 
+     * @param user_id The user id for this new row
      * @param comment_text The comment for this new row
      * @param message_id The message id for this comment
      * 

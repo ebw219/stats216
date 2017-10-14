@@ -322,7 +322,7 @@ public class App {
 			return gson.toJson(new StructuredResponse("error", "message needs a body", null));
 		}
 		// NB: createEntry checks for null title and message
-		int newId = msgDatabase.insertRow(req.mTitle, req.mBody);
+		int newId = msgDatabase.insertRow(req.uId, req.mTitle, req.mBody);
 		if (newId == -1) {
 		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
 		} else {
