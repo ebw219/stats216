@@ -31,10 +31,18 @@ public class MainActivity extends AppCompatActivity {
     static RecyclerView rv;
     static ItemListAdapter adapter;
     String currentUsername;
+    String rand_val;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        Intent res = getIntent();
+        currentUsername = res.getStringExtra("username");
+        Log.d("lyle", "getting currentusername " + currentUsername);
+        rand_val = res.getStringExtra("rand_val");
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -64,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent input = new Intent(getApplicationContext(), NewMessageActivity.class);
                 input.putExtra("label_contents", "Add new message");
+                String uid = getUIdByUsername(mUsers, currentUsername) + "";
+                input.putExtra("uid", uid);
                 startActivityForResult(input, 789);
             }
 
@@ -73,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final StringRequest logout = new StringRequest(Request.Method.POST, logoutUrl + getUIdByUsername(mUsers, currentUsername),
+                final StringRequest logout = new StringRequest(Request.Method.POST, logoutUrl + currentUsername + "/" + rand_val,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -89,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 MySingleton.getInstance(getApplicationContext()).addToRequestQueue(logout);
+                finish();
             }
         });
 
@@ -109,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(resultCode == 123){
-            Intent res = getIntent();
-            currentUsername = res.getStringExtra("username");
-        }
+        Intent res = getIntent();
+        currentUsername = res.getStringExtra("username");
+        Log.d("lyle", "getting currentusername " + currentUsername);
+        rand_val = res.getStringExtra("rand_val");
         mData.clear();
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
     }
@@ -155,11 +166,11 @@ public class MainActivity extends AppCompatActivity {
                 int message_id = json.getJSONObject(i).getInt("mId");
                 int user_id = json.getJSONObject(i).getInt("uId");
                 String title = json.getJSONObject(i).getString("mTitle");
-                String message = "";
+                String message = " ";
                 try {
                     message = json.getJSONObject(i).getString("mBody");
                 } catch (final JSONException e) {
-
+                    Log.e("lyle", e.getMessage());
                 }
 //                int netVotes = json.getJSONObject(i).getInt("mVote");
                 mData.add(new Datum(user_id, message_id, title, message));
@@ -283,7 +294,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     static int getUIdByUsername(ArrayList<UserInfo> mUsers, String username){
+        Log.d("lyle", "GIVEN USERNAME: " + username);
         for(int i = 0; i < mUsers.size(); i++){
+            Log.d("lyle", "LOOKING AT: " + mUsers.get(i).username);
             if(mUsers.get(i).username.equals(username)){
                 return mUsers.get(i).uId;
             }

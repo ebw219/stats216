@@ -31,10 +31,12 @@ public class NewMessageActivity extends AppCompatActivity {
         setContentView(R.layout.new_message);
 
         Intent input = getIntent();
+        final String currentUId = input.getStringExtra("uid");
+
+        Log.d("lyle", "CURRENT ID: " + currentUId);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         final String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
-
 
         Button bCancel = (Button) findViewById(R.id.cancelButton);
         Button bSubmit = (Button) findViewById(R.id.submitButton);
@@ -68,6 +70,7 @@ public class NewMessageActivity extends AppCompatActivity {
                         @Override
                         public byte[] getBody() throws AuthFailureError {
                             HashMap<String, String> params = new HashMap<String, String>();
+                            params.put("uId", currentUId);//pass uId
                             params.put("mTitle", title.getText().toString());
                             params.put("mBody", message.getText().toString());
                             Log.d("lyle", new JSONObject(params).toString());
@@ -76,7 +79,6 @@ public class NewMessageActivity extends AppCompatActivity {
 
                     };
                     queue.add(newReq);
-
                     i.putExtra("result", title.getText().toString());
                     setResult(Activity.RESULT_OK, i);
                     finish();

@@ -17,4 +17,9 @@ public class UserInfo {
         this.realName = realName;
     }
 
+    @Override
+    public String toString(){
+        return "\tuId: " + uId + ", username: " + username + ", realname: " + realName;
+    }
+
 }

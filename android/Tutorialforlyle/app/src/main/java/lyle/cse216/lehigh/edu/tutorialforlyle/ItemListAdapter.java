@@ -88,9 +88,13 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         uId = d.user_id;
         mId = d.message_id;
 
-        holder.username.setText("By " + getUsernameById(uInfo, uId));
+        String byName = getUsernameById(uInfo, uId);
 
-//        holder.mVotes.setText();
+        Log.d("lyle", "USERNAME: " + byName);
+
+        holder.username.setText("By " + byName);
+
+        holder.mVotes.setText("0");
         //get votes by message id
 
   //      netVotes = 0;

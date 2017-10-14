@@ -54,7 +54,7 @@ String url = "https://sleepy-dusk-34987.herokuapp.com/users";
                 } else if(username.isEmpty() || realName.isEmpty() || email.isEmpty() || password.isEmpty()){
                     findViewById(R.id.invalidField).setVisibility(View.VISIBLE);
                 } else {
-                    StringRequest newReq = new StringRequest(Request.Method.POST, url + "/" + username + "/" + realName + "/" + email, new Response.Listener<String>() {
+                    StringRequest newReq = new StringRequest(Request.Method.POST, url + "/" + username + "/" + realName + "/" + email + "/" + password, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             Log.d("lyle", response);

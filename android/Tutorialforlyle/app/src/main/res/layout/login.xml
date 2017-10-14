@@ -64,7 +64,7 @@
         android:layout_below="@+id/createUserButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="Successfully created user. You will receive an email containing your password shortly."
+        android:text="Successfully created user. You will receive a confirmation email shortly."
         android:textAlignment="center"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="20sp"
