@@ -132,11 +132,11 @@ public class App {
 			response.type("application/json");
 			System.out.println("key and val are true");
 			System.out.println("userhash Before: " + userhash);			
-			userhash.remove(key);
+			userhash.remove(randval);
 			System.out.println("userhash After: " + userhash);
 			return gson.toJson(new StructuredResponse("ok", "You have logged out.", null));
 		} else {
-			return gson.toJson(new StructuredResponse("error", "i have no idea whats wrong", null));
+			return gson.toJson(new StructuredResponse("error", "incorrect username or key", null));
 		}
 	});
 
