@@ -284,6 +284,15 @@ public class App {
 		response.type("application/json");
 		return upVoteDatabase.countUpVotes(idx);
 		});
+
+	//GET route for number of downvotes per message, using count
+	Spark.get("/messages/downvotescount/:message_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("message_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return downVoteDatabase.countDownVotes(idx);
+		});
 		
 	//GET route for upvotes by user, using join
 	Spark.get("/messages/upvotes/:user_id", (request, response) -> {

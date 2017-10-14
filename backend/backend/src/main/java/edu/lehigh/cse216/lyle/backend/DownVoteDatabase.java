@@ -39,6 +39,11 @@ public class DownVoteDatabase {
     private PreparedStatement mInsertOne;
 
     /**
+     * A prepared statement for counting the number of rows in the database with the same message id
+     */
+    private PreparedStatement mCountDownVotes;
+
+    /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
      * represents the data we'd see in a row.
@@ -123,6 +128,7 @@ public class DownVoteDatabase {
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblDownVotes 
                         + " INNER JOIN " + MsgDatabase.getTblMessage() 
                         + " ON tblDownVotes.message_id = tblMessage.message_id WHERE tblMessage.message_id = ? ORDER BY tblMessage.message_id DESC");
+            db.mCountDownVotes = db.mConnection.prepareStatement("SELECT COUNT(message_id) FROM " + tblDownVotes + " WHERE message_id = ?");            
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -229,6 +235,28 @@ public class DownVoteDatabase {
             e.printStackTrace();
         }
         return res;
+    }
+
+    /**
+     * count number of downvotes for a specific message_id
+     * 
+     * @param message_id The message_id of the row
+     * 
+     * @return The number of rows that match this message_id
+     */
+    int countDownVotes(int message_id) {
+        ArrayList<RowDataDownVote> res = new ArrayList<RowDataDownVote>();
+        int count = 0;
+        try {
+            mCountDownVotes.setInt(1, message_id);
+            ResultSet rs = mCountDownVotes.executeQuery();
+            while (rs.next()) {
+                count += rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
     }
 
     /**
