@@ -279,13 +279,10 @@ public class App {
 	//GET route for number of upvotes per message, using count
 	Spark.get("/messages/upvotes/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
-		System.out.println("message id: " + idx);
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		System.out.println("final count: " + upVoteDatabase.countUpVotes(idx));
 		return upVoteDatabase.countUpVotes(idx);
-		//return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.countUpVotes(idx)));
 		});
 		
 	//GET route for upvotes by user, using join

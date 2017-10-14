@@ -258,20 +258,15 @@ public class UpVoteDatabase {
     int countUpVotes(int message_id) {
         ArrayList<RowDataUpVote> res = new ArrayList<RowDataUpVote>();
         int count = 0;
-        System.out.println("count before: " + count);
         try {
             mCountUpVotes.setInt(1, message_id);
             ResultSet rs = mCountUpVotes.executeQuery();
             while (rs.next()) {
-                res.add(new RowDataUpVote(rs.getInt("user_id"), rs.getInt("message_id")));
-                count++;
+                count += rs.getInt(1);
             }
-            //count = rs.getInt(1);
-            //count += mCountUpVotes.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("upvote count: " + count);
         return count;
     }
 
