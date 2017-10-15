@@ -277,7 +277,7 @@ public class App {
 		});
 
 	//GET route for number of upvotes per message, using count
-	Spark.get("/messages/upvotes/:message_id", (request, response) -> {
+	Spark.get("/messages/upvotescount/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);

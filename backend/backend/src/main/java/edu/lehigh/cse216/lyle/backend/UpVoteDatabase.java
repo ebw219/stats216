@@ -271,25 +271,6 @@ public class UpVoteDatabase {
     }
 
     /**
-     * ArrayList<RowDataUpVote> selectMsgId(int message_id) {
-        ArrayList<RowDataUpVote> res = new ArrayList<RowDataUpVote>();
-        try {
-            mSelectMsgId.setInt(1, message_id);
-            ResultSet rs = mSelectMsgId.executeQuery();
-            while (rs.next()) {
-                res.add(new RowDataUpVote(rs.getInt("user_id"), rs.getInt("message_id")));
-            }
-            Collections.reverse(res);
-            rs.close();
-            return res;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-     */
-
-    /**
      * Delete a row by ID
      * 
      * @param user_id
