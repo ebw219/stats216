@@ -45,11 +45,6 @@ public class UpVoteDatabase {
     private PreparedStatement mCountUpVotes;
 
     /**
-     * A prepared statement for getting the messages upvoted by user
-     */
-    private PreparedStatement mSelectUpVotesMsg;
-
-    /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
      * represents the data we'd see in a row.
@@ -145,9 +140,7 @@ public class UpVoteDatabase {
                         + " INNER JOIN " + MsgDatabase.getTblMessage() 
                         + " ON tblUpVotes.message_id = tblMessage.message_id WHERE tblMessage.message_id = ? ORDER BY tblMessage.message_id DESC");
             db.mCountUpVotes = db.mConnection.prepareStatement("SELECT COUNT(message_id) FROM " + tblUpVotes + " WHERE message_id = ?");
-            /*db.mSelectUpVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblUpVotes
-                        + " INNER JOIN " + MsgDatabase.getTblMessage()
-                        + "ON tblUpVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");*/
+            
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
             e.printStackTrace();
@@ -276,31 +269,6 @@ public class UpVoteDatabase {
         }
         return count;
     }
-
-    /**
-     * Query database for all messages upvoted by a specific user, using a JOIN sql statement
-     * 
-     * @param user_id The id of the message
-     * 
-     * @return The data for row that match as an ArrayList
-     */
-    /*ArrayList<RowDataUpVote> selectUpVotesMsg(int message_id) {
-        ArrayList<RowDataUpVote> res = new ArrayList<RowDataUpVote>();
-        try {
-            mSelectUpVotesMsg.setInt(1, message_id);
-            ResultSet rs = mSelectUpVotesMsg.executeQuery();
-            System.out.println("mSelectUpVotesMsg: " + rs);
-            while (rs.next()) {
-                res.add(new RowDataUpVote(rs.getInt("user_id"), rs.getInt("message_id")));
-            }
-            Collections.reverse(res);
-            rs.close();
-            return res;
-        } catch (SQLException e){
-            e.printStackTrace();
-            return null;
-        }
-    }*/
 
     /**
      * Delete a row by ID

@@ -49,6 +49,11 @@ public class MsgDatabase {
     private PreparedStatement mSelectUpVotesMsg;
 
     /**
+     * A prepared statement for getting the messages downvoted by user
+     */
+    private PreparedStatement mSelectDownVotesMsg;
+
+    /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
      * represents the data we'd see in a row.
@@ -145,6 +150,12 @@ public class MsgDatabase {
             db.mSelectUpVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage 
                         + " INNER JOIN " + UpVoteDatabase.getTblUpVote() 
                         + " ON tblUpVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");
+            db.mSelectDownVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage
+                        + " INNER JOIN " + DownVoteDatabase.getTblDownVote()
+                        + " ON tblDownVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER by tblMessage.message_id DESC");
+                        // db.mSelectDownVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage 
+                        // + " INNER JOIN " + DownVoteDatabase.getTblDownVote() 
+                        // + " ON tblDownVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -283,7 +294,30 @@ public class MsgDatabase {
         try {
             mSelectUpVotesMsg.setInt(1, user_id);
             ResultSet rs = mSelectUpVotesMsg.executeQuery();
-            System.out.println("mSelectUpVotesMsg: " + rs);
+            while (rs.next()) {
+                res.add(new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Query database for all messages downvoted by a specific user, using a JOIN sql statement
+     * 
+     * @param user_id The id of the message
+     * 
+     * @return The data for row that match as an ArrayList
+     */
+    ArrayList<RowDataMsg> selectDownVotesMsg(int user_id) {
+        ArrayList<RowDataMsg> res = new ArrayList<RowDataMsg>();
+        try {
+            mSelectDownVotesMsg.setInt(1, user_id);
+            ResultSet rs = mSelectDownVotesMsg.executeQuery();
             while (rs.next()) {
                 res.add(new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body")));
             }
