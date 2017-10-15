@@ -20,7 +20,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static android.content.Context.RECEIVER_VISIBLE_TO_INSTANT_APPS;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
@@ -53,17 +52,17 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> mData;
     private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> uInfo;
-    private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> mVotes;
+    private ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> mVotesList;
     private LayoutInflater mLayoutInflater;
 
-    int uId;
-    int mId;
+    private int uId;
+    private int mId;
 
 
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> votes) {
         mData = data;
         uInfo = users;
-        mVotes = votes;
+        mVotesList = votes;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -95,21 +94,21 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         holder.username.setText("By " + byName);
 
-        int totVotes = 0;
-//        totVotes += //upvote count request
+        String totVotes = "0";
+
+        totVotes = getVotes("upvotes", mId);
 
         holder.mVotes.setText(totVotes + "");
         //get votes by message id
 
-  //      netVotes = 0;
+        //      netVotes = 0;
 
 //        getUpVotes();
 //        getDownVotes();
-//        Log.d("YO", "VOTES HERE: " + netVotes);
 //        String votes = Integer.toString(netVotes);
 
 
-//        holder.mVotes.setText(votes); //can only pass String
+//        holder.mVotesList.setText(votes); //can only pass String
 
 
         // Attach a click listener to the view we are configuring
@@ -163,11 +162,13 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         return len;
     }
 
-    String getVotes(String voteType, int mId){
+    private String resp = "0";
+    String getVotes(String voteType, final int mId){
         StringRequest getVotes = new StringRequest(Request.Method.GET, url + "messages/" + voteType + "/" + mId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("lyle", response);
+                Log.d("lyle", "ID: " + mId + "\tRESP: " + response);
+                resp = response;
             }
         }, new Response.ErrorListener() {
             @Override
@@ -175,7 +176,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 Log.e("lyle", "That GET didn't work");
             }
         });
-        return "";
+        MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(getVotes);
+        return resp;
     }
 
     void sendPutRoute(String voteInfo){
@@ -184,7 +186,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             public void onResponse(String response) {
                 Log.d("lyle", response);
                 //get value from response and place that value in the netVotes spot
-//                holder.mVotes.setText(
+//                holder.mVotesList.setText(
             }
         }, new Response.ErrorListener() {
             @Override
