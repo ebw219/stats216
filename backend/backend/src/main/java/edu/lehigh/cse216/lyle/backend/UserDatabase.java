@@ -147,6 +147,10 @@ public class UserDatabase {
     private UserDatabase() {
     }
 
+    public static String getTblUser() {
+        return tblUser;
+    }
+
     /**
      * Get a fully-configured connection to the database
      * 

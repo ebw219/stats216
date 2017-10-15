@@ -195,26 +195,6 @@ public class App {
 		    return gson.toJson(new StructuredResponse("ok", null, data));
 		}
 		});
-
-	// GET route that returns everything for a single row in the database.
-	// The ":id" suffix in the first parameter to get() becomes
-	// request.params("id"), so that we can get the requested row ID.  If
-	// ":id" isn't a number, Spark will reply with a status 500 Internal
-	// Server Error.  Otherwise, we have an integer, and the only possible
-	// error is that it doesn't correspond to a row with data.
-	//gets from the message table
-	Spark.get("/messages/:message_id", (request, response) -> {
-		int idx = Integer.parseInt(request.params("message_id"));
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		MsgDatabase.RowDataMsg data = msgDatabase.selectOne(idx);
-		if (data == null) {
-		    return gson.toJson(new StructuredResponse("error", idx + " not found", null));
-		} else {
-		    return gson.toJson(new StructuredResponse("ok", null, data));
-		}
-		});
 		
 	//GET route for comments by id
 	Spark.get("/comments/:comment_id", (request, response) -> {
@@ -249,6 +229,7 @@ public class App {
 		});*/
 
 	//GET route for upvotes by message and user, using join
+	//I don't think this route is needed
 	Spark.get("/messages/upvotes/:user_id/:message_id", (request, response) -> {
 		int user_id = Integer.parseInt(request.params("user_id"));
 		int message_id = Integer.parseInt(request.params("message_id"));
@@ -259,6 +240,7 @@ public class App {
 		});
 
 	//GET route for downvotes by message, using join
+	//I don't think this route is needed
 	Spark.get("/messages/downvotes/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -300,7 +282,7 @@ public class App {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
 		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectUpVotes(idx)));
+		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectUpVotesMsg(idx)));
 		});
 
 	//GET route for downvotes by user, using join

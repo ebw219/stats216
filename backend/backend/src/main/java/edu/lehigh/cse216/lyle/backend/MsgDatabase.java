@@ -44,6 +44,11 @@ public class MsgDatabase {
     private PreparedStatement mSelectUserId;
 
     /**
+     * A prepared statement for getting the messages upvoted by user
+     */
+    private PreparedStatement mSelectUpVotesMsg;
+
+    /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
      * represents the data we'd see in a row.
@@ -137,6 +142,9 @@ public class MsgDatabase {
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblMessage + " WHERE message_id = ?");
             db.mSelectUserId = db.mConnection.prepareStatement("SELECT * " + tblMessage + " WHERE user_id = ?");
                 //i think selectuserid should be a join statement
+            db.mSelectUpVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage
+                        + " INNER JOIN " + UpVoteDatabase.getTblUpVote()
+                        + "ON tblUpVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -261,6 +269,31 @@ public class MsgDatabase {
             e.printStackTrace();
         }
         return res;
+    }
+
+    /**
+     * Query database for all messages upvoted by a specific user, using a JOIN sql statement
+     * 
+     * @param user_id The id of the message
+     * 
+     * @return The data for row that match as an ArrayList
+     */
+    ArrayList<RowDataMsg> selectUpVotesMsg(int user_id) {
+        ArrayList<RowDataMsg> res = new ArrayList<RowDataMsg>();
+        try {
+            mSelectUpVotesMsg.setInt(1, user_id);
+            ResultSet rs = mSelectUpVotesMsg.executeQuery();
+            System.out.println("mSelectUpVotesMsg: " + rs);
+            while (rs.next()) {
+                res.add(new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body")));
+            }
+            Collections.reverse(res);
+            rs.close();
+            return res;
+        } catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
