@@ -41,7 +41,7 @@ public class MsgDatabase {
     /**
      * A prepared statement for getting all the rows in the database with the same user id
      */
-    private PreparedStatement mSelectUserId;
+    private PreparedStatement mSelectMsgUserId;
 
     /**
      * A prepared statement for getting the messages upvoted by user
@@ -52,6 +52,11 @@ public class MsgDatabase {
      * A prepared statement for getting the messages downvoted by user
      */
     private PreparedStatement mSelectDownVotesMsg;
+
+    /**
+     * A prepared statement for getting the messages posted by a specific user
+     */
+    private PreparedStatement mSelectByUser;
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -144,18 +149,14 @@ public class MsgDatabase {
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblMessage + " WHERE message_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblMessage + " VALUES (default, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage);
-            db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblMessage + " WHERE message_id = ?");
-            db.mSelectUserId = db.mConnection.prepareStatement("SELECT * " + tblMessage + " WHERE user_id = ?");
-                //i think selectuserid should be a join statement
+            db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage + " WHERE message_id = ?");
+            db.mSelectMsgUserId = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage + " WHERE user_id = ?");
             db.mSelectUpVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage 
                         + " INNER JOIN " + UpVoteDatabase.getTblUpVote() 
                         + " ON tblUpVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");
             db.mSelectDownVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage
                         + " INNER JOIN " + DownVoteDatabase.getTblDownVote()
                         + " ON tblDownVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER by tblMessage.message_id DESC");
-                        // db.mSelectDownVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage 
-                        // + " INNER JOIN " + DownVoteDatabase.getTblDownVote() 
-                        // + " ON tblDownVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -239,22 +240,24 @@ public class MsgDatabase {
         }
     }
 
-    //DOES THIS NEED TO BE AN ARRAYLIST
     /**
-     * Get all data for a specific row, by user ID
+     * Get all messages for a specific user ID
      * 
      * @param user_id The id of the row being requested
      * 
      * @return The data for the requested row, or null if the ID was invalid
      */
-    RowDataMsg selectUserId(int user_id) {
-        RowDataMsg res = null;
+    ArrayList<RowDataMsg> selectMsgUserId(int user_id) {
+        ArrayList<RowDataMsg> res = new ArrayList<RowDataMsg>();
         try {
-            mSelectUserId.setInt(1, user_id);
-            ResultSet rs = mSelectUserId.executeQuery();
-            if (rs.next()) {
-                res = new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body"));
+            mSelectMsgUserId.setInt(1, user_id);
+            ResultSet rs = mSelectMsgUserId.executeQuery();
+            while (rs.next()) {
+                res.add(new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body")));
             }
+            Collections.reverse(res);
+            rs.close();
+            return res;
         } catch (SQLException e) {
             e.printStackTrace();
         }
