@@ -447,6 +447,10 @@ public class UserDatabase {
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
                 res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
+                System.out.println("realname: " + rs.getString("realname"));
+                System.out.println("email: " + rs.getString("email"));
+                System.out.println("salt: " + rs.getBytes("salt"));
+                System.out.println("password: " + rs.getBytes("password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

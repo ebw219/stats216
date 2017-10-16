@@ -182,7 +182,21 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll()));
 		});
 
-	//gets from the message table
+	//GET route for users table by user id
+	Spark.get("/users/:user_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("user_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		UserDatabase.RowDataUser data = userDatabase.selectOne(idx);
+		if (data == null) {
+			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+		} else {
+			return gson.toJson(new StructuredResponse("ok", null, data));
+		}
+		});
+
+	//gets from the message table by message table
 	Spark.get("/messages/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
