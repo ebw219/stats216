@@ -150,7 +150,7 @@ public class MsgDatabase {
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblMessage + " VALUES (default, ?, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage + " WHERE message_id = ?");
-            db.mSelectMsgUserId = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage + " WHERE user_id = ?");
+            db.mSelectMsgUserId = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage + " WHERE user_id = ? ORDER BY message_id DESC");
             db.mSelectUpVotesMsg = db.mConnection.prepareStatement("SELECT * FROM " + tblMessage 
                         + " INNER JOIN " + UpVoteDatabase.getTblUpVote() 
                         + " ON tblUpVotes.user_id = tblMessage.user_id WHERE tblMessage.user_id = ? ORDER BY tblMessage.message_id DESC");

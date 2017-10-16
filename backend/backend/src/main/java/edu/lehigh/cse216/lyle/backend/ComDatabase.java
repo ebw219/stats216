@@ -44,10 +44,11 @@ public class ComDatabase {
      * A prepared statement for getting all the comments for a specific message
      */
     private PreparedStatement mSelectMsgId;
+
     /**
      * A prepared statement for getting all the rows in the database with the same user id
      */
-    private PreparedStatement mSelectUserId;
+    private PreparedStatement mSelectComUserId;
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -158,6 +159,7 @@ public class ComDatabase {
             db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
                     + " INNER JOIN " + MsgDatabase.getTblMessage() 
                     + " ON tblComments.message_id = tblMessage.message_id WHERE tblMessage.message_id = ? ORDER BY comment_id DESC");
+            db.mSelectComUserId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment + " WHERE user_id = ? ORDER BY comment_id DESC");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -274,11 +276,11 @@ public class ComDatabase {
      * 
      * @return The data for the requested row, or null if the ID was invalid
      */
-    ArrayList<RowDataCom> selectUserId(int user_id) {
+    ArrayList<RowDataCom> selectComUserId(int user_id) {
         ArrayList<RowDataCom> res = new ArrayList<RowDataCom>();
         try {
-            mSelectUserId.setInt(1, user_id);
-            ResultSet rs = mSelectUserId.executeQuery();
+            mSelectComUserId.setInt(1, user_id);
+            ResultSet rs = mSelectComUserId.executeQuery();
             while (rs.next()) {
                 res.add(new RowDataCom(rs.getInt("comment_id"), rs.getInt("user_id"), rs.getInt("message_id"), rs.getString("comment_text")));
             }

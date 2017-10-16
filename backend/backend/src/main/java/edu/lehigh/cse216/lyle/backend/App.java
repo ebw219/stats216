@@ -303,6 +303,15 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectMsgUserId(idx)));
 		});
 
+	//GET route for comments by user
+	Spark.get("/comments/users/:user_id", (request, response) -> {
+		int idx = Integer.parseInt(request.params("user_id"));
+		// ensure status 200 OK, with a MIME type of JSON
+		response.status(200);
+		response.type("application/json");
+		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectComUserId(idx)));
+		});
+
 	// POST route for adding a new element to the database.  This will read
 	// JSON from the body of the request, turn it into a SimpleRequest
 	// object, extract the title and message, insert them, and return the
