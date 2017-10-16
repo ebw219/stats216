@@ -3,6 +3,7 @@ package edu.lehigh.cse216.lyle.backend;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import com.mockrunner.jdbc.StatementResultSetHandler;
 
 import spark.Spark;
 
@@ -48,6 +49,19 @@ public class MsgDatabaseTest extends TestCase {
 
 //res.add(new RowDataMsg(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"), rs.getString("body")));
 
+    }
+    */
+
+
+    /*
+    private void prepareEmptyResultSet()
+    {
+        MockConnection connection = 
+            getJDBCMockObjectFactory().getMockConnection();
+        StatementResultSetHandler statementHandler = 
+            connection.getStatementResultSetHandler();
+        MockResultSet result = statementHandler.createResultSet();
+        statementHandler.prepareGlobalResultSet(result);
     }
     */
 
