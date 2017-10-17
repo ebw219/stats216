@@ -80,7 +80,7 @@ class EditEntryForm {
         // listing of messages
         if (data.mStatus === "ok") {
             editEntryForm.clearForm();
-            ElementList.refresh();
+            mainList.refresh();
         }
         // Handle explicit errors with a detailed popup message
         else if (data.mStatus === "error") {
