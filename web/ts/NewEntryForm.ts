@@ -44,6 +44,17 @@ class NewEntryForm {
         $("#" + NewEntryForm.NAME + "-message").val("");
         $("#" + NewEntryForm.NAME).modal("hide");
     }
+/**
+     * Show the NewEntryForm.  Be sure to clear its fields, because there are
+     * ways of making a Bootstrap modal disapper without clicking Close, and
+     * we haven't set up the hooks to clear the fields on the events associated
+     * with those ways of making the modal disappear.
+     */
+    public static show() {
+        $("#" + NewEntryForm.NAME + "-title").val("");
+        $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME).modal("show");
+    }
 
 
     /**
