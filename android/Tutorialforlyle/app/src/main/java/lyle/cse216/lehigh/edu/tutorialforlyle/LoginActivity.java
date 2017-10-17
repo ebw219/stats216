@@ -28,31 +28,32 @@ import java.util.HashMap;
  * Phase 3
  */
 
+
 public class LoginActivity extends AppCompatActivity{
+    String username;
     String url = "https://sleepy-dusk-34987.herokuapp.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
+        Log.d("lyle", "SHARED PREF: " + SaveSharedPreference.getUserName(LoginActivity.this));
 
-        if(sharedPref.getBoolean("logged in", true)){
-            //then login w/o issues
-        }
-
-        final SharedPreferences.Editor editor = sharedPref.edit();
-//        editor.putInt(getString(R.string.saved_high_score), newHighScore);
-//        editor.commit();
-
+//        if(SaveSharedPreference.getUserName(LoginActivity.this).length() == 0) {
+//            Intent input = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivityForResult(input, 789);
+//        }
+//        else {
+//            // Stay at the current activity.
+//        }
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("lyle", "CLICKED LOGIN");
 
-                final String username = ((TextView) findViewById(R.id.username)).getText().toString();
+                username = ((TextView) findViewById(R.id.username)).getText().toString();
                 String password = ((TextView) findViewById(R.id.password)).getText().toString();
                 StringRequest login = new StringRequest(Request.Method.POST, url + "login/" + username + "/" + password,
                         new Response.Listener<String>() {
@@ -61,12 +62,12 @@ public class LoginActivity extends AppCompatActivity{
                                 Log.d("lyle", "LOGIN ATTEMPT");
                                 Log.d("lyle", response);
                                 if(loginSuccess(response)) {
-                                    editor.putBoolean("logged in", true);
-                                    editor.commit();
                                     Intent input = new Intent(getApplicationContext(), MainActivity.class);
                                     input.putExtra("label_contents", "Login");
                                     input.putExtra("username", username);
                                     input.putExtra("rand_val", randVal(response));
+                                    SaveSharedPreference.setUserName(getApplicationContext(), username);
+                                    SaveSharedPreference.setRandVal(getApplicationContext(), randVal(response));
                                     startActivityForResult(input, 123);
                                 } else {
                                     findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);

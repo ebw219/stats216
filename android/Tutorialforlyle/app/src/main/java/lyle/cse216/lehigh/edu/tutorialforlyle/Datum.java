@@ -14,7 +14,7 @@ class Datum {
 
     String mMessage;
 
-    int mVotes;
+    private int mVotes;
     int user_id;
     int message_id;
 
@@ -26,12 +26,21 @@ class Datum {
      * @param title The string contents for this piece of data
      * @param message The message of the data
      */
-    Datum(int uId, int mId, String title, String message) {
+    Datum(int uId, int mId, String title, String message, int votes) {
         user_id = uId;
         message_id = mId;
         mTitle = title;
         mMessage = message;
-        mVotes = 0;
+        mVotes = votes;
+    }
+
+
+    void setmVotes(int i){
+        mVotes = i;
+    }
+
+    int getmVotes(){
+        return mVotes;
     }
 
 }

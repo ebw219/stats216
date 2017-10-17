@@ -105,4 +105,16 @@
         android:layout_toStartOf="@+id/listItemVotes"
         android:text="Username" />
 
+    <TextView
+        android:id="@+id/mid_spot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listItemText"
+        android:layout_marginEnd="102dp"
+        android:layout_marginRight="102dp"
+        android:layout_marginTop="12dp"
+        android:layout_toLeftOf="@+id/dislikeButton"
+        android:layout_toStartOf="@+id/dislikeButton"
+        android:text="TextView" />
+
 </RelativeLayout>

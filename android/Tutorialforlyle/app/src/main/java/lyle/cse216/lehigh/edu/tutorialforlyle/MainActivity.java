@@ -1,7 +1,10 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Intent res = getIntent();
         currentUsername = res.getStringExtra("username");
         Log.d("lyle", "getting currentusername " + currentUsername);
         rand_val = res.getStringExtra("rand_val");
+
 
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -49,22 +52,15 @@ public class MainActivity extends AppCompatActivity {
         Log.d("lyle", "Debug Message from onCreate");
 
         // Instantiate the RequestQueue
-//        RequestQueue queue = Volley.newRequestQueue(this);
         RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
 
         rv = (RecyclerView) findViewById(R.id.datum_list_view);
         adapter = new ItemListAdapter(this, mData, mUsers, mVotes);
-        MySingleton list = MySingleton.getInstance(this.getApplicationContext());
         MySingleton.getInstance(this).addToRequestQueue(getResponse());
 
         MySingleton.getInstance(this).addToRequestQueue(getUsers());
-
-//        for (int i = 0; i < mData.size(); i++) {
-//            MySingleton.getInstance(this).addToRequestQueue(getUpVotes(mData.get(i).message_id));
-//            MySingleton.getInstance(this).addToRequestQueue(getDownVotes(mData.get(i).message_id));
-//        }
 
         FloatingActionButton newMessage = findViewById(R.id.add);
         newMessage.setOnClickListener(new View.OnClickListener() {
@@ -83,13 +79,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final StringRequest logout = new StringRequest(Request.Method.POST, logoutUrl + currentUsername + "/" + rand_val,
+                final StringRequest logout = new StringRequest(Request.Method.POST, logoutUrl +
+//                        SaveSharedPreference.getUserName(getApplicationContext())
+                        currentUsername
+                        + "/" +
+                        SaveSharedPreference.getRandVal(getApplicationContext()),
+//                        rand_val,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 Log.d("lyle", response );
                                 Intent input = new Intent(getApplicationContext(), LoginActivity.class);
                                 input.putExtra("label_contents", "Logout");
+                                SaveSharedPreference.setUserName(getApplicationContext(), "");
+                                SaveSharedPreference.setRandVal(getApplicationContext(), "");
                                 startActivityForResult(input, 789);
                             }
                         }, new Response.ErrorListener() {
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
         adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message to view comments
             @Override
             public void onClick(Datum d) {
@@ -113,10 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i, 789);
             }
         });
-
-
-
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("lyle", response);
+                        Log.d("lyle", "VOLLEY: " + response);
                         populateListFromVolley(response);
                     }
                 }, new Response.ErrorListener() {
@@ -166,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 int message_id = json.getJSONObject(i).getInt("mId");
                 int user_id = json.getJSONObject(i).getInt("uId");
                 String title = json.getJSONObject(i).getString("mTitle");
+                int votes = json.getJSONObject(i).getInt("mVotes");
                 String message = " ";
                 try {
                     message = json.getJSONObject(i).getString("mBody");
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("lyle", e.getMessage());
                 }
 //                int netVotes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(user_id, message_id, title, message));
+                mData.add(new Datum(user_id, message_id, title, message, votes));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
