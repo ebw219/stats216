@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/newName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/newUsername"
+        android:layout_alignLeft="@+id/newUsername"
+        android:layout_alignStart="@+id/newUsername" />
+
+    <EditText
+        android:id="@+id/newUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/newPassword"
+        android:layout_alignLeft="@+id/newEmail"
+        android:layout_alignStart="@+id/newEmail"
+        android:layout_marginBottom="42dp" />
+
+    <EditText
+        android:id="@+id/newEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_above="@+id/newPassword"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/cancelCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textAppearance="@android:style/TextAppearance"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_alignBottom="@+id/invalidField"
+        android:layout_alignLeft="@+id/newEmail"
+        android:layout_alignStart="@+id/newEmail"
+        android:layout_marginBottom="45dp" />
+
+    <Button
+        android:id="@+id/submitCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_alignBaseline="@+id/cancelCreate"
+        android:layout_alignBottom="@+id/cancelCreate"
+        android:layout_alignRight="@+id/confirmNewPassword"
+        android:layout_alignEnd="@+id/confirmNewPassword" />
+
+    <TextView
+        android:id="@+id/invalidField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invalid Field"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="81dp" />
+
+    <TextView
+        android:id="@+id/badPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Passwords Do Not Match"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:layout_alignBaseline="@+id/invalidField"
+        android:layout_alignBottom="@+id/invalidField"
+        android:layout_alignRight="@+id/submitCreate"
+        android:layout_alignEnd="@+id/submitCreate" />
+
+    <EditText
+        android:id="@+id/newPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_above="@+id/confirmNewPassword"
+        android:layout_alignLeft="@+id/confirmNewPassword"
+        android:layout_alignStart="@+id/confirmNewPassword" />
+
+    <EditText
+        android:id="@+id/confirmNewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:layout_above="@+id/submitCreate"
+        android:layout_alignLeft="@+id/cancelCreate"
+        android:layout_alignStart="@+id/cancelCreate"
+        android:layout_marginBottom="21dp" />
+
+</RelativeLayout>
