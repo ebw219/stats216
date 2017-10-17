@@ -64,26 +64,30 @@ public class App {
 	    });
 
 	//GET route for user by username
-	/**Spark.get("/login/:username", (request, response) -> {
-		String idx = request.params("username");
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		UserDatabase.RowDataUser data = userDatabase.selectUsername(idx);
-		if (data == null) {
-			return gson.toJson(new StructuredResponse("error", idx + " not found", null));
-		} else {
-			return gson.toJson(new StructuredResponse("ok", null, data));
-		}
-		});*/
+	// Spark.get("/login/:username", (request, response) -> {
+	// 	String idx = request.params("username");
+	// 	// ensure status 200 OK, with a MIME type of JSON
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	UserDatabase.RowDataUser data = userDatabase.selectUsername(idx);
+	// 	if (data == null) {
+	// 		return gson.toJson(new StructuredResponse("error", idx + " not found", null));
+	// 	} else {
+	// 		return gson.toJson(new StructuredResponse("ok", null, data));
+	// 	}
+	// 	});
 	//	/route/route/:Param?userid==&key==   --> a better way to do requests
 
-	//create hashmap to store usernames and key values
+	/**
+	 * create hashmap to store usernames and key values
+	 */
 	HashMap<Integer, String> userhash = new HashMap<Integer, String>();	
 
 	//user inputs username and password, select row in tbluser using each, compare the two rows
 	//if same, let user in. if not, return error
-	//POST to login
+	/**
+	 * POST route to login, takes username and password
+	 */
 	Spark.post("/login/:username/:password", (request, response) -> {
 		String username = request.params("username");
 		String pass = request.params("password");
@@ -121,7 +125,9 @@ public class App {
 		}
 	});
 
-	//POST to logout
+	/**
+	 * POST route to logout, takes username and randval
+	 */
 	Spark.post("/logout/:username/:randval", (request, response) -> {
 		String username = request.params("username");
 		int randval = Integer.parseInt(request.params("randval"));
@@ -142,19 +148,13 @@ public class App {
 		}
 	});
 
-	/**
-	 * boolean keyFlag1 = hashtable.containsKey("A");
-   System.out.println("Key A exists in Hashtable?: " + keyFlag1);
-
-    boolean vFlag1 = hashtable.containsValue("Orange");
-   System.out.println("Value Orange exists in Hashtable?: "+vFlag1);
-	 */
-
 	// GET route that returns all message titles and Ids.  All we do is get
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
 	// return it.  If there's no data, we return "[]", so there's no need
 	// for error handling.
-	//gets from the message table
+	/**
+	 * GET all from message table
+	 */
 	Spark.get("/messages", (request, response) -> {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
@@ -166,7 +166,9 @@ public class App {
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
 	// return it.  If there's no data, we return "[]", so there's no need
 	// for error handling.
-	//gets from the comments table
+	/**
+	 * GET all from comments table
+	 */
 	Spark.get("/comments", (request, response) -> {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
@@ -174,7 +176,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectAll()));
 		});
 
-	//GET route for users table
+	/**
+	 * GET all from users table
+	 */
 	Spark.get("/users", (request, response) -> {
 		// ensure status 200 OK, with a MIME type of JSON
 		response.status(200);
@@ -182,7 +186,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectAll()));
 		});
 
-	//GET route for users table by user id
+	/**
+	 * GET from users table by user_id
+	 */
 	Spark.get("/users/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -196,7 +202,9 @@ public class App {
 		}
 		});
 
-	//gets from the message table by message table
+	/**
+	 * GET from messages table by message_id
+	 */
 	Spark.get("/messages/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -210,7 +218,9 @@ public class App {
 		}
 		});
 		
-	//GET route for comments by id
+	/**
+	 * GET from comments table by comment_id
+	 */
 	Spark.get("/comments/:comment_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("comment_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -224,7 +234,9 @@ public class App {
 		}
 		});
 
-	//GET route for comments by message, using join
+	/**
+	 * GET all comments on a specific message, using join sql statement
+	 */
 	Spark.get("/messages/comments/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -233,37 +245,39 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, comDatabase.selectMsgId(idx)));	
 		});
 
-	//GET route for upvotes by message, using join
-	/*Spark.get("/messages/upvotes/:message_id", (request, response) -> {
-		int idx = Integer.parseInt(request.params("message_id"));
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectMsgId(idx)));
-		});*/
+	// //GET route for upvotes by message, using join
+	// Spark.get("/messages/upvotes/:message_id", (request, response) -> {
+	// 	int idx = Integer.parseInt(request.params("message_id"));
+	// 	// ensure status 200 OK, with a MIME type of JSON
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectMsgId(idx)));
+	// 	});
 
-	//GET route for upvotes by message and user, using join
-	//I don't think this route is needed
-	/*Spark.get("/messages/upvotes/:user_id/:message_id", (request, response) -> {
-		int user_id = Integer.parseInt(request.params("user_id"));
-		int message_id = Integer.parseInt(request.params("message_id"));
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectOne(user_id, message_id)));
-		});*/
+	// //GET route for upvotes by message and user, using join
+	// //I don't think this route is needed
+	// Spark.get("/messages/upvotes/:user_id/:message_id", (request, response) -> {
+	// 	int user_id = Integer.parseInt(request.params("user_id"));
+	// 	int message_id = Integer.parseInt(request.params("message_id"));
+	// 	// ensure status 200 OK, with a MIME type of JSON
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	return gson.toJson(new StructuredResponse("ok", null, upVoteDatabase.selectOne(user_id, message_id)));
+	// 	});
 
-	//GET route for downvotes by message, using join
-	//I don't think this route is needed
-	/*Spark.get("/messages/downvotes/:message_id", (request, response) -> {
-		int idx = Integer.parseInt(request.params("message_id"));
-		// ensure status 200 OK, with a MIME type of JSON
-		response.status(200);
-		response.type("application/json");
-		return gson.toJson(new StructuredResponse("ok", null, downVoteDatabase.selectMsgId(idx)));
-		});*/
+	// //GET route for downvotes by message, using join
+	// //I don't think this route is needed
+	// Spark.get("/messages/downvotes/:message_id", (request, response) -> {
+	// 	int idx = Integer.parseInt(request.params("message_id"));
+	// 	// ensure status 200 OK, with a MIME type of JSON
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	return gson.toJson(new StructuredResponse("ok", null, downVoteDatabase.selectMsgId(idx)));
+	// 	});
 
-	//GET route for comments by user, using join
+	/**
+	 * GET all comments posted by a specific user, using join sql statement
+	 */
 	Spark.get("/messages/comments/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -272,7 +286,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, userDatabase.selectComId(idx)));
 		});
 
-	//GET route for number of upvotes per message, using count
+	/**
+	 * GET number of upvotes on a specific message, using count sql statement
+	 */
 	Spark.get("/messages/upvotescount/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -281,7 +297,9 @@ public class App {
 		return upVoteDatabase.countUpVotes(idx);
 		});
 
-	//GET route for number of downvotes per message, using count
+	/**
+	 * GET number of upvotes on a specific message, using count sql statement
+	 */
 	Spark.get("/messages/downvotescount/:message_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("message_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -290,7 +308,9 @@ public class App {
 		return downVoteDatabase.countDownVotes(idx);
 		});
 		
-	//GET route for upvotes by user, using join
+	/**
+	 * GET all upvotes  by a specific user, using join sql statement
+	 */
 	Spark.get("/messages/upvotes/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -299,7 +319,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectUpVotesMsg(idx)));
 		});
 
-	//GET route for downvotes by user, using join
+	/**
+	 * GET all downvotes  by a specific user, using join sql statement
+	 */
 	Spark.get("/messages/downvotes/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -308,7 +330,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectDownVotesMsg(idx)));
 		});
 
-	//GET route for messages by user
+	/**
+	 * GET all messages posted by a specific user, using join sql statement
+	 */
 	Spark.get("/messages/users/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -317,7 +341,9 @@ public class App {
 		return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectMsgUserId(idx)));
 		});
 
-	//GET route for comments by user
+	/**
+	 * GET all comments posted by a specific user, using join sql statement
+	 */
 	Spark.get("/comments/users/:user_id", (request, response) -> {
 		int idx = Integer.parseInt(request.params("user_id"));
 		// ensure status 200 OK, with a MIME type of JSON
@@ -330,7 +356,9 @@ public class App {
 	// JSON from the body of the request, turn it into a SimpleRequest
 	// object, extract the title and message, insert them, and return the
 	// ID of the newly created row.
-	//posts to the message table
+	/**
+	 * POST a new message
+	 */
 	Spark.post("/messages", (request, response) -> {
 		// NB: if gson.Json fails, Spark will reply with status 500 Internal
 		// Server Error
@@ -352,8 +380,9 @@ public class App {
 		}
 		});
 
-		//POST route for adding a new element to the comments table
-		//posts to the message table
+		/**
+		 * POST a new comment
+		 */
 	Spark.post("/comments", (request, response) -> {
 		// NB: if gson.Json fails, Spark will reply with status 500 Internal
 		// Server Error
@@ -372,7 +401,9 @@ public class App {
 		}
 		});
 
-	//posts to the user table
+	/**
+	 * POST a new user, takes username, ralname, email, password
+	 */
 	Spark.post("/users/:username/:realname/:email/:password", (request, response) -> {
 		String username = (request.params("username"));
 		String realname = (request.params("realname"));
@@ -398,7 +429,9 @@ public class App {
 		}
 		});
 
-	//posts to the upvotes table
+	/**
+	 * 	POST a new upvote, takes user_id and message_id
+	 */
 	Spark.post("/upvotes/:user_id/:message_id", (request, response) -> {
 		int user_id = Integer.parseInt(request.params("user_id"));
 		int message_id = Integer.parseInt(request.params("message_id"));
@@ -419,7 +452,9 @@ public class App {
 		}
 		});
 
-	//posts to the downvotes table
+	/**
+	 * POST a new downvote, takes user_id and message_id
+	 */
 	Spark.post("/downvotes/:user_id/:message_id", (request, response) -> {
 		int user_id = Integer.parseInt(request.params("user_id"));
 		int message_id = Integer.parseInt(request.params("message_id"));
@@ -440,19 +475,17 @@ public class App {
 		}
 		});
 	
-		/** 
 	// POST route to log in
-	Spark.post("/login/:user/:pass", (request, response) -> {
-		//status 500 Internal Server Error if gson.Json fails
-		SimpleRequest req = gson.fromJson(request.boy(), SimpleRequest.class);
-		//ensure status 200 OK
-		response.status(200);
-		response.type("application/json");
-		//check for user and salted hashed password in database
-		//if match, create random value and save in local hash
-		//return ok and randval
-	});
-	*/
+	// Spark.post("/login/:user/:pass", (request, response) -> {
+	// 	//status 500 Internal Server Error if gson.Json fails
+	// 	SimpleRequest req = gson.fromJson(request.boy(), SimpleRequest.class);
+	// 	//ensure status 200 OK
+	// 	response.status(200);
+	// 	response.type("application/json");
+	// 	//check for user and salted hashed password in database
+	// 	//if match, create random value and save in local hash
+	// 	//return ok and randval
+	// });
  
 	// // PUT route for updating a row in the Database.  This is almost
 	// // exactly the same as POST
@@ -472,8 +505,10 @@ public class App {
 	// 	}
 	//     });
 	
-	// DELETE route for removing a row from the Database
-	//delete from message table
+	/**
+	 * DELETE a message, takes message_id
+	 * doesn't work yet, cannot delete a message if it has any comments, upvotes, or downvotes
+	 */
 	Spark.delete("/messages/:message_id", (request, response) -> {
 		// If we can't get an ID, Spark will send a status 500
 		int idx = Integer.parseInt(request.params("message_id"));
@@ -491,7 +526,10 @@ public class App {
 	    });
 
 
-	// PUT route for updating the upvote in the Database
+	/**
+	 * PUT route for updating the upvote
+	 * NOTE: This route is unnecessary, upvotes now have their own table
+	 */
 	Spark.put("/messages/upVote/:id", (request, response) -> {
 		// If we can't get an ID or can't parse the JSON, Spark will send
 		// a status 500
@@ -509,7 +547,10 @@ public class App {
 		}
 	});
 	
-	// PUT route for updating the downvote in the Database
+	/**
+	 * PUT route for updating the downvote
+	 * NOTE: This route is unnecessary, downvotes now have their own table
+	 */
 	Spark.put("/messages/downVote/:id", (request, response) -> {
 		// If we can't get an ID or can't parse the JSON, Spark will send
 		// a status 500
