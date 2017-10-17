@@ -139,18 +139,7 @@ public class ComDatabase {
 
         // Attempt to create all of our prepared statements.  If any of these 
         // fail, the whole getDatabase() call should fail
-        try {/*
-                CREATE TABLE IF NOT EXISTS tblComments (
-                comment_id SERIAL PRIMARY KEY,
-                user_id INTEGER,
-                message_id INTEGER,
-                comment_text VARCHAR(255),
-                # Need to add creation date/time
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-                FOREIGN KEY (message_id) REFERENCES tblMessage (message_id)
-                );
-                */
-
+        try {
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblComment + " WHERE comment_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblComment + " VALUES (default, ?, ?, ?)");
@@ -255,7 +244,6 @@ public class ComDatabase {
         try {
             mSelectMsgId.setInt(1, message_id);
             ResultSet rs = mSelectMsgId.executeQuery();
-            System.out.println("mSelectMsgId: " + rs);
             while (rs.next()) {
                 res.add(new RowDataCom(rs.getInt("comment_id"), rs.getInt("user_id"), rs.getInt("message_id"), rs.getString("comment_text")));
             }
@@ -268,7 +256,6 @@ public class ComDatabase {
         }
     }
 
-    //this prepared statement doesn't exist please fix it
     /**
      * Query database by user ID
      * 
@@ -293,7 +280,6 @@ public class ComDatabase {
         return res;
     }
 
-    //change this to be get all rows with a specific id
     /**
      * Get all data for a specific row, by ID
      * 

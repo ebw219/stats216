@@ -189,7 +189,6 @@ public class DownVoteDatabase {
         return count;
     }
 
-    //change this to be get all rows with a specific id
     /**
      * Get all data for a specific row, by ID
      * 

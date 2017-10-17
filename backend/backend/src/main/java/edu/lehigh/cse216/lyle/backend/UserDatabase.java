@@ -186,18 +186,7 @@ public class UserDatabase {
 
         // Attempt to create all of our prepared statements.  If any of these 
         // fail, the whole getDatabase() call should fail
-        try {/*
-                CREATE TABLE IF NOT EXISTS tblUser (
-                user_id SERIAL PRIMARY KEY,
-                username VARCHAR(255),
-                realname VARCHAR(255),
-                email VARCHAR(255),
-                salt BYTEA,
-                password BYTEA
-                auth int
-                );                
-                */
-
+        try {
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblUser + " WHERE user_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUser + " VALUES (default, ?, ?, ?, ?, ?, ?)");
@@ -265,7 +254,6 @@ public class UserDatabase {
         return true;
     }
 
-    //NEED TO CHANGE EVERYTHING TO WORK WITH THE USER TABLE INSTEAD OF THE COMMENTS TABLE
     /**
      * Insert a row into the database
      * 
@@ -332,11 +320,6 @@ public class UserDatabase {
         }
     }
 
-    /*
-    db.mSelectMsgId = db.mConnection.prepareStatement("SELECT * FROM " + tblComment 
-    + " INNER JOIN " + MsgDatabase.getTblMessage() + " ON tblComment.message_id = tblMessage.message_id "
-    + "WHERE tblMessage.message_id = ? ORDER BY commend_id DESC");
-    */
     /**
      * Query database for all messages from a specific user, using a JOIN sql statement
      * 
@@ -470,7 +453,6 @@ public class UserDatabase {
         try {
             mSelectUsername.setString(1, username);
             ResultSet rs = mSelectUsername.executeQuery();
-            System.out.println("dump: " + mSelectUsername.toString());
             if (rs.next()) {
                 res = new RowDataUser(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"), rs.getString("email"), rs.getBytes("salt"), rs.getBytes("password"), rs.getInt("auth"));
             }
@@ -529,12 +511,6 @@ public class UserDatabase {
         }
         return auth;
     }
-
-    /**
-     * ResultSet rs = statement.getResultSet();
-	rs.next();
-	result = rs.getInt(1);
-     */
 
     /**
      * Delete a row by ID

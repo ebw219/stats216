@@ -121,17 +121,7 @@ public class UpVoteDatabase {
 
         // Attempt to create all of our prepared statements.  If any of these 
         // fail, the whole getDatabase() call should fail
-        try {/*
-                CREATE TABLE IF NOT EXISTS tblUpVotes (
-                user_id INTEGER,
-                message_id INTEGER,
-                FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-                FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
-                PRIMARY KEY (user_id, message_id)
-                );
-                */
-
-                //where user_id and message_id
+        try {
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblUpVotes + " WHERE user_id = ? AND message_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblUpVotes + " VALUES (?, ?)");
@@ -200,7 +190,6 @@ public class UpVoteDatabase {
         return count;
     }
 
-    //change this to be get all rows with a specific id
     /**
      * Get all data for a specific row, by ID
      * 
