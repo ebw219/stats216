@@ -56,8 +56,7 @@ private static update(data: any) {
     $("." + ElementList.NAME + "-upvotebtn").click(ElementList.clickUp);
     // Find all of the DownVote buttons and set their behavior
     $("." + ElementList.NAME + "-downvotebtn").click(ElementList.clickDown);
-    $("#" + ElementList.NAME + "-messageList").append(Handlebars.templates[ElementList.NAME + ".hb"]
-        ({text1: "Hello", arr1: [1, 2, 3]}));
+
 }
 
 /**

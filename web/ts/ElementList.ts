@@ -15,8 +15,8 @@ class ElementList {
 
     /**
      * Initialize the ElementList singleton by creating its element in the DOM.
-     * This needs to be called from any public static method, to ensure that the 
-     * Singleton is initialized before use.
+     * This needs to be called from any public static method, to ensure the
+     * Singleton is initialized before use
      */
     private static init() {
         if (!ElementList.isInit) {
