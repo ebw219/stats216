@@ -443,7 +443,8 @@ public class App {
 		});
 
 	/**
-	 * 	POST a new upvote, takes user_id and message_id
+	 * POST a new upvote, takes user_id and message_id
+	 * If the message has been downvoted, undownvote and upvote instead
 	 */
 	Spark.post("/upvotes/:user_id/:message_id", (request, response) -> {
 		int user_id = Integer.parseInt(request.params("user_id"));
@@ -457,36 +458,69 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = upVoteDatabase.insertRow(user_id, message_id);
-		if (newId == -1) {
-		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+		DownVoteDatabase.RowDataDownVote check = downVoteDatabase.selectOne(user_id, message_id);
+		if (check == null) {
+			int newId = upVoteDatabase.insertRow(user_id, message_id);
+			if (newId == -1) {
+				gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+				return gson;
+			} else {
+				return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+			}
 		} else {
-		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+			int result = downVoteDatabase.deleteRow(user_id, message_id);
+			if (result == -1) {
+				return gson.toJson(new StructuredResponse("error", "error performing insertion", null));				
+			} else {
+				int newRow = upVoteDatabase.insertRow(user_id, message_id);
+				if (newRow == -1) {
+					return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+				} else {
+					return gson.toJson(new StructuredResponse("ok", "" + newRow, null));
+				}
+			}
 		}
 		});
 
 	/**
 	 * POST a new downvote, takes user_id and message_id
+	 * If the message has been upvoted, unupvote and downvote instead
 	 */
 	Spark.post("/downvotes/:user_id/:message_id", (request, response) -> {
-		int user_id = Integer.parseInt(request.params("user_id"));
-		int message_id = Integer.parseInt(request.params("message_id"));
-		// NB: if gson.Json fails, Spark will reply with status 500 Internal
-		// Server Error
-		SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
-		// ensure status 200 OK, with a MIME type of JSON
-		// NB: even on error, we return 200, but with a JSON object that
-		//     describes the error.
-		response.status(200);
-		response.type("application/json");
-		// NB: createEntry checks for null title and message
-		int newId = downVoteDatabase.insertRow(user_id, message_id);
-		if (newId == -1) {
-		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
-		} else {
-		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
-		}
-		});
+			int user_id = Integer.parseInt(request.params("user_id"));
+			int message_id = Integer.parseInt(request.params("message_id"));
+			// NB: if gson.Json fails, Spark will reply with status 500 Internal
+			// Server Error
+			SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+			// ensure status 200 OK, with a MIME type of JSON
+			// NB: even on error, we return 200, but with a JSON object that
+			//     describes the error.
+			response.status(200);
+			response.type("application/json");
+			// NB: createEntry checks for null title and message
+			UpVoteDatabase.RowDataUpVote check = upVoteDatabase.selectOne(user_id, message_id);
+			if (check == null) {
+				int newId = downVoteDatabase.insertRow(user_id, message_id);
+				if (newId == -1) {
+					gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+					return gson;
+				} else {
+					return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+				}
+			} else {
+				int result = upVoteDatabase.deleteRow(user_id, message_id);
+				if (result == -1) {
+					return gson.toJson(new StructuredResponse("error", "error performing insertion", null));				
+				} else {
+					int newRow = downVoteDatabase.insertRow(user_id, message_id);
+					if (newRow == -1) {
+						return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+					} else {
+						return gson.toJson(new StructuredResponse("ok", "" + newRow, null));
+					}
+				}
+			}
+			});
 	
 	// POST route to log in
 	// Spark.post("/login/:user/:pass", (request, response) -> {
