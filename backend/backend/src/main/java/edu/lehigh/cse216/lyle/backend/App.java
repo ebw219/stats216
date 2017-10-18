@@ -442,9 +442,6 @@ public class App {
 		}
 		});
 
-	/**
-	 * 	POST a new upvote, takes user_id and message_id
-	 */
 	Spark.post("/upvotes/:user_id/:message_id", (request, response) -> {
 		int user_id = Integer.parseInt(request.params("user_id"));
 		int message_id = Integer.parseInt(request.params("message_id"));
@@ -457,13 +454,35 @@ public class App {
 		response.status(200);
 		response.type("application/json");
 		// NB: createEntry checks for null title and message
-		int newId = upVoteDatabase.insertRow(user_id, message_id);
-		if (newId == -1) {
-		    return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+		DownVoteDatabase.RowDataDownVote check = downVoteDatabase.selectOne(user_id, message_id);
+		if (check == null) {
+			int newId = upVoteDatabase.insertRow(user_id, message_id);
+			if (newId == -1) {
+				gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+				return gson;
+			} else {
+				return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+			}
 		} else {
-		    return gson.toJson(new StructuredResponse("ok", "" + newId, null));
+			int result = downVoteDatabase.deleteRow(user_id, message_id);
+			if (result == -1) {
+				return gson.toJson(new StructuredResponse("error", "error performing insertion", null));				
+			} else {
+				int newRow = upVoteDatabase.insertRow(user_id, message_id);
+				if (newRow == -1) {
+					return gson.toJson(new StructuredResponse("error", "error performing insertion", null));
+				} else {
+					return gson.toJson(new StructuredResponse("ok", "" + newRow, null));
+				}
+			}
 		}
 		});
+
+		/*
+		  Gson gson = new Gson();
+                Type type = new TypeToken<List<Task>>() {}.getType();
+				String json = gson.toJson(list, type);
+				*/
 
 	/**
 	 * POST a new downvote, takes user_id and message_id
