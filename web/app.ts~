@@ -23,6 +23,6 @@ $(document).ready(function () {
 
     // Create the object that controls the "Edit Entry" form
       editEntryForm = new EditEntryForm();
-      set up initial UI state
+     // set up initial UI state
       $("#editElement").hide();
 });
