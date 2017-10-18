@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.net.*;
+import java.util.Collections;
 
 import java.util.ArrayList;
 
@@ -91,11 +92,11 @@ public class Database {
         /**
          * Construct a RowData object by providing values for its fields
          */
-        public RowData(int id, String title, String message) {
+        public RowData(int id, String title, String message, int votes) {
             mId = id;
             mTitle = title;
             mMessage = message;
-            mVote = 0;
+            mVote = votes;
         }
     }
 
@@ -157,12 +158,12 @@ public class Database {
                         "message VARCHAR(500) NOT NULL " +
                         ")");
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE " + tblData);
-
+            
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
            
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, title FROM " + tblData);
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblData);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
@@ -234,11 +235,34 @@ public class Database {
      *
      * @return -1 if unsuccessful, otherwise 1
      */
-    int upVote(int id, int votes){
+    int upVote(int id){
         int count = 1;
+        Database.RowData data = this.selectOne(id);
+        int upvote = data.mVote;
         try {
-            votes += 1;
-            mVote.setInt(1,votes);
+            upvote += 1;
+            mVote.setInt(1,upvote);
+            mVote.setInt(2,id);
+            mVote.executeUpdate();
+        } catch (SQLException e){
+            count = -1;
+            e.printStackTrace();
+        }
+        return count;
+    }
+
+    /**
+     * Down vote a post
+     *
+     * @return -1 if unsuccessful, otherwise 1
+     */
+    int downVote(int id){
+        int count = 1;
+        Database.RowData data = this.selectOne(id);
+        int downvote = data.mVote;
+        try {
+            downvote -= 1;
+            mVote.setInt(1,downvote);
             mVote.setInt(2,id);
             mVote.executeUpdate();
         } catch (SQLException e){
@@ -258,8 +282,9 @@ public class Database {
         try {
             ResultSet rs = mSelectAll.executeQuery();
             while (rs.next()) {
-                res.add(new RowData(rs.getInt("id"), rs.getString("title"), null));
+                res.add(new RowData(rs.getInt("id"), rs.getString("title"), rs.getString("message"), rs.getInt("votes")));
             }
+            Collections.reverse(res);
             rs.close();
             return res;
         } catch (SQLException e) {
@@ -281,7 +306,7 @@ public class Database {
             mSelectOne.setInt(1, id);
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
-                res = new RowData(rs.getInt("id"), rs.getString("title"), rs.getString("message"));
+                res = new RowData(rs.getInt("id"), rs.getString("title"), rs.getString("message"), rs.getInt("votes"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

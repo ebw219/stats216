@@ -29,16 +29,15 @@ public class DatabaseTest
     /**                                                                            
      * Rigourous Test :-)                                                          
      */
-    public void testConstructor()
-    {
+    public void testConstructor() {
         String subject = "Test Subject";
-	String message = "Test Message";
-	int id = 10;
-	//RowData d = new RowData(id, subject, message);
+	    String message = "Test Message";
+	    int id = 10;
+	    //RowData d = new RowData(id, subject, message);
 
-	//assertTrue(d.mSubject.equals(subject));
-	//assertTrue(d.mMessage.equals(message));
-	//assertTrue(d.mId == id);
+	    //assertTrue(d.mSubject.equals(subject));
+	    //assertTrue(d.mMessage.equals(message));
+	    //assertTrue(d.mId == id);
 
     }
 

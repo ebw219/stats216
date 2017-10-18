@@ -9,6 +9,8 @@ import java.util.Map;
 
 import com.sendgrid.*;
 import java.lang.*;
+import java.sql.ResultSet;
+import edu.lehigh.cse216.lyle.admin.Database.RowData;
 
 /**
  * App is our basic admin app.  For now, it is a demonstration of the six key 
@@ -21,17 +23,9 @@ public class App {
      */
     static void menu() {
         System.out.println("Main Menu");
-        System.out.println("////////");
-        System.out.println("  [T] Create tblData");
-        System.out.println("  [D] Drop tblData");
-        System.out.println("  [1] Query for a specific row");
-        System.out.println("  [*] Query for all rows");
-        System.out.println("  [+] Insert a new row");
-        System.out.println("  [~] Update a row");
-        System.out.println("  [q] Quit Program");
-        System.out.println("  [?] Help (this message)");
-        System.out.println("////////");
         System.out.println();
+        System.out.println("  [?] Help");
+        System.out.println("  [q] Quit\n");
         System.out.println("  [U] Create tblUser");
         System.out.println("  [M] Create tblMessage");
         System.out.println("  [C] Create tblComment");
@@ -45,8 +39,9 @@ public class App {
         System.out.println("  [n] Delete tblDownVotes");
         System.out.println();
         System.out.println("  [A] Show unauthenticated users");
-        System.out.println("  [-] Delete a row");
-        System.out.println("  [E] Email a user their password");
+        System.out.println("  [-] Delete a user");
+        System.out.println("  [E] Email a user their password and authorize their email");
+        System.out.println();
     }
 
     /**
@@ -121,34 +116,31 @@ public class App {
     }
 
 
-    static void authUser(String userEmail) {
-        
-        String sendgrid_username  = System.getenv("lshaffran");
-        String sendgrid_password  = System.getenv("lyle1234");
-        
-        SendGrid sendgrid = new SendGrid(sendgrid_username, sendgrid_password);
-        SendGrid.Email email = new SendGrid.Email();
 
-        email.setFromName("The Buzz");
-        email.addTo(userEmail);
-        email.setFrom("ehs219@lehigh.edu"); // not sure what email to send from
-        email.setSubject("The Buzz account activation");
-        email.setText("You are now registered for The Buzz!");
-
+    static void emailUser(String userEmail) {
+        
+        Email from = new Email(System.getenv("FROM_EMAIL"));
+        Email to = new Email(userEmail);
+        Content content = new Content("text/plain", "You are registered");
+        String subject = "The Buzz Account Information";
+        Mail mail = new Mail(from, subject, to, content);
+        
+        //String token = "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";
+        String token = System.getenv("SENDGRID_KEY");
+        SendGrid sendgrid = new SendGrid(token);
+        Request request = new Request();
         try {
-            SendGrid.Response response = sendgrid.send(email);
-            System.out.println(response.getMessage());
-          } catch (SendGridException e) {
-            System.out.println(e);
-          }
-
-
-          // then change the auth field in tblUser to true
-
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+            Response response = sendgrid.api(request);
+            System.out.println(response.getStatusCode());
+            System.out.println(response.getHeaders());
+        } catch (IOException ex) {
+            // throw ex;
+            ex.printStackTrace();
+        }
     }
-
-
-
 
     /**
      * The main routine runs a loop that gets a request from the user and
@@ -169,6 +161,7 @@ public class App {
 
         // Start our basic command-line interpreter:
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        menu();
         while (true) {
             // Get the user's request, and do it
             //
@@ -202,10 +195,12 @@ public class App {
                     System.out.println("  [" + rd.mId + "] " + rd.mSubject);
                 }
             } else if (action == '-') {
-                int id = getInt(in, "Enter the row ID");
+                System.out.print("Enter the user ID: ");
+                System.out.println();
+                int id = getInt(in, "");
                 if (id == -1)
                     continue;
-                int res = db.deleteRow(id);
+                int res = db.deleteUser(id);
                 if (res == -1)
                     continue;
                 System.out.println("  " + res + " rows deleted");
@@ -246,26 +241,28 @@ public class App {
             } else if (action == 'n') {
                 db.dropDVTable();
             } else if (action == 'A') {
+
                 ArrayList<User> res = db.selectUnauth();
+                System.out.println();
+                System.out.printf("%s\t%-15s\t%-15s\t%-15s\n", "id", "name", "username", "email");
+                System.out.println("-----------------------------------------------");
                 for (int i=0; i<res.size(); i++) {
-                    System.out.println(res.get(i).getName() + " " + res.get(i).getEmail());
-                }
-                
+                    System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
+                } 
             } else if (action == 'E') {
-                System.out.print("Enter the user's ID: ");
-                int userId = getInt(in, "Enter the user's ID: ");
-                String email = db.getEmail(userId);
-                authUser(email);
+                System.out.print("Enter the user's email: ");
+                System.out.println();
+                String email = getString(in, "");
+                emailUser(email);
                 System.out.println("Email sent to " + email);
+                db.updateAuth(email);
+
+
             }
         }
         // Always remember to disconnect from the database when the program 
         // exits
         db.disconnect();
-
-
-
-
 
     }
 }
