@@ -14,10 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
@@ -25,7 +21,21 @@ import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameByI
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
     String url = "https://sleepy-dusk-34987.herokuapp.com/";
-//    private int netVotes;
+
+
+    private static int totVotes;
+
+    private static void resetTotVotes(){
+        totVotes = 0;
+    }
+
+    private static void addTotVotes(int i){
+        totVotes += i;
+    }
+
+    private static String getTotVotes() {
+        return totVotes + "";
+    }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         Button like;
@@ -34,6 +44,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         TextView mBody;
         TextView mVotes;
         TextView username;
+
+        TextView mid_spot;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +57,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             this.dislike = (Button) itemView.findViewById(R.id.dislikeButton);
 
             this.username = (TextView) itemView.findViewById(R.id.viewUsername);
+
+            this.mid_spot = (TextView) itemView.findViewById(R.id.mid_spot);
         }
 
     }
@@ -77,8 +91,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final lyle.cse216.lehigh.edu.tutorialforlyle.Datum d = mData.get(position);
@@ -88,100 +100,94 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         uId = d.user_id;
         mId = d.message_id;
 
+        holder.mid_spot.setText(mId + "");
+
         String byName = getUsernameById(uInfo, uId);
 
         Log.d("lyle", "USERNAME: " + byName);
 
         holder.username.setText("By " + byName);
 
-        String totVotes = "0";
+        resetTotVotes();
+        getVotes("upvotescount", mId, d);
+        getVotes("downvotescount", mId, d);
 
-        totVotes = getVotes("upvotes", mId);
-
-        holder.mVotes.setText(totVotes + "");
+        Log.i("lyle", "mvotes: " + d.getmVotes());
+        holder.mVotes.setText(d.getmVotes() + "");
         //get votes by message id
-
-        //      netVotes = 0;
-
-//        getUpVotes();
-//        getDownVotes();
-//        String votes = Integer.toString(netVotes);
-
-
-//        holder.mVotesList.setText(votes); //can only pass String
 
 
         // Attach a click listener to the view we are configuring
-        final View.OnClickListener listener = new View.OnClickListener() {
+
+        final View.OnClickListener listener = new View.OnClickListener() { //to view comments
             @Override
             public void onClick(View view) {
                 mClickListener.onClick(d);
             }
         };
 
+        //click to view comments
         holder.mBody.setOnClickListener(listener);
         holder.mTitle.setOnClickListener(listener);
 
+        //click to like -- no visible reaction to click
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String voteInfo;
                 voteInfo = "upvotes/" + uId + "/" + mId; //userid/messageid
-                sendPutRoute(voteInfo);
+                sendPostRoute(voteInfo);
             }
         });
 
-//        final View.OnClickListener dislikeButton = new View.OnClickListener() {
+
+        //click to dislike
         holder.dislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String voteType;
                 voteType = "downvotes/" + uId + "/" + mId; //userid/messageid
-                sendPutRoute(voteType);
+                sendPostRoute(voteType);
             }
 
         });
     }
 
-    /**
-     * Helper method for GET function
-     *
-     * @param response string of JSON data obtained from Get
-     */
-    int getVoteCount(String response) {
-        int len = -999;
-        try {
-            Log.d("lyle", "Getting netVotes " + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
-            JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("mData");
-            len = json.length();
-        } catch (final JSONException e) {
-            Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
-        }
-        Log.d("lyle", "Successfully parsed JSON file.");
-        return len;
+    //route to get votes
+    private void getVotes(final String voteType, final int mId, final Datum d){
+        MySingleton.getInstance(MySingleton.getContext().getApplicationContext()).addToRequestQueue(
+                new StringRequest(Request.Method.GET, url + "messages/" + voteType + "/" + mId, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("lyle", response);
+
+                        switch(voteType){
+                            case "upvotescount":
+                                d.setmVotes(Integer.parseInt(getTotVotes()));
+                                break;
+
+                            case "downvotescount":
+                                addTotVotes(-1*Integer.parseInt(response));
+                                break;
+
+                            default:
+                                addTotVotes(0);
+                                break;
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("lyle", error.getMessage());
+                    }
+                })
+        );
     }
 
-    private String resp = "0";
-    String getVotes(String voteType, final int mId){
-        StringRequest getVotes = new StringRequest(Request.Method.GET, url + "messages/" + voteType + "/" + mId, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("lyle", "ID: " + mId + "\tRESP: " + response);
-                resp = response;
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That GET didn't work");
-            }
-        });
-        MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(getVotes);
-        return resp;
-    }
 
-    void sendPutRoute(String voteInfo){
-        StringRequest putRequest = new StringRequest(Request.Method.PUT, url + voteInfo, new Response.Listener<String>() {
+    //route to send a vote request
+    private void sendPostRoute(String voteInfo){
+        StringRequest putRequest = new StringRequest(Request.Method.POST, url + voteInfo, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("lyle", response);
@@ -191,11 +197,10 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That PUT didn't work");
+                Log.e("lyle", "That POST didn't work");
             }
         });
         MySingleton.getInstance(MySingleton.getContext().getApplicationContext()).addToRequestQueue(putRequest);
-
     }
 
     void sendDeleteRoute(int index){
@@ -210,53 +215,15 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 Log.e("lyle", "That PUT didn't work");
             }
         });
-        Context context = MySingleton.getContext();
-        MySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(putRequest);
+        MySingleton.getInstance(MySingleton.getContext().getApplicationContext()).addToRequestQueue(putRequest);
     }
 
 
-
-//    void getUpVotes(){
-//        Log.d("lyle", "MID: " + mId);
-//        StringRequest upVotesRequest = new StringRequest(Request.Method.GET, url + "messages/upvotes/" + mId, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                netVotes = netVotes + getVoteCount(response);
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("lyle", "That GET didn't work");
-//            }
-//        });
-//    MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(upVotesRequest);
-//    }
-//
-//    void getDownVotes(){
-//        StringRequest downVotesRequest = new StringRequest(Request.Method.GET, url + "messages/downvotes/" + mId, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Log.d("lyle", response);
-//                int downVotes = getVoteCount(response);
-//                netVotes = netVotes - downVotes;
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e("lyle", "That GET didn't work");
-//            }
-//        });
-//        MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(downVotesRequest);
-//    }
 
     interface ClickListener{
         void onClick(Datum d);
     }
     private ClickListener mClickListener;
-
-    ClickListener getClickListener() {
-        return mClickListener;
-    }
 
     void setClickListener(ClickListener c) {
         mClickListener = c;
