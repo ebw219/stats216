@@ -58,7 +58,15 @@ public class Database {
      */
     private PreparedStatement mVote;
 
+    /**
+     * A prepared statement for adding a comment
+     */
+    private PreparedStatement mComment;
 
+    /**
+     * A prepared statement for getting a row from the username and salted password table
+     */
+    private PreparedStatement mSelectUser;
 
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
@@ -162,12 +170,21 @@ public class Database {
             // Standard CRUD operations
             db.mDeleteOne = db.mConnection.prepareStatement("DELETE FROM " + tblData + " WHERE id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO " + tblData + " VALUES (default, default, ?, ?)");
+            //add timestamp -- current_timestamp
            
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM " + tblData);
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from " + tblData + " WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE " + tblData + " SET title = ?, message = ?, votes = votes WHERE id = ?");
 
             db.mVote = db.mConnection.prepareStatement("UPDATE " + tblData + " SET votes = ? WHERE id = ?"); // --> necessary????
+
+            //db.mComment = db.mConnection.prepareStatement("UPDATE " + tblData + );
+
+            //username and salted password table
+            //db.mSelectUser = db.mConnection.prepareStatement("SELECT * FROM" + tblUser + "WHERE username = ? WHERE password = ?");
+
+            //add comment
+            //db.mComment = db.mConnection.prepareStatement("")
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
