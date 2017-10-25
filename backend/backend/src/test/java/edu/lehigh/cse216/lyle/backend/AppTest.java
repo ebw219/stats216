@@ -1,4 +1,4 @@
-package edu.lehigh.cse216.kdf219.backend;
+package edu.lehigh.cse216.lyle.backend;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -34,5 +34,13 @@ public class AppTest
     public void testApp()
     {
         assertTrue( true );
+    }
+
+    /**
+     * Test comments
+     */
+    public void testComments() {
+        //ComDatabase com = new Comments("test text");
+        assertTrue(true);
     }
 }
