@@ -73,7 +73,7 @@ class LogInForm {
         // onSubmitResponse
         $.ajax({
             type: "POST",
-            url: "/messages",
+            url: Constants.appUrl + "/messages",
             dataType: "json",
             data: JSON.stringify({ mTitle: title, mMessage: msg }),
             success: NewEntryForm.onSubmitResponse
