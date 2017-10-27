@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/profileRealname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        tools:text="Realname" />
+
+    <include
+        android:id="@+id/item"
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/contentLabel"
+        android:layout_width="312dp"
+        android:layout_height="49dp"
+        android:layout_weight="1"
+        android:text="Messages, comments, and votes you've made:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:layout_below="@+id/bioText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:id="@+id/profileUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/profileRealname"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        tools:text="Username" />
+
+    <EditText
+        android:id="@+id/bioText"
+        android:layout_width="381dp"
+        android:layout_height="77dp"
+        android:layout_weight="1"
+        android:hint="Write something about yourself!"
+        android:singleLine="false"
+        android:layout_below="@+id/profileUsername"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
