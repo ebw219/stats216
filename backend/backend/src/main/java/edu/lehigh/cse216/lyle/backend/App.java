@@ -183,33 +183,33 @@ public class App {
 		/**
 		 * GET all from message table
 		 */
-		// Spark.get("/messages", (request, response) -> {
-		// 	// ensure status 200 OK, with a MIME type of JSON
-		// 	response.status(200);
-		// 	response.type("application/json");
-		// 	return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
-		// 	});
+		 Spark.get("/messages", (request, response) -> {
+		 	// ensure status 200 OK, with a MIME type of JSON
+		 	response.status(200);
+		 	response.type("application/json");
+		 	return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
+		 	});
 
 		/**
 		 * GET all from message table, with authentication
 		 */
-		Spark.get("/messages", (request, response) -> {
-			System.out.println("username: " + request.queryParams("username"));
-			System.out.println("randval: " + request.queryParams("randval"));
-			//get key and randval
-			String username = request.queryParams("username");
-			int randval = Integer.parseInt(request.queryParams("randval"));
-			boolean key = userhash.containsKey(randval);
-			boolean val = userhash.containsValue(username);
-			if (key != true && val != true) {
-				return gson.toJson(new StructuredResponse("error", "invalid username or key", null));
-			} else {
-				// ensure status 200 OK, with a MIME type of JSON
-				response.status(200);
-				response.type("application/json");
-				return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
-			}
-		});
+//		Spark.get("/messages", (request, response) -> {
+//			System.out.println("username: " + request.queryParams("username"));
+//			System.out.println("randval: " + request.queryParams("randval"));
+//			//get key and randval
+//			String username = request.queryParams("username");
+//			int randval = Integer.parseInt(request.queryParams("randval"));
+//			boolean key = userhash.containsKey(randval);
+//			boolean val = userhash.containsValue(username);
+//			if (key != true && val != true) {
+//				return gson.toJson(new StructuredResponse("error", "invalid username or key", null));
+//			} else {
+//				// ensure status 200 OK, with a MIME type of JSON
+//				response.status(200);
+//				response.type("application/json");
+//				return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
+//			}
+//		});
 
 		// GET route that returns all message titles and Ids.  All we do is get
 		// the data, embed it in a StructuredResponse, turn it into JSON, and
