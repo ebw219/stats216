@@ -6,6 +6,7 @@
 
 # This is the resource folder where maven expects to find our files
 TARGETFOLDER=../backend/backend/src/main/resources
+#TARGETFOLDER=./localserver/web
 
 # This is the folder that we used with the Spark.staticFileLocation command
 WEBFOLDERNAME=web
