@@ -26,7 +26,7 @@ var ElementList = /** @class */ (function () {
         // Issue a GET, and then pass the result to update()
         $.ajax({
             type: "GET",
-            url: Constants.appUrl + "/messages",
+            url: Constants.APPURL + "/messages",
             dataType: "json",
             success: ElementList.update
         });
@@ -73,7 +73,7 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "DELETE",
-            url: Constants.appUrl + "/messages/" + id,
+            url: Constants.APPURL + "/messages/" + id,
             dataType: "json",
             // TODO: we should really have a function that looks at the return
             //       value and possibly prints an error message.
@@ -88,7 +88,7 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
-            url: Constants.appUrl + "/messages/" + id,
+            url: Constants.APPURL + "/messages/" + id,
             dataType: "json",
             // success: editEntryForm.init
             success: ElementList.refresh
@@ -102,7 +102,7 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
-            url: Constants.appUrl + "/messages/" + id,
+            url: Constants.APPURL + "/messages/" + id,
             dataType: "json",
             success: ElementList.refresh
         });
@@ -115,7 +115,7 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
-            url: Constants.appUrl + "/messages/" + id,
+            url: Constants.APPURL + "/messages/" + id,
             dataType: "json",
             success: ElementList.refresh
         });

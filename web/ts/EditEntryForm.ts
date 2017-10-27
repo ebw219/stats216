@@ -62,7 +62,7 @@ class EditEntryForm {
         // onSubmitResponse
 	 $.ajax({	
 	   type: "PUT",
-           url: Constants.appUrl + "/messages/" + id,
+           url: Constants.APPURL + "/messages/" + id,
            dataType: "json",
            data: JSON.stringify({ mTitle: title, mMessage: msg }),
            success: editEntryForm.onSubmitResponse
