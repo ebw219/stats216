@@ -16,6 +16,34 @@ import java.util.Map;
  */
 public class App {
 
+	// Enables CORS on requests. This method is an initialization method and should be called once.
+	private static void enableCORS(final String origin, final String methods, final String headers) {
+
+		Spark.options("/*", (request, response) -> {
+
+			String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
+			if (accessControlRequestHeaders != null) {
+				response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
+			}
+
+			String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
+			if (accessControlRequestMethod != null) {
+				response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
+			}
+
+			return "OK";
+		});
+
+		Spark.before((request, response) -> {
+			response.header("Access-Control-Allow-Origin", origin);
+			response.header("Access-Control-Request-Method", methods);
+			response.header("Access-Control-Allow-Headers", headers);
+			// Note: this may or may not be necessary in your particular application
+			response.type("application/json");
+		});
+	}
+
+
 	public static void main(String[] args) {
 
 		// Get the port on which to listen for requests
@@ -54,37 +82,14 @@ public class App {
 		}
 
 
-
-		// Enables CORS on requests. This method is an initialization method and should be called once.
-		private static void enableCORS(final String origin, final String methods, final String headers) {
-
-			Spark.options("/*", (request, response) -> {
-
-				String accessControlRequestHeaders = request.headers("Access-Control-Request-Headers");
-				if (accessControlRequestHeaders != null) {
-					response.header("Access-Control-Allow-Headers", accessControlRequestHeaders);
-				}
-
-				String accessControlRequestMethod = request.headers("Access-Control-Request-Method");
-				if (accessControlRequestMethod != null) {
-					response.header("Access-Control-Allow-Methods", accessControlRequestMethod);
-				}
-
-				return "OK";
-			});
-
-			Spark.before((request, response) -> {
-				response.header("Access-Control-Allow-Origin", origin);
-				response.header("Access-Control-Request-Method", methods);
-				response.header("Access-Control-Allow-Headers", headers);
-				// Note: this may or may not be necessary in your particular application
-				response.type("application/json");
-			});
-		}
-
-
 		// Set up the location for serving static files
 		Spark.staticFileLocation("/web");
+
+
+	final String acceptCrossOriginRequestsFrom = "*";
+	final String acceptedCrossOriginRoutes = "GET,PUT,POST,DELETE,OPTIONS";
+	final String supportedRequestHeaders = "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin";
+	enableCORS(acceptCrossOriginRequestsFrom, acceptedCrossOriginRoutes, supportedRequestHeaders);
 
 		// Set up a route for serving the main page
 		Spark.get("/", (req, res) -> {
