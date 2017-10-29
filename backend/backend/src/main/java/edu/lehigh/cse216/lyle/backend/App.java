@@ -85,60 +85,75 @@ public class App {
 
 	//user inputs username and password, select row in tbluser using each, compare the two rows
 	//if same, let user in. if not, return error
-	/**
-	 * POST route to login, takes username and password
-	 */
-	Spark.post("/login/:username/:password", (request, response) -> {
-		String username = request.params("username");
-		String pass = request.params("password");
-		byte[] password = SaltRegister.saltReg(pass.getBytes());
-		//boolean check = userDatabase.selectUserPass(username, password);
-		UserDatabase.RowDataUser byUsername = userDatabase.selectUsername(username);
-		//UserDatabase.RowDataUser byPassword = userDatabase.selectPassword(password);
-		//System.out.println("byUsername: " + byUsername);
-		//System.out.println("byPassword: " + byPassword);		
-		//if (us == pa) {
-		//if (byUsername != null && byPassword != null && byUsername == byPassword) {
-		//if (check == true) {
-		if (byUsername != null) {
-			int auth = userDatabase.selectAuth(username);
-			if (auth == 0) {
-				return gson.toJson(new StructuredResponse("error", "unregistered user", null));
-			}
-			 else {
-				response.status(200);
-				response.type("application/json");
-				Random rand = new Random();
-				int randval = rand.nextInt();
-				//2 147 483 647
-				if (randval <= 0) {
-					randval = randval*(-1);
-				}
-				userhash.put(randval, username);
-				return gson.toJson(new StructuredResponse("ok", "" + randval, null));
-			}
-		} else {
-			return gson.toJson(new StructuredResponse("error", "incorrect username or password", null));
-		}
-	});
+	///**
+	// * POST route to login, takes username and password
+	//	 */
+	//	Spark.post("/login/:username/:password", (request, response) -> {
+	//String username = request.params("username");
+	//String pass = request.params("password");
+	//byte[] password = SaltRegister.saltReg(pass.getBytes());
+	////boolean check = userDatabase.selectUserPass(username, password);
+	    //UserDatabase.RowDataUser byUsername = userDatabase.selectUsername(username);
+	////UserDatabase.RowDataUser byPassword = userDatabase.selectPassword(password);
+	////System.out.println("byUsername: " + byUsername);
+	////System.out.println("byPassword: " + byPassword);		
+	////if (us == pa) {
+	////if (byUsername != null && byPassword != null && byUsername == byPassword) {
+	////if (check == true) {
+	//if (byUsername != null) {
+	//	int auth = userDatabase.selectAuth(username);
+	//	if (auth == 0) {
+	//		return gson.toJson(new StructuredResponse("error", "unregistered user", null));
+	//	}
+	//	 else {
+	//		response.status(200);
+	//		response.type("application/json");
+	//		Random rand = new Random();
+	//		int randval = rand.nextInt();
+	//		//2 147 483 647
+	//		if (randval <= 0) {
+	//			randval = randval*(-1);
+	//		}
+	//		userhash.put(randval, username);
+	//		return gson.toJson(new StructuredResponse("ok", "" + randval, null));
+	//	}
+	//} else {
+	//	return gson.toJson(new StructuredResponse("error", "incorrect username or password", null));
+	//}
+	//});
+
+	//	/**
+	//	 * POST route to logout, takes username and randval
+	//	 */
+	//Spark.post("/logout/:username/:randval", (request, response) -> {
+	//String username = request.params("username");
+	//int randval = Integer.parseInt(request.params("randval"));
+	//boolean key = userhash.containsKey(randval);
+	//boolean val = userhash.containsValue(username);
+	//if (key == true && val == true) {
+	//	response.status(200);
+	//	response.type("application/json");
+	//	userhash.remove(randval);
+	//	return gson.toJson(new StructuredResponse("ok", "You have logged out.", null));
+	//} else {
+	//	return gson.toJson(new StructuredResponse("error", "incorrect username or key", null));
+	//}
+	//});
+
 
 	/**
-	 * POST route to logout, takes username and randval
-	 */
-	Spark.post("/logout/:username/:randval", (request, response) -> {
-		String username = request.params("username");
-		int randval = Integer.parseInt(request.params("randval"));
-		boolean key = userhash.containsKey(randval);
-		boolean val = userhash.containsValue(username);
-		if (key == true && val == true) {
-			response.status(200);
-			response.type("application/json");
-			userhash.remove(randval);
-			return gson.toJson(new StructuredResponse("ok", "You have logged out.", null));
-		} else {
-			return gson.toJson(new StructuredResponse("error", "incorrect username or key", null));
-		}
-	});
+	 * POST route to send ID token to server
+	 **/
+	Spark.post("/token", (request, response) -> {
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'example.com/tokensignin');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function(){
+		    console.log('Signed in as: ' + xhr.responseText);
+		};
+		xhr.send('idtoken=' + id_token);
+	    });
+
 
 	// GET route that returns all message titles and Ids.  All we do is get
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
@@ -147,33 +162,33 @@ public class App {
 	/**
 	 * GET all from message table
 	 */
-	// Spark.get("/messages", (request, response) -> {
-	// 	// ensure status 200 OK, with a MIME type of JSON
-	// 	response.status(200);
-	// 	response.type("application/json");
-	// 	return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
-	// 	});
+	 Spark.get("/messages", (request, response) -> {
+	 	// ensure status 200 OK, with a MIME type of JSON
+	 	response.status(200);
+	 	response.type("application/json");
+	 	return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
+	 	});
 
 	/**
 	 * GET all from message table, with authentication
 	 */
-	Spark.get("/messages", (request, response) -> {
-		System.out.println("username: " + request.queryParams("username"));
-		System.out.println("randval: " + request.queryParams("randval"));
-		//get key and randval
-		String username = request.queryParams("username");
-		int randval = Integer.parseInt(request.queryParams("randval"));
-		boolean key = userhash.containsKey(randval);
-		boolean val = userhash.containsValue(username);
-		if (key != true && val != true) {
-			return gson.toJson(new StructuredResponse("error", "invalid username or key", null));
-		} else {
-			// ensure status 200 OK, with a MIME type of JSON
-			response.status(200);
-			response.type("application/json");
-			return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
-		}
-		});
+	//Spark.get("/messages", (request, response) -> {
+	 //System.out.println("username: " + request.queryParams("username"));
+	 //System.out.println("randval: " + request.queryParams("randval"));
+	 ////get key and randval
+	 //String username = request.queryParams("username");
+	 //int randval = Integer.parseInt(request.queryParams("randval"));
+	 //boolean key = userhash.containsKey(randval);
+	 //boolean val = userhash.containsValue(username);
+	 //if (key != true && val != true) {
+	 //	return gson.toJson(new StructuredResponse("error", "invalid username or key", null));
+	 //} else {
+	 //	// ensure status 200 OK, with a MIME type of JSON
+	 //	response.status(200);
+	 //	response.type("application/json");
+	 //	return gson.toJson(new StructuredResponse("ok", null, msgDatabase.selectAll()));
+	 //}
+	 //});
 		
 	// GET route that returns all message titles and Ids.  All we do is get
 	// the data, embed it in a StructuredResponse, turn it into JSON, and
