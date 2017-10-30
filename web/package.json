@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Web Front-End",
   "dependencies": {
+    "apis": "^0.1.2",
     "bootstrap": "^3.3.7",
-    "handlebars": "^4.0.10",
+    "google": "^2.1.0",
+    "handlebars": "^4.0.11",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.2.1",
     "typescript": "^2.5.2"

@@ -15,10 +15,5 @@ var editEntryForm;
 // Run some configuration code when the web page loads
 $(document).ready(function () {
     Navbar.refresh();
-    NewEntryForm.refresh();
-    ElementList.refresh();
-    // Create the object that controls the "Edit Entry" form
-    editEntryForm = new EditEntryForm();
-    // set up initial UI state
-    $("#editElement").hide();
+    LoginForm.refresh();
 });
