@@ -55,7 +55,8 @@ var ElementList = /** @class */ (function () {
      * a TD
      */
     ElementList.buttons = function (id) {
-        return "<td><button class='" + ElementList.NAME +
+        return "<td><button class='"
+            + ElementList.NAME +
             "-editbtn' data-value='" + id + "'>Edit</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-upvotebtn' data-value='" + id + "'>Up</button></td>" +
@@ -99,10 +100,17 @@ var ElementList = /** @class */ (function () {
      */
     ElementList.clickUp = function () {
         // as in clickDelete, we need the ID of the row
-        var id = $(this).data("value");
+        var mId = $(this).data("value");
+        var uId = $(this).data("value");
+        // $.ajax({
+        //     type: "GET",
+        //     url: Constants.APPURL + "/messages/" + id,
+        //     dataType: "json",
+        //     success: ElementList.refresh
+        // });
         $.ajax({
-            type: "GET",
-            url: Constants.APPURL + "/messages/" + id,
+            type: "POST",
+            url: Constants.APPURL + "/upvotes/" + uId + "/" + mId,
             dataType: "json",
             success: ElementList.refresh
         });

@@ -251,7 +251,8 @@ var ElementList = /** @class */ (function () {
      * a TD
      */
     ElementList.buttons = function (id) {
-        return "<td><button class='" + ElementList.NAME +
+        return "<td><button class='"
+            + ElementList.NAME +
             "-editbtn' data-value='" + id + "'>Edit</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-upvotebtn' data-value='" + id + "'>Up</button></td>" +
@@ -295,10 +296,17 @@ var ElementList = /** @class */ (function () {
      */
     ElementList.clickUp = function () {
         // as in clickDelete, we need the ID of the row
-        var id = $(this).data("value");
+        var mId = $(this).data("value");
+        var uId = $(this).data("value");
+        // $.ajax({
+        //     type: "GET",
+        //     url: Constants.APPURL + "/messages/" + id,
+        //     dataType: "json",
+        //     success: ElementList.refresh
+        // });
         $.ajax({
-            type: "GET",
-            url: Constants.APPURL + "/messages/" + id,
+            type: "POST",
+            url: Constants.APPURL + "/upvotes/" + uId + "/" + mId,
             dataType: "json",
             success: ElementList.refresh
         });
@@ -343,7 +351,7 @@ var Navbar = /** @class */ (function () {
     Navbar.init = function () {
         if (!Navbar.isInit) {
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
-            /*  $("#"+Navbar.NAME+"-add").click(NewEntryForm.show); */
+            $("#" + Navbar.NAME + "-add").click(NewEntryForm.show);
             Navbar.isInit = true;
         }
     };
@@ -456,11 +464,36 @@ var LoginForm = /** @class */ (function () {
     LoginForm.isInit = false;
     return LoginForm;
 }());
+// Prevent compiler errors when using jQuery.  "$" will be given a type of
+// "any", so that we can use it anywhere, and assume it has any fields or
+// methods, without the compiler producing an error.
+var $;
+// Prevent compiler errors when using Handlebars
+var Handlebars;
+var LoginOAuth = /** @class */ (function () {
+    function LoginOAuth() {
+    }
+    LoginOAuth.init = function () {
+        $("body").append(Handlebars.templates[LoginOAuth.NAME + ".hb"]());
+        // $("#" + LoginOAuth.NAME + "-login").show();
+        $("." + LoginOAuth.NAME + "-login").click(LoginOAuth.clickLogin);
+    };
+    LoginOAuth.clickLogin = function () {
+        $.ajax({
+            type: "GET",
+            url: "https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=325681108859-g2tq47a7h6pvnfo159h0aoaluto67kqv.apps.googleusercontent.com&redirect_uri=https://www.getpostman.com/oauth2/callback&scope=https://www.googleapis.com/auth/analytics.readonly+https://www.googleapis.com/auth/userinfo.email&state=abc123",
+            dataType: "json"
+        });
+    };
+    LoginOAuth.NAME = "LoginOAuth";
+    return LoginOAuth;
+}());
 /// <reference path="ts/EditEntryForm.ts"/>
 /// <reference path="ts/NewEntryForm.ts"/>
 /// <reference path="ts/ElementList.ts"/>
 /// <reference path="ts/Navbar.ts"/>
 /// <reference path="ts/LoginForm.ts"/>
+/// <reference path="ts/LoginOAuth.ts"/>
 // Prevent compiler errors when using jQuery.  "$" will be given a type of 
 // "any", so that we can use it anywhere, and assume it has any fields or
 // methods, without the compiler producing an error.
@@ -473,5 +506,6 @@ var editEntryForm;
 // Run some configuration code when the web page loads
 $(document).ready(function () {
     Navbar.refresh();
-    LoginForm.refresh();
+    ElementList.refresh();
+    LoginOAuth.init();
 });

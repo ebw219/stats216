@@ -3,6 +3,7 @@
 /// <reference path="ts/ElementList.ts"/>
 /// <reference path="ts/Navbar.ts"/>
 /// <reference path="ts/LoginForm.ts"/>
+/// <reference path="ts/LoginOAuth.ts"/>
 // Prevent compiler errors when using jQuery.  "$" will be given a type of 
 // "any", so that we can use it anywhere, and assume it has any fields or
 // methods, without the compiler producing an error.
@@ -15,5 +16,6 @@ var editEntryForm;
 // Run some configuration code when the web page loads
 $(document).ready(function () {
     Navbar.refresh();
-    LoginForm.refresh();
+    ElementList.refresh();
+    LoginOAuth.init();
 });

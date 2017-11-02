@@ -67,7 +67,8 @@ class ElementList {
      * a TD
      */
     private static buttons(id: string): string {
-        return "<td><button class='" + ElementList.NAME +
+        return "<td><button class='"
+            + ElementList.NAME +
             "-editbtn' data-value='" + id + "'>Edit</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-upvotebtn' data-value='" + id + "'>Up</button></td>" +
@@ -114,10 +115,18 @@ class ElementList {
      */
     private static clickUp() {
         // as in clickDelete, we need the ID of the row
-        let id = $(this).data("value");
+        let mId = $(this).data("value");
+        let uId = $(this).data("value");
+        // $.ajax({
+        //     type: "GET",
+        //     url: Constants.APPURL + "/messages/" + id,
+        //     dataType: "json",
+        //     success: ElementList.refresh
+        // });
+
         $.ajax({
-            type: "GET",
-            url: Constants.APPURL + "/messages/" + id,
+            type: "POST",
+            url: Constants.APPURL + "/upvotes/" + uId + "/" + mId,
             dataType: "json",
             success: ElementList.refresh
         });
