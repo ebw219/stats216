@@ -19,16 +19,19 @@ class LoginOAuth {
         // ElementList.refresh();
     }
 
+    private static hide(){
+        // $("#" + LoginOAuth.NAME + "-login").hide();
+        $("#" + "Login").hide();
+    }
+
     public static clickLogin() {
         console.log("clicked login");
-        start();
         var auth2;
         //Initializing the GoogleAuth Object
         function start() {
             console.log("in start");
-            // gapi.load("client:auth2", callback);
+            console.log(gapi);
             gapi.load('auth2', callback);
-
             function callback() {
                 console.log("in callback");
                 auth2 = gapi.auth2.init({
@@ -41,21 +44,26 @@ class LoginOAuth {
 
         //One-time code flow
         // auth2.grantOfflineAccess().then(signInCallback);
-        console.log(auth2.signIn({
-            client_id:Constants.CLIENT_ID
-        }));
+        start().then(auth2.signIn({
+            client_id: Constants.CLIENT_ID
+        }))
+            .then(signInCallback);
+
+        auth2.isSignedIn.listen(signInCallback);
+
 
         function signInCallback(authResult) {
-            console.log("in sign in callback");
-            if (authResult['code']) {
-
+            console.log("in sign-in callback");
+            console.log(authResult);
+            console.log(authResult['Zi']);
+            if (authResult['Zi']) {
                 // Hide the sign-in button now that the user is authorized, for example:
                 // $('#signinButton').attr('style', 'display: none');
 
                 // Send the code to the server
                 $.ajax({
                     type: 'POST',
-                    url: Constants.APP_URL + "/code",
+                    url: Constants.APP_URL + "/accessToken",
                     // Always include an `X-Requested-With` header in every AJAX request,
                     // to protect against CSRF attacks.
                     headers: {
@@ -64,9 +72,12 @@ class LoginOAuth {
                     contentType: 'application/octet-stream; charset=utf-8',
                     success: function(result) {
                         // Handle or verify the server response.
+                        LoginOAuth.hide();
+                        ElementList.refresh();
                     },
                     processData: false,
-                    data: authResult['code']
+                    // data: authResult['Zi'],
+                    // data: JSON.stringify({ mTitle: title, mMessage: msg }),
                 });
             } else {
                 // There was an error.
