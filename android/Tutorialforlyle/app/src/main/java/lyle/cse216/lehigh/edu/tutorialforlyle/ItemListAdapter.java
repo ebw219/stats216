@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import static android.support.v4.app.ActivityCompat.startActivityForResult;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
+import static lyle.cse216.lehigh.edu.tutorialforlyle.R.id.username;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
@@ -106,7 +107,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         String byName = getUsernameById(uInfo, uId);
 
-        Log.d("lyle", "USERNAME: " + byName);
+        Log.d("lyle", "USERNAME itemlistadapter line 109: " + byName);
 
         holder.username.setText("By " + byName);
 
@@ -159,7 +160,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent userProf = new Intent(MySingleton.getContext(), UserProfPageActivity.class);
-//                startActivityForResult(userProf, 123);
+                userProf.putExtra("username", username + "");
+                Log.d("lyle", "intent username: " + username);
                 MySingleton.getContext().startActivity(userProf);
             }
         });
