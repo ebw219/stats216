@@ -20,7 +20,8 @@
         android:layout_height="390dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/bioText" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/bio"
@@ -32,16 +33,16 @@
     </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/contentLabel"
+        android:id="@+id/listContentLabel"
         android:layout_width="312dp"
         android:layout_height="49dp"
-        android:layout_weight="1"
-        android:text="Messages, comments, and votes you've made:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:layout_below="@+id/bioText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
+        android:layout_below="@+id/bioText"
+        android:layout_marginTop="18dp"
+        android:layout_weight="1"
+        android:text="Messages, comments, and votes you've made:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <TextView
         android:id="@+id/profileUsername"

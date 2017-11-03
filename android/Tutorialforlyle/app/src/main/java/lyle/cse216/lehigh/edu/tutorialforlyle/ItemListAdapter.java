@@ -1,6 +1,7 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +17,12 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/";
+    String url = "https://lyle-buzz.herokuapp.com/";
 
 
     private static int totVotes;
@@ -112,8 +114,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         getVotes("upvotescount", mId, d);
         getVotes("downvotescount", mId, d);
 
-        Log.i("lyle", "mvotes: " + d.getmVotes());
-        holder.mVotes.setText(d.getmVotes() + "");
+//        Log.i("lyle", "mvotes: " + d.getmVotes());
+//        holder.mVotes.setText(d.getmVotes() + "");
         //get votes by message id
 
 
@@ -151,6 +153,16 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
 
         });
+
+        //click to go to user's profile page
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent userProf = new Intent(MySingleton.getContext(), UserProfPageActivity.class);
+//                startActivityForResult(userProf, 123);
+                MySingleton.getContext().startActivity(userProf);
+            }
+        });
     }
 
     //route to get votes
@@ -163,7 +175,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
                         switch(voteType){
                             case "upvotescount":
-                                d.setmVotes(Integer.parseInt(getTotVotes()));
+                                //d.setmVotes(Integer.parseInt(getTotVotes()));
                                 break;
 
                             case "downvotescount":

@@ -1,26 +1,18 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.android.volley.AuthFailureError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
 
 
 /**
@@ -31,7 +23,7 @@ import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity{
     String username;
-    String url = "https://sleepy-dusk-34987.herokuapp.com/";
+    String url = "https://lyle-buzz.herokuapp.com/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,48 +32,59 @@ public class LoginActivity extends AppCompatActivity{
 
         Log.d("lyle", "SHARED PREF: " + SaveSharedPreference.getUserName(LoginActivity.this));
 
-//        if(SaveSharedPreference.getUserName(LoginActivity.this).length() == 0) {
-//            Intent input = new Intent(getApplicationContext(), MainActivity.class);
-//            startActivityForResult(input, 789);
-//        }
-//        else {
-//            // Stay at the current activity.
-//        }
+        if(SaveSharedPreference.getUserName(LoginActivity.this).length() == 0) {
+            Intent input = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(input, 789);
+        }
+        else {
+            // Stay at the current activity.
+        }
+
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestEmail()
+//                .build();
 
         findViewById(R.id.loginButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("lyle", "CLICKED LOGIN");
 
+
+
                 username = ((TextView) findViewById(R.id.username)).getText().toString();
                 String password = ((TextView) findViewById(R.id.password)).getText().toString();
-                StringRequest login = new StringRequest(Request.Method.POST, url + "login/" + username + "/" + password,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("lyle", "LOGIN ATTEMPT");
-                                Log.d("lyle", response);
-                                if(loginSuccess(response)) {
-                                    Intent input = new Intent(getApplicationContext(), MainActivity.class);
-                                    input.putExtra("label_contents", "Login");
-                                    input.putExtra("username", username);
-                                    input.putExtra("rand_val", randVal(response));
-                                    SaveSharedPreference.setUserName(getApplicationContext(), username);
-                                    SaveSharedPreference.setRandVal(getApplicationContext(), randVal(response));
-                                    startActivityForResult(input, 123);
-                                } else {
-                                    findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) { //if mstatus is error
-                        findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);
-                        Log.e("lyle", "Bad user creds???");
-                        Log.e("lyle", "That POST didn't work");
-                    }
-                });
-                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(login);
+                Intent loginButton = new Intent(getApplicationContext(), MainActivity.class);
+                startActivityForResult(loginButton, 123);
+
+//                StringRequest login = new StringRequest(Request.Method.POST, url + "login/" + username + "/" + password,
+//                        new Response.Listener<String>() {
+//                            @Override
+//                            public void onResponse(String response) {
+//                                Log.d("lyle", "LOGIN ATTEMPT");
+//                                Log.d("lyle", response);
+//                                if(loginSuccess(response)) {
+//                                    Intent input = new Intent(getApplicationContext(), MainActivity.class);
+//                                    input.putExtra("label_contents", "Login");
+//                                    input.putExtra("username", username);
+//                                    input.putExtra("rand_val", randVal(response));
+//                                    SaveSharedPreference.setUserName(getApplicationContext(), username);
+//                                    SaveSharedPreference.setRandVal(getApplicationContext(), randVal(response));
+//                                    startActivityForResult(input, 123);
+//                                } else {
+//                                    findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);
+//                                }
+//                            }
+//                        }, new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) { //if mstatus is error
+//                        findViewById(R.id.badLoginCreds).setVisibility(View.VISIBLE);
+//                        Log.e("lyle", "Bad user creds???");
+//                        Log.e("lyle", "That POST didn't work");
+//                    }
+//                });
+//                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(login);
             }
 //            }
         });

@@ -35,7 +35,7 @@ public class CommentActivity extends AppCompatActivity {
     RecyclerView.Adapter adapter;
     ArrayList<String> mComments = new ArrayList<>();
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/messages/comments/";
+    String url = "https://lyle-buzz.herokuapp.com/messages/comments/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

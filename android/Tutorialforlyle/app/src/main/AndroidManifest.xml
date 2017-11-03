@@ -43,6 +43,11 @@
             android:label="Create User"
             android:theme="@style/AppTheme"></activity>
 
+        <activity
+            android:name=".UserProfPageActivity"
+            android:label="User Profile Page Activity"
+            android:theme="@style/AppTheme"></activity>
+
     </application>
 
 </manifest>
