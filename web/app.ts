@@ -19,7 +19,6 @@ var editEntryForm: EditEntryForm;
 
 // Run some configuration code when the web page loads
 $(document).ready(function () {
-    Navbar.refresh();
     LoginOAuth.init();
 
 });

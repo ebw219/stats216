@@ -2,5 +2,11 @@
 
 
 #LoginOAuth-login{
-    margin-left: 50%;
+    width: 20%;
+    content:url(https://developers.google.com/accounts/images/sign-in-with-google.png);
+    margin-left: 40%;
+}
+
+.panel-heading{
+
 }

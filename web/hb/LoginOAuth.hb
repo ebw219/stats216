@@ -3,6 +3,6 @@
         <h3 class="panel-title">Login to The Buzz</h3>
     </div>
     <td>
-            <button id="LoginOAuth-login">Login</button>
+            <div id="LoginOAuth-login"></div>
     </td>
 </div>

@@ -25,8 +25,8 @@ class LoginOAuth {
     }
 
     public static clickLogin() {
-        console.log("clicked login");
         var auth2;
+        console.log("clicked login");
         //Initializing the GoogleAuth Object
         function start() {
             console.log("in start");
@@ -44,12 +44,13 @@ class LoginOAuth {
 
         //One-time code flow
         // auth2.grantOfflineAccess().then(signInCallback);
-        start().then(auth2.signIn({
+        start();
+        auth2.signIn({
             client_id: Constants.CLIENT_ID
-        }))
+        })
             .then(signInCallback);
 
-        auth2.isSignedIn.listen(signInCallback);
+        // auth2.isSignedIn.listen(signInCallback);
 
 
         function signInCallback(authResult) {

@@ -1,7 +1,7 @@
 /* switch the default font for the body, and remove top/bottom/left/right margin */
 body {
     font-family: 'Fresca', sans-serif;
-    margin: 0;
+    margin-left: 3px;
 }
 
 
