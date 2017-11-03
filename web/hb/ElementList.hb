@@ -18,11 +18,3 @@
             </tbody>
     	</table>
     </div>
-
-<div>
-<td>
-       <a href>
-            <button id="LoginOAuth-login">Login</button>
-        </a>
-    </td>
-</div>

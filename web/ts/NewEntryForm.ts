@@ -76,7 +76,7 @@ class NewEntryForm {
         // onSubmitResponse
         $.ajax({
             type: "POST",
-            url: Constants.APPURL + "/messages",
+            url: Constants.APP_URL + "/messages",
             dataType: "json",
             data: JSON.stringify({ mTitle: title, mMessage: msg }),
             success: NewEntryForm.onSubmitResponse

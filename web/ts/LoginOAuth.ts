@@ -1,6 +1,7 @@
 // Prevent compiler errors when using jQuery.  "$" will be given a type of
 // "any", so that we can use it anywhere, and assume it has any fields or
 // methods, without the compiler producing an error.
+
 var $: any;
 
 // Prevent compiler errors when using Handlebars
@@ -8,72 +9,69 @@ var Handlebars: any;
 
 class LoginOAuth {
 
-    private static readonly NAME = "ElementList";
+    private static readonly NAME = "LoginOAuth";
 
     public static init() {
         $("body").append(Handlebars.templates[LoginOAuth.NAME + ".hb"]());
         // $("#" + LoginOAuth.NAME + "-login").show();
         $("#" + LoginOAuth.NAME + "-login").click(LoginOAuth.clickLogin);
+
+        // ElementList.refresh();
     }
 
     public static clickLogin() {
+        console.log("clicked login");
+        start();
+        var auth2;
+        //Initializing the GoogleAuth Object
+        function start() {
+            console.log("in start");
+            // gapi.load("client:auth2", callback);
+            gapi.load('auth2', callback);
 
-        handleClientLoad();
-        initClient();
-
-        function handleClientLoad() {
-            // Loads the client library and the auth2 library together for efficiency.
-            // Loading the auth2 library is optional here since `gapi.client.init` function will load
-            // it if not already loaded. Loading it upfront can save one network request.
-            gapi.load('client:auth2', initClient);
+            function callback() {
+                console.log("in callback");
+                auth2 = gapi.auth2.init({
+                    client_id: Constants.CLIENT_ID,
+                    // Scopes to request in addition to 'profile' and 'email'
+                    //scope: 'additional_scope'
+                });
+            }
         }
 
-        function initClient() {
-            // Initialize the client with API key and People API, and initialize OAuth with an
-            // OAuth 2.0 client ID and scopes (space delimited string) to request access.
-            gapi.client.init({
-                apiKey: Constants.APIKEY,
-                discoveryDocs: ["https://people.googleapis.com/$discovery/rest?version=v1"],
-                clientId: Constants.CLIENTID,
-                scope: 'profile'
-            });
-            // }).then(function () {
-            //     // Listen for sign-in state changes.
-            //     gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-            //
-            //     // Handle the initial sign-in state.
-            //     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-            // });
-        }
+        //One-time code flow
+        // auth2.grantOfflineAccess().then(signInCallback);
+        console.log(auth2.signIn({
+            client_id:Constants.CLIENT_ID
+        }));
 
-        // function updateSigninStatus(isSignedIn) {
-        //     // When signin status changes, this function is called.
-        //     // If the signin status is changed to signedIn, we make an API call.
-        //     if (isSignedIn) {
-        //         makeApiCall();
-        //     }
-        // }
-        //
-        // function handleSignInClick(event) {
-        //     // Ideally the button should only show up after gapi.client.init finishes, so that this
-        //     // handler won't be called before OAuth is initialized.
-        //     gapi.auth2.getAuthInstance().signIn();
-        // }
-        //
-        // function handleSignOutClick(event) {
-        //     gapi.auth2.getAuthInstance().signOut();
-        // }
-        //
-        // function makeApiCall() {
-        //     // Make an API call to the People API, and print the user's given name.
-        //     gapi.client.people.people.get({
-        //         'resourceName': 'people/me',
-        //         'requestMask.includeField': 'person.names'
-        //     }).then(function(response) {
-        //         console.log('Hello, ' + response.result.names[0].givenName);
-        //     }, function(reason) {
-        //         console.log('Error: ' + reason.result.error.message);
-        //     });
-        // }
+        function signInCallback(authResult) {
+            console.log("in sign in callback");
+            if (authResult['code']) {
+
+                // Hide the sign-in button now that the user is authorized, for example:
+                // $('#signinButton').attr('style', 'display: none');
+
+                // Send the code to the server
+                $.ajax({
+                    type: 'POST',
+                    url: Constants.APP_URL + "/code",
+                    // Always include an `X-Requested-With` header in every AJAX request,
+                    // to protect against CSRF attacks.
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function(result) {
+                        // Handle or verify the server response.
+                    },
+                    processData: false,
+                    data: authResult['code']
+                });
+            } else {
+                // There was an error.
+            }
+        }
     }
+
 }

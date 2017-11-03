@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # deploy script for the web front-end
 
 # This file is responsible for preprocessing all TypeScript files, making sure
@@ -12,7 +13,7 @@ TARGETFOLDER=../backend/backend/src/main/resources
 WEBFOLDERNAME=web
 
 # These are all of the singletons in the program
-SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar)
+SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar LoginOAuth)
 
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch
