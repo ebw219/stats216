@@ -21,8 +21,8 @@ var editEntryForm: EditEntryForm;
 $(document).ready(function () {
     Navbar.refresh();
 
-    ElementList.refresh();
-
+    // ElementList.refresh();
+    // LoginForm.refresh();
     LoginOAuth.init();
 
 });

@@ -23,7 +23,7 @@ templates['ElementList.hb'] = template({"1":function(container,depth0,helpers,pa
 
   return "<div class=\"panel panel-default\" id=\"ElementList\">\n     <div class=\"panel-heading\">\n     	  <h3 class=\"panel-title\">All Messages</h3>\n	  </div>\n    <table class=\"table\">\n        <tbody>\n"
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : (container.nullContext || {}),(depth0 != null ? depth0.mData : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            </tbody>\n    	</table>\n    </div>\n";
+    + "            </tbody>\n    	</table>\n    </div>\n\n<div>\n<td>\n       <a href>\n            <button id=\"LoginOAuth-login\">Login</button>\n        </a>\n    </td>\n</div>";
 },"useData":true});
 })();
 (function() {

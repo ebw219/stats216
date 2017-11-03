@@ -34,8 +34,8 @@ class LoginForm {
         LoginForm.show();
         if (!LoginForm.isInit) {
             $("body").append(Handlebars.templates[LoginForm.NAME + ".hb"]({}));
-            $("#" + LoginForm.NAME + "-OK").click(LoginForm.submitForm());
-            $("#" + LoginForm.NAME + "-Close").click(LoginForm.hide());
+            // $("#" + LoginForm.NAME + "-OK").click(LoginForm.submitForm());
+            // $("#" + LoginForm.NAME + "-Close").click(LoginForm.hide());
             LoginForm.isInit = true;
         }
     }
