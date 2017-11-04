@@ -162,6 +162,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 Intent userProf = new Intent(MySingleton.getContext(), UserProfPageActivity.class);
                 userProf.putExtra("username", username + "");
                 Log.d("lyle", "intent username: " + username);
+                userProf.putExtra("uId", uId);
+                Log.d("lyle", "intent uId: " + uId);
                 MySingleton.getContext().startActivity(userProf);
             }
         });

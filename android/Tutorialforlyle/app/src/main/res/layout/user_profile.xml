@@ -4,14 +4,14 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/profileRealname"
+        android:id="@+id/profileUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="40sp"
         android:textStyle="bold"
-        tools:text="Realname" />
+        tools:text="Username" />
 
     <include
         android:id="@+id/item"
@@ -43,16 +43,6 @@
         android:layout_weight="1"
         android:text="Messages, comments, and votes you've made:"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
-
-    <TextView
-        android:id="@+id/profileUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/profileRealname"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        tools:text="Username" />
 
     <EditText
         android:id="@+id/bioText"

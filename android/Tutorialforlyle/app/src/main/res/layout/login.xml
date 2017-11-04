@@ -2,71 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/username"
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="125dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textEmailAddress" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_below="@+id/username"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username" />
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/password"
-        android:layout_alignLeft="@+id/password"
-        android:layout_alignRight="@+id/password"
-        android:layout_alignStart="@+id/password"
         android:layout_centerVertical="true"
-        android:text="Login" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:id="@+id/createUserButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/loginButton"
-        android:layout_alignLeft="@+id/loginButton"
-        android:layout_alignRight="@+id/loginButton"
-        android:layout_alignStart="@+id/loginButton"
-        android:layout_below="@+id/loginButton"
-        android:text="Create User" />
-
-    <TextView
-        android:id="@+id/badLoginCreds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/createUserButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="Your username or password is incorrect"
-        android:textColor="@android:color/holo_red_dark"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/successCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/createUserButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp"
-        android:text="Successfully created user. You will receive a confirmation email shortly."
-        android:textAlignment="center"
-        android:textColor="@android:color/holo_green_dark"
-        android:textSize="20sp"
-        android:visibility="invisible" />
 </RelativeLayout>
