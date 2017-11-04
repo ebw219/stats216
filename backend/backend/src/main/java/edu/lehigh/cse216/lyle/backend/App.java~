@@ -146,8 +146,61 @@ public class App {
 	//	return gson.toJson(new StructuredResponse("error", "incorrect username or key", null));
 	//}
 	//});
+	
 
-	    
+	/**
+       	 * Exchange auth code for access code
+       	 **/
+         // (Receive authCode via HTTPS POST)
+	 // Set path to the Web application client_secret_*.json file you downloaded from the
+	 // Google API Console: https://console.developers.google.com/apis/credentials
+	 // You can also find your Web application client ID and client secret from the
+	 // console and specify them directly when you create the GoogleAuthorizationCodeTokenRequest
+	 // object.
+		String REDIRECT_URI = "https://lyle-buzz.herokuapp.com";
+		String CLIENT_SECRET_FILE = "/path/to/client_secret.json";
+	 // Exchange auth code for access token
+	 GoogleClientSecrets clientSecrets =
+	    GoogleClientSecrets.load(JacksonFactory.getDefaultInstance(), new FileReader(CLIENT_SECRET_FILE));
+	 GoogleTokenResponse tokenResponse =
+	     new GoogleAuthorizationCodeTokenRequest(
+		new NetHttpTransport(),
+	        JacksonFactory.getDefaultInstance(),
+	        "https://www.googleapis.com/oauth2/v4/token",
+	        clientSecrets.getDetails().getClientId(),
+	        clientSecrets.getDetails().getClientSecret(),
+	     	authCode,
+	       	REDIRECT_URI)  // Specify the same redirect URI that you use with your web app. 
+	                       //If you don't have a web version of your app, you can
+	                       // specify an empty string.
+	        .execute();
+
+         String accessToken = tokenResponse.getAccessToken();
+
+	 // Use access token to call API
+	 GoogleCredential credential = new GoogleCredential().setAccessToken(accessToken);
+	 Drive drive =
+	     new Drive.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance(), credential)
+	     .setApplicationName("Auth Code Exchange Demo")
+	     .build();
+	 File file = drive.files().get("appfolder").execute();
+
+	/**
+	 *POST route for receiving the auth token
+	 */    
+	 Spark.post("/accessToken/:idToken", (request, response) -> {  
+		 Spark.post("/login/:user/:pass", (request, response) -> {                                                  
+			 SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+			 //      SimpleRequest req = gson.fromJson(request.boy(), SimpleRequest.class);                                
+			 //      //ensure status 200 OK                                                                                
+			 //      response.status(200);                                                                                 
+			 //      response.type("application/json");                                                                    
+			 //      //check for user and salted hashed password in database                                               
+			 //      //if match, create random value and save in local hash                                                
+			 //      //return ok and randval                                                                               
+			 // });                          
+	     };
+
 	/**
 	 *Verify Token given to backend
 	 */

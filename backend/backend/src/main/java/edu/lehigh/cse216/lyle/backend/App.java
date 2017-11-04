@@ -189,6 +189,10 @@ public class App {
 	 *POST route for receiving the auth token
 	 */    
 	 Spark.post("/accessToken/:idToken", (request, response) -> {  
+			 SimpleRequest req = gson.fromJson(request.body(), SimpleRequest.class);
+			 response.status(200);
+			 response.type("application/json");
+			 return gson.toJson(new StructuredResponse("ok", "Code received", null));  
 	     };
 
 	/**
