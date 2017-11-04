@@ -16,11 +16,9 @@ class LoginOAuth {
         // $("#" + LoginOAuth.NAME + "-login").show();
         $("#" + LoginOAuth.NAME + "-login").click(LoginOAuth.clickLogin);
 
-        // ElementList.refresh();
     }
 
     private static hide(){
-        // $("#" + LoginOAuth.NAME + "-login").hide();
         $("#" + "Login").hide();
     }
 
@@ -39,32 +37,32 @@ class LoginOAuth {
                     // Scopes to request in addition to 'profile' and 'email'
                     //scope: 'additional_scope'
                 });
+                auth2.signIn({
+                    client_id: Constants.CLIENT_ID
+                })
+                    .then(signInCallback);
             }
         }
 
         //One-time code flow
         // auth2.grantOfflineAccess().then(signInCallback);
         start();
-        auth2.signIn({
-            client_id: Constants.CLIENT_ID
-        })
-            .then(signInCallback);
 
         // auth2.isSignedIn.listen(signInCallback);
 
 
         function signInCallback(authResult) {
             console.log("in sign-in callback");
-            console.log(authResult);
-            console.log(authResult['Zi']);
+            console.log(authResult['Zi'].access_token);
+            // console.log(authResult['Zi']);
             if (authResult['Zi']) {
                 // Hide the sign-in button now that the user is authorized, for example:
                 // $('#signinButton').attr('style', 'display: none');
-
+                console.log(Constants.APP_URL + "/accessToken/" + authResult['Zi'].access_token);
                 // Send the code to the server
                 $.ajax({
                     type: 'POST',
-                    url: Constants.APP_URL + "/accessToken",
+                    url: Constants.APP_URL + "/accessToken/" + authResult['Zi'].access_token,
                     // Always include an `X-Requested-With` header in every AJAX request,
                     // to protect against CSRF attacks.
                     headers: {
