@@ -73,6 +73,9 @@ public class Database {
 
     private PreparedStatement mUpdateAuth;
 
+    private PreparedStatement mDropColumn;
+
+    //private PreparedStatement maddColumnToUsers;
     /**
      * RowData is like a struct in C: we use it to hold data, and we allow 
      * direct access to its fields.  In the context of this Database, RowData 
@@ -156,6 +159,7 @@ public class Database {
             db.mCreateTable = db.mConnection.prepareStatement(
                     "CREATE TABLE tblData (id SERIAL PRIMARY KEY, subject VARCHAR(50) "
                     + "NOT NULL, message VARCHAR(500) NOT NULL)");
+            //db.maddColumnToUsers = db.mConnection.prepareStatement("ALTER TABLE tblUser ADD COLUMN ? ?"); //(column name then column type) column type = integer or varchar(n) where n is string length
             db.mDropTable = db.mConnection.prepareStatement("DROP TABLE thebuzztable");
             db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser");
             db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage");
@@ -201,6 +205,7 @@ public class Database {
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
+            db.mDropColumn= db.mConnection.prepareStatement("ALTER TABLE ? DROP COLUMN ?");
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -483,4 +488,25 @@ public class Database {
         }
         // return res;
     }
+    //db.mDropColumn= db.mConnection.prepareStatement("ALTER TABLE ? DROP COLUMN ?");
+    
+    void DropColumn(String tblName, String columnName){
+        try{
+            mDropColumn.setString(1, tblName);
+            mDropColumn.setString(2,columnName);
+            mDropColumn.execute();
+        }catch(SQLException e){
+            e.printStackTrace(); 
+        }
+    }
+
+    //db.maddColumnToUsers = db.mConnection.prepareStatement("ALTER TABLE table_name ADD COLUMN column_name column_type"); //column type = integer or varchar(n) where n is string length
+   /* void addColumnToUsers(){
+        int count=0;
+        try{
+            maddColumntoUsers
+        } catch(SQLException e){
+            e.printStackTrace(); 
+        }
+    }*/
 }

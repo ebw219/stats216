@@ -38,9 +38,10 @@ public class App {
         System.out.println("  [p] Delete tblUpVotes");
         System.out.println("  [n] Delete tblDownVotes");
         System.out.println();
-        System.out.println("  [A] Show unauthenticated users");
+        //System.out.println("  [A] Show unauthenticated users");
         System.out.println("  [-] Delete a user");
-        System.out.println("  [E] Email a user their password and authorize their email");
+        //System.out.println("  [E] Email a user their password and authorize their email");
+        System.out.println("  [S] Delete Column from a Table");
         System.out.println();
     }
 
@@ -53,7 +54,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPNAumcpnE";
+        String actions = "TD1*-+~q?UMCPNAumcpnES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -117,7 +118,7 @@ public class App {
 
 
 
-    static void emailUser(String userEmail) {
+    /*static void emailUser(String userEmail) {
         
         Email from = new Email(System.getenv("FROM_EMAIL"));
         Email to = new Email(userEmail);
@@ -140,7 +141,7 @@ public class App {
             // throw ex;
             ex.printStackTrace();
         }
-    }
+    }*/
 
     /**
      * The main routine runs a loop that gets a request from the user and
@@ -249,7 +250,7 @@ public class App {
                 for (int i=0; i<res.size(); i++) {
                     System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
                 } 
-            } else if (action == 'E') {
+            } /*else if (action == 'E') {
                 System.out.print("Enter the user's email: ");
                 System.out.println();
                 String email = getString(in, "");
@@ -258,7 +259,15 @@ public class App {
                 db.updateAuth(email);
 
 
+            }*/ else if(action == 'S'){
+                System.out.println();
+                System.out.print("Enter Table Name: ");
+                String tblName = getString(in, "");
+                System.out.print("Enter Column Name: ");
+                String columnName = getString(in,"");
+                db.DropColumn(tblName, columnName);
             }
+
         }
         // Always remember to disconnect from the database when the program 
         // exits
