@@ -76,7 +76,6 @@ class LoginOAuth {
                     },
                     processData: false,
                     // data: authResult['Zi'],
-                    // data: JSON.stringify({ mTitle: title, mMessage: msg }),
                 });
             } else {
                 // There was an error.
