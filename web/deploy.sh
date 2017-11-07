@@ -10,28 +10,45 @@ TARGETFOLDER=../backend/backend/src/main/resources
 # This is the folder that we used with the Spark.staticFileLocation command
 WEBFOLDERNAME=web
 
+# These are all of the singletons in the program
+SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar)
+
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch
 rm -rf $TARGETFOLDER
 mkdir $TARGETFOLDER
 mkdir $TARGETFOLDER/$WEBFOLDERNAME
 
-# there are many more steps to be done.  For now, we will just copy an HTML file
-cp index.html $TARGETFOLDER/$WEBFOLDERNAME
-
 # step 2: update our npm dependencies
 npm update
 
-# step 3: copy javascript files
+# step 3: copy jQuery, Handlebars, and Bootstrap files
 cp node_modules/jquery/dist/jquery.min.js $TARGETFOLDER/$WEBFOLDERNAME
+cp node_modules/handlebars/dist/handlebars.min.js $TARGETFOLDER/$WEBFOLDERNAME
+cp node_modules/bootstrap/dist/js/bootstrap.min.js $TARGETFOLDER/$WEBFOLDERNAME
+cp node_modules/bootstrap/dist/css/bootstrap.min.css $TARGETFOLDER/$WEBFOLDERNAME
+cp -R node_modules/bootstrap/dist/fonts $TARGETFOLDER/$WEBFOLDERNAME
 
 # step 4: compile TypeScript files
 node_modules/typescript/bin/tsc app.ts --strict --outFile $TARGETFOLDER/$WEBFOLDERNAME/app.js
 
 # step 5: copy css files
-cp app.css $TARGETFOLDER/$WEBFOLDERNAME
+cp app.css $TARGETFOLDER/$WEBFOLDERNAME/app.css
+for s in ${SINGLETONS[@]}
+do
+    cat css/$s.css >> $TARGETFOLDER/$WEBFOLDERNAME/app.css
+done
 
-# set up Jasmine
+# step 6: compile handlebars templates to the deploy folder
+for s in ${SINGLETONS[@]}
+do
+    node_modules/handlebars/bin/handlebars hb/$s.hb >> $TARGETFOLDER/$WEBFOLDERNAME/templates.js
+done
+
+# step 7: copy the main HTML shell
+cp index.html $TARGETFOLDER/$WEBFOLDERNAME
+
+# step 8: set up Jasmine
 node_modules/typescript/bin/tsc apptest.ts --strict --outFile $TARGETFOLDER/$WEBFOLDERNAME/apptest.js
 cp spec_runner.html $TARGETFOLDER/$WEBFOLDERNAME
 cp node_modules/jasmine-core/lib/jasmine-core/jasmine.css $TARGETFOLDER/$WEBFOLDERNAME

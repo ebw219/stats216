@@ -35,4 +35,12 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    /**
+     * Test comments
+     */
+    public void testComments() {
+        //ComDatabase com = new Comments("test text");
+        assertTrue(true);
+    }
 }
