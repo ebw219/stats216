@@ -14,6 +14,7 @@ public class Database {
      * The connection to the database.  When there is no connection, it should
      * be null.  Otherwise, there is a valid open connection
      */
+    private static Database db;
     private Connection mConnection;
 
     /**
@@ -73,7 +74,7 @@ public class Database {
 
     private PreparedStatement mUpdateAuth;
 
-    private PreparedStatement mDropColumn;
+    //private PreparedStatement mDropColumn;
 
     //private PreparedStatement maddColumnToUsers;
     /**
@@ -130,7 +131,11 @@ public class Database {
      */
     static Database getDatabase(String db_url) {
         // Create an un-configured Database object
-        Database db = new Database();
+        if (db == null) {
+            db = new Database();
+        } else {
+            return db;
+        }
 
         // Give the Database object a connection, fail if we cannot get one
         try {
@@ -205,7 +210,7 @@ public class Database {
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
-            db.mDropColumn= db.mConnection.prepareStatement("ALTER TABLE ? DROP COLUMN ?");
+            //db.mDropColumn= db.mConnection.prepareStatement();
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -491,10 +496,13 @@ public class Database {
     //db.mDropColumn= db.mConnection.prepareStatement("ALTER TABLE ? DROP COLUMN ?");
     
     void DropColumn(String tblName, String columnName){
+        String sql = "ALTER TABLE " + tblName + " DROP COLUMN " + columnName + ";";
+        
         try{
-            mDropColumn.setString(1, tblName);
-            mDropColumn.setString(2,columnName);
-            mDropColumn.execute();
+            PreparedStatement dropColumn = db.mConnection.prepareStatement(sql);
+            //mDropColumn.setString(1, tblName);
+            //mDropColumn.setString(2,columnName);
+            dropColumn.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace(); 
         }

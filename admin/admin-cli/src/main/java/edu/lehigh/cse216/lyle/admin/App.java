@@ -250,7 +250,14 @@ public class App {
                 for (int i=0; i<res.size(); i++) {
                     System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
                 } 
-            } /*else if (action == 'E') {
+            } else if(action == 'S'){
+                System.out.println();
+                System.out.println("Enter Table Name: ");
+                String tblName = getString(in, "");
+                System.out.println("Enter Column Name: ");
+                String columnName = getString(in,"");
+                db.DropColumn(tblName, columnName);
+            }/*else if (action == 'E') {
                 System.out.print("Enter the user's email: ");
                 System.out.println();
                 String email = getString(in, "");
@@ -259,14 +266,7 @@ public class App {
                 db.updateAuth(email);
 
 
-            }*/ else if(action == 'S'){
-                System.out.println();
-                System.out.print("Enter Table Name: ");
-                String tblName = getString(in, "");
-                System.out.print("Enter Column Name: ");
-                String columnName = getString(in,"");
-                db.DropColumn(tblName, columnName);
-            }
+            }*/ 
 
         }
         // Always remember to disconnect from the database when the program 
