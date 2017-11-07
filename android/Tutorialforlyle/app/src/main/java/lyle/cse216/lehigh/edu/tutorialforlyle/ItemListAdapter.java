@@ -63,7 +63,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
             this.mid_spot = (TextView) itemView.findViewById(R.id.mid_spot);
         }
-
     }
 
 
@@ -203,7 +202,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         );
     }
 
-
     //route to send a vote request
     private void sendPostRoute(String voteInfo){
         StringRequest putRequest = new StringRequest(Request.Method.POST, url + voteInfo, new Response.Listener<String>() {
@@ -242,11 +240,11 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     interface ClickListener{
         void onClick(Datum d);
     }
+
     private ClickListener mClickListener;
 
     void setClickListener(ClickListener c) {
         mClickListener = c;
     }
-
 
 }

@@ -47,13 +47,11 @@ public class UserProfPageActivity extends AppCompatActivity {
         String profusername = viewProfile.getStringExtra("usernameProf");
         Log.d("lyle", "getting username " + profusername);
         ((TextView)findViewById(R.id.profileUsername)).setText(profusername);
-        //String uid = getUIdByUsername(mUsers, profusername) + "";
-        uid = viewProfile.getStringExtra("uId");//ItemListAdapter.viewProfile.getUId());
+        uid = viewProfile.getStringExtra("uId");
         Log.d("lyle", "getting uid " + uid);
 
-        RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
-        queue.add(getMessages());
-
+//        RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+//        MySingleton.getInstance(MySingleton.getContext()).addToRequestQueue(getMessages());
 
 
 //        // Instantiate the RequestQueue
@@ -62,8 +60,24 @@ public class UserProfPageActivity extends AppCompatActivity {
         adapter = new MessageTitleListAdapter(this, titles);
         MySingleton.getInstance(this).addToRequestQueue(getMessages());
 
+        Intent msglist = getIntent();
+        String msgtitle = msglist.getStringExtra("title");
+        Log.d("lyle", "getting msgtitle " + msgtitle);
 
     } //end onCreate
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        Intent res = getIntent();
+//        currentUsername = res.getStringExtra("username");
+//        Log.d("lyle", "getting currentusername " + currentUsername);
+//        rand_val = res.getStringExtra("rand_val");
+//        mData.clear();
+        Log.d("lyle", "ADDING");
+        MySingleton.getInstance(this).addToRequestQueue(getMessages());
+    }
+
 
     /**
      * GET Volley request
@@ -94,12 +108,13 @@ public class UserProfPageActivity extends AppCompatActivity {
     private void populateListFromVolley(String response) {
         Log.d("lyle", "HERE");
         try {
-            Log.d("lyle", "Populating: userprof" + response); // for whatever reason, this (or some log statement) is necessary for the messages to appear
+            Log.d("lyle", "Populating: userprof" + response); //for whatever reason, this (or some log statement) is necessary for the messages to appear
             JSONObject jsonObj = new JSONObject(response);
-            JSONArray json = jsonObj.getJSONArray("titles");
+            JSONArray json = jsonObj.getJSONArray("mData");
             for (int i = 0; i < json.length(); ++i) {
                 String title = json.getJSONObject(i).getString("mTitle");
-               // String message = " ";
+                Log.d("lyle", "POPULATING FROM VOLLEY: " + title);
+                // String message = " ";
 //                try {
 //                    message = json.getJSONObject(i).getString("mBody");
 //                } catch (final JSONException e) {

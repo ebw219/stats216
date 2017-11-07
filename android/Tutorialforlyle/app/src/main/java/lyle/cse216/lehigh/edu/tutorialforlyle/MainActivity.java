@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(getUsers());
 
         FloatingActionButton newMessage = findViewById(R.id.add);
+
         newMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
