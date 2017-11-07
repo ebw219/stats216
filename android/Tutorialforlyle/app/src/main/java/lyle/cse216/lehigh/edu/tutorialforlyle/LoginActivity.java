@@ -196,8 +196,7 @@ public class LoginActivity extends AppCompatActivity implements
             Log.d("lyle", "onActivityResult method");
             int statusCode = result.getStatus().getStatusCode();
             String status = getStatusCodeString(statusCode);
-            Log.d("lyle", "i hate android");
-            Log.d("lyle", "status for resultalkdhc: " + status);
+            Log.d("lyle", "status for result: " + status);
         }
     }
     // [END onActivityResult]
@@ -205,9 +204,9 @@ public class LoginActivity extends AppCompatActivity implements
     // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-        //if (result.isSuccess()) {
-        boolean check = true;
-        if (check == true) {
+        if (result.isSuccess()) {
+//        boolean check = true;
+//        if (check == true) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             Intent success = new Intent(getApplicationContext(), MainActivity.class);
