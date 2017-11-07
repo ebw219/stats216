@@ -1,4 +1,0 @@
-#Mon Sep 11 20:11:15 EDT 2017
-base.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5
-renamed.0=classes.dex
-file.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex
