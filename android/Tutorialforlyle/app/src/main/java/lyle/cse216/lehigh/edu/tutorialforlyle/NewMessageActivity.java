@@ -36,7 +36,7 @@ public class NewMessageActivity extends AppCompatActivity {
         Log.d("lyle", "CURRENT ID: " + currentUId);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
-        final String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
+        final String url = "https://lyle-buzz.herokuapp.com/messages";
 
         Button bCancel = (Button) findViewById(R.id.cancelButton);
         Button bSubmit = (Button) findViewById(R.id.submitButton);

@@ -1,6 +1,7 @@
 package lyle.cse216.lehigh.edu.tutorialforlyle;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +17,13 @@ import com.android.volley.toolbox.StringRequest;
 
 import java.util.ArrayList;
 
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 import static lyle.cse216.lehigh.edu.tutorialforlyle.MainActivity.getUsernameById;
+import static lyle.cse216.lehigh.edu.tutorialforlyle.R.id.username;
 
 class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
-    String url = "https://sleepy-dusk-34987.herokuapp.com/";
+    String url = "https://lyle-buzz.herokuapp.com/";
 
 
     private static int totVotes;
@@ -60,7 +63,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
             this.mid_spot = (TextView) itemView.findViewById(R.id.mid_spot);
         }
-
     }
 
 
@@ -72,6 +74,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     private int uId;
     private int mId;
 
+    public int getUId() {
+        return uId;
+    }
 
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> votes) {
         mData = data;
@@ -104,7 +109,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
         String byName = getUsernameById(uInfo, uId);
 
-        Log.d("lyle", "USERNAME: " + byName);
+        Log.d("lyle", "USERNAME itemlistadapter line 109: " + byName);
 
         holder.username.setText("By " + byName);
 
@@ -112,8 +117,8 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
         getVotes("upvotescount", mId, d);
         getVotes("downvotescount", mId, d);
 
-        Log.i("lyle", "mvotes: " + d.getmVotes());
-        holder.mVotes.setText(d.getmVotes() + "");
+//        Log.i("lyle", "mvotes: " + d.getmVotes());
+//        holder.mVotes.setText(d.getmVotes() + "");
         //get votes by message id
 
 
@@ -151,6 +156,19 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             }
 
         });
+
+        //click to go to user's profile page
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent userProf = new Intent(MySingleton.getContext(), UserProfPageActivity.class);
+                userProf.putExtra("usernameProf", username + "");
+                Log.d("lyle", "intent username: " + username);
+                userProf.putExtra("uId", uId + "");
+                Log.d("lyle", "intent uId: " + uId);
+                MySingleton.getContext().startActivity(userProf);
+            }
+        });
     }
 
     //route to get votes
@@ -163,7 +181,7 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
 
                         switch(voteType){
                             case "upvotescount":
-                                d.setmVotes(Integer.parseInt(getTotVotes()));
+                                //d.setmVotes(Integer.parseInt(getTotVotes()));
                                 break;
 
                             case "downvotescount":
@@ -183,7 +201,6 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
                 })
         );
     }
-
 
     //route to send a vote request
     private void sendPostRoute(String voteInfo){
@@ -223,11 +240,11 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     interface ClickListener{
         void onClick(Datum d);
     }
+
     private ClickListener mClickListener;
 
     void setClickListener(ClickListener c) {
         mClickListener = c;
     }
-
 
 }

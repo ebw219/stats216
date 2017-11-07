@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 
 public class CreateUserActivity extends AppCompatActivity {
-String url = "https://sleepy-dusk-34987.herokuapp.com/users";
+String url = "https://lyle-buzz.herokuapp.com/users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

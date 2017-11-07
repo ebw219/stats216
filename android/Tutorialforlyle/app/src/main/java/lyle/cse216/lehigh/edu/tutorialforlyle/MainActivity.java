@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Datum> mData = new ArrayList<>();
     ArrayList<UserInfo> mUsers = new ArrayList<>();
     ArrayList<Votes> mVotes = new ArrayList<>();
-    static String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
+    static String url = "https://lyle-buzz.herokuapp.com/messages";
     static RecyclerView rv;
     static ItemListAdapter adapter;
     String currentUsername;
@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
         Log.d("lyle", "Debug Message from onCreate");
 
         // Instantiate the RequestQueue
         RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
-        String url = "https://sleepy-dusk-34987.herokuapp.com/messages";
+        String url = "https://lyle-buzz.herokuapp.com/messages";
 
         rv = (RecyclerView) findViewById(R.id.datum_list_view);
         adapter = new ItemListAdapter(this, mData, mUsers, mVotes);
@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(getUsers());
 
         FloatingActionButton newMessage = findViewById(R.id.add);
+
         newMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        final String logoutUrl = "https://sleepy-dusk-34987.herokuapp.com/logout/";
+        final String logoutUrl = "https://lyle-buzz.herokuapp.com/logout/";
         findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        adapter.setClickListener(new ItemListAdapter.ClickListener(){ //clicking on message to view comments
+        adapter.setClickListener(new ItemListAdapter.ClickListener(){
             @Override
             public void onClick(Datum d) {
                 Intent i = new Intent(getApplicationContext(), CommentActivity.class);
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 150 That Get didn't work!");
             }
         }));
     }
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                 int message_id = json.getJSONObject(i).getInt("mId");
                 int user_id = json.getJSONObject(i).getInt("uId");
                 String title = json.getJSONObject(i).getString("mTitle");
-                int votes = json.getJSONObject(i).getInt("mVotes");
+                //int votes = json.getJSONObject(i).getInt("mVotes");
                 String message = " ";
                 try {
                     message = json.getJSONObject(i).getString("mBody");
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.e("lyle", e.getMessage());
                 }
 //                int netVotes = json.getJSONObject(i).getInt("mVote");
-                mData.add(new Datum(user_id, message_id, title, message, votes));
+                mData.add(new Datum(user_id, message_id, title, message));
             }
         } catch (final JSONException e) {
             Log.d("lyle", "Error parsing JSON file: " + e.getMessage());
@@ -207,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 210 That Get didn't work!");
             }
         }));
     }
@@ -228,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 231That Get didn't work!");
             }
         }));
     }
@@ -240,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
      * @return the request
      */
     protected StringRequest getUsers() {
-        return (new StringRequest(Request.Method.GET, "https://sleepy-dusk-34987.herokuapp.com/users",
+        return (new StringRequest(Request.Method.GET, "https://lyle-buzz.herokuapp.com/users",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 253 That Get didn't work!");
             }
         }));
     }
