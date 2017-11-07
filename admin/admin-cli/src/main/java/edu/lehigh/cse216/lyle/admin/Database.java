@@ -14,7 +14,7 @@ public class Database {
      * The connection to the database.  When there is no connection, it should
      * be null.  Otherwise, there is a valid open connection
      */
-    private static Database db;
+    private static Database db; //Made db a global variable
     private Connection mConnection;
 
     /**
@@ -500,8 +500,6 @@ public class Database {
         
         try{
             PreparedStatement dropColumn = db.mConnection.prepareStatement(sql);
-            //mDropColumn.setString(1, tblName);
-            //mDropColumn.setString(2,columnName);
             dropColumn.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace(); 
