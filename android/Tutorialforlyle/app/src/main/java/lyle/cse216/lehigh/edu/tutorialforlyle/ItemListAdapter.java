@@ -75,6 +75,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
     private int uId;
     private int mId;
 
+    public int getUId() {
+        return uId;
+    }
 
     ItemListAdapter(Context context, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Datum> data, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.UserInfo> users, ArrayList<lyle.cse216.lehigh.edu.tutorialforlyle.Votes> votes) {
         mData = data;
@@ -160,9 +163,9 @@ class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Intent userProf = new Intent(MySingleton.getContext(), UserProfPageActivity.class);
-                userProf.putExtra("username", username + "");
+                userProf.putExtra("usernameProf", username + "");
                 Log.d("lyle", "intent username: " + username);
-                userProf.putExtra("uId", uId);
+                userProf.putExtra("uId", uId + "");
                 Log.d("lyle", "intent uId: " + uId);
                 MySingleton.getContext().startActivity(userProf);
             }

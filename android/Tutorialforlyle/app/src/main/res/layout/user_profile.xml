@@ -13,15 +13,27 @@
         android:textStyle="bold"
         tools:text="Username" />
 
-    <include
-        android:id="@+id/item"
-        layout="@layout/content_main"
-        android:layout_width="match_parent"
-        android:layout_height="390dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/bioText" />
+    <!--<include-->
+        <!--android:id="@+id/item"-->
+        <!--layout="@layout/content_main"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="390dp"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/bioText" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messages_by_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="222dp"
+        tools:layout_editor_absoluteY="145dp"
+        android:layout_below="@+id/listContentLabel"
+        android:layout_alignRight="@+id/listContentLabel"
+        android:layout_alignEnd="@+id/listContentLabel"
+        android:layout_marginRight="133dp"
+        android:layout_marginEnd="133dp"></android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/bio"

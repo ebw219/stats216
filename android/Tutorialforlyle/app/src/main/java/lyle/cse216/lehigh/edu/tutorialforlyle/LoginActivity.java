@@ -18,6 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes.getStatusCodeString;
 
 /**
  * Created by Kelli on 10/8/17.
@@ -41,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        findViewById(R.id.badLogin).setVisibility(View.INVISIBLE);
+
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -53,6 +56,7 @@ public class LoginActivity extends AppCompatActivity implements
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+        mGoogleApiClient.connect(); //added to try to make login successful, didn't work so not really necessary
 
 //        AccountManager am = AccountManager.get(this);
 //        Bundle options = new Bundle();
@@ -67,8 +71,8 @@ public class LoginActivity extends AppCompatActivity implements
 //        // Stay at the current activity.
 //    }
 
-    // Configure sign-in to request the user's ID, email address, and basic
-    // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        // Configure sign-in to request the user's ID, email address, and basic
+        // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
 //        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
 //                .requestEmail()
 //                .build();
@@ -132,13 +136,13 @@ public class LoginActivity extends AppCompatActivity implements
 
 //    findViewById(R.id.badLoginCreds).setVisibility(View.INVISIBLE);
 
-    Intent i = getIntent();
+        Intent i = getIntent();
         Log.d("lyle", "label_contents");
         if (i.getStringExtra("label_contents") != null) {
-        if (i.getStringExtra("label_contents").equals("Make new user"))
-            findViewById(R.id.successCreate).setVisibility(View.VISIBLE);
+            if (i.getStringExtra("label_contents").equals("Make new user"))
+                findViewById(R.id.successCreate).setVisibility(View.VISIBLE);
+        }
     }
-}
 
     String randVal(String response){
         String randVal = new String();
@@ -172,6 +176,9 @@ public class LoginActivity extends AppCompatActivity implements
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
+        Log.d("lyle", "RC_SIGN_IN: " + RC_SIGN_IN);
+//        startActivityForResult(signInIntent, MainActivity.class);
+
     }
     // [END signIn]
 
@@ -179,11 +186,18 @@ public class LoginActivity extends AppCompatActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d("lyle", "requestCode: " + requestCode);
+        Log.d("lyle", "resultCode: " + resultCode);
+        Log.d("lyle", "data: " + data);
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
+            Log.d("lyle", "onActivityResult method");
+            int statusCode = result.getStatus().getStatusCode();
+            String status = getStatusCodeString(statusCode);
+            Log.d("lyle", "i hate android");
+            Log.d("lyle", "status for resultalkdhc: " + status);
         }
     }
     // [END onActivityResult]
@@ -191,13 +205,18 @@ public class LoginActivity extends AppCompatActivity implements
     // [START handleSignInResult]
     private void handleSignInResult(GoogleSignInResult result) {
         Log.d(TAG, "handleSignInResult:" + result.isSuccess());
-        if (result.isSuccess()) {
+        //if (result.isSuccess()) {
+        boolean check = true;
+        if (check == true) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
+            Intent success = new Intent(getApplicationContext(), MainActivity.class);
+            startActivityForResult(success, 123);
             //showing name on page?
 //            mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
             updateUI(true);
         } else {
+            findViewById(R.id.badLogin).setVisibility(View.VISIBLE);
             // Signed out, show unauthenticated UI.
             updateUI(false);
         }

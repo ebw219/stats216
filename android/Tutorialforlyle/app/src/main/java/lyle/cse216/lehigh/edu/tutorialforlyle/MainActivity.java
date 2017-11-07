@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 150 That Get didn't work!");
             }
         }));
     }
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 210 That Get didn't work!");
             }
         }));
     }
@@ -228,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 231That Get didn't work!");
             }
         }));
     }
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("lyle", "That Get didn't work!");
+                Log.e("lyle", "main activity line 253 That Get didn't work!");
             }
         }));
     }
