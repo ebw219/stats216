@@ -14,6 +14,36 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+ <dependency>
+          <groupId>com.google.apis</groupId>
+          <artifactId>google-api-services-oauth2</artifactId>
+          <version>v1-rev136-1.23.0</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client</artifactId>
+          <version>1.23.0</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client-jackson2</artifactId>
+          <version>1.23.0</version>
+        </dependency>
+        <dependency>
+          <groupId>org.codehaus.jackson</groupId>
+          <artifactId>jackson-core-asl</artifactId>
+          <version>1.9.13</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.api-client</groupId>
+          <artifactId>google-api-client-appengine</artifactId>
+          <version>1.23.0</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.http-client</groupId>
+          <artifactId>google-http-client-gson</artifactId>
+          <version>1.21.0</version>
+        </dependency>
 
 <dependency>
   <groupId>de.rtner</groupId>
@@ -69,7 +99,7 @@
     <version>1.2.0</version>
     <configuration>
         <jdkVersion>1.8</jdkVersion>
-        <appName>sleepy-dusk-34987</appName>
+        <appName>lyle-buzz</appName>
         <processTypes>
             <web>java -jar ./target/backend-1.0-SNAPSHOT-jar-with-dependencies.jar</web>
         </processTypes>
