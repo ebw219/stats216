@@ -6,7 +6,7 @@ class NewEntryForm {
     /**
      * The name of the DOM entry associated with NewEntryForm
      */
-    private static readonly NAME = "NewEntryForm";
+    static readonly NAME = "NewEntryForm";
 
     /**
      * Track if the Singleton has been initialized
@@ -39,7 +39,7 @@ class NewEntryForm {
     /**
      * Hide the NewEntryForm.  Be sure to clear its fields first
      */
-    private static hide() {
+    static hide() {
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
         $("#" + NewEntryForm.NAME).modal("hide");
@@ -76,7 +76,7 @@ class NewEntryForm {
         // onSubmitResponse
         $.ajax({
             type: "POST",
-            url: "/messages",
+            url: Constants.APP_URL + "/messages",
             dataType: "json",
             data: JSON.stringify({ mTitle: title, mMessage: msg }),
             success: NewEntryForm.onSubmitResponse
@@ -89,7 +89,7 @@ class NewEntryForm {
      * 
      * @param data The object returned by the server
      */
-    private static onSubmitResponse(data: any) {
+    static onSubmitResponse(data: any) {
         // If we get an "ok" message, clear the form and refresh the main 
         // listing of messages
         if (data.mStatus === "ok") {

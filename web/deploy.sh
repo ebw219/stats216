@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # deploy script for the web front-end
 
 # This file is responsible for preprocessing all TypeScript files, making sure
@@ -6,12 +7,13 @@
 
 # This is the resource folder where maven expects to find our files
 TARGETFOLDER=../backend/backend/src/main/resources
+#TARGETFOLDER=./localserver/web
 
 # This is the folder that we used with the Spark.staticFileLocation command
 WEBFOLDERNAME=web
 
 # These are all of the singletons in the program
-SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar)
+SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar LoginOAuth)
 
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch
