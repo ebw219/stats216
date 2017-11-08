@@ -1,0 +1,28 @@
+/**
+ * LogInForm encapsulates all of the code for the form for adding an entry
+ */
+class LogInForm {
+
+    /**
+     * The name of the DOM entry associated with LogInForm
+     */
+    private static readonly NAME = "LogInForm";
+
+    /**
+     * Track if the Singleton has been initialized
+     */
+    private static isInit = false;
+     /**
+     * Initialize the LogInForm by creating its element in the DOM and 
+     * configuring its buttons.  This needs to be called from any public static 
+     * method, to ensure that the Singleton is initialized before use
+     */
+    private static init() {
+        if (!LogInForm.isInit) {
+            $("body").append(Handlebars.templates[LogInForm.NAME + ".hb"]());
+            $("#" + LogInForm.NAME + "-OK").click(LogInForm.submitForm);
+            $("#" + LogInForm.NAME + "-Close").click(LogInForm.hide);
+            LogInForm.isInit = true;
+        }
+    }
+

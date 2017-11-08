@@ -1,4 +1,7 @@
-#Mon Sep 25 20:27:47 EDT 2017
-base.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main
-renamed.0=classes.dex
-file.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex
+#Mon Sep 11 20:11:15 EDT 2017
+base.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bd0fdbad708ed111d36f0e77a26a5cdb1a2229ce
+renamed.1=classes.dex
+renamed.0=classes2.dex
+file.1=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_870e6861984d9d0b80d37ddd5ebd99d13804cde1/classes.dex
+base.1=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_870e6861984d9d0b80d37ddd5ebd99d13804cde1
+file.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_bd0fdbad708ed111d36f0e77a26a5cdb1a2229ce/classes.dex

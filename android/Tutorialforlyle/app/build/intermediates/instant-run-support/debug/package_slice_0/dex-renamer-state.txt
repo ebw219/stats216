@@ -1,4 +1,4 @@
-#Sun Sep 24 15:25:54 EDT 2017
-base.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0
+#Mon Sep 11 20:11:14 EDT 2017
+base.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0
 renamed.0=classes.dex
-file.0=/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex
+file.0=/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_kdf219/android/Tutorialforkdf219/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex

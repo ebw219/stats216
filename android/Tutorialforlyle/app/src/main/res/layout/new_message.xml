@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/titleNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:inputType="text"
+        tools:text="Title"
+        android:hint="Title"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/listItemText"
+        android:layout_alignStart="@+id/listItemText" />
+
+    <EditText
+        android:id="@+id/listItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleNew"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Message"
+        android:inputType="text"
+        tools:text="Message"
+        android:layout_above="@+id/submitButton" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:layout_marginTop="76dp"
+        android:layout_below="@+id/titleNew"
+        android:layout_alignLeft="@+id/listItemText"
+        android:layout_alignStart="@+id/listItemText" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_alignBaseline="@+id/cancelButton"
+        android:layout_alignBottom="@+id/cancelButton"
+        android:layout_alignRight="@+id/listItemText"
+        android:layout_alignEnd="@+id/listItemText" />
+
+</RelativeLayout>

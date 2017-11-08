@@ -1,1 +1,10 @@
+<<<<<<< HEAD
+target/
+.DS_Store
+=======
 target/*
+<<<<<<< HEAD
+sendgrid.env
+=======
+>>>>>>> e45a62ee471fa608dd7ace29ef421df581dee455
+>>>>>>> backend

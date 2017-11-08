@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+        "outputFile": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
         "map": [
             {
                 "to": {
@@ -1396,7 +1396,7 @@
                     "endOffset": 6275
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -1415,7 +1415,7 @@
                     "endOffset": 6322
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -1434,7 +1434,7 @@
                     "endOffset": 6373
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/colors.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -4721,7 +4721,7 @@
                     "endOffset": 57044
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/dimens.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/dimens.xml",
                     "position": {
                         "startLine": 1,
                         "startColumn": 4,
@@ -6773,7 +6773,7 @@
                     "endOffset": 63818
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -6792,7 +6792,7 @@
                     "endOffset": 63873
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 1,
                         "startColumn": 4,
@@ -7001,7 +7001,7 @@
                     "endOffset": 65230
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -7137,7 +7137,7 @@
                     "endOffset": 66278
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -7157,7 +7157,7 @@
                     "endOffset": 66368
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
@@ -7177,7 +7177,7 @@
                     "endOffset": 66518
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
@@ -7197,7 +7197,7 @@
                     "endOffset": 66598
                 },
                 "from": {
-                    "file": "/Users/lizzieshaffran/Desktop/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
+                    "file": "/Users/lizzieshaffran/Dropbox/cse216_lyle/android/Tutorialforlyle/app/src/main/res/values/styles.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,

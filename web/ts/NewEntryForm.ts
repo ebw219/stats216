@@ -2,47 +2,84 @@
  * NewEntryForm encapsulates all of the code for the form for adding an entry
  */
 class NewEntryForm {
+
     /**
-     * To initialize the object, we say what method of NewEntryForm should be
-     * run in response to each of the form's buttons being clicked.
+     * The name of the DOM entry associated with NewEntryForm
      */
-    constructor() {
-        $("#addCancel").click(this.clearForm);
-        $("#addButton").click(this.submitForm);
+    static readonly NAME = "NewEntryForm";
+
+    /**
+     * Track if the Singleton has been initialized
+     */
+    private static isInit = false;
+
+    /**
+     * Initialize the NewEntryForm by creating its element in the DOM and 
+     * configuring its buttons.  This needs to be called from any public static 
+     * method, to ensure that the Singleton is initialized before use
+     */
+    private static init() {
+        if (!NewEntryForm.isInit) {
+            $("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());
+            $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.submitForm);
+            $("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide);
+            NewEntryForm.isInit = true;
+        }
     }
 
     /**
-     * Clear the form's input fields
+     * Refresh() doesn't really have much meaning, but just like in sNavbar, we
+     * have a refresh() method so that we don't have front-end code calling
+     * init().
      */
-    clearForm() {
-        $("#newTitle").val("");
-        $("#newMessage").val("");
-        // reset the UI
-        $("#addElement").hide();
-        $("#editElement").hide();
-        $("#showElements").show();
+    public static refresh() {
+        NewEntryForm.init();
     }
 
     /**
-     * Check if the input fields are both valid, and if so, do an AJAX call.
+     * Hide the NewEntryForm.  Be sure to clear its fields first
      */
-    submitForm() {
+    static hide() {
+        $("#" + NewEntryForm.NAME + "-title").val("");
+        $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME).modal("hide");
+    }
+/**
+     * Show the NewEntryForm.  Be sure to clear its fields, because there are
+     * ways of making a Bootstrap modal disapper without clicking Close, and
+     * we haven't set up the hooks to clear the fields on the events associated
+     * with those ways of making the modal disappear.
+     */
+    public static show() {
+        $("#" + NewEntryForm.NAME + "-title").val("");
+        $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME).modal("show");
+    }
+
+
+    /**
+     * Send data to submit the form only if the fields are both valid.  
+     * Immediately hide the form when we send data, so that the user knows that 
+     * their click was received.
+     */
+    private static submitForm() {
         // get the values of the two fields, force them to be strings, and check 
         // that neither is empty
-        let title = "" + $("#newTitle").val();
-        let msg = "" + $("#newMessage").val();
+        let title = "" + $("#" + NewEntryForm.NAME + "-title").val();
+        let msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
         if (title === "" || msg === "") {
             window.alert("Error: title or message is not valid");
             return;
         }
+        NewEntryForm.hide();
         // set up an AJAX post.  When the server replies, the result will go to
         // onSubmitResponse
         $.ajax({
             type: "POST",
-            url: "/messages",
+            url: Constants.APP_URL + "/messages",
             dataType: "json",
             data: JSON.stringify({ mTitle: title, mMessage: msg }),
-            success: newEntryForm.onSubmitResponse
+            success: NewEntryForm.onSubmitResponse
         });
     }
 
@@ -52,10 +89,11 @@ class NewEntryForm {
      * 
      * @param data The object returned by the server
      */
-    private onSubmitResponse(data: any) {
-        // If we get an "ok" message, clear the form
+    static onSubmitResponse(data: any) {
+        // If we get an "ok" message, clear the form and refresh the main 
+        // listing of messages
         if (data.mStatus === "ok") {
-            newEntryForm.clearForm();
+            ElementList.refresh();
         }
         // Handle explicit errors with a detailed popup message
         else if (data.mStatus === "error") {
@@ -66,4 +104,4 @@ class NewEntryForm {
             window.alert("Unspecified error");
         }
     }
-} // end class NewEntryForm
+}

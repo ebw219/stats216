@@ -26,39 +26,71 @@
 </html>
 -->
 
-<html>
+<!--html>
 
 <head>
     <script src="jquery.min.js"></script>
     <script src="handlebars.min.js"></script>
     <script src="templates.js"></script>
+    <script src="handlebars.min.js"></script>
+    <script src="templates.js"></script>
     <script src="app.js"></script>
-    <title>Hello World</title>
+    <title>Welcome to Lyle</title>
 
     <link rel="stylesheet" href="app.css" />
     <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
 </head>
 
 <body>
-    <div id="addElement">
-        <h3>Add a New Entry</h3>
-        <label>Title</label>
-        <input type="text" id="newTitle" />
-        <label>Message</label>
-        <textarea id="newMessage"></textarea>
-        <button id="addButton">Add</button>
-        <button id="addCancel">Cancel</button>
-    </div>
-    <div id="editElement">
-        <h3>Edit an Entry</h3>
-        <label>Title</label>
-        <input type="text" id="editTitle" />
-        <label>Message</label>
-        <textarea id="editMessage"></textarea>
-        <span id="editCreated"></span>
-        <input type="hidden" id="editId" />
-        <button id="editButton">Update</button>
-        <button id="editCancel">Cancel</button>
+    <div id="showElements">
+      <h3>Messages</h3>
+      <button id="show Form Button">Add New Message</button>
+      <div id="messageList"></div>
     </div>
 </body>
+</html>
+---->
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="Front-End for Bootstrap Tutorial" />
+    <meta name="author" content="CSE 216 Student Name Goes Here" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+    <title>The Buzz</title>
+
+    <script src="jquery.min.js"></script>
+    <script src="handlebars.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="templates.js"></script>
+    <script src="app.js"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
+    <link rel="stylesheet" href="app.css" />
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+    </script>
+    <script src="https://apis.google.com/js/client:platform.js?onload=start" async defer>
+    </script>
+
+    <!--   <meta name="google-site-verification" content="jPc4BC_LVujtfGvGXerQda9bI-kx6haU936KuVieY8g" /> -->
+</head>
+
+<body role="document">
+
+<!--<a href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=325681108859-g2tq47a7h6pvnfo159h0aoaluto67kqv.apps.googleusercontent.com&redirect_uri=https://www.getpostman.com/oauth2/callback&scope=https://www.googleapis.com/auth/analytics.readonly+https://www.googleapis.com/auth/userinfo.email&state=abc123">-->
+    <!--<button>Login</button>-->
+<!--</a>-->
+<div  ng-app="app" ui-view></div>
+
+
+</body>
+
+</html>
