@@ -31,12 +31,14 @@ public class App {
         System.out.println("  [C] Create tblComment");
         System.out.println("  [P] Create tblUpVotes");
         System.out.println("  [N] Create tblDownVotes");
+        System.out.println("  [W] Create tblDocs");
         System.out.println();
         System.out.println("  [u] Delete tblUser");
         System.out.println("  [m] Delete tblMessage");
         System.out.println("  [c] Delete tblComment");
         System.out.println("  [p] Delete tblUpVotes");
         System.out.println("  [n] Delete tblDownVotes");
+        System.out.println("  [w] Delete tblDocs");
         System.out.println();
         //System.out.println("  [A] Show unauthenticated users");
         System.out.println("  [-] Delete a user");
@@ -54,7 +56,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPNAumcpnES";
+        String actions = "TD1*-+~q?UMCPNAWwumcpnES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -170,104 +172,222 @@ public class App {
             // NB: for better testability, each action should be a separate
             //     function call
             char action = prompt(in);
-            if (action == '?') {
-                menu();
-            } else if (action == 'q') {
-                break;
-            } else if (action == 'T') {
-                db.createTable();
-            } else if (action == 'D') {
-                db.dropTable();
-            } else if (action == '1') {
-                int id = getInt(in, "Enter the row ID");
-                if (id == -1)
-                    continue;
-                Database.RowData res = db.selectOne(id);
-                if (res != null) {
-                    System.out.println("  [" + res.mId + "] " + res.mSubject);
-                    System.out.println("  --> " + res.mMessage);
-                }
-            } else if (action == '*') {
-                ArrayList<Database.RowData> res = db.selectAll();
-                if (res == null)
-                    continue;
-                System.out.println("  Current Database Contents");
-                System.out.println("  -------------------------");
-                for (Database.RowData rd : res) {
-                    System.out.println("  [" + rd.mId + "] " + rd.mSubject);
-                }
-            } else if (action == '-') {
-                System.out.print("Enter the user ID: ");
-                System.out.println();
-                int id = getInt(in, "");
-                if (id == -1)
-                    continue;
-                int res = db.deleteUser(id);
-                if (res == -1)
-                    continue;
-                System.out.println("  " + res + " rows deleted");
-            } else if (action == '+') {
-                String subject = getString(in, "Enter the subject");
-                String message = getString(in, "Enter the message");
-                if (subject.equals("") || message.equals(""))
-                    continue;
-                int res = db.insertRow(subject, message);
-                System.out.println(res + " rows added");
-            } else if (action == '~') {
-                int id = getInt(in, "Enter the row ID :> ");
-                if (id == -1)
-                    continue;
-                String newMessage = getString(in, "Enter the new message");
-                int res = db.updateOne(id, newMessage);
-                if (res == -1)
-                    continue;
-                System.out.println("  " + res + " rows updated");
-            } else if (action == 'U') {
-                db.createUserTable();
-            } else if (action == 'M') {
-                db.createMessageTable();
-            } else if (action == 'C') {
-                db.createCommentTable();
-            } else if (action == 'P') {
-                db.createUpvoteTable();
-            } else if (action == 'N') {
-                db.createDownvoteTable();
-            } else if (action == 'u') {
-                db.dropUTable();
-            } else if (action == 'm') {
-                db.dropMTable();
-            } else if (action == 'c') {
-                db.dropCTable();
-            } else if (action == 'p') {
-                db.dropUVTable();
-            } else if (action == 'n') {
-                db.dropDVTable();
-            } else if (action == 'A') {
-
-                ArrayList<User> res = db.selectUnauth();
-                System.out.println();
-                System.out.printf("%s\t%-15s\t%-15s\t%-15s\n", "id", "name", "username", "email");
-                System.out.println("-----------------------------------------------");
-                for (int i=0; i<res.size(); i++) {
-                    System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
-                } 
-            } else if(action == 'S'){
-                System.out.println();
-                System.out.println("Enter Table Name: ");
-                String tblName = getString(in, "");
-                System.out.println("Enter Column Name: ");
-                String columnName = getString(in,"");
-                db.DropColumn(tblName, columnName);
-            }/*else if (action == 'E') {
-                System.out.print("Enter the user's email: ");
-                System.out.println();
-                String email = getString(in, "");
-                emailUser(email);
-                System.out.println("Email sent to " + email);
-                db.updateAuth(email);
 
 
-            }*/ 
+            switch(action){
+                case '?':
+                    menu();
+                    break;
+                case 'q':
+                    break;
+                case 'T':
+                    db.createTable();
+                    break;
+                case 'D':
+                    db.dropTable();
+                    break;
+                case '1':
+                    int id = getInt(in, "Enter the row ID");
+                    if (id == -1)
+                        continue;
+                    Database.RowData res = db.selectOne(id);
+                    if (res != null) {
+                        System.out.println("  [" + res.mId + "] " + res.mSubject);
+                        System.out.println("  --> " + res.mMessage);
+                    }
+                    break;
+                case'*':
+                    ArrayList<Database.RowData> res = db.selectAll();
+                    if (res == null)
+                        continue;
+                    System.out.println("  Current Database Contents");
+                    System.out.println("  -------------------------");
+                    for (Database.RowData rd : res) {
+                        System.out.println("  [" + rd.mId + "] " + rd.mSubject);
+                    }
+                    break;
+                case'-':
+                    System.out.print("Enter the user ID: ");
+                    System.out.println();
+                    int id = getInt(in, "");
+                    if (id == -1)
+                        continue;
+                    int res = db.deleteUser(id);
+                    if (res == -1)
+                        continue;
+                    System.out.println("  " + res + " rows deleted");
+                    break;
+                case '+':
+                    String subject = getString(in, "Enter the subject");
+                    String message = getString(in, "Enter the message");
+                    if (subject.equals("") || message.equals(""))
+                        continue;
+                    int res = db.insertRow(subject, message);
+                    System.out.println(res + " rows added");
+                    break;
+                case '~':
+                    int id = getInt(in, "Enter the row ID :> ");
+                    if (id == -1)
+                        continue;
+                    String newMessage = getString(in, "Enter the new message");
+                    int res = db.updateOne(id, newMessage);
+                    if (res == -1)
+                        continue;
+                    System.out.println("  " + res + " rows updated");
+                    break;
+                case 'U':
+                    db.createUserTable();
+                    break;
+                case 'M':
+                    db.createMessageTable();
+                    break;
+                case 'C':
+                    db.createCommentTable();
+                    break;
+                case 'P':
+                    db.createUpVoteTable();
+                    break;
+                case 'N':
+                    db.createDownVoteTable();
+                    break;
+                case'u':
+                    db.dropUTable();
+                    break;
+                case 'm':
+                    db.dropMTable();
+                    break;
+                case 'c':
+                    db.dropCTable();
+                    break;
+                case 'p':
+                    db.dropUVTable();
+                    break;
+                case 'n':
+                    db.dropDVTable();
+                    break;
+                case 'A':
+                    ArrayList<User> res = db.selectUnauth();
+                    System.out.println();
+                    System.out.printf("%s\t%-15s\t%-15s\t%-15s\n", "id", "name", "username", "email");
+                    System.out.println("-----------------------------------------------");
+                    for (int i=0; i<res.size(); i++) {
+                        System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
+                    }
+                    break;
+                case 'S':
+                    System.out.println();
+                    System.out.println("Enter Table Name: ");
+                    String tblName = getString(in, "");
+                    System.out.println("Enter Column Name: ");
+                    String columnName = getString(in,"");
+                    db.DropColumn(tblName, columnName);
+                    break;
+                case 'W':
+
+                    break;
+                case 'w':
+
+                    break;
+            }
+
+////            if (action == '?') {
+////                menu();
+////            } else if (action == 'q') {
+////                break;
+////            } else if (action == 'T') {
+////                db.createTable();
+////            } else if (action == 'D') {
+////                db.dropTable();
+////            } else if (action == '1') {
+////                int id = getInt(in, "Enter the row ID");
+////                if (id == -1)
+////                    continue;
+////                Database.RowData res = db.selectOne(id);
+////                if (res != null) {
+////                    System.out.println("  [" + res.mId + "] " + res.mSubject);
+////                    System.out.println("  --> " + res.mMessage);
+////                }
+////            } else if (action == '*') {
+////                ArrayList<Database.RowData> res = db.selectAll();
+////                if (res == null)
+////                    continue;
+////                System.out.println("  Current Database Contents");
+////                System.out.println("  -------------------------");
+////                for (Database.RowData rd : res) {
+////                    System.out.println("  [" + rd.mId + "] " + rd.mSubject);
+////                }
+////            } else if (action == '-') {
+////                System.out.print("Enter the user ID: ");
+////                System.out.println();
+////                int id = getInt(in, "");
+////                if (id == -1)
+////                    continue;
+////                int res = db.deleteUser(id);
+////                if (res == -1)
+////                    continue;
+////                System.out.println("  " + res + " rows deleted");
+//            } else if (action == '+') {
+//                String subject = getString(in, "Enter the subject");
+//                String message = getString(in, "Enter the message");
+//                if (subject.equals("") || message.equals(""))
+//                    continue;
+//                int res = db.insertRow(subject, message);
+//                System.out.println(res + " rows added");
+//            } else if (action == '~') {
+//                int id = getInt(in, "Enter the row ID :> ");
+//                if (id == -1)
+//                    continue;
+//                String newMessage = getString(in, "Enter the new message");
+//                int res = db.updateOne(id, newMessage);
+//                if (res == -1)
+//                    continue;
+//                System.out.println("  " + res + " rows updated");
+//            } else if (action == 'U') {
+//                db.createUserTable();
+//            } else if (action == 'M') {
+//                db.createMessageTable();
+//            } else if (action == 'C') {
+//                db.createCommentTable();
+//            } else if (action == 'P') {
+//                db.createUpvoteTable();
+//            } else if (action == 'N') {
+//                db.createDownvoteTable();
+//            } else if (action == 'u') {
+//                db.dropUTable();
+//            } else if (action == 'm') {
+//                db.dropMTable();
+//            } else if (action == 'c') {
+//                db.dropCTable();
+//            } else if (action == 'p') {
+//                db.dropUVTable();
+//            } else if (action == 'n') {
+//                db.dropDVTable();
+//            } else if (action == 'A') {
+//
+//                ArrayList<User> res = db.selectUnauth();
+//                System.out.println();
+//                System.out.printf("%s\t%-15s\t%-15s\t%-15s\n", "id", "name", "username", "email");
+//                System.out.println("-----------------------------------------------");
+//                for (int i=0; i<res.size(); i++) {
+//                    System.out.printf("%d\t%-15s\t%-15s\t%-15s\n", res.get(i).getId(), res.get(i).getName(), res.get(i).getUsername(), res.get(i).getEmail());
+//                }
+//            } else if(action == 'S'){
+//                System.out.println();
+//                System.out.println("Enter Table Name: ");
+//                String tblName = getString(in, "");
+//                System.out.println("Enter Column Name: ");
+//                String columnName = getString(in,"");
+//                db.DropColumn(tblName, columnName);
+//            }/*else if (action == 'E') {
+//                System.out.print("Enter the user's email: ");
+//                System.out.println();
+//                String email = getString(in, "");
+//                emailUser(email);
+//                System.out.println("Email sent to " + email);
+//                db.updateAuth(email);
+//
+//
+//            }*/
 
         }
         // Always remember to disconnect from the database when the program 
