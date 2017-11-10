@@ -21,13 +21,15 @@ var editEntryForm: EditEntryForm;
 $(document).ready(function () {
     // LoginOAuth.init();
     Navbar.refresh();
-    NewEntryForm.refresh();
+    //NewEntryForm.refresh();
+    $("#Navbar-add").click(NewEntryForm.refresh());
+    console.log("hopefully newentryform refresh only called on navbar-add click");
     ElementList.refresh();
     console.log("app.ts refreshes done");    
 
-    // Create the object that controls the "Edit Entry" form
-    editEntryForm = new EditEntryForm();
-    // set up initial UI state
-    console.log("new editentryform");
-    $("#editElement").hide();
+    // // Create the object that controls the "Edit Entry" form
+    // editEntryForm = new EditEntryForm();
+    // // set up initial UI state
+    // console.log("new editentryform");
+    //$("#editElement").hide();
 });

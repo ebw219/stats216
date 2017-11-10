@@ -64,7 +64,7 @@ class EditEntryForm {
 	   type: "PUT",
            url: Constants.APP_URL + "/messages/" + id,
            dataType: "json",
-           data: JSON.stringify({ mTitle: title, mMessage: msg }),
+           data: JSON.stringify({ mTitle: title, mBody: msg }),
            success: editEntryForm.onSubmitResponse
         });
     }

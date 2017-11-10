@@ -25,7 +25,8 @@ class NewEntryForm {
         if (!NewEntryForm.isInit) {
             console.log("entered newentryform init if statement");
             $("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());
-            $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
+            $("#Navbar-add").click(NewEntryForm.show());            
+            //$("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
             //new entry form shows up when the page loads
             console.log("new entry form show called");
             $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.submitForm);
@@ -35,6 +36,9 @@ class NewEntryForm {
             NewEntryForm.isInit = true;
         }
     }
+
+    // $("#" + LoginForm.NAME + "-OK").click(LoginForm.submitForm());
+            // $("#" + LoginForm.NAME + "-Close").click(LoginForm.hide());
 
     /**
      * Refresh() doesn't really have much meaning, but just like in sNavbar, we
@@ -86,6 +90,7 @@ class NewEntryForm {
         let title = "" + $("#" + NewEntryForm.NAME + "-title").val();
         console.log("title1");
         let msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
+        //let msg = "there is a body here i promise";
         console.log("message1");
         if (title === "" || msg === "") {
             window.alert("Error: title or message is not valid");
@@ -98,7 +103,7 @@ class NewEntryForm {
             type: "POST",
             url: Constants.APP_URL + "/messages",
             dataType: "json",
-            data: JSON.stringify({ mTitle: title, mMessage: msg }),
+            data: JSON.stringify({ mTitle: title, mBody: msg }),
             success: NewEntryForm.onSubmitResponse
         });
     }
@@ -116,6 +121,7 @@ class NewEntryForm {
         if (data.mStatus === "ok") {
             console.log("refresh elementlist");
             ElementList.refresh();
+            NewEntryForm.hide();
         }
         // Handle explicit errors with a detailed popup message
         else if (data.mStatus === "error") {
