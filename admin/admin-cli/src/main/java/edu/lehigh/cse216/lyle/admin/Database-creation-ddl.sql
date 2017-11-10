@@ -11,14 +11,17 @@ CREATE TABLE IF NOT EXISTS tblMessage (
   user_id INTEGER, title VARCHAR(50),
   body VARCHAR(140),
 --   # Need to add creation date/time
-  FOREIGN KEY (user_id) REFERENCES tblUser (user_id)
+  FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
+  pdf VARCHAR(75),
+  link VARCHAR(140),
+  image VARCHAR(50)
 );
 CREATE TABLE IF NOT EXISTS tblComments (
   comment_id SERIAL PRIMARY KEY,
   user_id INTEGER,
   message_id INTEGER,
   comment_text VARCHAR(255),
-  # Need to add creation date/time
+--   # Need to add creation date/time
   FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
   FOREIGN KEY (message_id) REFERENCES tblMessage (message_id)
 );
@@ -40,3 +43,7 @@ CREATE TABLE IF NOT EXISTS tblDocs (
   doc_id INTEGER PRIMARY KEY,
   FOREIGN KEY (owner_id) REFERENCES tblUser (user_id)
 );
+
+
+
+-- ALTER TABLE "public"."tblmessage" ADD COLUMN "pdf_id" character varying(75);
