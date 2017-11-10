@@ -9,7 +9,8 @@
                 <input class="form-control" type="text" id="NewEntryForm-title" />
                 <label for="NewEntryForm-message">Message</label>
                 <textarea class="form-control" id="NewEntryForm-message"></textarea>
-            </div>
+                <label for="NewEntryForm-pdfload">Upload a PDF</label>
+                <input class="file-loading" type="file" id="NewEntryForm-pdfload" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="NewEntryForm-OK">OK</button>
                 <button type="button" class="btn btn-default" id="NewEntryForm-Close">Close</button>
