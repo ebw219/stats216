@@ -21,9 +21,13 @@ class Navbar {
      * method, to ensure that the Singleton is initialized before use.
      */
     private static init() {
+        console.log("entered navbar init");
+        console.log("navbar.isInit: " + Navbar.isInit);
         if (!Navbar.isInit) {
+            console.log("entered navbar init if statement");
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
-            $("#" + Navbar.NAME + "-add").click(NewEntryForm.show);
+            $("#" + Navbar.NAME + "-add").click(NewEntryForm.show());
+            console.log("show newentryform called");
             Navbar.isInit = true;
         }
     }
@@ -35,6 +39,7 @@ class Navbar {
      * is configured.
      */
     public static refresh() {
+        console.log("navbar refresh");
         Navbar.init();
     }
 }

@@ -19,10 +19,17 @@ class NewEntryForm {
      * method, to ensure that the Singleton is initialized before use
      */
     private static init() {
+        console.log("entered newentryform init");
+        //NewEntryForm.isInit = false;
+        console.log("isInit: " + NewEntryForm.isInit);
         if (!NewEntryForm.isInit) {
+            console.log("entered newentryform init if statement");
             $("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());
+            // $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
             $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.submitForm);
+            console.log("submitForm called");
             $("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide);
+            console.log("hideform called");
             NewEntryForm.isInit = true;
         }
     }
@@ -33,6 +40,7 @@ class NewEntryForm {
      * init().
      */
     public static refresh() {
+        console.log("newentryform refresh");
         NewEntryForm.init();
     }
 
@@ -40,6 +48,7 @@ class NewEntryForm {
      * Hide the NewEntryForm.  Be sure to clear its fields first
      */
     static hide() {
+        console.log("entered newentryform hide");
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
         $("#" + NewEntryForm.NAME).modal("hide");
@@ -51,9 +60,15 @@ class NewEntryForm {
      * with those ways of making the modal disappear.
      */
     public static show() {
+        console.log("clicked, entering show");
         $("#" + NewEntryForm.NAME + "-title").val("");
+        console.log("title: " + $("#" + NewEntryForm.NAME + "-title").val(""));
         $("#" + NewEntryForm.NAME + "-message").val("");
-        $("#" + NewEntryForm.NAME).modal("show");
+        //$("#" + NewEntryForm.NAME + "-title").show();
+        //NewEntryForm.init();
+        console.log("please modal show work");
+        // $("#" + NewEntryForm.NAME + "-message").show();
+        $('#' + NewEntryForm.NAME).modal('show');
     }
 
 
@@ -65,13 +80,16 @@ class NewEntryForm {
     private static submitForm() {
         // get the values of the two fields, force them to be strings, and check 
         // that neither is empty
+        console.log("entered newentryform submitform");
         let title = "" + $("#" + NewEntryForm.NAME + "-title").val();
+        console.log("title1");
         let msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
+        console.log("message1");
         if (title === "" || msg === "") {
             window.alert("Error: title or message is not valid");
             return;
         }
-        NewEntryForm.hide();
+        //NewEntryForm.hide();
         // set up an AJAX post.  When the server replies, the result will go to
         // onSubmitResponse
         $.ajax({
@@ -92,7 +110,9 @@ class NewEntryForm {
     static onSubmitResponse(data: any) {
         // If we get an "ok" message, clear the form and refresh the main 
         // listing of messages
+        console.log("entered onsubmitresponse");
         if (data.mStatus === "ok") {
+            console.log("refresh elementlist");
             ElementList.refresh();
         }
         // Handle explicit errors with a detailed popup message
