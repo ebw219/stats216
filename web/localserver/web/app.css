@@ -1,0 +1,48 @@
+/* switch the default font for the body, and remove top/bottom/left/right margin */
+body {
+    font-family: 'Fresca', sans-serif;
+    margin-left: 3px;
+}
+
+
+/* Make the button for adding a message hover in the top right */
+#showFormButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+
+/* make the form elements wide, and force a line break after each */
+input, label, textarea {
+    display: block;
+    width: 200px;
+}
+
+/* put some space between textareas and the buttons that follow them */
+textarea {
+    margin-bottom: 5px;
+}
+
+/* put some left space before form elements */
+label, input, textarea, #addButton, #editButton, #voteButton {
+    margin-left: 15px;
+}
+
+/* custom formatting for the span where we put the creation date */
+#editCreated {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 15px;
+}/*private static readonly NAME = "LoginOAuth";*/
+
+
+#LoginOAuth-login{
+    width: 20%;
+    content:url(https://developers.google.com/accounts/images/sign-in-with-google.png);
+    margin-left: 40%;
+}
+
+.panel-heading{
+
+}
