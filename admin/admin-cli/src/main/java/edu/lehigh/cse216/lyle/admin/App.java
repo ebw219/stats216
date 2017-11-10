@@ -118,7 +118,8 @@ public class App {
 
 
 
-    /*static void emailUser(String userEmail) {
+    /**
+     * static void emailUser(String userEmail) {
         
         Email from = new Email(System.getenv("FROM_EMAIL"));
         Email to = new Email(userEmail);
