@@ -47,6 +47,7 @@ class NewEntryForm {
      */
     public static refresh() {
         console.log("newentryform refresh");
+        NewEntryForm.isInit = false;
         NewEntryForm.init();
     }
 

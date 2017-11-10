@@ -22,7 +22,7 @@ $(document).ready(function () {
     // LoginOAuth.init();
     Navbar.refresh();
     //NewEntryForm.refresh();
-    $("#Navbar-add").click(NewEntryForm.refresh());
+    // $("#Navbar-add").click(NewEntryForm.refresh());
     console.log("hopefully newentryform refresh only called on navbar-add click");
     ElementList.refresh();
     console.log("app.ts refreshes done");    

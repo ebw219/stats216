@@ -26,7 +26,7 @@ class Navbar {
         if (!Navbar.isInit) {
             console.log("entered navbar init if statement");
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
-            $("#" + Navbar.NAME + "-add").click(NewEntryForm.show());
+            $("#" + Navbar.NAME + "-add").click(NewEntryForm.refresh);
             console.log("show newentryform called");
             Navbar.isInit = true;
         }
