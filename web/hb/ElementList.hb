@@ -7,6 +7,7 @@
             {{#each mData}}
          <tr>
                 <td>{{this.mTitle}}</td>
+				<td>{{this.mBody}}</td>
               	<td><button class="ElementList-editbtn" data-value="{{this.mId}}">Edit</button></td>
               	<td><button class="ElementList-delbtn" data-value="{{this.mId}}">Delete</button></td>
               	<td><button class="ElementList-upvotebtn" data-value="{{this.mId}}">Up Vote</button></td>

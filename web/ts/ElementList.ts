@@ -32,6 +32,7 @@ class ElementList {
     public static refresh() {
         // Make sure the singleton is initialized
         ElementList.init();
+
         // Issue a GET, and then pass the result to update()
         $.ajax({
             type: "GET",
@@ -46,10 +47,13 @@ class ElementList {
      * ElementList
      */
     private static update(data: any) {
+        console.log("title: " + data["mData"][0].mTitle);
+        console.log("body: " + data["mData"][0].mBody);
         // Remove the table of data, if it exists
         $("#" + ElementList.NAME).remove();
         // Use a template to re-generate the table, and then insert it
         $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
+        console.log("append");
         // Find all of the delete buttons, and set their behavior
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
         // Find all of the Edit buttons, and set their behavior
