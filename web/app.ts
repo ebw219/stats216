@@ -19,5 +19,15 @@ var editEntryForm: EditEntryForm;
 
 // Run some configuration code when the web page loads
 $(document).ready(function () {
-    LoginOAuth.init();
+    // LoginOAuth.init();
+    Navbar.refresh();
+    NewEntryForm.refresh();
+    ElementList.refresh();
+    console.log("app.ts refreshes done");    
+
+    // Create the object that controls the "Edit Entry" form
+    editEntryForm = new EditEntryForm();
+    // set up initial UI state
+    console.log("new editentryform");
+    $("#editElement").hide();
 });

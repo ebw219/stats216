@@ -25,7 +25,9 @@ class NewEntryForm {
         if (!NewEntryForm.isInit) {
             console.log("entered newentryform init if statement");
             $("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());
-            // $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
+            $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
+            //new entry form shows up when the page loads
+            console.log("new entry form show called");
             $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.submitForm);
             console.log("submitForm called");
             $("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide);
