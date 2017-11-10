@@ -58,6 +58,8 @@ class NewEntryForm {
         console.log("entered newentryform hide");
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME + "-linkload").val("");
+        $("#" + NewEntryForm.NAME + "-pdfload").val("");        
         $("#" + NewEntryForm.NAME).modal("hide");
     }
 /**
@@ -70,7 +72,8 @@ class NewEntryForm {
         console.log("clicked, entering show");
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
-        $("#" + NewEntryForm.NAME + "-pdfload").val("");
+        $("#" + NewEntryForm.NAME + "-linkload").val("");
+        $("#" + NewEntryForm.NAME + "-pdfload").val("");        
         //$("#" + NewEntryForm.NAME + "-title").show();
         //NewEntryForm.init();
         console.log("please modal show work");

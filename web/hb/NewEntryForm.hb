@@ -9,7 +9,9 @@
                 <input class="form-control" type="text" id="NewEntryForm-title" />
                 <label for="NewEntryForm-message">Message</label>
                 <textarea class="form-control" id="NewEntryForm-message"></textarea>
-                <label for="NewEntryForm-pdfload">Upload a PDF</label>
+                <label for="NewEntryForm-linkload">Upload a link (optional)</label>
+                <input class="form-control" type="text" id="NewEntryForm-linkload" />
+                <label for="NewEntryForm-pdfload">Upload a PDF (optional)</label>
                 <input class="file-loading" type="file" id="NewEntryForm-pdfload" />
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="NewEntryForm-OK">OK</button>
