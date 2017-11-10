@@ -69,7 +69,6 @@ class NewEntryForm {
     public static show() {
         console.log("clicked, entering show");
         $("#" + NewEntryForm.NAME + "-title").val("");
-        console.log("title: " + $("#" + NewEntryForm.NAME + "-title").val(""));
         $("#" + NewEntryForm.NAME + "-message").val("");
         //$("#" + NewEntryForm.NAME + "-title").show();
         //NewEntryForm.init();
@@ -98,6 +97,9 @@ class NewEntryForm {
             window.alert("Error: title or message is not valid");
             return;
         }
+        // else if ($("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide)) {
+        //     NewEntryForm.hide();
+        // }
         //NewEntryForm.hide();
         // set up an AJAX post.  When the server replies, the result will go to
         // onSubmitResponse
@@ -108,6 +110,7 @@ class NewEntryForm {
             data: JSON.stringify({uId: id, mTitle: title, mBody: msg }),
             success: NewEntryForm.onSubmitResponse
         });
+        NewEntryForm.hide();
     }
 
     /**
