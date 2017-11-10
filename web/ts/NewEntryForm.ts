@@ -90,7 +90,8 @@ class NewEntryForm {
         let title = "" + $("#" + NewEntryForm.NAME + "-title").val();
         console.log("title1");
         let msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
-        //let msg = "there is a body here i promise";
+        //let id = "" + $("#editId").val();
+        let id = 14;
         console.log("message1");
         if (title === "" || msg === "") {
             window.alert("Error: title or message is not valid");
@@ -103,7 +104,7 @@ class NewEntryForm {
             type: "POST",
             url: Constants.APP_URL + "/messages",
             dataType: "json",
-            data: JSON.stringify({ mTitle: title, mBody: msg }),
+            data: JSON.stringify({uId: id, mTitle: title, mBody: msg }),
             success: NewEntryForm.onSubmitResponse
         });
     }
