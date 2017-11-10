@@ -70,6 +70,7 @@ class NewEntryForm {
         console.log("clicked, entering show");
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME + "-pdfload").val("");
         //$("#" + NewEntryForm.NAME + "-title").show();
         //NewEntryForm.init();
         console.log("please modal show work");
@@ -93,10 +94,12 @@ class NewEntryForm {
         //let id = "" + $("#editId").val();
         let id = 14;
         console.log("message1");
-        if (title === "" || msg === "") {
-            window.alert("Error: title or message is not valid");
-            return;
-        }
+        // if ($("#" + NewEntryForm.NAME + "-OK").click) {
+            if (title === "" || msg === "") {
+                window.alert("Error: title or message is not valid");
+                return;
+            }
+        // }
         // else if ($("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide)) {
         //     NewEntryForm.hide();
         // }
