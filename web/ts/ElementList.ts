@@ -54,6 +54,8 @@ class ElementList {
         // Use a template to re-generate the table, and then insert it
         $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
         console.log("append");
+        //click on message
+        $("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
         // Find all of the delete buttons, and set their behavior
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
         // Find all of the Edit buttons, and set their behavior
@@ -83,6 +85,13 @@ class ElementList {
     }
 
     /**
+     * clickMsg is the code we run in response to a click on a message title
+     */
+    private static clickMsg() {
+        console.log("msg clicked, called method clickMsg()");
+    }
+
+    /**
      * clickDelete is the code we run in response to a click of a delete button
      */
     private static clickDelete() {
@@ -103,6 +112,7 @@ class ElementList {
      * clickEdit is the code we run in response to a click of a delete button
      */
     private static clickEdit() {
+        console.log("clicked edit button");
         // as in clickDelete, we need the ID of the row
         let id = $(this).data("value");
         $.ajax({

@@ -96,6 +96,8 @@ class NewEntryForm {
         let msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
         //let id = "" + $("#editId").val();
         let id = 14;
+        let link = "" + $("#" + NewEntryForm.NAME + "-linkupload").val();
+        let pdf = "" + $("#" + NewEntryForm.NAME + "-pdfupload").val();        
         console.log("message1");
         // if ($("#" + NewEntryForm.NAME + "-OK").click) {
             if (title === "" || msg === "") {
@@ -103,6 +105,14 @@ class NewEntryForm {
                 return;
             }
         // }
+        if (link === "") {
+            link = "";
+        }
+                //these should be set to null but typscript hated that so had to use an empty string
+                //be careful that it doesnt actually put something in the field
+        if (pdf === "") {
+            pdf = "";
+        }
         // else if ($("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide)) {
         //     NewEntryForm.hide();
         // }
