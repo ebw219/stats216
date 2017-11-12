@@ -194,6 +194,7 @@ public class Database {
                     + "user_id INTEGER, "
                     + "title VARCHAR(50) NOT NULL, "
                     + "body VARCHAR(140) NOT NULL, "
+                    + "date_created DATE DEFAULT now(),"
                     + "pdf VARCHAR(75),"
                     + "link VARCHAR(140),"
                     + "image VARCHAR(50),"
@@ -203,17 +204,20 @@ public class Database {
                     + "user_id INTEGER, "
                     + "message_id INTEGER, "
                     + "comment_text VARCHAR(255) NOT NULL, "
+                    + "date_created DATE DEFAULT now(),"
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE)");
             db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
                     + "user_id INTEGER,"
                     + "message_id INTEGER, "
+                    + "date_created DATE DEFAULT now(),"
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
                     + "PRIMARY KEY (user_id, message_id))");
             db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes ("
                     + "user_id INTEGER, "
                     + "message_id INTEGER,"
+                    + "date_created DATE DEFAULT now(),"
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
                     + "PRIMARY KEY (user_id, message_id))");
@@ -221,6 +225,7 @@ public class Database {
                     + "doc_owner_id INTEGER,"
                     + "doc_id INTEGER PRIMARY KEY,"
                     + "doc_title VARCHAR(140) NOT NULL,"
+                    + "date_created DATE DEFAULT now(),"
                     + "FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
             // Standard CRUD operations
             db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");

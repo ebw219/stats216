@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS tblMessage (
   message_id SERIAL PRIMARY KEY UNIQUE,
   user_id INTEGER,
   title VARCHAR(50) NOT NULL,
-  body VARCHAR(140) NOT NULL ,
---   # Need to add creation date/time
+  body VARCHAR(140) NOT NULL,
+  date_created DATE DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE,
   pdf VARCHAR(75),
   link VARCHAR(140),
@@ -23,17 +23,16 @@ CREATE TABLE IF NOT EXISTS tblComments (
   comment_id SERIAL PRIMARY KEY,
   UNIQUE (comment_id),
   user_id INTEGER,
---   REFERENCES tblUser (user_id),
   message_id INTEGER,
---   REFERENCES tblMessage (message_id),
   comment_text VARCHAR(255) NOT NULL,
---   # Need to add creation date/time
+  date_created DATE DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE,
   FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS tblUpVotes (
   user_id INTEGER,
   message_id INTEGER,
+  date_created DATE DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
   FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
   PRIMARY KEY (user_id, message_id)
@@ -41,6 +40,7 @@ CREATE TABLE IF NOT EXISTS tblUpVotes (
 CREATE TABLE IF NOT EXISTS tblDownVotes (
   user_id INTEGER,
   message_id INTEGER,
+  date_created DATE DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
   FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
   PRIMARY KEY (user_id, message_id)
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS tblDocs (
   doc_owner_id INTEGER,
   doc_id INTEGER PRIMARY KEY UNIQUE ,
   doc_title VARCHAR(140) NOT NULL,
+  date_created DATE DEFAULT now(),
   FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE
 );
 
