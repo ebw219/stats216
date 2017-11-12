@@ -219,14 +219,17 @@ import com.google.api.client.json.gson.GsonFactory;
 	  String accessToken = tokenResponse.getAccessToken();
 	 
 	  // Use access token to call API
-	  var xhr = new XMLHttpRequest();
-	  xhr.open('GET',
-		  'https://www.googleapis.com/drive/v3/about?fields=user&' +
-		  'access_token=' + params['access_token']);
-	  xhr.onreadystatechange = function (e) {
-		console.log(xhr.response);
-	  };
-	  xhr.send(null);
+//	  var xhr = new XMLHttpRequest();
+//	  xhr.open("GET",
+//		  "https://www.googleapis.com/drive/v3/about?fields=user&" +
+//		  "access_token=" + params["access_token"]);
+//	  xhr.onreadystatechange = function (e) {
+//		console.log(xhr.response);
+//	  };
+//	  xhr.send(null);
+
+
+
 
 	 /**
 	  *POST route for receiving the auth token
@@ -243,9 +246,6 @@ import com.google.api.client.json.gson.GsonFactory;
 	  */
 
 	  GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-
-
-
 	     .setAudience(Collections.singletonList(CLIENT_ID))
 	     .build();
 		 // (Receive idTokenString by HTTPS POST)
