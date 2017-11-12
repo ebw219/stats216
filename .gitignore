@@ -1,2 +1,2 @@
 *.DS_Store
-web/node_modules
+web/node_modules/*
