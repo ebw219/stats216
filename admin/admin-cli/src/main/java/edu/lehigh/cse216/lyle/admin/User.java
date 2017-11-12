@@ -32,4 +32,8 @@ public class User{
         return name;
     }
 
+    public String toString(){
+        return (id+"\t"+username+"\t\t"+name+"\t"+email);
+    }
+
 }

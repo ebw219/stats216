@@ -33,16 +33,16 @@ CREATE TABLE IF NOT EXISTS tblUpVotes (
   user_id INTEGER,
   message_id INTEGER,
   date_created DATE DEFAULT now(),
-  FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
+  FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE ,
+  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE ,
   PRIMARY KEY (user_id, message_id)
 );
 CREATE TABLE IF NOT EXISTS tblDownVotes (
   user_id INTEGER,
   message_id INTEGER,
   date_created DATE DEFAULT now(),
-  FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id),
+  FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE ,
+  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE ,
   PRIMARY KEY (user_id, message_id)
 );
 CREATE TABLE IF NOT EXISTS tblDocs (

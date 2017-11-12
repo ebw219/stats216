@@ -26,6 +26,11 @@ public class App {
         System.out.println();
         System.out.println("  [?] Help");
         System.out.println("  [q] Quit\n");
+        System.out.println();
+        System.out.println("  [V] View all messages");
+        System.out.println("  [R] View all users");
+        System.out.println("  [O] View all docs");
+        System.out.println();
         System.out.println("  [U] Create tblUser");
         System.out.println("  [M] Create tblMessage");
         System.out.println("  [C] Create tblComment");
@@ -43,7 +48,6 @@ public class App {
         System.out.println();
         //System.out.println("  [A] Show unauthenticated users");
         System.out.println("  [-] Delete a user");
-        //System.out.println("  [E] Email a user their password and authorize their email");
         System.out.println("  [S] Delete Column from a Table");
         System.out.println();
     }
@@ -57,7 +61,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPNAWwuxmcpnES";
+        String actions = "TD1*-+~q?UMOCPVRNAWwuxmcpnES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -157,7 +161,7 @@ public class App {
         // get the Postgres configuration from the environment
         Map<String, String> env = System.getenv();
         String db_url = env.get("DATABASE_URL");
-        // Get a fully-configured connection to the database, or exit 
+        // Get a fully-configured connection to the database, or exit
         // immediately
         Database db = Database.getDatabase(db_url);
         if (db == null)
@@ -181,6 +185,16 @@ public class App {
                     break;
                 case 'q':
                     db.disconnect();
+                    System.out.println("DISCONNECTED");
+                    break;
+                case 'V':
+                    db.viewMessages();
+                    break;
+                case 'R':
+                    db.viewUsers();
+                    break;
+                case 'O':
+                    db.viewDocs();
                     break;
                 case 'T':
                     db.createTable();
@@ -201,8 +215,8 @@ public class App {
                             continue;
                         Database.RowData res = db.selectOne(id);
                         if (res != null) {
-                            System.out.println("  [" + res.mId + "] " + res.mSubject);
-                            System.out.println("  --> " + res.mMessage);
+                            System.out.println("  [" + res.mId + "] " + res.title);
+                            System.out.println("  --> " + res.body);
                         }
                     }
                     break;
@@ -214,13 +228,15 @@ public class App {
                         System.out.println("  Current Database Contents");
                         System.out.println("  -------------------------");
                         for (Database.RowData rd : res) {
-                            System.out.println("  [" + rd.mId + "] " + rd.mSubject);
+                            System.out.println("  [" + rd.mId + "] " + rd.title);
                         }
                     }
                     break;
                 case'-':
                     if(true) {
-                        System.out.print("Enter the user ID: ");
+                        System.out.println();
+                        db.viewUsers();
+                        System.out.print("\nEnter the user ID: ");
                         System.out.println();
                         int id = getInt(in, "");
                         if (id == -1)
@@ -344,10 +360,12 @@ public class App {
                     break;
                 case 'x':
                     System.out.println();
-                    System.out.println("Enter Message Id: ");
+                    db.viewMessages();
+                    System.out.println("\nEnter Message Id: ");
                     int mid = getInt(in, "");
                     db.deleteMessage(mid);
                     break;
+                case '\n':
                 default:
                     menu();
                     break;

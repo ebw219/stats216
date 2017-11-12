@@ -64,6 +64,10 @@ public class Database {
 
     private PreparedStatement mSelectUnauthenticated;
 
+    private PreparedStatement mSelectAllUsers;
+
+    private PreparedStatement mSelectAllDocs;
+
     private PreparedStatement mDropUserTable;
     private PreparedStatement mDropMessageTable;
     private PreparedStatement mDropCommentTable;
@@ -102,22 +106,28 @@ public class Database {
          * The ID of this row of the database
          */
         int mId;
+        int uId;
         /**
          * The subject stored in this row
          */
-        String mSubject;
+        String title;
         /**
          * The message stored in this row
          */
-        String mMessage;
+        String body;
 
         /**
          * Construct a RowData object by providing values for its fields
          */
-        public RowData(int id, String subject, String message) {
+        public RowData(int id, int uid, String subject, String message) {
             mId = id;
-            mSubject = subject;
-            mMessage = message;
+            uId = uid;
+            title = subject;
+            body = message;
+        }
+
+        public String toString(){
+            return (mId + "\t" + uId + "\t" + title + "\t" + body);
         }
     }
 
@@ -183,8 +193,9 @@ public class Database {
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes CASCADE");
             db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
             db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
+
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
-                    + "PRIMARY KEY, "
+                    + "PRIMARY KEY , "
                     + "username VARCHAR(255) NOT NULL UNIQUE, "
                     + "realname VARCHAR(255) NOT NULL, "
                     + "email VARCHAR(255) NOT NULL UNIQUE, "
@@ -211,15 +222,15 @@ public class Database {
                     + "user_id INTEGER,"
                     + "message_id INTEGER, "
                     + "date_created DATE DEFAULT now(),"
-                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
-                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
+                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
+                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE, "
                     + "PRIMARY KEY (user_id, message_id))");
             db.mCreateUpvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUpVotes ("
                     + "user_id INTEGER, "
                     + "message_id INTEGER,"
                     + "date_created DATE DEFAULT now(),"
-                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
-                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
+                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
+                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE, "
                     + "PRIMARY KEY (user_id, message_id))");
             db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
                     + "doc_owner_id INTEGER,"
@@ -227,14 +238,17 @@ public class Database {
                     + "doc_title VARCHAR(140) NOT NULL,"
                     + "date_created DATE DEFAULT now(),"
                     + "FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
+
             // Standard CRUD operations
             db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
-            db.mSelectAll = db.mConnection.prepareStatement("SELECT id, subject FROM tblData");
+            db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM tblMessage");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
+            db.mSelectAllUsers = db.mConnection.prepareStatement("SELECT * FROM tblUser");
+            db.mSelectAllDocs = db.mConnection.prepareStatement("SELECT * FROM tblDocs");
             //db.mDropColumn= db.mConnection.prepareStatement();
 
             db.mDeleteUpVote = db.mConnection.prepareStatement("DELETE FROM tblUpVotes WHERE message_id = ?");
@@ -306,13 +320,80 @@ public class Database {
         try {
             ResultSet rs = mSelectAll.executeQuery();
             while (rs.next()) {
-                res.add(new RowData(rs.getInt("id"), rs.getString("subject"), null));
+                res.add(new RowData(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"),
+                        rs.getString("body")));
             }
             rs.close();
             return res;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * Query the database for a list of all subjects and their IDs
+     *
+     * @return All rows, as an ArrayList
+     */
+    ArrayList<User> selectAllUsers() {
+        ArrayList<User> res = new ArrayList<User>();
+        try {
+            ResultSet rs = mSelectAllUsers.executeQuery();
+            while (rs.next()) {
+                res.add(new User(rs.getInt("user_id"), rs.getString("username"), rs.getString("realname"),
+                        rs.getString("email")));
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    ArrayList<Doc> selectAllDocs() {
+        ArrayList<Doc> res = new ArrayList<Doc>();
+        try {
+            ResultSet rs = mSelectAllDocs.executeQuery();
+            while (rs.next()) {
+                res.add(new Doc(rs.getInt("doc_owner_id"), rs.getInt("doc_id"), rs.getString("doc_title")));
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    void viewUsers(){
+        System.out.println("\n\nUsers: ");
+        System.out.println("\nUID\tUsername\tName\tEmail");
+        System.out.println("-------------------------------------");
+        ArrayList<User> users = db.selectAllUsers();
+        for (int i = 0; i < users.size(); i++){
+            System.out.println(users.get(i));
+        }
+    }
+
+    void viewMessages(){
+        System.out.println("\n\nMessages: ");
+        System.out.println("\nMID\tUID\tTitle\tBody");
+        System.out.println("-----------------------------");
+        ArrayList<RowData> messages = db.selectAll();
+        for (int i = 0; i < messages.size(); i++){
+            System.out.println(messages.get(i));
+        }
+    }
+
+    void viewDocs(){
+        System.out.println("\n\nDocs: ");
+        System.out.println("\nOwner Id\tDoc Id\tTitle");
+        System.out.println("-----------------------------");
+        ArrayList<Doc> docs = db.selectAllDocs();
+        for (int i = 0; i < docs.size(); i++){
+            System.out.println(docs.get(i));
         }
     }
 
@@ -329,7 +410,7 @@ public class Database {
             mSelectOne.setInt(1, id);
             ResultSet rs = mSelectOne.executeQuery();
             if (rs.next()) {
-                res = new RowData(rs.getInt("id"), rs.getString("subject"), rs.getString("message"));
+                res = new RowData(rs.getInt("id"), rs.getInt("uId"), rs.getString("subject"), rs.getString("message"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
