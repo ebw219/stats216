@@ -77,6 +77,12 @@ public class Database {
 
     private PreparedStatement mCreateDocsTable;
 
+    private PreparedStatement mDeleteUpVote;
+
+    private PreparedStatement mDeleteDownVote;
+
+    private PreparedStatement mDeleteMessage;
+
 
     //private PreparedStatement mDropColumn;
 
@@ -155,7 +161,7 @@ public class Database {
             return null;
         }
 
-        // Attempt to create all of our prepared statements.  If any of these 
+        // Attempt to create all of our prepared statements.  If any of these
         // fail, the whole getDatabase() call should fail
         try {
             // NB: we can easily get ourselves in trouble here by typing the
@@ -169,32 +175,36 @@ public class Database {
                     "CREATE TABLE tblData (id SERIAL PRIMARY KEY, subject VARCHAR(50) "
                             + "NOT NULL, message VARCHAR(500) NOT NULL)");
             //db.maddColumnToUsers = db.mConnection.prepareStatement("ALTER TABLE tblUser ADD COLUMN ? ?"); //(column name then column type) column type = integer or varchar(n) where n is string length
-            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE thebuzztable");
-            db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser");
-            db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage");
-            db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments");
-            db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes");
-            db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes");
-            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs");
+            db.mDropTable = db.mConnection.prepareStatement("DROP TABLE thebuzztable CASCADE");
+            db.mDropUserTable = db.mConnection.prepareStatement("DROP TABLE tblUser CASCADE");
+            db.mDropMessageTable = db.mConnection.prepareStatement("DROP TABLE tblMessage CASCADE");
+            db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments CASCADE");
+            db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes CASCADE");
+            db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes CASCADE");
+            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
             db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
-                    + "PRIMARY KEY, username VARCHAR(255), realname VARCHAR(255), "
-                    + "email VARCHAR(255), "
-                    + "salt BYTEA, "
-                    + "password BYTEA, "
+                    + "PRIMARY KEY, "
+                    + "username VARCHAR(255) NOT NULL UNIQUE, "
+                    + "realname VARCHAR(255) NOT NULL, "
+                    + "email VARCHAR(255) NOT NULL UNIQUE, "
                     + "auth INTEGER)");
             db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
                     + "message_id SERIAL PRIMARY KEY, "
-                    + "user_id INTEGER, title VARCHAR(50), "
-                    + "body VARCHAR(140), "
-                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id))");
+                    + "user_id INTEGER, "
+                    + "title VARCHAR(50) NOT NULL, "
+                    + "body VARCHAR(140) NOT NULL, "
+                    + "pdf VARCHAR(75),"
+                    + "link VARCHAR(140),"
+                    + "image VARCHAR(50),"
+                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
             db.mCreateCommentTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblComments ("
                     + "comment_id SERIAL PRIMARY KEY, "
                     + "user_id INTEGER, "
                     + "message_id INTEGER, "
-                    + "comment_text VARCHAR(255), "
-                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
-                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id))");
+                    + "comment_text VARCHAR(255) NOT NULL, "
+                    + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
+                    + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE)");
             db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
                     + "user_id INTEGER,"
                     + "message_id INTEGER, "
@@ -207,6 +217,11 @@ public class Database {
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id), "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id), "
                     + "PRIMARY KEY (user_id, message_id))");
+            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
+                    + "doc_owner_id INTEGER,"
+                    + "doc_id INTEGER PRIMARY KEY,"
+                    + "doc_title VARCHAR(140) NOT NULL,"
+                    + "FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
             // Standard CRUD operations
             db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
@@ -217,9 +232,10 @@ public class Database {
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
             //db.mDropColumn= db.mConnection.prepareStatement();
 
-            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
-                    + "doc_id INTEGER PRIMARY KEY"
-                    + "FOREIGN KEY (owner_id) REFERENCES tblUser (user_id)");
+            db.mDeleteUpVote = db.mConnection.prepareStatement("DELETE FROM tblUpVotes WHERE message_id = ?");
+            db.mDeleteDownVote = db.mConnection.prepareStatement("DELETE FROM tblDownVotes WHERE message_id = ?");
+            db.mDeleteMessage = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE message_id = ?");
+
 
         } catch (SQLException e) {
             System.err.println("Error creating prepared statement");
@@ -442,6 +458,7 @@ public class Database {
     void dropTable() {
         try {
             mDropTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -450,6 +467,7 @@ public class Database {
     void dropUTable() {
         try {
             mDropUserTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -458,6 +476,7 @@ public class Database {
     void dropMTable() {
         try {
             mDropMessageTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -466,6 +485,7 @@ public class Database {
     void dropCTable() {
         try {
             mDropCommentTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -474,6 +494,7 @@ public class Database {
     void dropUVTable() {
         try {
             mDropUpVoteTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -482,6 +503,7 @@ public class Database {
     void dropDVTable() {
         try {
             mDropDownVoteTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -490,6 +512,7 @@ public class Database {
     void dropDocsTable(){
         try {
             mDropDocsTable.execute();
+            System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -519,7 +542,16 @@ public class Database {
         }
         // return res;
     }
-    //db.mDropColumn= db.mConnection.prepareStatement("ALTER TABLE ? DROP COLUMN ?");
+
+    void deleteMessage(int message_id){
+        try{
+            mDeleteMessage.setInt(1, message_id);
+            mDeleteMessage.execute();
+            System.out.println("Successfully deleted message");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
     void DropColumn(String tblName, String columnName){
         String sql = "ALTER TABLE " + tblName + " DROP COLUMN " + columnName + ";";

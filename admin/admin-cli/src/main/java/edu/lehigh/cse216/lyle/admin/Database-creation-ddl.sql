@@ -1,29 +1,35 @@
 CREATE TABLE IF NOT EXISTS tblUser (
   user_id SERIAL PRIMARY KEY,
-  username VARCHAR(255),
-  realname VARCHAR(255),
-  email VARCHAR(255),
-  salt BYTEA,
-  password BYTEA
+  username VARCHAR(255) NOT NULL UNIQUE ,
+  realname VARCHAR(255) NOT NULL ,
+  email VARCHAR(255) NOT NULL UNIQUE
 );
 CREATE TABLE IF NOT EXISTS tblMessage (
-  message_id SERIAL PRIMARY KEY,
-  user_id INTEGER, title VARCHAR(50),
-  body VARCHAR(140),
+  message_id SERIAL PRIMARY KEY UNIQUE,
+  user_id INTEGER,
+  title VARCHAR(50) NOT NULL,
+  body VARCHAR(140) NOT NULL ,
 --   # Need to add creation date/time
-  FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
+  FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE,
   pdf VARCHAR(75),
   link VARCHAR(140),
   image VARCHAR(50)
 );
+-- ALTER TABLE tblMessage
+-- ADD  FOREIGN KEY (user_id) REFERENCES tblUser (user_id)
+-- ON DELETE CASCADE;
+
 CREATE TABLE IF NOT EXISTS tblComments (
   comment_id SERIAL PRIMARY KEY,
+  UNIQUE (comment_id),
   user_id INTEGER,
+--   REFERENCES tblUser (user_id),
   message_id INTEGER,
-  comment_text VARCHAR(255),
+--   REFERENCES tblMessage (message_id),
+  comment_text VARCHAR(255) NOT NULL,
 --   # Need to add creation date/time
-  FOREIGN KEY (user_id) REFERENCES tblUser (user_id),
-  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id)
+  FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE,
+  FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS tblUpVotes (
   user_id INTEGER,
@@ -40,8 +46,10 @@ CREATE TABLE IF NOT EXISTS tblDownVotes (
   PRIMARY KEY (user_id, message_id)
 );
 CREATE TABLE IF NOT EXISTS tblDocs (
-  doc_id INTEGER PRIMARY KEY,
-  FOREIGN KEY (owner_id) REFERENCES tblUser (user_id)
+  doc_owner_id INTEGER,
+  doc_id INTEGER PRIMARY KEY UNIQUE ,
+  doc_title VARCHAR(140) NOT NULL,
+  FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE
 );
 
 
