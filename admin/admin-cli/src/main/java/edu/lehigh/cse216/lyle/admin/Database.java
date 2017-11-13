@@ -1,12 +1,8 @@
 package edu.lehigh.cse216.lyle.admin;
 
-import edu.lehigh.cse216.lyle.admin.Database.RowData;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+//import edu.lehigh.cse216.lyle.admin.Database.RowData;
 
+import java.sql.*;
 import java.util.ArrayList;
 
 public class Database {
@@ -87,52 +83,17 @@ public class Database {
 
     private PreparedStatement mDeleteMessage;
 
+    private PreparedStatement mDeleteComment;
+
+    private PreparedStatement mSelectComments;
+
 
     //private PreparedStatement mDropColumn;
 
     //private PreparedStatement maddColumnToUsers;
-    /**
-     * RowData is like a struct in C: we use it to hold data, and we allow 
-     * direct access to its fields.  In the context of this Database, RowData 
-     * represents the data we'd see in a row.
-     *
-     * We make RowData a static class of Database because we don't really want
-     * to encourage users to think of RowData as being anything other than an
-     * abstract representation of a row of the database.  RowData and the 
-     * Database are tightly coupled: if one changes, the other should too.
-     */
-    public static class RowData {
-        /**
-         * The ID of this row of the database
-         */
-        int mId;
-        int uId;
-        /**
-         * The subject stored in this row
-         */
-        String title;
-        /**
-         * The message stored in this row
-         */
-        String body;
-
-        /**
-         * Construct a RowData object by providing values for its fields
-         */
-        public RowData(int id, int uid, String subject, String message) {
-            mId = id;
-            uId = uid;
-            title = subject;
-            body = message;
-        }
-
-        public String toString(){
-            return (mId + "\t" + uId + "\t" + title + "\t" + body);
-        }
-    }
 
     /**
-     * The Database constructor is private: we only create Database objects 
+     * The Database constructor is private: we only create Database objects
      * through the getDatabase() method.
      */
     private Database() {
@@ -146,7 +107,6 @@ public class Database {
      *             should be sent
      * @param user The user ID to use when connecting
      * @param pass The password to use when connecting
-     *
      * @return A Database object, or null if we cannot connect properly
      */
     static Database getDatabase(String db_url) {
@@ -191,7 +151,7 @@ public class Database {
             db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments CASCADE");
             db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes CASCADE");
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes CASCADE");
-            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
+//            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
             db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
 
             db.mCreateUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblUser (user_id SERIAL "
@@ -232,15 +192,14 @@ public class Database {
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE, "
                     + "PRIMARY KEY (user_id, message_id))");
-            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
-                    + "doc_owner_id INTEGER,"
-                    + "doc_id INTEGER PRIMARY KEY,"
-                    + "doc_title VARCHAR(140) NOT NULL,"
-                    + "date_created DATE DEFAULT now(),"
-                    + "FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
+//            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
+//                    + "doc_owner_id INTEGER,"
+//                    + "doc_id INTEGER PRIMARY KEY,"
+//                    + "doc_title VARCHAR(140) NOT NULL,"
+//                    + "date_created DATE DEFAULT now(),"
+//                    + "FOREIGN KEY (doc_owner_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
 
             // Standard CRUD operations
-            db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM tblMessage");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
@@ -248,12 +207,16 @@ public class Database {
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
             db.mSelectAllUsers = db.mConnection.prepareStatement("SELECT * FROM tblUser");
-            db.mSelectAllDocs = db.mConnection.prepareStatement("SELECT * FROM tblDocs");
+//            db.mSelectAllDocs = db.mConnection.prepareStatement("SELECT * FROM tblDocs");
             //db.mDropColumn= db.mConnection.prepareStatement();
 
+            db.mDeleteUser = db.mConnection.prepareStatement("DELETE FROM tblUser WHERE user_id = ?");
+            db.mDeleteMessage = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE message_id = ?");
+            db.mDeleteComment = db.mConnection.prepareStatement("DELETE FROM tblComments WHERE comment_id = ?");
             db.mDeleteUpVote = db.mConnection.prepareStatement("DELETE FROM tblUpVotes WHERE message_id = ?");
             db.mDeleteDownVote = db.mConnection.prepareStatement("DELETE FROM tblDownVotes WHERE message_id = ?");
-            db.mDeleteMessage = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE message_id = ?");
+
+            db.mSelectComments = db.mConnection.prepareStatement("SELECT * FROM tblComments WHERE message_id = ?");
 
 
         } catch (SQLException e) {
@@ -267,9 +230,9 @@ public class Database {
 
     /**
      * Close the current connection to the database, if one exists.
-     *
-     * NB: The connection will always be null after this call, even if an 
-     *     error occurred during the closing operation.
+     * <p>
+     * NB: The connection will always be null after this call, even if an
+     * error occurred during the closing operation.
      *
      * @return True if the connection was cleanly closed, false otherwise
      */
@@ -295,7 +258,6 @@ public class Database {
      *
      * @param subject The subject for this new row
      * @param message The message body for this new row
-     *
      * @return The number of rows that were inserted
      */
     int insertRow(String subject, String message) {
@@ -367,41 +329,69 @@ public class Database {
         }
     }
 
-    void viewUsers(){
+    void viewUsers() {
         System.out.println("\n\nUsers: ");
         System.out.println("\nUID\tUsername\tName\tEmail");
         System.out.println("-------------------------------------");
         ArrayList<User> users = db.selectAllUsers();
-        for (int i = 0; i < users.size(); i++){
+        for (int i = 0; i < users.size(); i++) {
             System.out.println(users.get(i));
         }
     }
 
-    void viewMessages(){
+    void viewMessages() {
         System.out.println("\n\nMessages: ");
         System.out.println("\nMID\tUID\tTitle\tBody");
         System.out.println("-----------------------------");
         ArrayList<RowData> messages = db.selectAll();
-        for (int i = 0; i < messages.size(); i++){
+        for (int i = 0; i < messages.size(); i++) {
             System.out.println(messages.get(i));
         }
     }
 
-    void viewDocs(){
-        System.out.println("\n\nDocs: ");
-        System.out.println("\nOwner Id\tDoc Id\tTitle");
-        System.out.println("-----------------------------");
-        ArrayList<Doc> docs = db.selectAllDocs();
-        for (int i = 0; i < docs.size(); i++){
-            System.out.println(docs.get(i));
+    void viewComments() {
+        ArrayList<RowData> messages = db.selectAll();
+        for (int i = 0; i < messages.size(); i++) {
+            try {
+                mSelectComments.setInt(1, messages.get(i).mId);
+                ArrayList<Comment> comments = new ArrayList<Comment>();
+                ResultSet rs = db.mSelectComments.executeQuery();
+                if (rs.next()) {
+                    comments.add(new Comment(rs.getInt("comment_id"), rs.getInt("user_id"), rs.getInt("message_id"),
+                            rs.getString("comment_text")));
+                }
+                System.out.println("\n\nMessage: ");
+                System.out.println("\nMID\tUID\tTitle\tBody");
+                System.out.println("-----------------------------");
+                System.out.println(messages.get(i));
+
+                System.out.println("\n\nComments: ");
+                System.out.println("\n\tCID\tUID\tMID\tBody");
+                System.out.println("\t-----------------------------");
+                for (int j = 0; j < comments.size(); j++) {
+                    System.out.println("\t" + comments.get(j));
+                }
+                System.out.println();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
+
+//    void viewDocs(){
+//        System.out.println("\n\nDocs: ");
+//        System.out.println("\nOwner Id\tDoc Id\tTitle");
+//        System.out.println("-----------------------------");
+//        ArrayList<Doc> docs = db.selectAllDocs();
+//        for (int i = 0; i < docs.size(); i++){
+//            System.out.println(docs.get(i));
+//        }
+//    }
 
     /**
      * Get all data for a specific row, by ID
      *
      * @param id The id of the row being requested
-     *
      * @return The data for the requested row, or null if the ID was invalid
      */
     RowData selectOne(int id) {
@@ -422,7 +412,6 @@ public class Database {
      * Delete a row by ID
      *
      * @param id The id of the row to delete
-     *
      * @return The number of rows that were deleted.  -1 indicates an error.
      */
     int deleteUser(int id) {
@@ -436,12 +425,22 @@ public class Database {
         return res;
     }
 
+    int deleteComment(int id) {
+        int res = -1;
+        try {
+            mDeleteComment.setInt(1, id);
+            res = mDeleteComment.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
     /**
      * Update the message for a row in the database
      *
-     * @param id The id of the row to update
+     * @param id      The id of the row to update
      * @param message The new message contents
-     *
      * @return The number of rows that were updated.  -1 indicates an error.
      */
     int updateOne(int id, String message) {
@@ -457,8 +456,7 @@ public class Database {
     }
 
 
-
-    ArrayList<User> selectUnauth(){
+    ArrayList<User> selectUnauth() {
         ArrayList<User> res = new ArrayList<User>();
         try {
             ResultSet rs = mSelectUnauthenticated.executeQuery();
@@ -595,7 +593,7 @@ public class Database {
         }
     }
 
-    void dropDocsTable(){
+    void dropDocsTable() {
         try {
             mDropDocsTable.execute();
             System.out.println("successfully deleted table");
@@ -629,23 +627,23 @@ public class Database {
         // return res;
     }
 
-    void deleteMessage(int message_id){
-        try{
+    void deleteMessage(int message_id) {
+        try {
             mDeleteMessage.setInt(1, message_id);
             mDeleteMessage.execute();
             System.out.println("Successfully deleted message");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    void DropColumn(String tblName, String columnName){
+    void DropColumn(String tblName, String columnName) {
         String sql = "ALTER TABLE " + tblName + " DROP COLUMN " + columnName + ";";
 
-        try{
+        try {
             PreparedStatement dropColumn = db.mConnection.prepareStatement(sql);
             dropColumn.executeUpdate();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
