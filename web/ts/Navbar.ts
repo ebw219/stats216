@@ -28,6 +28,9 @@ class Navbar {
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
             $("#" + Navbar.NAME + "-add").click(NewEntryForm.refresh);
             console.log("show newentryform called");
+            //click on test button
+            $("#" + Navbar.NAME + "-testviewmsg").click(ViewMsg.refresh);
+            console.log("testviewmsg clicked");
             Navbar.isInit = true;
         }
     }

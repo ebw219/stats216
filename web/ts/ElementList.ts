@@ -54,8 +54,11 @@ class ElementList {
         // Use a template to re-generate the table, and then insert it
         $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
         console.log("append");
+        //click on test button
+        $("#" + ElementList.NAME + "-testviewmsg").click(ViewMsg.refresh);
         //click on message
-        $("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
+        $("#" + ElementList.NAME + "-viewmsg").click(ViewMsg.refresh);
+        //$("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
         // Find all of the delete buttons, and set their behavior
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
         // Find all of the Edit buttons, and set their behavior
@@ -89,6 +92,7 @@ class ElementList {
      */
     private static clickMsg() {
         console.log("msg clicked, called method clickMsg()");
+        ViewMsg.refresh();
     }
 
     /**
