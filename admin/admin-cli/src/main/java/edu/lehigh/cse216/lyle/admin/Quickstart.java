@@ -13,6 +13,7 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,9 @@ public class Quickstart {
      */
     private static final String APPLICATION_NAME =
             "Lyle Buzz";
+
+    private static InputStream GOOGLE_APPLICATION_CREDENTIALS;
+//    = "/Users/Kelli/Documents/Documents_Kellis MacBook Pro/cse216/cse216_lyle/admin/admin-cli/src/main/resources/app_credentials.json";
 
     /**
      * Directory to store user credentials for this application.
@@ -79,7 +83,9 @@ public class Quickstart {
         InputStream in =
                 Quickstart.class.getClassLoader().getResourceAsStream("client_secret.json");
 
-        System.out.println(in);
+        GOOGLE_APPLICATION_CREDENTIALS = Quickstart.class.getClassLoader().getResourceAsStream("app_credentials.json");
+
+        System.out.println(in != null);
 
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
@@ -95,8 +101,12 @@ public class Quickstart {
 //        Credential credential = new AuthorizationCodeInstalledApp(
 //                flow, new LocalServerReceiver()).authorize("user");
 
-        GoogleCredential credential = GoogleCredential.getApplicationDefault();
-
+        GoogleCredential credential;
+        try {
+            credential = GoogleCredential.getApplicationDefault();
+        } catch (IOException e){
+            credential = GoogleCredential.fromStream(GOOGLE_APPLICATION_CREDENTIALS);
+        }
 
         System.out.println(
                 "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
@@ -122,11 +132,14 @@ public class Quickstart {
         // Build a new authorized API client service.
         Drive service = getDriveService();
 
+        System.out.println("got drive service");
+
         // Print the names and IDs for up to 10 files.
         FileList result = service.files().list()
                 .setPageSize(10)
                 .setFields("nextPageToken, files(id, name)")
                 .execute();
+
         List<File> files = result.getFiles();
         if (files == null || files.size() == 0) {
             System.out.println("No files found.");
@@ -137,6 +150,4 @@ public class Quickstart {
             }
         }
     }
-
-
 }
