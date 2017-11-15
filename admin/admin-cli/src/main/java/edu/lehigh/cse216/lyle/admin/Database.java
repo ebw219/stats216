@@ -2,8 +2,17 @@ package edu.lehigh.cse216.lyle.admin;
 
 //import edu.lehigh.cse216.lyle.admin.Database.RowData;
 
+//import com.sun.xml.internal.bind.v2.model.annotation.Quick;
+
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.services.drive.Drive;
+import com.google.api.services.drive.model.FileList;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     /**
@@ -100,14 +109,9 @@ public class Database {
     }
 
     /**
-     * Get a fully-configured connection to the database
      *
-     * @param ip   The IP address of the database server
-     * @param port The port on the database server to which connection requests
-     *             should be sent
-     * @param user The user ID to use when connecting
-     * @param pass The password to use when connecting
-     * @return A Database object, or null if we cannot connect properly
+     * @param db_url
+     * @return
      */
     static Database getDatabase(String db_url) {
         // Create an un-configured Database object
@@ -337,6 +341,15 @@ public class Database {
         for (int i = 0; i < users.size(); i++) {
             System.out.println(users.get(i));
         }
+    }
+
+    void viewDocs() {
+//        try {
+//            Quickstart.printFiles();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     void viewMessages() {
@@ -648,13 +661,4 @@ public class Database {
         }
     }
 
-    //db.maddColumnToUsers = db.mConnection.prepareStatement("ALTER TABLE table_name ADD COLUMN column_name column_type"); //column type = integer or varchar(n) where n is string length
-   /* void addColumnToUsers(){
-        int count=0;
-        try{
-            maddColumntoUsers
-        } catch(SQLException e){
-            e.printStackTrace(); 
-        }
-    }*/
 }

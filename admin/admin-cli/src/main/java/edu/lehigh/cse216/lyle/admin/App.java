@@ -30,7 +30,7 @@ public class App {
         System.out.println();
         System.out.println("  [V] View all messages");
         System.out.println("  [R] View all users");
-//        System.out.println("  [O] View all docs");
+        System.out.println("  [O] View all docs");
         System.out.println();
         System.out.println("  [U] Create tblUser");
         System.out.println("  [M] Create tblMessage");
@@ -61,7 +61,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPVRNAuxmcpntES";
+        String actions = "TD1*-+~q?UMCPVORNAuxmcpntES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -190,9 +190,9 @@ public class App {
                 case 'R':
                     db.viewUsers();
                     break;
-//                case 'O':
-//                    db.viewDocs();
-//                    break;
+                case 'O':
+                    db.viewDocs();
+                    break;
                 case 'T':
                     db.createTable();
                     break;
