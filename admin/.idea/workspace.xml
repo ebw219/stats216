@@ -22,15 +22,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="70" column="39" lean-forward="true" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+            <state relative-caret-position="1050">
+              <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1510586217705" expanded="true" signature="12831:13208" ph="..." />
+                <marker date="1510586537902" expanded="true" signature="12831:13208" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Quickstart.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/admin-cli/src/main/java/Quickstart.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin-cli/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="945">
+              <caret line="63" column="27" lean-forward="false" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,7 +121,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mselectal</find>
       <find>selectall</find>
       <find>rowdata</find>
       <find>tbldata</find>
@@ -131,6 +150,7 @@
       <find>docs</find>
       <find>delete a</find>
       <find>tbldocs</find>
+      <find>project</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -146,8 +166,10 @@
         <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/Doc.java" />
         <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/Comment.java" />
         <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/RowData.java" />
-        <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/App.java" />
         <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/Database.java" />
+        <option value="$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/App.java" />
+        <option value="$PROJECT_DIR$/admin-cli/pom.xml" />
+        <option value="$PROJECT_DIR$/admin-cli/src/main/java/Quickstart.java" />
       </list>
     </option>
   </component>
@@ -212,61 +234,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin-cli" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin-cli" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="lehigh" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin-cli" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="lehigh" type="462c0819:PsiDirectoryNode" />
-              <item name="cse216" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin-cli" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="lehigh" type="462c0819:PsiDirectoryNode" />
-              <item name="cse216" type="462c0819:PsiDirectoryNode" />
-              <item name="lyle" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="admin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="admin-cli" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="edu" type="462c0819:PsiDirectoryNode" />
-              <item name="lehigh" type="462c0819:PsiDirectoryNode" />
-              <item name="cse216" type="462c0819:PsiDirectoryNode" />
-              <item name="lyle" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="admin" type="b2602c69:ProjectViewProjectNode" />
@@ -398,12 +365,12 @@
       <option name="presentableId" value="Default" />
       <updated>1510158141738</updated>
       <workItem from="1510158143502" duration="3905000" />
-      <workItem from="1510453545756" duration="8333000" />
+      <workItem from="1510453545756" duration="9894000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25387000" />
+    <option name="totallyTimeSpent" value="26948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -454,7 +421,7 @@
           <caret line="337" column="41" lean-forward="false" selection-start-line="337" selection-start-column="41" selection-end-line="337" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1510586217705" expanded="true" signature="12831:13208" ph="..." />
+            <marker date="1510586537902" expanded="true" signature="12831:13208" ph="..." />
           </folding>
         </state>
       </provider>
@@ -510,7 +477,7 @@
           <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1510586217705" expanded="true" signature="12831:13208" ph="..." />
+            <marker date="1510586537902" expanded="true" signature="12831:13208" ph="..." />
           </folding>
         </state>
       </provider>
@@ -610,14 +577,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin-cli/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="27" lean-forward="false" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin-cli/src/main/java/edu/lehigh/cse216/lyle/admin/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="70" column="39" lean-forward="true" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
+        <state relative-caret-position="1050">
+          <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1510586217705" expanded="true" signature="12831:13208" ph="..." />
+            <marker date="1510586537902" expanded="true" signature="12831:13208" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin-cli/src/main/java/Quickstart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="38" lean-forward="true" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
