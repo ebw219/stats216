@@ -1,5 +1,6 @@
 package edu.lehigh.cse216.lyle.admin;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
@@ -13,6 +14,7 @@ import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
+import com.google.api.services.drive.model.User;
 import org.apache.commons.lang3.ObjectUtils;
 
 import java.io.IOException;
@@ -85,31 +87,29 @@ public class Quickstart {
 
         GOOGLE_APPLICATION_CREDENTIALS = Quickstart.class.getClassLoader().getResourceAsStream("app_credentials.json");
 
-        System.out.println(in != null);
-
         GoogleClientSecrets clientSecrets =
                 GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
         // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow =
-                new GoogleAuthorizationCodeFlow.Builder(
-                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-                        .setDataStoreFactory(DATA_STORE_FACTORY)
-                        .setAccessType("offline")
-                        .build();
+//        GoogleAuthorizationCodeFlow flow =
+//                new GoogleAuthorizationCodeFlow.Builder(
+//                        HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
+//                        .setDataStoreFactory(DATA_STORE_FACTORY)
+//                        .setAccessType("offline")
+//                        .build();
 
 //        Credential credential = new AuthorizationCodeInstalledApp(
 //                flow, new LocalServerReceiver()).authorize("user");
 
         GoogleCredential credential;
-        try {
-            credential = GoogleCredential.getApplicationDefault();
-        } catch (IOException e){
-            credential = GoogleCredential.fromStream(GOOGLE_APPLICATION_CREDENTIALS);
-        }
+//        try {
+//            credential = GoogleCredential.getApplicationDefault();
+//        } catch (IOException e) {
+        credential = GoogleCredential.fromStream(GOOGLE_APPLICATION_CREDENTIALS).createScoped(SCOPES);
+//        }
 
-        System.out.println(
-                "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
+//        System.out.println(
+//                "Credentials saved to " + DATA_STORE_DIR.getAbsolutePath());
         return credential;
     }
 
@@ -128,16 +128,20 @@ public class Quickstart {
     }
 
     public static void main(String[] args) throws IOException {
-//    public static void printFiles() throws IOException{
+        printFiles();
+    }
+
+    /**
+     * @throws IOException
+     */
+    public static void printFiles() throws IOException {
         // Build a new authorized API client service.
         Drive service = getDriveService();
-
-        System.out.println("got drive service");
 
         // Print the names and IDs for up to 10 files.
         FileList result = service.files().list()
                 .setPageSize(10)
-                .setFields("nextPageToken, files(id, name)")
+                .setFields("nextPageToken, files(id, name, modifiedTime, owners)")
                 .execute();
 
         List<File> files = result.getFiles();
@@ -145,8 +149,21 @@ public class Quickstart {
             System.out.println("No files found.");
         } else {
             System.out.println("Files:");
+            System.out.println("File Name\tFile Owner\tLast Modified");
+            for(int i = 0; i < 95; i++){
+                System.out.print("-");
+            }
             for (File file : files) {
-                System.out.printf("%s (%s)\n", file.getName(), file.getId());
+                List <User> owner = file.getOwners();
+                String owners = "";
+                for(int i = 0; i < owner.size(); i++){
+                    owners += owner.get(i).getDisplayName();
+                    if(i == owner.size() - 1)
+                        break;
+                    owners += ", ";
+                }
+//                System.out.printf("%s (%s)\n", file.getOwners(), file.getName());
+                System.out.println("\n" + file.getName() + "\t" + owners + "\t" + file.getModifiedTime());
             }
         }
     }

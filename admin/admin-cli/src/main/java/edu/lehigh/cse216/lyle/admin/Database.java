@@ -344,11 +344,11 @@ public class Database {
     }
 
     void viewDocs() {
-//        try {
-//            Quickstart.printFiles();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Quickstart.printFiles();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

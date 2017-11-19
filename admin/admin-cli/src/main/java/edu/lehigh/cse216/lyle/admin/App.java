@@ -121,33 +121,6 @@ public class App {
         return i;
     }
 
-
-    /**
-     * static void emailUser(String userEmail) {
-
-     Email from = new Email(System.getenv("FROM_EMAIL"));
-     Email to = new Email(userEmail);
-     Content content = new Content("text/plain", "You are registered");
-     String subject = "The Buzz Account Information";
-     Mail mail = new Mail(from, subject, to, content);
-
-     //String token = "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";
-     String token = System.getenv("SENDGRID_KEY");
-     SendGrid sendgrid = new SendGrid(token);
-     Request request = new Request();
-     try {
-     request.setMethod(Method.POST);
-     request.setEndpoint("mail/send");
-     request.setBody(mail.build());
-     Response response = sendgrid.api(request);
-     System.out.println(response.getStatusCode());
-     System.out.println(response.getHeaders());
-     } catch (IOException ex) {
-     // throw ex;
-     ex.printStackTrace();
-     }
-     }*/
-
     /**
      * The main routine runs a loop that gets a request from the user and
      * processes it
