@@ -13,6 +13,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.drive.Drive;
 import com.google.api.services.drive.DriveScopes;
+import com.google.api.services.drive.model.About;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.User;
@@ -129,8 +130,16 @@ public class Quickstart {
                 .build();
     }
 
+
+    public static About quota() throws IOException {
+        return getDriveService().about().get()
+                .setFields("storageQuota")
+                .execute();
+    }
+
     public static void main(String[] args) throws IOException {
 //        upload_test_file(getDriveService());
+
 
         printFiles();
 
@@ -150,6 +159,14 @@ public class Quickstart {
                 .setPageSize(10)
                 .setFields("nextPageToken, files(id, name, modifiedTime, owners)")
                 .execute();
+
+        About about = quota();
+
+        System.out.println("Space remaining: ");
+        System.out.println(
+                (about.getStorageQuota().getLimit() -
+                        about.getStorageQuota().getUsage())
+                        / 1000000 + " MB");
 
         List<File> files = result.getFiles();
         if (files == null || files.size() == 0) {
