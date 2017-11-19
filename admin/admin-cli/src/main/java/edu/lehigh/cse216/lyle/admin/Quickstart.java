@@ -6,6 +6,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.FileContent;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -129,6 +130,8 @@ public class Quickstart {
     }
 
     public static void main(String[] args) throws IOException {
+//        upload_test_file(getDriveService());
+
         printFiles();
 
 //        System.out.println();
@@ -153,9 +156,10 @@ public class Quickstart {
             System.out.println("\nNo files found.");
         } else {
             System.out.println("Files:");
-            System.out.println("File Id\tFile Name\tFile Owner\tLast Modified");
+//            System.out.println("File Id\tFile Name\tFile Owner\tLast Modified");
+            System.out.printf("%-40s%-20s%-55s%-30s\n", "File Id", "File Name", "File Owner", "Last Modified");
 //            System.out.printf("%s", "File Name");
-            for (int i = 0; i < 95; i++) {
+            for (int i = 0; i < 140; i++) {
                 System.out.print("-");
             }
 
@@ -171,10 +175,22 @@ public class Quickstart {
                     owners += ", ";
                 }
 //                System.out.printf("%s (%s)\n", file.getOwners(), file.getName());
-                System.out.println(file.getId() + "\t" + file.getName() + "\t" + owners + "\t" + file.getModifiedTime());
+                System.out.printf("%-40s%-20s%-55s%-30s\n", file.getId(), file.getName(), owners, file.getModifiedTime());
             }
         }
     }
+
+
+    public static String upload_test_file(Drive service) throws IOException {
+        File fileMD = new File();
+        fileMD.setName("test.pdf");
+//below line is so we get things in the resources folder
+        java.io.File fp = new java.io.File(System.getProperty("user.home"), "Desktop/insurance.pdf");
+        FileContent mediaC = new FileContent("application/pdf", fp);
+        File file = service.files().create(fileMD, mediaC).setFields("id").execute();
+        return file.getId();
+    }
+//
 
     public static void deleteFile(String id) throws IOException {
 //        printFiles();
@@ -185,7 +201,7 @@ public class Quickstart {
         try {
             getDriveService().files().delete(id).execute();
             System.out.println("File deleted successfully");
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error Deleting");
 //            e.printStackTrace();
         }
