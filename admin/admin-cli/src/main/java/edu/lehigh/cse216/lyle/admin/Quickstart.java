@@ -198,6 +198,8 @@ public class Quickstart {
 //        System.out.print("Enter id: ");
 //        String id = s.nextLine();
 
+        id = id.trim();
+
         try {
             getDriveService().files().delete(id).execute();
             System.out.println("File deleted successfully");
