@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Quickstart {
     /**
@@ -62,7 +63,7 @@ public class Quickstart {
      * at ~/.credentials/drive-java-quickstart
      */
     private static final List<String> SCOPES =
-            Arrays.asList(DriveScopes.DRIVE_METADATA_READONLY);
+            Arrays.asList(DriveScopes.DRIVE);
 
     static {
         try {
@@ -129,6 +130,9 @@ public class Quickstart {
 
     public static void main(String[] args) throws IOException {
         printFiles();
+
+//        System.out.println();
+//        deleteFile();
     }
 
     /**
@@ -146,25 +150,45 @@ public class Quickstart {
 
         List<File> files = result.getFiles();
         if (files == null || files.size() == 0) {
-            System.out.println("No files found.");
+            System.out.println("\nNo files found.");
         } else {
             System.out.println("Files:");
-            System.out.println("File Name\tFile Owner\tLast Modified");
-            for(int i = 0; i < 95; i++){
+            System.out.println("File Id\tFile Name\tFile Owner\tLast Modified");
+//            System.out.printf("%s", "File Name");
+            for (int i = 0; i < 95; i++) {
                 System.out.print("-");
             }
+
+            System.out.println();
+
             for (File file : files) {
-                List <User> owner = file.getOwners();
+                List<User> owner = file.getOwners();
                 String owners = "";
-                for(int i = 0; i < owner.size(); i++){
+                for (int i = 0; i < owner.size(); i++) {
                     owners += owner.get(i).getDisplayName();
-                    if(i == owner.size() - 1)
+                    if (i == owner.size() - 1)
                         break;
                     owners += ", ";
                 }
 //                System.out.printf("%s (%s)\n", file.getOwners(), file.getName());
-                System.out.println("\n" + file.getName() + "\t" + owners + "\t" + file.getModifiedTime());
+                System.out.println(file.getId() + "\t" + file.getName() + "\t" + owners + "\t" + file.getModifiedTime());
             }
         }
     }
+
+    public static void deleteFile(String id) throws IOException {
+//        printFiles();
+//        Scanner s = new Scanner(System.in);
+//        System.out.print("Enter id: ");
+//        String id = s.nextLine();
+
+        try {
+            getDriveService().files().delete(id).execute();
+            System.out.println("File deleted successfully");
+        } catch (Exception e){
+            System.out.println("Error Deleting");
+//            e.printStackTrace();
+        }
+    }
+
 }

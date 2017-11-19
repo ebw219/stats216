@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.sendgrid.*;
-
 import java.lang.*;
-import java.sql.ResultSet;
 
 
 /**
@@ -26,7 +23,7 @@ public class App {
         System.out.println("Main Menu");
         System.out.println();
         System.out.println("  [?] Help");
-        System.out.println("  [q] Quit\n");
+        System.out.println("  [q] Quit");
         System.out.println();
         System.out.println("  [V] View all messages");
         System.out.println("  [R] View all users");
@@ -49,6 +46,7 @@ public class App {
         System.out.println("  [-] Delete a user");
         System.out.println("  [x] Delete message");
         System.out.println("  [t] Delete comment");
+        System.out.println("  [o] Delete a document");
         System.out.println("  [S] Delete Column from a Table");
         System.out.println();
     }
@@ -61,7 +59,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPVORNAuxmcpntES";
+        String actions = "TD1*-+~q?UMCPVoORNAuxmcpntES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -127,7 +125,7 @@ public class App {
      *
      * @param argv Command-line options.  Ignored by this program.
      */
-    public static void main(String[] argv) {
+    public static void main(String[] argv) throws IOException {
         // get the Postgres configuration from the environment
         Map<String, String> env = System.getenv();
         String db_url = env.get("DATABASE_URL");
@@ -156,6 +154,7 @@ public class App {
                 case 'q':
                     db.disconnect();
                     System.out.println("DISCONNECTED");
+                    System.exit(1);
                     break;
                 case 'V':
                     db.viewMessages();
@@ -305,7 +304,7 @@ public class App {
                     String tblName = getString(in, "");
                     System.out.println("Enter Column Name: ");
                     String columnName = getString(in, "");
-                    db.DropColumn(tblName, columnName);
+                    db.dropColumn(tblName, columnName);
                     break;
 //                case 'W':
 //                    db.createDocsTable();
@@ -333,11 +332,16 @@ public class App {
                     mid = getInt(in, "");
                     db.deleteComment(mid);
                     break;
+                case 'o':
+                    db.viewDocs();
+                    System.out.println("\nEnter Doc Id: ");
+                    String docId = getString(in, "");
+                    db.deleteDoc(docId);
+                    break;
                 default:
                     menu();
                     break;
             }
-
 
         }
 //        db.disconnect();

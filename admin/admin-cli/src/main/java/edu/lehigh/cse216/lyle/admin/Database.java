@@ -650,7 +650,7 @@ public class Database {
         }
     }
 
-    void DropColumn(String tblName, String columnName) {
+    void dropColumn(String tblName, String columnName) {
         String sql = "ALTER TABLE " + tblName + " DROP COLUMN " + columnName + ";";
 
         try {
@@ -659,6 +659,10 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    void deleteDoc(String id) throws IOException {
+        Quickstart.deleteFile(id);
     }
 
 }
