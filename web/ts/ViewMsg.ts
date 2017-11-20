@@ -1,5 +1,5 @@
-/////<reference path="../app.ts"/>
-/////<reference path="Constants.ts"/>
+///<reference path="../app.ts"/>
+///<reference path="Constants.ts"/>
 // /**
 //  * The ViewMsg Singleton provides a way of displaying all of the data
 //  * stored on the server as an HTML table.
@@ -130,19 +130,20 @@ class ViewMsg {
         private static init() {
             console.log("entered ViewMsg init");
     //         //ViewMsg.isInit = false;
-    //         console.log("isInit: " + ViewMsg.isInit);
-    //         if (!ViewMsg.isInit) {
-    //             console.log("entered ViewMsg init if statement");
-    //             $("body").append(Handlebars.templates[ViewMsg.NAME + ".hb"]());
-    //             //$("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());                
-    //             $("#Navbar-add").click(ViewMsg.show());            
-    //             //$("#" + ViewMsg.NAME + "-OK").click(ViewMsg.show());
-    //             //new entry form shows up when the page loads
-    //             console.log("new entry form show called");
-    //             $("#" + ViewMsg.NAME + "-Close").click(ViewMsg.hide);
-    //             console.log("hideform called");
-    //             ViewMsg.isInit = true;
-    //         }
+            console.log("isInit: " + ViewMsg.isInit);
+            if (!ViewMsg.isInit) {
+                console.log("entered ViewMsg init if statement");
+                $("body").append(Handlebars.templates[ViewMsg.NAME + ".hb"]());
+                //$("body").append(Handlebars.templates[ViewMsg.NAME + ".hb"]());                
+                //$("#Navbar-add").click(ViewMsg.show());            
+                //$("#" + ViewMsg.NAME + "-OK").click(ViewMsg.show());
+                //new entry form shows up when the page loads
+                ViewMsg.show();
+                console.log("viewmsg show called");
+                $("#" + ViewMsg.NAME + "-Close").click(ViewMsg.hide);
+                console.log("hideform called");
+                ViewMsg.isInit = true;
+            }
         }
     
         /**
@@ -159,32 +160,32 @@ class ViewMsg {
     //     /**
     //      * Hide the ViewMsg.  Be sure to clear its fields first
     //      */
-    //     static hide() {
-    //         console.log("entered ViewMsg hide");
-    //         $("#" + ViewMsg.NAME + "-title").val("");
-    //         $("#" + ViewMsg.NAME + "-message").val("");
-    //         $("#" + ViewMsg.NAME + "-linkload").val("");
-    //         $("#" + ViewMsg.NAME + "-pdfload").val("");        
-    //         $("#" + ViewMsg.NAME).modal("hide");
-    //     }
+        static hide() {
+            console.log("entered ViewMsg hide");
+            // $("#" + ViewMsg.NAME + "-title").val("");
+            // $("#" + ViewMsg.NAME + "-message").val("");
+            // $("#" + ViewMsg.NAME + "-linkload").val("");
+            // $("#" + ViewMsg.NAME + "-pdfload").val("");        
+            $("#" + ViewMsg.NAME).modal("hide");
+        }
     // /**
     //      * Show the ViewMsg.  Be sure to clear its fields, because there are
     //      * ways of making a Bootstrap modal disapper without clicking Close, and
     //      * we haven't set up the hooks to clear the fields on the events associated
     //      * with those ways of making the modal disappear.
     //      */
-    //     public static show() {
-    //         console.log("clicked, entering show");
-    //         $("#" + ViewMsg.NAME + "-title").val("");
-    //         $("#" + ViewMsg.NAME + "-message").val("");
-    //         $("#" + ViewMsg.NAME + "-linkload").val("");
-    //         $("#" + ViewMsg.NAME + "-pdfload").val("");        
-    //         //$("#" + ViewMsg.NAME + "-title").show();
-    //         //ViewMsg.init();
-    //         console.log("please modal show work");
-    //         // $("#" + ViewMsg.NAME + "-message").show();
-    //         $('#' + ViewMsg.NAME).modal('show');
-    //     }
+        public static show() {
+            console.log("clicked, entering show");
+            // $("#" + ViewMsg.NAME + "-title").val("");
+            // $("#" + ViewMsg.NAME + "-message").val("");
+            // $("#" + ViewMsg.NAME + "-linkload").val("");
+            // $("#" + ViewMsg.NAME + "-pdfload").val("");        
+            // //$("#" + ViewMsg.NAME + "-title").show();
+            // //ViewMsg.init();
+            // console.log("please modal show work");
+            // // $("#" + ViewMsg.NAME + "-message").show();
+            $('#' + ViewMsg.NAME).modal('show');
+        }
     }
 
 
