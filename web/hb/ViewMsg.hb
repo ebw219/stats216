@@ -21,6 +21,9 @@
                         <td>{{this.pdf}}</td>
                     </tr>
                     <tr>
+                        <img class="ViewMsg-img" src="{{this.mImg}}" alt="image attached to this message:"/>
+                    </tr>
+                    <tr>
                         <td>end of info</td>
                     </tr>
                 </table>
