@@ -13,7 +13,7 @@ TARGETFOLDER=localserver
 WEBFOLDERNAME=web
 
 # These are all of the singletons in the program
-SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar LoginForm LoginOAuth)
+SINGLETONS=(ElementList EditEntryForm NewEntryForm Navbar LoginForm LoginOAuth ViewMsg)
 
 # step 1: make sure we have someplace to put everything.  We will delete the
 #         old folder tree, and then make it from scratch
