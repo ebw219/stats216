@@ -52,4 +52,9 @@ public class SimpleRequest {
      * just for testing
      */
     //public int uId;
+
+
+//    public  pdf;
+//    public String link;
+
 }

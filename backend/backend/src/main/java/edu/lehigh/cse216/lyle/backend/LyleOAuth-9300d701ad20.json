@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "lyleoauth-184123",
+  "private_key_id": "9300d701ad20b4e2566cf21100e5fc2756b077cc",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCotOCf6noZBozr\nOS+JbbOgchs2BiU647kST14yKvHvOC5O4vbRWCRIF6Nn4yVaJbRZHgA4R1s1Urgk\nCC7kKlcGo86uGLWpPckazaMxzfPnQwH/POcP7wGDHY71aou/6Nu8PfPVwMfaIGmL\nqBeA498px9Y/EK7ufdSY7Xxs7KI1yN2mrguE2DoN1AAZlNfTH4GGSg8ia3HquAk8\nYLN/ZFGXNu9eNhTPm2a7qKqA4BTYFADdYLzXKaEpZ84HsvQd6IGkUeVy5+GBt5EK\nqdh5CDi3R5enq+HPmvGSlw+OvdyOXnqkSTmocNJZ0dXfA3zW7Pp1EcMLoZoT1aQq\ndoP+kyutAgMBAAECggEAAqXkKLPA0DJpdSpj8/Tu2YPbqCYXNizA3j1fWHY9bz3N\n1vB6Y0rONvt4AHdw7KX5hgnnLaWhFDMvhLvu0HysT68JMskHK5g2rImxwrmy1wcW\n5ES2c7+SodY4ROMz5607VbcQjrhZ6rM7ijT3OXoE1LO4SdZ0iHXH0nwCdKCPjec0\nr4r7fNZM21GNQOwTyBh0ZIZ3Pt7cU3ATgHhnT7e2aCLoioAcmV4qDP6GEObBWz2h\n4jk1crACrII4kA8N2lEj0bgjCWj9gLeYgueF8Nh69lfFjL7G7bY8OIkpipzJCqtv\ngeerVyifSngjoKU9FrABx/L8O0/7sXsq3ddxntFFQQKBgQDc3m56qND3SDKs/22s\ngCVnoBbW5HXuxRDBSwf7kQzGqF/O40r/nocnkItLIYzuksOeYMge6rqs7KV0YMyE\nd0I7WB0XmuoZoZUAehjGfKZDOGIlP+om98SziDrH7efgGiOxCe+Sd6OpYZAW4/f2\nTCMVLhFPfKeSHQVT1iXrWdvQyQKBgQDDinI+cmVoh0/i1COtBe+G/Yu1AYqItrmh\nEQ8bx24TWVwEwRoX+c6LCHZeWqQMuLUk+EJs1v/z8TaNgyioDRnhYErZEo0Q8vD7\nyM1AWVqKccXI4ckccViqMCz5302HH/6ElRR9gcZpZzoXDL9wVBjrGFso0xzJtw5H\nHnuI+5j5xQKBgQDRrFtHGFHgHmr1LjrognJ/8EseT53hQLUKOndmiymMwbTKS54c\nEluN5LtHZJ9MsIkCJjB0oTL8DF95npcovapjed+MVCUelfVEkaRJcXXI5JLPd+CK\ng7X5FT9wItp4NXhijeMfsXHtz0+hW2M/LsIzThti0RynKeOv1eEDjreNeQKBgHwB\nG2wgrdC5Jt8pOyqpvfn0Zpm2TX1fq57KK7OpKFRa8fEN6JdV0zb2eeJiRvDOXgoA\n6lcNjanMyZS6nZjdHhGAOFcq3YznFA4IjKmHQNTVS+GV1i0UcG8VOCCKDSdpEcZQ\nqHrjRslnLj6Z1fnNSzQj8QOVxgbh8MsHOL5pF90lAoGAB53l0OxwF8fHhDLPLubw\nseI2gYqs6XA/GeIUyh1LWzcZQuOeGpBPaTW/MtqIOV3aEdPNGFi8RKt+94mnSL/+\nDxKMuSYEZDSHOn/sAfoBxCjNZTteaod0FSdeMmMM39tggAuhOMyY8+jxNOXXgbU2\nRnJHfjcRPF4TvZnx0VxDxqE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "lylebuzz@lyleoauth-184123.iam.gserviceaccount.com",
+  "client_id": "106803435918793982020",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/lylebuzz%40lyleoauth-184123.iam.gserviceaccount.com"
+}

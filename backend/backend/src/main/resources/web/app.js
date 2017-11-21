@@ -60,9 +60,9 @@ var EditEntryForm = /** @class */ (function () {
         // onSubmitResponse
         $.ajax({
             type: "PUT",
-            url: "/messages/" + id,
+            url: Constants.APP_URL + "/messages/" + id,
             dataType: "json",
-            data: JSON.stringify({ mTitle: title, mMessage: msg }),
+            data: JSON.stringify({ mTitle: title, mBody: msg }),
             success: editEntryForm.onSubmitResponse
         });
     };
@@ -100,27 +100,44 @@ var NewEntryForm = /** @class */ (function () {
      * method, to ensure that the Singleton is initialized before use
      */
     NewEntryForm.init = function () {
+        console.log("entered newentryform init");
+        //NewEntryForm.isInit = false;
+        console.log("isInit: " + NewEntryForm.isInit);
         if (!NewEntryForm.isInit) {
+            console.log("entered newentryform init if statement");
             $("body").append(Handlebars.templates[NewEntryForm.NAME + ".hb"]());
+            $("#Navbar-add").click(NewEntryForm.show());
+            //$("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.show());
+            //new entry form shows up when the page loads
+            console.log("new entry form show called");
             $("#" + NewEntryForm.NAME + "-OK").click(NewEntryForm.submitForm);
+            console.log("submitForm called");
             $("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide);
+            console.log("hideform called");
             NewEntryForm.isInit = true;
         }
     };
+    // $("#" + LoginForm.NAME + "-OK").click(LoginForm.submitForm());
+    // $("#" + LoginForm.NAME + "-Close").click(LoginForm.hide());
     /**
      * Refresh() doesn't really have much meaning, but just like in sNavbar, we
      * have a refresh() method so that we don't have front-end code calling
      * init().
      */
     NewEntryForm.refresh = function () {
+        console.log("newentryform refresh");
+        NewEntryForm.isInit = false;
         NewEntryForm.init();
     };
     /**
      * Hide the NewEntryForm.  Be sure to clear its fields first
      */
     NewEntryForm.hide = function () {
+        console.log("entered newentryform hide");
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME + "-linkload").val("");
+        $("#" + NewEntryForm.NAME + "-pdfload").val("");
         $("#" + NewEntryForm.NAME).modal("hide");
     };
     /**
@@ -130,9 +147,22 @@ var NewEntryForm = /** @class */ (function () {
          * with those ways of making the modal disappear.
          */
     NewEntryForm.show = function () {
+<<<<<<< HEAD
         $("#" + NewEntryForm.NAME + "-title").val("");
         $("#" + NewEntryForm.NAME + "-message").val("");
         $("#" + NewEntryForm.NAME).modal("show");
+=======
+        console.log("clicked, entering show");
+        $("#" + NewEntryForm.NAME + "-title").val("");
+        $("#" + NewEntryForm.NAME + "-message").val("");
+        $("#" + NewEntryForm.NAME + "-linkload").val("");
+        $("#" + NewEntryForm.NAME + "-pdfload").val("");
+        //$("#" + NewEntryForm.NAME + "-title").show();
+        //NewEntryForm.init();
+        console.log("please modal show work");
+        // $("#" + NewEntryForm.NAME + "-message").show();
+        $('#' + NewEntryForm.NAME).modal('show');
+>>>>>>> origin/backend
     };
     /**
      * Send data to submit the form only if the fields are both valid.
@@ -142,22 +172,43 @@ var NewEntryForm = /** @class */ (function () {
     NewEntryForm.submitForm = function () {
         // get the values of the two fields, force them to be strings, and check 
         // that neither is empty
+        console.log("entered newentryform submitform");
         var title = "" + $("#" + NewEntryForm.NAME + "-title").val();
+        console.log("title1");
         var msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
+        //let id = "" + $("#editId").val();
+        var id = 14;
+        var link = "" + $("#" + NewEntryForm.NAME + "-linkupload").val();
+        var pdf = "" + $("#" + NewEntryForm.NAME + "-pdfupload").val();
+        console.log("message1");
+        // if ($("#" + NewEntryForm.NAME + "-OK").click) {
         if (title === "" || msg === "") {
             window.alert("Error: title or message is not valid");
             return;
         }
-        NewEntryForm.hide();
+        // }
+        if (link === "") {
+            link = "";
+        }
+        //these should be set to null but typscript hated that so had to use an empty string
+        //be careful that it doesnt actually put something in the field
+        if (pdf === "") {
+            pdf = "";
+        }
+        // else if ($("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide)) {
+        //     NewEntryForm.hide();
+        // }
+        //NewEntryForm.hide();
         // set up an AJAX post.  When the server replies, the result will go to
         // onSubmitResponse
         $.ajax({
             type: "POST",
-            url: "/messages",
+            url: Constants.APP_URL + "/messages",
             dataType: "json",
-            data: JSON.stringify({ mTitle: title, mMessage: msg }),
+            data: JSON.stringify({ uId: id, mTitle: title, mBody: msg }),
             success: NewEntryForm.onSubmitResponse
         });
+        NewEntryForm.hide();
     };
     /**
      * onSubmitResponse runs when the AJAX call in submitForm() returns a
@@ -168,8 +219,11 @@ var NewEntryForm = /** @class */ (function () {
     NewEntryForm.onSubmitResponse = function (data) {
         // If we get an "ok" message, clear the form and refresh the main 
         // listing of messages
+        console.log("entered onsubmitresponse");
         if (data.mStatus === "ok") {
+            console.log("refresh elementlist");
             ElementList.refresh();
+            NewEntryForm.hide();
         }
         else if (data.mStatus === "error") {
             window.alert("The server replied with an error:\n" + data.mMessage);
@@ -188,6 +242,16 @@ var NewEntryForm = /** @class */ (function () {
     NewEntryForm.isInit = false;
     return NewEntryForm;
 }());
+var Constants = /** @class */ (function () {
+    function Constants() {
+    }
+    Constants.APP_URL = "https://lyle-buzz.herokuapp.com";
+    Constants.API_KEY = "AIzaSyAsfB5fRnli0SukR_vuBk7HCSeLgJxMx38";
+    Constants.CLIENT_ID = "325681108859-g2tq47a7h6pvnfo159h0aoaluto67kqv.apps.googleusercontent.com";
+    return Constants;
+}());
+///<reference path="../app.ts"/>
+///<reference path="Constants.ts"/>
 /**
  * The ElementList Singleton provides a way of displaying all of the data
  * stored on the server as an HTML table.
@@ -197,8 +261,8 @@ var ElementList = /** @class */ (function () {
     }
     /**
      * Initialize the ElementList singleton by creating its element in the DOM.
-     * This needs to be called from any public static method, to ensure that the
-     * Singleton is initialized before use.
+     * This needs to be called from any public static method, to ensure the
+     * Singleton is initialized before use
      */
     ElementList.init = function () {
         if (!ElementList.isInit) {
@@ -206,15 +270,15 @@ var ElementList = /** @class */ (function () {
         }
     };
     /**
- * refresh() is the public method for updating the ElementList
- */
+     * refresh() is the public method for updating the ElementList
+     */
     ElementList.refresh = function () {
         // Make sure the singleton is initialized
         ElementList.init();
         // Issue a GET, and then pass the result to update()
         $.ajax({
             type: "GET",
-            url: "/messages",
+            url: Constants.APP_URL + "/messages",
             dataType: "json",
             success: ElementList.update
         });
@@ -224,10 +288,15 @@ var ElementList = /** @class */ (function () {
      * ElementList
      */
     ElementList.update = function (data) {
+        console.log("title: " + data["mData"][0].mTitle);
+        console.log("body: " + data["mData"][0].mBody);
         // Remove the table of data, if it exists
         $("#" + ElementList.NAME).remove();
         // Use a template to re-generate the table, and then insert it
         $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
+        console.log("append");
+        //click on message
+        $("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
         // Find all of the delete buttons, and set their behavior
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
         // Find all of the Edit buttons, and set their behavior
@@ -243,7 +312,8 @@ var ElementList = /** @class */ (function () {
      * a TD
      */
     ElementList.buttons = function (id) {
-        return "<td><button class='" + ElementList.NAME +
+        return "<td><button class='"
+            + ElementList.NAME +
             "-editbtn' data-value='" + id + "'>Edit</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-upvotebtn' data-value='" + id + "'>Up</button></td>" +
@@ -251,6 +321,12 @@ var ElementList = /** @class */ (function () {
             "-downvotebtn' data-value='" + id + "'>Down</button></td>" +
             "<td><button class='" + ElementList.NAME +
             "-delbtn' data-value='" + id + "'>Delete</button></td>";
+    };
+    /**
+     * clickMsg is the code we run in response to a click on a message title
+     */
+    ElementList.clickMsg = function () {
+        console.log("msg clicked, called method clickMsg()");
     };
     /**
      * clickDelete is the code we run in response to a click of a delete button
@@ -261,7 +337,7 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "DELETE",
-            url: "/messages/" + id,
+            url: Constants.APP_URL + "/messages/" + id,
             dataType: "json",
             // TODO: we should really have a function that looks at the return
             //       value and possibly prints an error message.
@@ -272,11 +348,12 @@ var ElementList = /** @class */ (function () {
      * clickEdit is the code we run in response to a click of a delete button
      */
     ElementList.clickEdit = function () {
+        console.log("clicked edit button");
         // as in clickDelete, we need the ID of the row
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
-            url: "/messages/" + id,
+            url: Constants.APP_URL + "/messages/" + id,
             dataType: "json",
             // success: editEntryForm.init
             success: ElementList.refresh
@@ -287,10 +364,24 @@ var ElementList = /** @class */ (function () {
      */
     ElementList.clickUp = function () {
         // as in clickDelete, we need the ID of the row
+<<<<<<< HEAD
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
             url: "/messages/" + id,
+=======
+        var mId = $(this).data("value");
+        var uId = $(this).data("value");
+        // $.ajax({
+        //     type: "GET",
+        //     url: Constants.APP_URL + "/messages/" + id,
+        //     dataType: "json",
+        //     success: ElementList.refresh
+        // });
+        $.ajax({
+            type: "POST",
+            url: Constants.APP_URL + "/upvotes/" + uId + "/" + mId,
+>>>>>>> origin/backend
             dataType: "json",
             success: ElementList.refresh
         });
@@ -303,7 +394,11 @@ var ElementList = /** @class */ (function () {
         var id = $(this).data("value");
         $.ajax({
             type: "GET",
+<<<<<<< HEAD
             url: "/messages/" + id,
+=======
+            url: Constants.APP_URL + "/messages/" + id,
+>>>>>>> origin/backend
             dataType: "json",
             success: ElementList.refresh
         });
@@ -333,9 +428,13 @@ var Navbar = /** @class */ (function () {
      * method, to ensure that the Singleton is initialized before use.
      */
     Navbar.init = function () {
+        console.log("entered navbar init");
+        console.log("navbar.isInit: " + Navbar.isInit);
         if (!Navbar.isInit) {
+            console.log("entered navbar init if statement");
             $("body").prepend(Handlebars.templates[Navbar.NAME + ".hb"]());
-            /*  $("#"+Navbar.NAME+"-add").click(NewEntryForm.show); */
+            $("#" + Navbar.NAME + "-add").click(NewEntryForm.refresh);
+            console.log("show newentryform called");
             Navbar.isInit = true;
         }
     };
@@ -346,6 +445,7 @@ var Navbar = /** @class */ (function () {
      * is configured.
      */
     Navbar.refresh = function () {
+        console.log("navbar refresh");
         Navbar.init();
     };
     /**
@@ -358,10 +458,176 @@ var Navbar = /** @class */ (function () {
     Navbar.NAME = "Navbar";
     return Navbar;
 }());
+/**
+ * LoginForm encapsulates all of the code for the form for adding an entry
+ */
+// Prevent compiler errors when using jQuery.  "$" will be given a type of
+// "any", so that we can use it anywhere, and assume it has any fields or
+// methods, without the compiler producing an error.
+var $;
+// Prevent compiler errors when using Handlebars
+var Handlebars;
+var LoginForm = /** @class */ (function () {
+    function LoginForm() {
+    }
+    /**
+     * Initialize the LoginForm by creating its element in the DOM and
+     * configuring its buttons.  This needs to be called from any public static
+     * method, to ensure that the Singleton is initialized before use
+     */
+    LoginForm.init = function () {
+        Navbar.refresh();
+        $("#" + LoginForm.NAME).remove();
+        LoginForm.show();
+        if (!LoginForm.isInit) {
+            $("body").append(Handlebars.templates[LoginForm.NAME + ".hb"]({}));
+            // $("#" + LoginForm.NAME + "-OK").click(LoginForm.submitForm());
+            // $("#" + LoginForm.NAME + "-Close").click(LoginForm.hide());
+            LoginForm.isInit = true;
+        }
+    };
+    /**
+     * Refresh() doesn't really have much meaning, but just like in Navbar, we
+     * have a refresh() method so that we don't have front-end code calling
+     * init().
+     */
+    LoginForm.refresh = function () {
+        LoginForm.init();
+    };
+    /**
+     * Hide the LoginForm.  Be sure to clear its fields first
+     */
+    LoginForm.hide = function () {
+        $("#" + LoginForm.NAME + "-title").val("");
+        $("#" + LoginForm.NAME + "-message").val("");
+        $("#" + LoginForm.NAME).modal("hide");
+    };
+    /**
+     * Show the NewEntryForm.  Be sure to clear its fields, because there are
+     * ways of making a Bootstrap modal disapper without clicking Close, and
+     * we haven't set up the hooks to clear the fields on the events associated
+     * with those ways of making the modal disappear.
+     */
+    LoginForm.show = function () {
+        $("#" + LoginForm.NAME + "-title").val("");
+        $("#" + LoginForm.NAME + "-message").val("");
+        $("#" + LoginForm.NAME).modal("show");
+    };
+    /**
+     * Send data to submit the form only if the fields are both valid.
+     * Immediately hide the form when we send data, so that the user knows that
+     * their click was received.
+     */
+    LoginForm.submitForm = function () {
+        // get the values of the two fields, force them to be strings, and check 
+        // that neither is empty
+        var title = "" + $("#" + NewEntryForm.NAME + "-title").val();
+        var msg = "" + $("#" + NewEntryForm.NAME + "-message").val();
+        if (title === "" || msg === "") {
+            window.alert("Error: title or message is not valid");
+            return;
+        }
+        NewEntryForm.hide();
+        // set up an AJAX post.  When the server replies, the result will go to
+        // onSubmitResponse
+        $.ajax({
+            type: "POST",
+            url: Constants.APP_URL + "/messages",
+            dataType: "json",
+            data: JSON.stringify({ mTitle: title, mMessage: msg }),
+            success: NewEntryForm.onSubmitResponse
+        });
+    };
+    /**
+     * The name of the DOM entry associated with LoginForm
+     */
+    LoginForm.NAME = "LoginForm";
+    /**
+     * Track if the Singleton has been initialized
+     */
+    LoginForm.isInit = false;
+    return LoginForm;
+}());
+// Prevent compiler errors when using jQuery.  "$" will be given a type of
+// "any", so that we can use it anywhere, and assume it has any fields or
+// methods, without the compiler producing an error.
+var $;
+// Prevent compiler errors when using Handlebars
+var Handlebars;
+var LoginOAuth = /** @class */ (function () {
+    function LoginOAuth() {
+    }
+    LoginOAuth.init = function () {
+        $("body").append(Handlebars.templates[LoginOAuth.NAME + ".hb"]());
+        // $("#" + LoginOAuth.NAME + "-login").show();
+        $("#" + LoginOAuth.NAME + "-login").click(LoginOAuth.clickLogin);
+    };
+    LoginOAuth.hide = function () {
+        $("#" + "Login").hide();
+    };
+    LoginOAuth.clickLogin = function () {
+        var auth2;
+        console.log("clicked login");
+        //Initializing the GoogleAuth Object
+        function start() {
+            console.log("in start");
+            console.log(gapi);
+            gapi.load('auth2', callback);
+            function callback() {
+                console.log("in callback");
+                auth2 = gapi.auth2.init({
+                    client_id: Constants.CLIENT_ID
+                });
+                auth2.signIn({
+                    client_id: Constants.CLIENT_ID
+                })
+                    .then(signInCallback);
+            }
+        }
+        //One-time code flow
+        // auth2.grantOfflineAccess().then(signInCallback);
+        start();
+        // auth2.isSignedIn.listen(signInCallback);
+        function signInCallback(authResult) {
+            console.log("in sign-in callback");
+            console.log(authResult['Zi'].access_token);
+            // console.log(authResult['Zi']);
+            if (authResult['Zi']) {
+                // Hide the sign-in button now that the user is authorized, for example:
+                // $('#signinButton').attr('style', 'display: none');
+                console.log(Constants.APP_URL + "/accessToken/" + authResult['Zi'].access_token);
+                // Send the code to the server
+                $.ajax({
+                    type: 'POST',
+                    url: Constants.APP_URL + "/accessToken/" + authResult['Zi'].access_token,
+                    // Always include an `X-Requested-With` header in every AJAX request,
+                    // to protect against CSRF attacks.
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function (result) {
+                        // Handle or verify the server response.
+                        LoginOAuth.hide();
+                        ElementList.refresh();
+                    },
+                    processData: false
+                });
+            }
+            else {
+                // There was an error.
+            }
+        }
+    };
+    LoginOAuth.NAME = "LoginOAuth";
+    return LoginOAuth;
+}());
 /// <reference path="ts/EditEntryForm.ts"/>
 /// <reference path="ts/NewEntryForm.ts"/>
 /// <reference path="ts/ElementList.ts"/>
 /// <reference path="ts/Navbar.ts"/>
+/// <reference path="ts/LoginForm.ts"/>
+/// <reference path="ts/LoginOAuth.ts"/>
 // Prevent compiler errors when using jQuery.  "$" will be given a type of 
 // "any", so that we can use it anywhere, and assume it has any fields or
 // methods, without the compiler producing an error.
@@ -373,11 +639,16 @@ var Handlebars;
 var editEntryForm;
 // Run some configuration code when the web page loads
 $(document).ready(function () {
+    // LoginOAuth.init();
     Navbar.refresh();
-    NewEntryForm.refresh();
+    //NewEntryForm.refresh();
+    // $("#Navbar-add").click(NewEntryForm.refresh());
+    console.log("hopefully newentryform refresh only called on navbar-add click");
     ElementList.refresh();
-    // Create the object that controls the "Edit Entry" form
-    editEntryForm = new EditEntryForm();
-    // set up initial UI state
-    $("#editElement").hide();
+    console.log("app.ts refreshes done");
+    // // Create the object that controls the "Edit Entry" form
+    // editEntryForm = new EditEntryForm();
+    // // set up initial UI state
+    // console.log("new editentryform");
+    //$("#editElement").hide();
 });
