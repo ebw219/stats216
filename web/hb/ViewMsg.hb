@@ -22,13 +22,13 @@
                 {{!--<h3 class="panel-title">body here?</h3>--}}
                 <table>
                     <tr>
-                        <td>should be title and body here</td>
-                    </tr>
-                    <tr>
-                        <td>{{data.mTitle}}</td>
+                        <td>should be body here</td>
                     </tr>
                     <tr>
                         <td>{{this.mBody}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
                     </tr>
                     <tr>
                         <td>end of info</td>
