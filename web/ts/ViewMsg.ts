@@ -1,111 +1,5 @@
 ///<reference path="../app.ts"/>
 ///<reference path="Constants.ts"/>
-// /**
-//  * The ViewMsg Singleton provides a way of displaying all of the data
-//  * stored on the server as an HTML table.
-//  */
-// class ViewMsg {
-//     /**
-//      * The name of the DOM entry associated with ViewMsg
-//      */
-//     private static readonly NAME = "ViewMsg";
-
-//     /**
-//      * Track if the Singleton has been initialized
-//      */
-//     private static isInit = false;
-
-//     /**
-//      * Initialize the ViewMsg singleton by creating its element in the DOM.
-//      * This needs to be called from any public static method, to ensure the
-//      * Singleton is initialized before use
-//      */
-//     private static init() {
-//         if (!ViewMsg.isInit) {
-//             ViewMsg.isInit = true;
-//         }
-//     }
-
-//     /**
-//      * refresh() is the public method for updating the ViewMsg
-//      */
-//     public static refresh() {
-//         // Make sure the singleton is initialized
-//         ViewMsg.init();
-//         let mId = $(this).data("value");
-
-//         // Issue a GET, and then pass the result to update()
-//         $.ajax({
-//             type: "GET",
-//             url: Constants.APP_URL + "/messages/" + mId,
-//             dataType: "json",
-//             success: ViewMsg.update
-//         });
-//     }
-
-//     /**
-//      * update() is the private method used by refresh() to update the
-//      * ViewMsg
-//      */
-//     private static update(data: any) {
-//         let mId = $(this).data("value");
-//         console.log("title: " + data["mData"][mId].mTitle);
-//         console.log("body: " + data["mData"][mId].mBody);
-//         // Remove the table of data, if it exists
-//         // $("#" + ElementList.NAME).remove();
-//         // // Use a template to re-generate the table, and then insert it
-//         // $("body").append(Handlebars.templates[ElementList.NAME + ".hb"](data));
-//         // console.log("append");
-//         // //click on message
-//         // $("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
-//         // // Find all of the delete buttons, and set their behavior
-//         // $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
-//         // // Find all of the Edit buttons, and set their behavior
-//         // $("." + ElementList.NAME + "-editbtn").click(ElementList.clickEdit);
-//         // // Find all of the UpVote buttons and set their behavior
-//         // $("." + ElementList.NAME + "-upvotebtn").click(ElementList.clickUp);
-//         // // Find all of the DownVote buttons and set their behavior
-//         // $("." + ElementList.NAME + "-downvotebtn").click(ElementList.clickDown);
-
-//     }
-
-//     /**
-//      * clickMsg is the code we run in response to a click on a message title
-//      */
-//     // private static clickMsg() {
-//     //     console.log("msg clicked, called method clickMsg()");
-//     // }
-
-//     /**
-//      * clickDelete is the code we run in response to a click of a delete button
-//      */
-//     // private static clickDelete() {
-//     //     // for now, just print the ID that goes along with the data in the row
-//     //     // whose "delete" button was clicked
-//     //     let id = $(this).data("value");
-//     //     $.ajax({
-//     //         type: "DELETE",
-//     //         url: Constants.APP_URL + "/messages/" + id,
-//     //         dataType: "json",
-//     //         // TODO: we should really have a function that looks at the return
-//     //         //       value and possibly prints an error message.
-//     //         success: ElementList.refresh
-//     //     });
-//     // }
-
-// }
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * ViewMsg encapsulates all of the code for the form for adding an entry
@@ -185,10 +79,10 @@ class ViewMsg {
             // //ViewMsg.init();
             // console.log("please modal show work");
             // // $("#" + ViewMsg.NAME + "-message").show();
-            console.log("about to call show");
-            $('#' + ViewMsg.NAME).modal('show');
             console.log("about to call getMsg");
             ViewMsg.getMsg(id);
+            console.log("about to call show");            
+            $('#' + ViewMsg.NAME).modal('show');
         }
 
         /**
@@ -216,6 +110,8 @@ class ViewMsg {
          * ElementList
          */
         private static update(data: any) {
+            console.log("msgtitle: " + data["mData"].mTitle);
+            console.log("msgbody: " + data["mData"].mBody);
             console.log("entered ViewMsg function update");
             // Remove the table of data, if it exists
             $("#" + ViewMsg.NAME).remove();

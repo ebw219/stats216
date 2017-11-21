@@ -20,7 +20,21 @@
             </div>
             <div class="modal-body">
                 {{!--<h3 class="panel-title">body here?</h3>--}}
-                <label for="ViewMsg-title">Title</label>
+                <table>
+                    <tr>
+                        <td>should be title and body here</td>
+                    </tr>
+                    <tr>
+                        <td>{{data.mTitle}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{this.mBody}}</td>
+                    </tr>
+                    <tr>
+                        <td>end of info</td>
+                    </tr>
+                </table>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="ViewMsg-Close">Close</button>
             </div>
