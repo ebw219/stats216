@@ -28,7 +28,7 @@
                         <td>{{this.mBody}}</td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td><a href="{{this.mLink}}" type="button" class="btn btn-link" id="ViewMsg-linkload">{{this.mLink}}</a></td>
                     </tr>
                     <tr>
                         <td>end of info</td>

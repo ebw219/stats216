@@ -123,6 +123,11 @@ class ViewMsg {
             // console.log("hideform called");
         }
 
+        private static link(id: string): string {
+            return "<td><a href='"
+                + id + "type='button' class='btn btn-link' id='ViewMsg-linkload'>" + id + "'</a></td>";                
+        }
+
     }
 
 
