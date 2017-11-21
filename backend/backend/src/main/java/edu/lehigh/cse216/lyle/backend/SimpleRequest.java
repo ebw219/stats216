@@ -1,5 +1,7 @@
 package edu.lehigh.cse216.lyle.backend;
 
+import java.io.File;
+
 /**
  * SimpleRequest provides a format for clients to present title and message 
  * strings to the server.
@@ -54,7 +56,7 @@ public class SimpleRequest {
     //public int uId;
 
 
-//    public  pdf;
-//    public String link;
+    public File mPdf;
+    public String mLink;
 
 }

@@ -15,6 +15,8 @@ import net.spy.memcached.ConnectionFactoryBuilder;
 import net.spy.memcached.auth.PlainCallbackHandler;
 import net.spy.memcached.auth.AuthDescriptor;
 
+import java.io.File;
+
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeTokenRequest;
@@ -343,7 +345,7 @@ public class App {
 		/**
 		 * create hashmap to store usernames and key values
 		 */
-		HashMap<Integer, String> userhash = new HashMap<Integer, String>();
+		//HashMap<Integer, String> userhash = new HashMap<Integer, String>();
 
 		Memcachier.memc(" ");
 
@@ -414,7 +416,10 @@ public class App {
 		/**
 		 * GET all from message table
 		 */
-		Spark.get("/messages", (request, response) -> {
+		
+
+		//*HERE*
+		 Spark.get("/messages", (request, response) -> {
 			// ensure status 200 OK, with a MIME type of JSON
 			response.status(200);
 			response.type("application/json");
@@ -843,6 +848,7 @@ public class App {
 				return gson.toJson(new StructuredResponse("ok", null, result));
 			}
 		});
+
 
 	}
 }
