@@ -129,10 +129,3 @@ class ViewMsg {
         }
 
     }
-
-
-
-
-
-//    $("#" + Navbar.NAME + "-add").click(NewEntryForm.refresh);
-    //change the thing to a button not a link?? open a modal instead of a new page

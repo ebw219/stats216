@@ -1,16 +1,3 @@
-{{!--
-<div class="panel panel-default" id="ViewMsg">
-     <div class="panel-heading">
-     	{{!--  <h3 class="panel-title">{{mData[0].mTitle}}</h3> --}}
-         {{!--   <td>there should be one title here</td> --}}
-         <h3 class="panel-title">title pls show up</h3>
-	</div>
-</div>
---}}
-
-
-
-
 <div id="ViewMsg" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -29,6 +16,9 @@
                     </tr>
                     <tr>
                         <td><a href="{{this.mLink}}" type="button" class="btn btn-link" id="ViewMsg-linkload">{{this.mLink}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>{{this.pdf}}</td>
                     </tr>
                     <tr>
                         <td>end of info</td>
