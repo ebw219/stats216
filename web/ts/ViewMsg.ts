@@ -123,11 +123,9 @@ class ViewMsg {
             // console.log("hideform called");
         }
 
+        private static link(id: string): string {
+            return "<td><a href='"
+                + id + "type='button' class='btn btn-link' id='ViewMsg-linkload'>" + id + "'</a></td>";                
+        }
+
     }
-
-
-
-
-
-//    $("#" + Navbar.NAME + "-add").click(NewEntryForm.refresh);
-    //change the thing to a button not a link?? open a modal instead of a new page

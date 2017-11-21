@@ -97,7 +97,7 @@ class NewEntryForm {
         //let id = "" + $("#editId").val();
         let id = 14;
         let link = "" + $("#" + NewEntryForm.NAME + "-linkupload").val();
-        let pdf = "" + $("#" + NewEntryForm.NAME + "-pdfupload").val();        
+        let pdf = $("#" + NewEntryForm.NAME + "-pdfupload").val();        
         console.log("message1");
         // if ($("#" + NewEntryForm.NAME + "-OK").click) {
             if (title === "" || msg === "") {
@@ -110,7 +110,7 @@ class NewEntryForm {
         }
                 //these should be set to null but typscript hated that so had to use an empty string
                 //be careful that it doesnt actually put something in the field
-        if (pdf === "") {
+        if (pdf === null) {
             pdf = "";
         }
         // else if ($("#" + NewEntryForm.NAME + "-Close").click(NewEntryForm.hide)) {
@@ -123,9 +123,19 @@ class NewEntryForm {
             type: "POST",
             url: Constants.APP_URL + "/messages",
             dataType: "json",
-            data: JSON.stringify({uId: id, mTitle: title, mBody: msg }),
+            data: JSON.stringify({uId: id, mTitle: title, mBody: msg, mLink: link}),
             success: NewEntryForm.onSubmitResponse
         });
+        //add pdf to row by id (optional, only do if user uploads a pdf)
+        if (pdf != null) {
+            $.ajax({
+                type: "PUT",
+                url: Constants.APP_URL + "/messages" + id,
+                data: File,
+                processData: false,
+                success: NewEntryForm.onSubmitResponse
+            });
+        }
         NewEntryForm.hide();
     }
 
