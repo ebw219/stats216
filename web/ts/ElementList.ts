@@ -49,6 +49,7 @@ class ElementList {
     private static update(data: any) {
         console.log("title: " + data["mData"][0].mTitle);
         console.log("body: " + data["mData"][0].mBody);
+        console.log("msg id: " + data["mData"][0].mId);
         // Remove the table of data, if it exists
         $("#" + ElementList.NAME).remove();
         // Use a template to re-generate the table, and then insert it
@@ -57,7 +58,7 @@ class ElementList {
         //click on test button
         $("#" + ElementList.NAME + "-testviewmsg").click(ViewMsg.refresh);
         //click on message
-        $("#" + ElementList.NAME + "-viewmsg").click(ViewMsg.refresh);
+        $("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
         //$("#" + ElementList.NAME + "-viewmsg").click(ElementList.clickMsg);
         // Find all of the delete buttons, and set their behavior
         $("." + ElementList.NAME + "-delbtn").click(ElementList.clickDelete);
@@ -90,9 +91,12 @@ class ElementList {
     /**
      * clickMsg is the code we run in response to a click on a message title
      */
-    private static clickMsg() {
+    private static clickMsg(event: any) {
         console.log("msg clicked, called method clickMsg()");
-        ViewMsg.refresh();
+        const id = $(event.target).data("value");
+        console.log("msg id? " + id);
+       // this.mData.mId; //help
+        ViewMsg.refresh(id);
     }
 
     /**

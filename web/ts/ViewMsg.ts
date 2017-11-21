@@ -127,7 +127,7 @@ class ViewMsg {
          * configuring its buttons.  This needs to be called from any public static 
          * method, to ensure that the Singleton is initialized before use
          */
-        private static init() {
+        private static init(id) {
             console.log("entered ViewMsg init");
     //         //ViewMsg.isInit = false;
             console.log("isInit: " + ViewMsg.isInit);
@@ -138,10 +138,10 @@ class ViewMsg {
                 //$("#Navbar-add").click(ViewMsg.show());            
                 //$("#" + ViewMsg.NAME + "-OK").click(ViewMsg.show());
                 //new entry form shows up when the page loads
-                ViewMsg.show();
+                ViewMsg.show(id);
                 console.log("viewmsg show called");
-                $("#" + ViewMsg.NAME + "-Close").click(ViewMsg.hide);
-                console.log("hideform called");
+                // $("#" + ViewMsg.NAME + "-Close").click(ViewMsg.hide);
+                // console.log("hideform called");
                 ViewMsg.isInit = true;
             }
         }
@@ -151,10 +151,10 @@ class ViewMsg {
          * have a refresh() method so that we don't have front-end code calling
          * init().
          */
-        public static refresh() {
+        public static refresh(id) {
             console.log("ViewMsg refresh");
             ViewMsg.isInit = false;
-            ViewMsg.init();
+            ViewMsg.init(id);
         }
     
     //     /**
@@ -162,6 +162,7 @@ class ViewMsg {
     //      */
         static hide() {
             console.log("entered ViewMsg hide");
+            // ViewMsg.isInit=true;
             // $("#" + ViewMsg.NAME + "-title").val("");
             // $("#" + ViewMsg.NAME + "-message").val("");
             // $("#" + ViewMsg.NAME + "-linkload").val("");
@@ -174,7 +175,7 @@ class ViewMsg {
     //      * we haven't set up the hooks to clear the fields on the events associated
     //      * with those ways of making the modal disappear.
     //      */
-        public static show() {
+        public static show(id) {
             console.log("clicked, entering show");
             // $("#" + ViewMsg.NAME + "-title").val("");
             // $("#" + ViewMsg.NAME + "-message").val("");
@@ -184,8 +185,48 @@ class ViewMsg {
             // //ViewMsg.init();
             // console.log("please modal show work");
             // // $("#" + ViewMsg.NAME + "-message").show();
+            console.log("about to call show");
             $('#' + ViewMsg.NAME).modal('show');
+            console.log("about to call getMsg");
+            ViewMsg.getMsg(id);
         }
+
+        /**
+         * getMsg is the code we run to get all the contents of the msg using the msg id
+         */
+        private static getMsg(id) {
+            console.log("entered getMsg");
+            // as in clickDelete, we need the ID of the row
+            //let id = $(this).data("value");
+            console.log("id of the row?: " + id);
+            var md = <number>id;
+            console.log("casted id of row: " + md);
+            $.ajax({
+                type: "GET",
+                url: Constants.APP_URL + "/messages/" + md,
+                dataType: "json",
+                // success: editEntryForm.init
+                success: ViewMsg.update
+            });
+            console.log("sent ajax call success, calling ViewMsg.update");
+        }
+
+        /**
+         * update() is the private method used by refresh() to update the
+         * ElementList
+         */
+        private static update(data: any) {
+            console.log("entered ViewMsg function update");
+            // Remove the table of data, if it exists
+            $("#" + ViewMsg.NAME).remove();
+            // Use a template to re-generate the table, and then insert it
+            $("body").append(Handlebars.templates[ViewMsg.NAME + ".hb"](data));
+            console.log("append");
+            // $("#" + ViewMsg.NAME + "-Close").click(ViewMsg.hide);
+            // //why doesn't it actually call hide??????????
+            // console.log("hideform called");
+        }
+
     }
 
 

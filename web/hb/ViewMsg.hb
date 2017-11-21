@@ -16,6 +16,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Message title should go here</h4>
+                <h4 class="modal-title2">{{this.mTitle}}</h4>
             </div>
             <div class="modal-body">
                 {{!--<h3 class="panel-title">body here?</h3>--}}

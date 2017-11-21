@@ -7,7 +7,7 @@
             {{#each mData}}
          <tr>
 		{{!-- 		<td><a href="ViewMsg" type="button" class="btn btn-link" id="ElementList-viewmsg">{{this.mTitle}}</a></td> --}}
-				<td> <a class="btn btn-link" id="ElementList-viewmsg">{{this.mTitle}}</a></td>
+				<td> <a class="btn btn-link" id="ElementList-viewmsg" data-value="{{this.mId}}">{{this.mTitle}}</a></td>
 				<td>{{this.mBody}}</td>
 		{{!--		<img class="ElementList-img" src="{{http://www.wallpaperbackgrounds.org/wp-content/uploads/Picture.jpg}}" alt="image would go here"/>	--}}
               	<td><button class="ElementList-editbtn" data-value="{{this.mId}}">Edit</button></td>
