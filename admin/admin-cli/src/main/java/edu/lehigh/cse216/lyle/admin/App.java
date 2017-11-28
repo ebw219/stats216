@@ -34,6 +34,7 @@ public class App {
         System.out.println("  [C] Create tblComment");
         System.out.println("  [P] Create tblUpVotes");
         System.out.println("  [N] Create tblDownVotes");
+        System.out.println("  [B] Create tblBlockedUsers");
 //        System.out.println("  [W] Create tblDocs");
         System.out.println();
         System.out.println("  [u] Delete tblUser");
@@ -41,6 +42,7 @@ public class App {
         System.out.println("  [c] Delete tblComment");
         System.out.println("  [p] Delete tblUpVotes");
         System.out.println("  [n] Delete tblDownVotes");
+        System.out.println("  [b] Delete tblBlockedUsers");
 //        System.out.println("  [w] Delete tblDocs");
         System.out.println();
         System.out.println("  [-] Delete a user");
@@ -59,7 +61,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPVoORNAuxmcpntES";
+        String actions = "TD1*-+~q?UMCPVoORNABbuxmcpntES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -243,6 +245,9 @@ public class App {
                 case 'N':
                     db.createDownvoteTable();
                     break;
+                case 'B':
+                    db.createBlockedUserTable();
+                    break;
                 case 'u':
                     System.out.println("\nAre you sure you want to drop a table? Y/N");
                     ans = getString(in, "");
@@ -284,6 +289,15 @@ public class App {
                     ans = getString(in, "");
                     if (ans.equals("Y"))
                         db.dropDVTable();
+                    else {
+                        System.out.println("\nTable not deleted");
+                    }
+                    break;
+                case 'b':
+                    System.out.println("\nAre you sure you want to drop a table? Y/N");
+                    ans = getString(in, "");
+                    if (ans.equals("Y"))
+                        db.dropBUTable();
                     else {
                         System.out.println("\nTable not deleted");
                     }

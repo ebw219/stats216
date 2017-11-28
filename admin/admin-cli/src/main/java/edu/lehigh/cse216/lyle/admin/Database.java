@@ -67,6 +67,8 @@ public class Database {
 
     private PreparedStatement mCreateDownvoteTable;
 
+    private PreparedStatement mCreateBlockedUserTable;
+
     private PreparedStatement mSelectUnauthenticated;
 
     private PreparedStatement mSelectAllUsers;
@@ -79,6 +81,7 @@ public class Database {
     private PreparedStatement mDropUpVoteTable;
     private PreparedStatement mDropDownVoteTable;
     private PreparedStatement mDropDocsTable;
+    private PreparedStatement mDropBlockedUserTable;
 
     private PreparedStatement mGetEmail;
 
@@ -155,6 +158,7 @@ public class Database {
             db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments CASCADE");
             db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes CASCADE");
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes CASCADE");
+            db.mDropBlockedUserTable = db.mConnection.prepareStatement("DROP TABLE tblBlockUsers CASCADE");
 //            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
             db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
 
@@ -163,7 +167,8 @@ public class Database {
                     + "username VARCHAR(255) NOT NULL UNIQUE, "
                     + "realname VARCHAR(255) NOT NULL, "
                     + "email VARCHAR(255) NOT NULL UNIQUE, "
-                    + "auth INTEGER)");
+                    + "auth INTEGER)"
+                    + "flag INTEGER DEFAULT 0, ");
             db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
                     + "message_id SERIAL PRIMARY KEY, "
                     + "user_id INTEGER, "
@@ -173,6 +178,7 @@ public class Database {
                     + "pdf VARCHAR(75),"
                     + "link VARCHAR(140),"
                     + "image VARCHAR(50),"
+                    + "flag INTEGER DEFAULT 0, "
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE)");
             db.mCreateCommentTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblComments ("
                     + "comment_id SERIAL PRIMARY KEY, "
@@ -180,6 +186,7 @@ public class Database {
                     + "message_id INTEGER, "
                     + "comment_text VARCHAR(255) NOT NULL, "
                     + "date_created DATE DEFAULT now(),"
+                    + "flag INTEGER DEFAULT 0, "
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE)");
             db.mCreateDownvoteTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDownVotes ("
@@ -196,6 +203,11 @@ public class Database {
                     + "FOREIGN KEY (user_id) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
                     + "FOREIGN KEY (message_id) REFERENCES tblMessage (message_id) ON DELETE CASCADE, "
                     + "PRIMARY KEY (user_id, message_id))");
+            db.mCreateBlockedUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblBlockedUsers ("
+                    + "user_id1 INTEGER, "
+                    + "user_id2 INTEGER, "
+                    + "PRIMARY KEY (user_id1, user_id2))");
+
 //            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
 //                    + "doc_owner_id INTEGER,"
 //                    + "doc_id INTEGER PRIMARY KEY,"
@@ -530,6 +542,15 @@ public class Database {
         }
     }
 
+    void createBlockedUserTable() {
+        try {
+            mCreateBlockedUserTable.execute();
+            System.out.println("successfully created table");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     void createDownvoteTable() {
         try {
             mCreateDownvoteTable.execute();
@@ -600,6 +621,15 @@ public class Database {
     void dropDVTable() {
         try {
             mDropDownVoteTable.execute();
+            System.out.println("successfully deleted table");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void dropBUTable() {
+        try {
+            mDropBlockedUserTable.execute();
             System.out.println("successfully deleted table");
         } catch (SQLException e) {
             e.printStackTrace();
