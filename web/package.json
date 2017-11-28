@@ -11,9 +11,12 @@
     "handlebars": "^4.0.11",
     "jasmine-core": "^2.8.0",
     "jquery": "^3.2.1",
-    "typescript": "^2.5.2"
+    "typescript": "^2.6.1"
   },
   "compilerOptions": {
-    "types": ["gapi", "gapi.auth2"]
+    "types": [
+      "gapi",
+      "gapi.auth2"
+    ]
   }
 }
