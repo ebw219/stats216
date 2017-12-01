@@ -38,6 +38,11 @@ public class Database {
     private PreparedStatement mSelectFlag;
 
     /**
+     * A prepared statement for getting all blocked users from the database
+     */
+    private PreparedStatement mSelectBlockedUsers;
+
+    /**
      * A prepared statement for deleting a row from the database
      */
     private PreparedStatement mDeleteUser;
@@ -225,6 +230,7 @@ public class Database {
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM tblMessage");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
             db.mSelectFlag = db.mConnection.prepareStatement("SELECT * FROM tblMessage WHERE flag>3");
+            db.mSelectBlockedUsers = db.mConnection.prepareStatement("SELECT * FROM tblBlockedUsers");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
@@ -337,6 +343,26 @@ public class Database {
     }
 
     /**
+     * Query the database for a list of all blocked users
+     *
+     * @return All rows, as an ArrayList
+     */
+    ArrayList<UserBlocked> selectBlockedUsers() {
+        ArrayList<UserBlocked> res = new ArrayList<UserBlocked>();
+        try {
+            ResultSet rs = mSelectBlockedUsers.executeQuery();
+            while (rs.next()) {
+                res.add(new UserBlocked(rs.getInt("user_id1"), rs.getInt("user_id2")));
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Query the database for a list of all subjects and their IDs
      *
      * @return All rows, as an ArrayList
@@ -408,6 +434,16 @@ public class Database {
         ArrayList<RowData> messages = db.selectFlag();
         for (int i = 0; i < messages.size(); i++) {
             System.out.println(messages.get(i));
+        }
+    }
+
+    void viewBlockedUsers() {
+        System.out.println("\n\nBlocked Users: ");
+        System.out.println("\nUser Id 1\tUser Id 2");
+        System.out.println("-------------------------------------");
+        ArrayList<UserBlocked> users = db.selectBlockedUsers();
+        for (int i = 0; i < users.size(); i++) {
+            System.out.println(users.get(i));
         }
     }
 

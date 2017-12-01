@@ -173,6 +173,9 @@ public class App {
                     int fmid = getInt(in, "");
                     db.deleteMessage(fmid);
                     break;
+                case 'L':
+                    db.viewBlockedUsers();
+                    break;
                 case 'R':
                     db.viewUsers();
                     break;
