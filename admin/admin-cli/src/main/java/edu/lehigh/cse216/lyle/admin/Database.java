@@ -107,6 +107,8 @@ public class Database {
 
     private PreparedStatement mDeleteComment;
 
+    private PreparedStatement mDeleteFlag;
+
     private PreparedStatement mSelectComments;
 
 
@@ -243,6 +245,7 @@ public class Database {
             db.mDeleteComment = db.mConnection.prepareStatement("DELETE FROM tblComments WHERE comment_id = ?");
             db.mDeleteUpVote = db.mConnection.prepareStatement("DELETE FROM tblUpVotes WHERE message_id = ?");
             db.mDeleteDownVote = db.mConnection.prepareStatement("DELETE FROM tblDownVotes WHERE message_id = ?");
+            db.mDeleteFlag = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE flag>3");
 
             db.mSelectComments = db.mConnection.prepareStatement("SELECT * FROM tblComments WHERE message_id = ?");
 
@@ -532,6 +535,16 @@ public class Database {
             e.printStackTrace();
         }
         return res;
+    }
+
+    void deleteFlag() {
+        try {
+            mDeleteFlag.execute();
+            System.out.println("Successfully deleted all flagged messages");
+            System.out.println();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
