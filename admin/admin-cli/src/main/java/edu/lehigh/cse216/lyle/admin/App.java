@@ -25,8 +25,12 @@ public class App {
         System.out.println("  [?] Help");
         System.out.println("  [q] Quit");
         System.out.println();
-        System.out.println("  [V] View all messages");
         System.out.println("  [F] View all flagged messages");
+        System.out.println("  [L] View all blocked users");
+        //[L] currently has no functionality
+        //need to add L to that weird string of all the letters used
+        System.out.println();        
+        System.out.println("  [V] View all messages");
         System.out.println("  [R] View all users");
         System.out.println("  [O] View all docs");
         System.out.println();
@@ -62,7 +66,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPVFoORNABbuxmcpntES";
+        String actions = "TD1*-+~q?UMCPVFLoORNABbuxmcpntES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -164,6 +168,10 @@ public class App {
                     break;
                 case 'F':
                     db.viewFlaggedMessages();
+                    System.out.println();
+                    System.out.println("\nTo delete a flagged message, enter it's Message Id: ");
+                    int fmid = getInt(in, "");
+                    db.deleteMessage(fmid);
                     break;
                 case 'R':
                     db.viewUsers();
