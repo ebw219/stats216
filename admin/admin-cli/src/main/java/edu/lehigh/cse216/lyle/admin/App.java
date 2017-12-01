@@ -26,6 +26,7 @@ public class App {
         System.out.println("  [q] Quit");
         System.out.println();
         System.out.println("  [V] View all messages");
+        System.out.println("  [F] View all flagged messages");
         System.out.println("  [R] View all users");
         System.out.println("  [O] View all docs");
         System.out.println();
@@ -61,7 +62,7 @@ public class App {
      */
     static char prompt(BufferedReader in) {
         // The valid actions:
-        String actions = "TD1*-+~q?UMCPVoORNABbuxmcpntES";
+        String actions = "TD1*-+~q?UMCPVFoORNABbuxmcpntES";
 
         // We repeat until a valid single-character option is selected        
         while (true) {
@@ -160,6 +161,9 @@ public class App {
                     break;
                 case 'V':
                     db.viewMessages();
+                    break;
+                case 'F':
+                    db.viewFlaggedMessages();
                     break;
                 case 'R':
                     db.viewUsers();

@@ -33,6 +33,11 @@ public class Database {
     private PreparedStatement mSelectOne;
 
     /**
+     * A prepared statement for getting all flagged rows from the database
+     */
+    private PreparedStatement mSelectFlag;
+
+    /**
      * A prepared statement for deleting a row from the database
      */
     private PreparedStatement mDeleteUser;
@@ -219,6 +224,7 @@ public class Database {
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM tblMessage");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
+            db.mSelectFlag = db.mConnection.prepareStatement("SELECT * FROM tblMessage WHERE flag>3");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
             db.mUpdateAuth = db.mConnection.prepareStatement("UPDATE tblUser SET auth = 1 WHERE email = ?");
@@ -310,6 +316,27 @@ public class Database {
     }
 
     /**
+     * Query the database for a list of all subjects and their IDs that have been flagged at least 3 times
+     *
+     * @return All rows, as an ArrayList
+     */
+    ArrayList<RowData> selectFlag() {
+        ArrayList<RowData> res = new ArrayList<RowData>();
+        try {
+            ResultSet rs = mSelectFlag.executeQuery();
+            while (rs.next()) {
+                res.add(new RowData(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"),
+                        rs.getString("body")));
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
      * Query the database for a list of all subjects and their IDs
      *
      * @return All rows, as an ArrayList
@@ -369,6 +396,16 @@ public class Database {
         System.out.println("\nMID\tUID\tTitle\tBody");
         System.out.println("-----------------------------");
         ArrayList<RowData> messages = db.selectAll();
+        for (int i = 0; i < messages.size(); i++) {
+            System.out.println(messages.get(i));
+        }
+    }
+
+    void viewFlaggedMessages() {
+        System.out.println("\n\nFlagged Messages: ");
+        System.out.println("\nMID\tUID\tTitle\tBody");
+        System.out.println("-----------------------------");
+        ArrayList<RowData> messages = db.selectFlag();
         for (int i = 0; i < messages.size(); i++) {
             System.out.println(messages.get(i));
         }
