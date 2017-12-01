@@ -25,8 +25,8 @@ public class App {
         System.out.println("  [?] Help");
         System.out.println("  [q] Quit");
         System.out.println();
-        System.out.println("  [F] View all flagged messages");
-        System.out.println("  [f] Delete all flagged messages");
+        System.out.println("  [F] View all flagged messages and comments");
+        System.out.println("  [f] Delete all flagged messages and comments");
         System.out.println("  [L] View all blocked users");
         //[L] currently has no functionality
         //need to add L to that weird string of all the letters used
@@ -170,11 +170,16 @@ public class App {
                 case 'F':
                     db.viewFlaggedMessages();
                     System.out.println();
+                    db.viewFlaggedComments();
+                    System.out.println();
                     // System.out.println("\nTo delete a flagged message, enter it's Message Id: ");
                     // int fmid = getInt(in, "");
                     // db.deleteMessage(fmid);
                     System.out.println("");
-                    System.out.println("To delete all flagged messages, enter [f]");
+                    System.out.println("Reminder: [f] Delete all flagged messages and comments");
+                    System.out.println("          [x] Delete one message");
+                    System.out.println("          [t] Delete one comment");
+                    System.out.println();
                     break;
                 case 'L':
                     db.viewBlockedUsers();
@@ -352,7 +357,8 @@ public class App {
 //                    break;
                 case 'f':
                     System.out.println();
-                    db.deleteFlag();
+                    db.deleteFlagMsg();
+                    db.deleteFlagCom();
                     break;
                 case 'x':
                     System.out.println();

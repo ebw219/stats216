@@ -35,7 +35,8 @@ public class Database {
     /**
      * A prepared statement for getting all flagged rows from the database
      */
-    private PreparedStatement mSelectFlag;
+    private PreparedStatement mSelectFlagMsg;
+    private PreparedStatement mSelectFlagCom;
 
     /**
      * A prepared statement for getting all blocked users from the database
@@ -107,7 +108,9 @@ public class Database {
 
     private PreparedStatement mDeleteComment;
 
-    private PreparedStatement mDeleteFlag;
+    private PreparedStatement mDeleteFlagMsg;
+
+    private PreparedStatement mDeleteFlagCom;
 
     private PreparedStatement mSelectComments;
 
@@ -231,7 +234,8 @@ public class Database {
             db.mInsertOne = db.mConnection.prepareStatement("INSERT INTO tblData VALUES (default, ?, ?)");
             db.mSelectAll = db.mConnection.prepareStatement("SELECT * FROM tblMessage");
             db.mSelectOne = db.mConnection.prepareStatement("SELECT * from tblData WHERE id=?");
-            db.mSelectFlag = db.mConnection.prepareStatement("SELECT * FROM tblMessage WHERE flag>3");
+            db.mSelectFlagMsg = db.mConnection.prepareStatement("SELECT * FROM tblMessage WHERE flag>3");
+            db.mSelectFlagCom = db.mConnection.prepareStatement("SELECT * FROM tblComments WHERE flag>3");            
             db.mSelectBlockedUsers = db.mConnection.prepareStatement("SELECT * FROM tblBlockedUsers");
             db.mUpdateOne = db.mConnection.prepareStatement("UPDATE tblData SET message = ? WHERE id = ?");
             db.mSelectUnauthenticated = db.mConnection.prepareStatement("SELECT * from tblUser WHERE auth = 0"); //unsure if = or ==
@@ -245,8 +249,9 @@ public class Database {
             db.mDeleteComment = db.mConnection.prepareStatement("DELETE FROM tblComments WHERE comment_id = ?");
             db.mDeleteUpVote = db.mConnection.prepareStatement("DELETE FROM tblUpVotes WHERE message_id = ?");
             db.mDeleteDownVote = db.mConnection.prepareStatement("DELETE FROM tblDownVotes WHERE message_id = ?");
-            db.mDeleteFlag = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE flag>3");
-
+            db.mDeleteFlagMsg = db.mConnection.prepareStatement("DELETE FROM tblMessage WHERE flag>3");
+            db.mDeleteFlagCom = db.mConnection.prepareStatement("DELETE FROM tblComments WHERE flag>3");
+            
             db.mSelectComments = db.mConnection.prepareStatement("SELECT * FROM tblComments WHERE message_id = ?");
 
 
@@ -329,13 +334,29 @@ public class Database {
      *
      * @return All rows, as an ArrayList
      */
-    ArrayList<RowData> selectFlag() {
+    ArrayList<RowData> selectFlagMsg() {
         ArrayList<RowData> res = new ArrayList<RowData>();
         try {
-            ResultSet rs = mSelectFlag.executeQuery();
+            ResultSet rs = mSelectFlagMsg.executeQuery();
             while (rs.next()) {
                 res.add(new RowData(rs.getInt("message_id"), rs.getInt("user_id"), rs.getString("title"),
                         rs.getString("body")));
+            }
+            rs.close();
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    ArrayList<Comment> selectFlagCom() {
+        ArrayList<Comment> res = new ArrayList<Comment>();
+        try {
+            ResultSet rs = mSelectFlagCom.executeQuery();
+            while (rs.next()) {
+                res.add(new Comment(rs.getInt("comment_id"), rs.getInt("user_id"), rs.getInt("message_id"),
+                        rs.getString("comment_text")));
             }
             rs.close();
             return res;
@@ -434,9 +455,19 @@ public class Database {
         System.out.println("\n\nFlagged Messages: ");
         System.out.println("\nMID\tUID\tTitle\tBody");
         System.out.println("-----------------------------");
-        ArrayList<RowData> messages = db.selectFlag();
+        ArrayList<RowData> messages = db.selectFlagMsg();
         for (int i = 0; i < messages.size(); i++) {
             System.out.println(messages.get(i));
+        }
+    }
+
+    void viewFlaggedComments () {
+        System.out.println("\n\nFlagged Comments: ");
+        System.out.println("\nCID\tUID\tMID\tBody");
+        System.out.println("-----------------------------");
+        ArrayList<Comment> comments = db.selectFlagCom();
+        for (int i = 0; i < comments.size(); i++) {
+            System.out.println(comments.get(i));
         }
     }
 
@@ -537,10 +568,20 @@ public class Database {
         return res;
     }
 
-    void deleteFlag() {
+    void deleteFlagMsg() {
         try {
-            mDeleteFlag.execute();
+            mDeleteFlagMsg.execute();
             System.out.println("Successfully deleted all flagged messages");
+            System.out.println();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void deleteFlagCom() {
+        try {
+            mDeleteFlagCom.execute();
+            System.out.println("Successfully deleted all flagged comments");
             System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
