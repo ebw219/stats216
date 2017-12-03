@@ -173,7 +173,7 @@ public class Database {
             db.mDropCommentTable = db.mConnection.prepareStatement("DROP TABLE tblComments CASCADE");
             db.mDropUpVoteTable = db.mConnection.prepareStatement("DROP TABLE tblUpVotes CASCADE");
             db.mDropDownVoteTable = db.mConnection.prepareStatement("DROP TABLE tblDownVotes CASCADE");
-            db.mDropBlockedUserTable = db.mConnection.prepareStatement("DROP TABLE tblBlockUsers CASCADE");
+            db.mDropBlockedUserTable = db.mConnection.prepareStatement("DROP TABLE tblBlockedUsers CASCADE");
 //            db.mDropDocsTable = db.mConnection.prepareStatement("DROP TABLE tblDocs CASCADE");
             db.mGetEmail = db.mConnection.prepareStatement("SELECT email FROM tblUser WHERE id = ?");
 
@@ -182,8 +182,7 @@ public class Database {
                     + "username VARCHAR(255) NOT NULL UNIQUE, "
                     + "realname VARCHAR(255) NOT NULL, "
                     + "email VARCHAR(255) NOT NULL UNIQUE, "
-                    + "auth INTEGER)"
-                    + "flag INTEGER DEFAULT 0, ");
+                    + "auth INTEGER)");
             db.mCreateMessageTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblMessage ("
                     + "message_id SERIAL PRIMARY KEY, "
                     + "user_id INTEGER, "
@@ -221,6 +220,8 @@ public class Database {
             db.mCreateBlockedUserTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblBlockedUsers ("
                     + "user_id1 INTEGER, "
                     + "user_id2 INTEGER, "
+                    + "FOREIGN KEY (user_id1) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
+                    + "FOREIGN KEY (user_id2) REFERENCES tblUser (user_id) ON DELETE CASCADE, "
                     + "PRIMARY KEY (user_id1, user_id2))");
 
 //            db.mCreateDocsTable = db.mConnection.prepareStatement("CREATE TABLE IF NOT EXISTS tblDocs ("
@@ -572,7 +573,6 @@ public class Database {
         try {
             mDeleteFlagMsg.execute();
             System.out.println("Successfully deleted all flagged messages");
-            System.out.println();
         } catch (SQLException e) {
             e.printStackTrace();
         }
